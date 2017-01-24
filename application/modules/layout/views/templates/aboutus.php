@@ -34,7 +34,6 @@
 	<?php	
 	}
 	?>
-		<hr>
 	</header>
 	<?php
 	foreach($bottom_data as $data){

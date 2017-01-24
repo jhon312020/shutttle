@@ -9,7 +9,7 @@
 	$pattern = '/[A-Za-z0-9_-]+@[A-Za-z0-9_-]+\.([A-Za-z0-9_-][A-Za-z0-9_]+)/';
 	preg_match($pattern,$address,$matches);
 	if(count($matches) > 0){
-		$address = str_replace($matches[0], '<a style="color:#ec7124;" href="mailto:'.$matches[0].'">'.$matches[0].'</a>', $address);
+		$address = str_replace($matches[0], '<a style="color:#4577D8;" href="mailto:'.$matches[0].'">'.$matches[0].'</a>', $address);
 	}
 ?>
 <header id="header" class="container text-center">
@@ -35,36 +35,34 @@
 	<?php	
 	}
 	?>
-	<hr class="mob-hide">
+	<!-- <hr class="mob-hide"> -->
 </header>
 <div class="container" id="contactus">
 	<div class="row">
-		<div class="col-sm-5 orange">
+		<div class="col-sm-3">
 			<!--<p>Datos de contacto:</p> <p>Calle Font, 16 <br> 08960, Sant Just Desvern, Barcelona<br>Telf. 902 76 67 66</p>-->
-			<p class="mob-pad-top"><?php echo lang('contact_details'); ?></p><p><?php echo (isset($address))?$address:''; ?>
+			<h4 id="fobo"><?php echo lang('contact_details'); ?></h4><p><?php echo (isset($address))?$address:''; ?>
 			<br>Telf. <?php echo (isset($telephone))?$telephone:''; ?></p>
 			<p>&nbsp;</p>
 		</div>
-		<div class="col-sm-7">
+		<div class="col-sm-9">
 			<div class="col-xs-12">
 				<div class="row contacto">
 					<form method="post" name="contact_form">
 						<div class="form-group col-sm-12 contacto_title"><?php echo lang('send_us_your_suggestion'); ?></div>
-						<div class="form-group col-sm-12">
-							<?php echo lang('we_will_contact_with_you_as_soon_as_possible'); ?>
-							<hr style="margin-bottom:5px;">
-						</div>
-						<div class="form-group col-sm-6">
+						<div class="col-sm-6">
 							<input type="text" class="form-control" id="name" name="name" placeholder="<?php echo lang('name_and_surname'); ?>" required>
+						</div>
+						<div class="col-sm-6 con_msg">
 							<input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-							<hr class="mob-hide">
-							<button type="submit" id="form-submit" class="btn btn-lg btn-block mob-hide"><?php echo lang('send'); ?></button>
 						</div>
-						<div class="form-group col-sm-6 con_msg">
+						<div class="col-sm-10 con_msg">
 							<textarea name="description" id="description" class="form-control" rows="8" placeholder="<?php echo lang('Comment'); ?>" required></textarea>
-							<hr class="mob-show">
-							<button type="submit" id="form-submit" class="btn btn-lg btn-block mob-show"><?php echo lang('send'); ?></button>
+							<button type="submit" id="form-submit" class="btn btn-block mob-show downbtn"><?php echo lang('send'); ?></button>
 						</div>
+						<div class="col-sm-2">						
+							<button type="submit" id="form-submit" class="btn btn-block mob-hide downbtn"><?php echo lang('send'); ?></button>
+						</div>						
 					</form>
 		        </div>
 				<div id="msgSubmit" class="h3 text-center hidden">Message Submitted!</div>

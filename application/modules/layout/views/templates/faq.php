@@ -33,7 +33,7 @@
 				<?php	
 				}
 				?>
-				<hr class="mob-hide" style="border-color:#f7ad30;">
+				<hr class="mob-hide" style="border-color:#E96B68">
 				</span></p>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($ln == 'en')?$engCategory['category1']:$spanCategory['category1']; ?></h2></div>
 			<div class="col-sm-8" id="category1">
-			<div id="accordion" style="border-bottom: 1px solid #f7ad30;padding-bottom:10px;margin-bottom:30px;">
+			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:30px;">
 			<ul class="ques">
 		<?php
 		foreach($cat1 as $data){
@@ -69,7 +69,7 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($ln == 'en')?$engCategory['category2']:$spanCategory['category2']; ?></h2></div>
 			<div class="col-sm-8" id="category2">
-			<div id="accordion" style="border-bottom: 1px solid #f7ad30;padding-bottom:10px;margin-bottom:30px;">
+			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:30px;">
 			<ul class="ques">
 		<?php
 		foreach($cat2 as $data){
@@ -95,7 +95,7 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($ln == 'en')?$engCategory['category3']:$spanCategory['category3']; ?></h2></div>
 			<div class="col-sm-8" id="category3">
-			<div id="accordion" style="border-bottom: 1px solid #f7ad30;padding-bottom:10px;margin-bottom:30px;">
+			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:30px;">
 			<ul class="ques">
 		<?php
 		foreach($cat3 as $data){
