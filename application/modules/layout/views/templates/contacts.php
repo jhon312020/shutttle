@@ -1,10 +1,8 @@
 <?php
-	//echo $lang;
 	$template_path = base_url()."assets/cc/";
 	$ln = $this->uri->segment(1);
-	//echo $ln;die;
 	if(!$ln || $ln == ""){	$ln = "es"; }
-	$this->load->view('navigation_menu');
+	$this->load->view('header');
 	$matches = array();
 	$pattern = '/[A-Za-z0-9_-]+@[A-Za-z0-9_-]+\.([A-Za-z0-9_-][A-Za-z0-9_]+)/';
 	preg_match($pattern,$address,$matches);
@@ -12,35 +10,9 @@
 		$address = str_replace($matches[0], '<a style="color:#4577D8;" href="mailto:'.$matches[0].'">'.$matches[0].'</a>', $address);
 	}
 ?>
-<header id="header" class="container text-center">
-	<hr class="mob-show mob-hr-line">
-	<?php
-	//print_r($bottom_data);die;
-	if(count($top_data) > 0){
-		foreach($top_data as $data){
-	?>
-	<div class="banner mob-hide" style="background-image:url(<?php echo $template_path; ?>/images/captions/<?php echo $data->image; ?>);">
-		<p><?php echo ($ln == 'en')?$data->title_en:$data->title_es; ?></p>
-		<h1><span><?php echo ($ln == 'en')?$data->subtitle_en:$data->subtitle_es; ?></span></h1>
-	</div>
-	<?php
-		}
-	}
-	else{
-	?>
-	<div class="banner" style="background-image:url(<?php echo $template_path;?>images/contacto.jpg);">
-		<p>Lorem ipsum velatio</p>
-		<h1><span>CONTACTO</span></h1>
-	</div>
-	<?php	
-	}
-	?>
-	<!-- <hr class="mob-hide"> -->
-</header>
 <div class="container" id="contactus">
 	<div class="row">
 		<div class="col-sm-3">
-			<!--<p>Datos de contacto:</p> <p>Calle Font, 16 <br> 08960, Sant Just Desvern, Barcelona<br>Telf. 902 76 67 66</p>-->
 			<h4 id="fobo"><?php echo lang('contact_details'); ?></h4><p><?php echo (isset($address))?$address:''; ?>
 			<br>Telf. <?php echo (isset($telephone))?$telephone:''; ?></p>
 			<p>&nbsp;</p>

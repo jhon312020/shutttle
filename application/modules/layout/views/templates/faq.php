@@ -4,7 +4,7 @@
 	$ln = $this->uri->segment(1);
 	//echo $ln;die;
 	if(!$ln || $ln == ""){	$ln = "es"; }
-	$this->load->view('navigation_menu');
+	$this->load->view('header');
 ?>
 	<div class="container" id="faq">
 	<hr class="mob-show mob-hr-line">

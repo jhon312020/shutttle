@@ -4,6 +4,12 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Node extends Anonymous_Controller {
+  /**
+	 * Function constructor
+	 * class constructor
+   * 
+	 * @return	void
+	 */
   public function __construct() {
     parent::__construct();
     $this->load->model('node/mdl_nodes');
@@ -104,26 +110,12 @@ class Node extends Anonymous_Controller {
     }
   }
   
-  public function loaddata_ca($page) {
-    switch (trim($page)) {
-      case 'home': $this->display_home("ca"); 
-        break;
-      case 'projects': $this->display_projects("ca"); 
-        break;
-      case 'news': $this->display_news("ca");
-        break;
-      case 'study': $this->display_study("ca");
-        break;
-      case 'team': $this->display_team("ca");
-        break;
-      case 'publications': $this->display_publications("ca");
-        break;
-      case 'contacts': $this->display_contacts("ca");
-        break;
-      default: show_404();
-    }
-  }
-  
+  /**
+	 * Function display_home
+	 * Displays the home page
+   * 
+	 * @return	void
+	 */
   public function display_home($lang) {
     $res = array();
     $ln = $this->uri->segment(1);
@@ -135,17 +127,13 @@ class Node extends Anonymous_Controller {
     $res['boxes'] = $this->mdl_nodes->fetchAllBoxes();
     $this->load->view('layout/templates/home', $res);
   }
-
-  public function partners() {
-    $bottom_data = $this->db->select('*')->from('partners')->get()->result();
-    $top_data = $this->db->select('*')->from('captions')->where(array('type' => 'partners'))->get()->result();
-    $data_array = array(
-      'top_data'=>$top_data,
-      'bottom_data'=>$bottom_data,
-    );
-    $this->load->view('layout/templates/partners', $data_array);
-  }
   
+  /**
+	 * Function faq
+	 * Displays the faq page
+   * 
+	 * @return	void
+	 */
   public function faq() {
     $bottom_data = $this->db->select('*')->from('faqs')->order_by('category')->get()->result();
     $top_data = $this->db->select('*')->from('captions')->where(array('type' => 'faq'))->get()->result();
@@ -156,39 +144,12 @@ class Node extends Anonymous_Controller {
     $this->load->view('layout/templates/faq', $data_array);
   }
   
-  public function franquicias() {
-    $bottom_data = $this->db->select('*')->from('captions')->where(array('type' => 'franchises'))->get()->result();
-    $data_array = array(
-      'bottom_data'=>$bottom_data,
-    );
-    if ($this->input->post()) {
-      $this->load->library('email');
-      $subject  = 'More info about user';
-      $message  = 'Hi <b></b>,<br/><br/>';
-      $message .= '<p>The detailed information is given below</p><br><br>
-              <table><tbody>';
-      foreach ($this->input->post() as $key=>$value) {
-        $message .= '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';
-      }
-      $message .= '</tbody></table>';
-      $this->email->set_mailtype("html");
-      $this->email->from($this->input->post('Mail'), 'More info');
-      $this->email->to($this->set['site_email']); 
-      $this->email->subject($subject);
-      $this->email->message($message);
-      $this->email->send();
-    }
-    $this->load->view('layout/templates/franquicias', $data_array);
-  }
-  
-  public function concierge() {
-    $bottom_data = $this->db->select('*')->from('captions')->where(array('type' => 'concierge'))->get()->result();
-    $data_array = array(
-      'bottom_data'=>$bottom_data,
-    );
-    $this->load->view('layout/templates/concierge', $data_array);
-  }
-  
+  /**
+	 * Function aboutus
+	 * Displays the aboutus page
+   * 
+	 * @return	void
+	 */
   public function aboutus() {
     $bottom_data = $this->db->select('*')->from('captions')->where(array('type' => 'aboutus'))->get()->result();
     $data_array = array(
@@ -201,39 +162,7 @@ class Node extends Anonymous_Controller {
     $this->load->view('layout/templates/mobile_booking');
   }
   
-  public function collaborators_login() {
-    $error='';
-    if ($this->session->userdata('user_name'))
-      redirect($this->uri->segment(1));
-    if ($this->mdl_users->run_validation('validation_rules_collaborators_login')) {
-      $data = $this->mdl_users->check_collaborators($this->input->post());
-      if ($data) {
-        redirect($this->uri->segment(1));
-      } else {
-        //$this->session->set_flashdata('alert_error', lang('invalid_credentials'));
-        redirect($this->uri->uri_string());
-      }
-    }
-    $this->load->view('layout/templates/collaborators_login', $error);
-  }
-  public function drivers_login() {
-    $error='';
-    if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 5)
-      redirect($this->uri->segment(1).'/route_details');
-    else if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2)
-      redirect($this->uri->segment(1));
-
-    if ($this->mdl_users->run_validation('validation_rules_collaborators_login')) {
-      $data = $this->mdl_users->check_drivers($this->input->post());
-      if ($data) {
-        redirect($this->uri->segment(1).'/route_details');
-      } else {
-        $this->session->set_flashdata('alert_error', lang('invalid_credentials'));
-        redirect($this->uri->uri_string());
-      }
-    }
-    $this->load->view('layout/templates/drivers_login', $error);
-  }
+ 
   public function update_journey() {
     $id = $this->uri->segment(3);
     $this->db->set(array('journey_completed'=>1))->where('id', $id)->update('booking');
@@ -422,18 +351,7 @@ class Node extends Anonymous_Controller {
     $this->load->view('layout/templates/recovery_password', $error);
   }
   
-  public function collaborators_logout() {
-    $this->session->sess_destroy();
-    redirect($this->uri->segment(1)."/collaborators_login");
-    if($this->uri->segment(3) == 2)
-      redirect($this->uri->segment(1)."/collaborators_login");
-    else
-      redirect($this->uri->segment(1)."/drivers_login");
-  }
-  public function drivers_logout() {
-    $this->session->sess_destroy();
-    redirect($this->uri->segment(1)."/carchannel");   
-  }
+  
   
   public function contacts($lang = 'es') {
     $this->load->model('node/mdl_contact');
