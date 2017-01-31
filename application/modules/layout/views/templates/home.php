@@ -7,8 +7,8 @@
 	<div class="row">
 	<p class="homepara">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
 	<div class="col-sm-12 home-label">
-		<div class="col-sm-4"><p><span>20+</span><br>People</p><span>|<span></div>
-		<div class="col-sm-4"><p><span>17</span><br>Nationalities</p>|</div>
+		<div class="col-sm-4"><p><span>20+</span><br>People</p></div><div class="divider1"></div>
+		<div class="col-sm-4"><p><span>17</span><br>Nationalities</p></div><div class="divider2"></div>
 		<div class="col-sm-4"><p><span>300+</span><br>Trips</p></div>
 	</div>
 	</div>

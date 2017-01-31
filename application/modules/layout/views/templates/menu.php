@@ -36,11 +36,11 @@
             <li><a href="<?php echo site_url($ln."/faq"); ?>" class="page-scroll"><?php echo lang('faq'); ?></a></li>
             <li><a href="<?php echo site_url($ln."/contacts"); ?>" class="page-scroll"><?php echo lang('contact'); ?></a></li>
           </ul>
-		  <div class="navbar-lang">
+        </div>
+        <div class="navbar-lang">
         <a href="<?php echo $full_path_es; ?>"><img src="<?php echo IMAGEPATH; ?>spain.png"></a> 
         <a href="<?php echo $full_path_en; ?>"><img src="<?php echo IMAGEPATH; ?>english.png"></a>
       </div>
-        </div>
       </div>
     </nav>
   </div>

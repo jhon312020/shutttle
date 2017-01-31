@@ -61,6 +61,6 @@ $cms_lang = $this->session->userdata('cms_lang');
 </head>
 <body>
   <?php $this->load->view('menu'); ?>
-  <header class="image-bg-fluid-height">
+  <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH; ?>ready.jpg') no-repeat center center scroll;">
     <img class="img-responsive img-center"  alt="">
   </header>
