@@ -61,3 +61,6 @@ $cms_lang = $this->session->userdata('cms_lang');
 </head>
 <body>
   <?php $this->load->view('menu'); ?>
+  <header class="image-bg-fluid-height">
+    <img class="img-responsive img-center"  alt="">
+  </header>

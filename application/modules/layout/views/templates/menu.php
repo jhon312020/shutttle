@@ -18,7 +18,7 @@
 	$title = $this->mdl_settings->setting('site_title');
 ?>
 <div class="navbar-wrapper">
-  <div class="container">
+  <div style="margin-left:20px;">
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo site_url($ln."/"); ?>">Shuttle</a>
+          <a class="navbar-brand" href="<?php echo site_url($ln."/"); ?>"><img src="http://localhost/shutttle/assets/cc/images/logo.jpg" class="img-responsive"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
@@ -36,12 +36,12 @@
             <li><a href="<?php echo site_url($ln."/faq"); ?>" class="page-scroll"><?php echo lang('faq'); ?></a></li>
             <li><a href="<?php echo site_url($ln."/contacts"); ?>" class="page-scroll"><?php echo lang('contact'); ?></a></li>
           </ul>
+		  <div class="navbar-lang">
+		<a href=""><img src="http://localhost/shutttle/assets/cc/images/spain.png"></a> 
+		<a href=""><img src="http://localhost/shutttle/assets/cc/images/english.png"></a>
+		</div>
         </div>
       </div>
     </nav>
   </div>
 </div>
-<header class="image-bg-fluid-height">
-    <img class="img-responsive img-center"  alt="">
-</header>
-
