@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo site_url($ln."/"); ?>"><img src="http://localhost/shutttle/assets/cc/images/logo.jpg" class="img-responsive"></a>
+          <a class="navbar-brand" href="<?php echo site_url($ln."/"); ?>"><img src="<?php echo IMAGEPATH; ?>logo.jpg" class="img-responsive"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
@@ -37,9 +37,9 @@
             <li><a href="<?php echo site_url($ln."/contacts"); ?>" class="page-scroll"><?php echo lang('contact'); ?></a></li>
           </ul>
 		  <div class="navbar-lang">
-		<a href=""><img src="http://localhost/shutttle/assets/cc/images/spain.png"></a> 
-		<a href=""><img src="http://localhost/shutttle/assets/cc/images/english.png"></a>
-		</div>
+        <a href="<?php echo $full_path_es; ?>"><img src="<?php echo IMAGEPATH; ?>spain.png"></a> 
+        <a href="<?php echo $full_path_en; ?>"><img src="<?php echo IMAGEPATH; ?>english.png"></a>
+      </div>
         </div>
       </div>
     </nav>

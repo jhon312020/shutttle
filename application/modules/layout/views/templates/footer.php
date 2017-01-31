@@ -31,8 +31,8 @@
       <div class="col-xs-6 text-right" style="padding-right:0px;">
         <a href="<?php echo site_url('/').$ln; ?>/terms"><?php echo lang('terms_and_conditions'); ?></a> <span class="separator">|</span> 
         <a href="<?php echo (isset($social_facebook))?$social_facebook:'#'; ?>" style="display:none;"><img src="<?php echo $template_path;?>images/facebook.png" style="width:20px;"></a> <span class="separator" style="display:none;">|</span> 
-        <a href="<?php echo $full_path_es; ?>" onClick="return checkPage();"><img src="<?php echo $template_path;?>images/spanish.png" style="width:20px;"></a> <span class="separator">|</span> 
-        <a href="<?php echo $full_path_en; ?>" onClick="return checkPage();"><img src="<?php echo $template_path;?>images/english.png" style="width:20px;"></a>
+        <a href="<?php echo $full_path_es; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>spain.png" style="width:20px;"></a> <span class="separator">|</span> 
+        <a href="<?php echo $full_path_en; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>english.png" style="width:20px;"></a>
       </div>
     </div>
     <div class="row">

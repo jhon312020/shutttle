@@ -1,5 +1,4 @@
 <?php
-	$asset_path = base_url()."assets/cc/";
 	$ln = $this->uri->segment(1);
 	if(!$ln || $ln == ""){	$ln = "es"; }
 	$this->load->view('home_header');
@@ -21,14 +20,24 @@
       <div class="grid-custom">
         <h2 class="head_2">News</h2>
         <div class="row col-sm-10 col-sm-offset-1">
-          <?php $img_url = $asset_path.'images/homepage/boxes/'; ?>
-          <?php foreach($boxes as $box) {   $image_name =($ln =='es')? $box->image_es: $box->image; ?>
+          <?php $img_url = IMAGEPATH.'homepage/boxes/'; ?>
+          <?php foreach($boxes as $box) {   
+              if ($ln =='es') { 
+                $image_name = $box->image_es;
+                $title = $box->title_es;
+                $content = $box->text_above_banner_es;
+              } else {
+                $image_name = $box->image;
+                $title = $box->title_es;
+                $content = $box->text_above_banner_es; 
+              }
+            ?>
           <div class="col-sm-4 col-xs-6"><img src="<?php echo $img_url.'/'.$image_name; ?>" alt="" class="img-responsive">
-		  <div class="text">
-			<h1>DUIS EU ENIM</h1>
-            <p>Quisque lectus ex, vehicula eget arcu id, eleifend porta diam.</p>    
-		</div>
-	</div>
+            <div class="text">
+              <h1><?php echo $title; ?></h1>
+                <p><?php echo $content; ?></p>    
+            </div>
+            </div>
           <?php } ?>
         </div>
       </div>

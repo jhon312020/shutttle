@@ -19,7 +19,7 @@ class Anonymous_Controller extends MX_Controller {
       $this->load->model('settings/mdl_settings');
       $this->mdl_settings->load_settings();
       // some define to use globally
-      define('IMAGEPATH',base_url()."assets/default/images/");
+      define('IMAGEPATH',base_url()."assets/cc/images/");
       $ln = $this->uri->segment(1);
       if($ln == "en") {
         $lang = "english";
