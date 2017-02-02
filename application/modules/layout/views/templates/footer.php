@@ -60,29 +60,11 @@
     <!-- Validation Engine js -->
     <script src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine-en.js"></script>
     <script src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine.js"></script>
+    <?php if ($path == 'reservation') { ?>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="<?php echo base_url(); ?>assets/cc/js/reservation.js"></script>
-	<script>
-	$(function() {
-
-    $('#login-form-link').click(function(e) {
-		$("#login-form").delay(100).fadeIn(100);
- 		$("#register-form").fadeOut(100);
-		$('#register-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-	$('#register-form-link').click(function(e) {
-		$("#register-form").delay(100).fadeIn(100);
- 		$("#login-form").fadeOut(100);
-		$('#login-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-
-});
-
-	</script>
-  
-
+    <script src="<?php echo base_url(); ?>assets/cc/js/functions.js"></script>
+    <?php } ?>
 <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="25" style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text></svg></body>
 </html>

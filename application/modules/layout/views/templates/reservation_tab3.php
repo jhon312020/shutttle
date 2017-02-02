@@ -5,9 +5,9 @@
 	//echo $ln;die;
 	if(!$ln || $ln == ""){	$ln = "es"; }
 ?>
-<div class="tab-pane" id="tab_default_3">
+<div class="tab-pane" id="thirdStep">
   <?php $this->load->view('reservation_tab_common_left'); ?>
-  <div class="col-sm-9 totStep" id="thirdStep">
+  <div class="col-sm-9">
 			<div class="row mybox-1">
 				<div class="col-sm-12"><h5><?php echo lang('includes'); ?></h5></div>
 				<div class="col-sm-12">

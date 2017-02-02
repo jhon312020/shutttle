@@ -154,10 +154,13 @@ $route['es/process'] = 'node/process';
 $route['en/reservation'] = 'node/reservation';
 $route['es/reservation'] = 'node/reservation';
 
-$route['en/ajaxreturn1'] = 'node/ajaxreturn1';
-$route['es/ajaxreturn1'] = 'node/ajaxreturn1';
+$route['en/getData'] = 'ajax/getData';
+$route['es/getData'] = 'ajax/getData';
 
 $route['en/(:any)'] = 'node/loaddata_en/$1';
 $route['es/(:any)'] = 'node/loaddata_es/$1';
 $route['ca/(:any)'] = 'node/loaddata_ca/$1';
+
+
+
 

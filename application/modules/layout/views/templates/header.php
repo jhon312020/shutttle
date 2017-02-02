@@ -1,8 +1,7 @@
 <?php
 $user_name = $this->session->userdata('user_name');
-$title = $this->mdl_settings->setting('site_title') . " | Admin Panel";
+$title = $this->mdl_settings->setting('site_title');
 $cms_lang = $this->session->userdata('cms_lang');
-//$language = array('english'=>'en', 'spanish'=>'es');
 ?>
 <!DOCTYPE html>
 <html lang="en">

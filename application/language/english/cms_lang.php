@@ -673,4 +673,6 @@ $lang['kids_popup'] = 'Kids are under 5 years. More than 5 years are adults.';
 $lang['passengers_price'] = 'Passengers Price';
 $lang['pay_by_credit'] = 'Credit card';
 $lang['how_pay'] = 'How you want to pay?';
+$lang['landing_time'] = 'Day and Landing Time';
+$lang['flight_time'] = 'Day and Flight Time';
 ?>

@@ -188,8 +188,10 @@ class Mdl_routes extends Response_Model {
      * @param  [type] $details [description]
      * @return [type]          [description]
      */
-	public function getcar($data, $details){
-
+	public function getcar($data, $details) {
+    //Statically assigning the start hours and time
+    $data['hours'] = '00';
+    $data['minutes'] = '00';
 		// Journey Starting Date and Time
 		$journeyStartDate 	  = str_replace('/','-',$this->input->post('start_journey'));
 		$journeyStartDate 	  = date('Y-m-d', strtotime($journeyStartDate));
@@ -242,19 +244,6 @@ class Mdl_routes extends Response_Model {
 				$night_oneway_rates = 0;
 				$night_twoway_rates = 0;
 				$collaborators = true;
-				/* if($this->session->userdata('user_type') && $this->session->userdata('user_type') == 2 && $details['collaborator_details']['available_seats'] == 'activate'){
-					if($total_seats <= $details['collaborator_details']['no_of_available_seats']){
-						$this->db->from('collaborators')->where('id',$details['collaborator_details']['id']);
-						$collaborators_qry = $this->db->get();
-						$collaborators = $collaborators_qry->result_array();
-						$result['collaborators'] = $collaborators;
-					}
-					else{
-						$collaborators = false;
-					}
-				} */
-				//echo $this->db->last_query();die;
-				//echo "<pre>";print_r($_POST);
 				if($collaborators){
 					$this->db->from('calendars')->where(array('service_date' =>$startDate, 'is_active'=>1));
 					$this->db->like('steps','"'.$fromZone.'"');

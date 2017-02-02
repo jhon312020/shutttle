@@ -1,7 +1,4 @@
 <?php
-	$template_path = base_url()."assets/cc/";
-	$ln = $this->uri->segment(1);
-	if(!$ln || $ln == ""){	$ln = "es"; }
 	$this->load->view('header');
 	$matches = array();
 	$pattern = '/[A-Za-z0-9_-]+@[A-Za-z0-9_-]+\.([A-Za-z0-9_-][A-Za-z0-9_]+)/';

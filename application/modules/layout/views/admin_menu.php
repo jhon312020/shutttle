@@ -46,24 +46,6 @@
 							<span><?php echo lang('about'); ?></span>
 						</a>
 					</li>
-					<li class="<?php echo ($this->router->class == 'partners' or $end_segment == 'partners') ? 'opened active' : ''; ?>">
-						<a href="<?php echo site_url('admin/partners/index'); ?>">
-							<i class="entypo-list"></i>
-							<span><?php echo lang('partners'); ?></span>
-						</a>
-					</li>
-					<li class="<?php echo ($this->router->class == 'franchises' or $end_segment == 'franchises') ? 'opened active' : ''; ?>">
-						<a href="<?php echo site_url('admin/captions/form/1/franchises'); ?>">
-							<i class="entypo-list"></i>
-							<span><?php echo lang('franchises_cms'); ?></span>
-						</a>
-					</li>
-					<li class="<?php echo ($this->router->class == 'concierge' or $end_segment == 'concierge') ? 'opened active' : ''; ?>">
-						<a href="<?php echo site_url('admin/captions/form/3/concierge'); ?>">
-							<i class="entypo-list"></i>
-							<span><?php echo lang('concierge_cms'); ?></span>
-						</a>
-					</li>
 					<li class="<?php echo ($this->router->class == 'faq' or $end_segment == 'faq') ? 'opened active' : ''; ?>">
 						<a href="<?php echo site_url('admin/faq/index'); ?>">
 							<i class="entypo-list"></i>
@@ -106,12 +88,6 @@
 				<a href="<?php echo site_url('admin/clients/index'); ?>">
 					<i class="entypo-ticket"></i>
 					<span><?php echo lang('clients'); ?></span>
-				</a>
-			</li>
-			<li class="<?php echo $this->router->class == 'collaborators' ? 'opened active' : ''; ?>">
-				<a href="<?php echo site_url('admin/collaborators/index'); ?>">
-					<i class="entypo-users"></i>
-					<span><?php echo lang('collaborators'); ?></span>
 				</a>
 			</li>
 			<li class="<?php echo ($this->router->class == 'routes' && $this->router->method != 'bcn_area' && $this->router->method != 'bcn_form' && $this->router->method != 'bcnareas_address' && $this->router->method != 'bcn_address_form') ? 'opened active' : ''; ?>">
