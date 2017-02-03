@@ -1,19 +1,6 @@
 <?php
-
-	//echo $lang;
-
-	$template_path = base_url()."assets/cc/";
-
-	$ln = $this->uri->segment(1);
-
-	//echo $ln;die;
-
-	$this->load->view('navigation_menu');
-
-	if(!$ln || $ln == ""){	$ln = "es"; }
-
-	$extra_array = json_decode($bookings['extra_array'], true);	
-
+	$this->load->view('header');
+  $extra_array = json_decode($bookings['extra_array'], true);	
 ?>
 
 <html>
@@ -158,8 +145,6 @@
 
 	<div class="container" id="reserva01">
 
-		<img src="<?php echo $ln=='en'? $template_path.'images/header_english.jpg':$template_path.'images/header_spanish.jpg'; ?>" style="width:100%;margin:0px!important;padding:0px!important;margin-bottom:15px!important;">
-
 		<div class="row" style="margin-top:25px!important;">
 
 			<div class="col-sm-12">
@@ -254,7 +239,8 @@
 
 									<td style="color:#7D4884;"><?php echo lang('country'); ?>:</td>
 
-									<td><?php echo $countries[$bookings['country']]; ?></td>
+									<td><?php //echo $countries[$bookings['country']]; ?></td>
+									<td><?php echo $bookings['country']; ?></td>
 
 									<td style="color:#7D4884;"><?php echo lang('flight_no'); ?>:</td>
 
@@ -470,7 +456,7 @@
 
 			</div>
 
-			<?php if($ln == 'en') { ?>
+			<?php if($lang == 'en') { ?>
 
 			<div class="col-sm-12 row-same-height">
 
@@ -604,7 +590,7 @@
 
 			<div class="col-sm-12">
 
-				<img src="<?php echo $template_path.'images/routes.png'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">			
+				<img src="<?php echo IMAGEPATH.'/routes.png'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">			
 
 			</div>	
 
@@ -620,7 +606,7 @@
 
 		</div>
 
-		<?php if($ln == 'en') { ?>
+		<?php if($lang == 'en') { ?>
 
 		<div class="row">
 

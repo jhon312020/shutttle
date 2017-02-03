@@ -1,16 +1,8 @@
-<?php
-	//echo $lang;
-	$template_path = base_url()."assets/cc/";
-	$ln = $this->uri->segment(1);
-	//echo $ln;die;
-	if(!$ln || $ln == ""){	$ln = "es"; }
-?>
 <div class="col-sm-3 mob-hide" id="secondLeftStep">
 			<p class="text-justify">
-				<H4 class="resumen" style='text-transform:uppercase;'><?php echo lang('summary'); ?> 
-					<span data-toggle="modal" data-target="#myModal" class="pull-right orange editpop" style="cursor:pointer;text-transform:uppercase;"><?php echo lang('edit'); ?></span>
-				</H4> 
-				<hr class="marginTB-10 orangeborder">
+				<h4 class="resumen" style='text-transform:uppercase;'><?php echo lang('summary'); ?> 
+					<!-- <span data-toggle="modal" data-target="#myModal" class="pull-right orange editpop" style="cursor:pointer;text-transform:uppercase;"><?php //echo lang('edit'); ?></span> -->
+				</h4> 
 			</p>
 			<?php
 				$arrowDownClass = "";
@@ -27,23 +19,24 @@
 				);
 				foreach ($leftSidebar as $key => $value) {
 				?>
-					<h4 style='text-transform:uppercase;font-weight:bold;'><?php echo lang($key).' '.$arrowDownClass ?></h4>
-					<p class="duplicateList" style='text-transform:uppercase;' data-id="<?php echo $value; ?>"></p>
+					<div>
+            <span style='text-transform:uppercase;font-weight:bold;'><?php echo lang($key);?>: </span>
+            <span class="duplicateList" style='text-transform:uppercase;' data-id="<?php echo $value; ?>"></span>
+          </div>
 				<?php		
 				}
 			?>
 			
-			<H4 class="resumen" style="text-transform:uppercase;"><?php echo lang('price'); ?> 
-				<span class="pull-right orange resumen"><span id="initialPrice">0</span> &euro;</span>
-				<button type="button" id="form-submit" class="btn pull-right btn-lg pickbluebg paypalsubmit"><?php echo lang('price'); ?>:46:00 E</button>
-			</H4>
+			<div style="padding-top:15px;"> 
+				<button type="button" id="form-submit" class="btn btn-lg pickbluebg paypalsubmit"><?php echo lang('price'); ?>: <span class="initialPrice">00.00</span> &euro;</span></button>
+			</div>
 			<div class="extras">
 			</div>
 			<p class="text-justify">
 				<hr class="marginTB-10 orangeborder reduction" style="display:none;">
-				<H4 class="resumen reduction" style="display:none;">Promotional code <span id="percentage_reduction"></span> <span class="pull-right orange resumen">
+				<h4 class="resumen reduction" style="display:none;">Promotional code <span id="percentage_reduction"></span> <span class="pull-right orange resumen">
 					<span id="price_reduction"></span> &euro;</span>
-				</H4>
+				</h4>
 			</p>
 		</div>
 

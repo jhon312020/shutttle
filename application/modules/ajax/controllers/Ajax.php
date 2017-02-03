@@ -4,14 +4,28 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Ajax extends Anonymous_Controller {
-  
+  public $details = array();
   public function getData() {
   if ($this->input->post()) {
     $this->load->model('routes/mdl_routes');
     $post_params = $this->input->post();
+    if (isset($post_params['start_journey']) && $post_params['start_journey'] != '') {
+      list($start_journey, $time) = explode(' ', $post_params['start_journey']);
+      $post_params['start_journey'] = $start_journey;
+      list($hours, $minutes) = explode(':', $time);
+      $post_params['hours'] = $hours;
+      $post_params['minutes'] = $minutes;
+    }
+    if (isset($post_params['start_journey']) && $post_params['return_journey'] != '') {
+      list($return_journey, $return_time) = explode(' ', $post_params['return_journey']);
+      $post_params['return_journey'] = $return_journey;
+      list($return_hours, $return_minutes) = explode(':', $return_time);
+      $post_params['return_hours'] = $return_hours;
+      $post_params['return_minutes'] = $return_minutes;
+    }
     $mode = $post_params['mode'];
     if ($mode == 'firstStep') {
-      $result = $this->mdl_routes->getcar($this->input->post(), $this->details);
+      $result = $this->mdl_routes->getcar($post_params, $this->details);
       echo json_encode($result);
     } else if ($mode == 'login') {
         $this->db->select('clients.id as client_id,clients.name,clients.surname,clients.email,clients.phone,clients.address,clients.cp,clients.country as client_country, clients.city,clients.nationality,clients.dni_passport,clients.doc_no,users.id as user_id');
@@ -239,15 +253,15 @@ class Ajax extends Anonymous_Controller {
   /*Same booking validation end*/
   
   /*Journey time validation start*/
-  $journeyStartDate     = str_replace('/','-',$post_params['start_journey']);
-  $journeyStartDate     = date('Y-m-d', strtotime($journeyStartDate));
-  $journeyStartTime   = $post_params['hours'].':'.$post_params['minutes'];
-  $journeyStartDateTime = $journeyStartDate.' '.$journeyStartTime;
-  $tommorrowDateTime = date('Y-m-d H:i', strtotime('+4 hour'));
-  if (strtotime($journeyStartDateTime) < strtotime($tommorrowDateTime)) {
-    $error['error'] = true;
-    $error['time_error'] = true;
-  }
+  //~ $journeyStartDate     = str_replace('/','-',$post_params['start_journey']);
+  //~ $journeyStartDate     = date('Y-m-d', strtotime($journeyStartDate));
+  //~ $journeyStartTime   = $post_params['hours'].':'.$post_params['minutes'];
+  //~ $journeyStartDateTime = $journeyStartDate.' '.$journeyStartTime;
+  //~ $tommorrowDateTime = date('Y-m-d H:i', strtotime('+4 hour'));
+  //~ if (strtotime($journeyStartDateTime) < strtotime($tommorrowDateTime)) {
+    //~ $error['error'] = true;
+    //~ $error['time_error'] = true;
+  //~ }
   /*Journey time validation end*/
   
           //echo json_encode($error);exit;
@@ -414,9 +428,10 @@ class Ajax extends Anonymous_Controller {
     //$this->db->set(array('payment_method'=>$pay))->where('id', $return_id)->update('booking');
     
     /*Sabadell payment start*/
-    include_once(APPPATH . "modules/layout/views/templates/apiRedsys.php");
+    //include_once(APPPATH . "modules/layout/views/templates/apiRedsys.php");
+    $this->load->library('apiRedsys');
     $ln = $this->uri->segment(1);
-    $miObj = new RedsysAPI;
+    $miObj = new apiRedsys;
     
     //$merchantCode = "336240668";
     $merchantCode = "336240668";

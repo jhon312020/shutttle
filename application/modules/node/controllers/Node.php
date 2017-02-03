@@ -86,10 +86,10 @@ class Node extends Anonymous_Controller {
     $ln = $this->uri->segment(1);
     if ($ln == '')
       redirect("en");
-    $res['sliders'] = $this->mdl_nodes->fetchAllSliders();
-    $res['banner'] = $this->mdl_nodes->fetchBannerLast();
-    $res['boxes'] = $this->mdl_nodes->fetchAllBoxes();
-    $this->load->view('layout/templates/home', $res);
+    $this->template_vars['sliders'] = $this->mdl_nodes->fetchAllSliders();
+    $this->template_vars['banner'] = $this->mdl_nodes->fetchBannerLast();
+    $this->template_vars['boxes'] = $this->mdl_nodes->fetchAllBoxes();
+    $this->load->view('layout/templates/home', $this->template_vars);
   }
   
   /**
@@ -281,6 +281,12 @@ class Node extends Anonymous_Controller {
     $this->load->view('layout/templates/change_password', $error);
   }
   
+  /**
+	 * Function Password recovery
+	 * Displays the payment success page
+   * 
+	 * @return	void
+	 */
   public function recovery_password() {
     $error='';
     $type = $this->uri->segment(3);
@@ -310,8 +316,12 @@ class Node extends Anonymous_Controller {
     $this->load->view('layout/templates/recovery_password', $error);
   }
   
-  
-  
+  /**
+	 * Function contacts
+	 * Displays the payment success page
+   * 
+	 * @return	void
+	 */
   public function contacts($lang = 'es') {
     $this->load->model('node/mdl_contact');
     if ($this->mdl_contact->run_validation()) {
@@ -330,90 +340,91 @@ class Node extends Anonymous_Controller {
       $this->email->send();
     } else 
     log_message("debug", "%%%%%%%% FROM NODE CONTACT ELSE");
-    //$this->load->model('captions/mdl_captions');
-    //$this->template_vars['content'] = $this->mdl_captions->getRow('contacts', $this->uri->segment(1));
-    //$this->template_vars['bottom_data'] = $this->db->select('*')->from('contacts')->get()->result();
     $this->load->view('layout/templates/contacts', $this->template_vars);
   }
+  /**
+	 * Function terms
+	 * Displays the payment success page
+   * 
+	 * @return	void
+	 */
   public function terms() {
-    $bottom_data = $this->db->select('*')->from('captions')->where(array('type' => 'terms_and_conditions'))->get()->result();
-    $data_array = array(
-      'bottom_data'=>$bottom_data,
-    );
-    $this->load->view('layout/templates/terms', $data_array);
+    $this->template_vars['bottom_data'] = $this->db->select('*')->from('captions')->where(array('type' => 'terms_and_conditions'))->get()->result();
+    $this->load->view('layout/templates/terms', $this->template_vars);
   }
   
+  /**
+	 * Function error
+	 * Displays the payment success page
+   * 
+	 * @return	void
+	 */
   public function email() {
-    $this->load->view('layout/templates/email');
+    $this->load->view('layout/templates/email', $this->template_vars);
   }
+  
+  /**
+	 * Function error
+	 * Displays the payment success page
+   * 
+	 * @return	void
+	 */
   public function pdf() {
     $this->load->helper('dompdf');
     $data =array();
-    $this->load->view('layout/templates/pdf');
+    $this->load->view('layout/templates/pdf', $this->template_vars);
   }
   
-  public function reserva01() {
-    if (!$this->input->post())
-      redirect($this->uri->segment(1));
-    $this->load->model('routes/mdl_routes');
-    $this->load->model('booking_extras/mdl_booking_extras');
-    $res['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
-    $res['result'] = $this->mdl_routes->getcar($this->input->post(), $this->details);
-    if (!$res['result']) {
-      $link = explode('/', $this->agent->referrer());
-      if (end($link) == 'reserva01')
-        redirect($this->uri->segment(1));
-      else
-        redirect($this->agent->referrer());
-    }
-    $this->load->view('layout/templates/reserva01', $res);
-  }
+  /**
+	 * Function error
+	 * Displays the payment success page
+   * 
+	 * @return	void
+	 */ 
   public function success() {
-        $transaction_details = array();
-        // Checking the paypal token and PayerID on calling the setExpressCheckout
-        if ($this->input->get('token') && $this->input->get('PayerID')) {
-            include_once(APPPATH . "modules/layout/views/templates/config.php");
-            include_once(APPPATH . "modules/layout/views/templates/functions.php");
-            include_once(APPPATH . "modules/layout/views/templates/paypal.class.php");
-            $paypal= new MyPayPal();
-            // On receiving the paypal token and payer calling DoExpressCheckout
-            $payerId = $this->input->get('PayerID');
-            $do_express_api_response = $paypal->DoExpressCheckoutPayment();
-            $transaction_details = $paypal->GetTransactionDetails();
-            $book_id = $transaction_details['CUSTOM'];
-      if($book_id != '' && is_numeric($book_id)) {
+    $transaction_details = array();
+    // Checking the paypal token and PayerID on calling the setExpressCheckout
+    if ($this->input->get('token') && $this->input->get('PayerID')) {
+      $this->load->library('paypal/paypalRequire');
+      $this->load->library('paypal/paypal');
+      $paypal= new paypal();
+      // On receiving the paypal token and payer calling DoExpressCheckout
+      $payerId = $this->input->get('PayerID');
+      $do_express_api_response = $paypal->DoExpressCheckoutPayment();
+      $transaction_details = $paypal->GetTransactionDetails();
+      $book_id = $transaction_details['CUSTOM'];
+      if ($book_id != '' && is_numeric($book_id)) {
         $book_data = $this->db->from('booking')->where('id', $book_id)->get()->row();
-        if($book_data->book_status != 'pending') {
-          redirect($this->uri->segment(1));
+        if ($book_data->book_status != 'pending') {
+          //redirect($this->uri->segment(1));
         }
       } else {
-        redirect($this->uri->segment(1));
+          redirect($this->uri->segment(1));
       }
-            if ($do_express_api_response['transaction']) {
-                $this->db->set(array('is_active'=>1, 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_payer_id'=>$payerId, 'paypal_transaction_response'=>json_encode($do_express_api_response['response'])))->where('id', $book_id)->update('booking');
-            } else {
-                $this->db->set(array('updated_by' =>'success', 'is_active'=>0, 'book_status'=>'Transaction failed', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_payer_id'=>$payerId, 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id', $book_id)->update('booking');
-        
-        $this->load->library('email');
-        //$this->email->set_mailtype("html");
-        $this->email->from($this->set['site_email'], $this->set['site_title']);
-        $this->email->to('bright@proisc.com');
-        $this->email->subject('Booking Confirmation: '.$book_id.' has been Transaction failed');
-        $this->email->message('Transaction failed');
-        $this->email->send();
-                $this->session->set_flashdata('alert_error', lang('transaction_failed'));
-                redirect($this->uri->segment(1));
-            }
-        } else if ($this->input->get('cm')) {
-            $book_id = $this->input->get('cm');
-        } else {
-            $this->session->set_flashdata('alert_error', lang('transaction_failed'));
-            redirect($this->uri->segment(1));
-        }
-    if($book_id != '' && is_numeric($book_id)) {
-      $book_data = $this->db->from('booking')->where('id', $book_id)->get()->row();
-      if($book_data->book_status != 'pending') {
+      if ($do_express_api_response['transaction']) {
+        $this->db->set(array('is_active'=>1, 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_payer_id'=>$payerId, 'paypal_transaction_response'=>json_encode($do_express_api_response['response'])))->where('id', $book_id)->update('booking');
+      } else {
+          $this->db->set(array('updated_by' =>'success', 'is_active'=>0, 'book_status'=>'Transaction failed', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_payer_id'=>$payerId, 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id', $book_id)->update('booking');
+          $this->load->library('email');
+          //$this->email->set_mailtype("html");
+          $this->email->from($this->set['site_email'], $this->set['site_title']);
+          $this->email->to('bright@proisc.com');
+          $this->email->subject('Booking Confirmation: '.$book_id.' has been Transaction failed');
+          $this->email->message('Transaction failed');
+          $this->email->send();
+          $this->session->set_flashdata('alert_error', lang('transaction_failed'));
+          redirect($this->uri->segment(1));
+      }
+    } else if ($this->input->get('cm')) {
+        $book_id = $this->input->get('cm');
+    } else {
+        $this->session->set_flashdata('alert_error', lang('transaction_failed'));
         redirect($this->uri->segment(1));
+    }
+    if ($book_id != '' && is_numeric($book_id)) {
+      $book_data = $this->db->from('booking')->where('id', $book_id)->get()->row();
+      if ($book_data->book_status != 'pending') {
+        //redirect($this->uri->segment(1));
       }
       if((float)$book_data->passenger_price == 0) {
         $this->session->set_flashdata('alert_error', 'Something went wrong');
@@ -430,99 +441,97 @@ class Node extends Anonymous_Controller {
       }*/
       /*Test bank payment end*/
     } else {
-      redirect($this->uri->segment(1));
+        redirect($this->uri->segment(1));
     }
-        /*update payment status*/       
-        //$this->db->set(array('is_active'=>1))->where('book_id', $book_id)->update('seats');
-        $this->db->from('booking')->where('id', $book_id);
-        $bookings = current($this->db->get()->result_array());
-        
-        if ($bookings['payment_method'] == 'paid')
-            $this->db->set(array('updated_by' =>'success', 'book_status'=>'paid'))->where('id', $book_id)->update('booking');
-        else if($bookings['payment_method'] == 'cash')
-            $this->db->set(array('updated_by' =>'success', 'book_status'=>'cash'))->where('id', $book_id)->update('booking');
-        else
-            $this->db->set(array('is_active'=>1, 'updated_by' =>'success', 'book_status'=>'completed'))->where('id', $book_id)->update('booking');
-        
-        $this->db->from('booking')->where('id', $book_id);
-        $res['bookings'] = current($this->db->get()->result_array());
-        
-        if ($res['bookings']['return_book_id']) {
-            $this->db->from('booking')->where('id', $res['bookings']['return_book_id']);
-            $res['return_bookings'] = current($this->db->get()->result_array());
-            if ($res['return_bookings']['payment_method'] == 'paid')
-                $this->db->set(array('updated_by' =>'success', 'book_status'=>'paid'))->where('id', $res['bookings']['return_book_id'])->update('booking');
-            else if($res['return_bookings']['payment_method'] == 'cash')
-                $this->db->set(array('updated_by' =>'success', 'book_status'=>'cash'))->where('id', $res['bookings']['return_book_id'])->update('booking');
-            else
-                $this->db->set(array('updated_by' =>'success', 'book_status'=>'completed'))->where('id', $res['bookings']['return_book_id'])->update('booking');
-        }
-        $arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
-        
-        if (in_array($res['bookings']['start_from'], $arr)) {
-            $zone = $res['bookings']['end_at'];
-            $str = 'end_at';
-        } else {
-            $zone = $res['bookings']['start_from'];
-            $str = 'start_from';
-        }
-        /*Address details*/
-    $res['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id ', $res['bookings']['collaborator_address_id'])->get()->result_array();      
-      
-        $this->db->from('collaborators')->where('id',$res['bookings']['collaborator_id']);
-        $terminal = current($this->db->get()->result_array());
-    
-        $res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
-    if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
-      $res['bookings'][$str] = $res['bookings']['address'];
-    }
-    
-        $res['bookings']['collaborator_name'] = $terminal['name'];
-        $this->db->from('calendars')->where('id', $res['bookings']['calendar_id']);
-        $res['start_journey'] = current($this->db->get()->result_array());
-        $client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$res['bookings']['client_id'])->get();
-        if ($client_qry->num_rows())
-            $res['clients'] = current($client_qry->result_array());
-        else
-            $res['clients'] = json_decode($res['bookings']['client_array'], true);
-        
-        $res['price'] = $this->input->get('amt');
-        $res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);
-        $this->load->view('layout/templates/success', $res);
-        /*$this->load->helper('dompdf');
-        $html = $this->load->view('layout/templates/pdf', $res, true);
-        $output = pdf_create($html, 'booking reference', true);*/
-        if ($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12') {
-            $this->load->helper('dompdf');  
-            $html = $this->load->view('layout/templates/pdf', $res, true);
-            $mail_html = $this->load->view('layout/templates/email', $res, true);
-            //$output = pdf_create($html, 'booking reference', false);
-            $output = pdf_create($html, $res['book_reference'], false);
-            $this->load->library('email');
-            $this->email->set_mailtype("html");
-            $this->email->from($this->set['site_email'], $this->set['site_title']);
-            $this->email->to($res['clients']['email']); 
-            $cc_array = array('bookings@pickngo.com');
-            if($res['bookings']['book_role'] == 2)
-                array_push($cc_array, $terminal['email']);
+    /*update payment status*/       
+    //$this->db->set(array('is_active'=>1))->where('book_id', $book_id)->update('seats');
+    $this->db->from('booking')->where('id', $book_id);
+    $bookings = current($this->db->get()->result_array());
 
-            $this->email->cc($cc_array);
-            //$this->email->cc(array('janakiraman@proisc.com', 'xavi@grupovisualiza.com'));
-      if($res['bookings']['book_status'] == 'completed')
-        $this->email->bcc(array('janakiraman@proisc.com', 'bright@proisc.com'));
-      
-            $this->email->subject('Booking Confirmation: '.$res['book_reference']);
-            $this->email->message($mail_html);
-            $this->email->attach($output);
-            $this->email->send();
-        }
+    if ($bookings['payment_method'] == 'paid')
+      $this->db->set(array('updated_by' =>'success', 'book_status'=>'paid'))->where('id', $book_id)->update('booking');
+    else if($bookings['payment_method'] == 'cash')
+      $this->db->set(array('updated_by' =>'success', 'book_status'=>'cash'))->where('id', $book_id)->update('booking');
+    else
+      $this->db->set(array('is_active'=>1, 'updated_by' =>'success', 'book_status'=>'completed'))->where('id', $book_id)->update('booking');
+
+    $this->db->from('booking')->where('id', $book_id);
+    $this->template_vars['bookings'] = current($this->db->get()->result_array());
+
+    if ($this->template_vars['bookings']['return_book_id']) {
+      $this->db->from('booking')->where('id', $this->template_vars['bookings']['return_book_id']);
+      $this->template_vars['return_bookings'] = current($this->db->get()->result_array());
+        if ($this->template_vars['return_bookings']['payment_method'] == 'paid')
+          $this->db->set(array('updated_by' =>'success', 'book_status'=>'paid'))->where('id', $this->template_vars['bookings']['return_book_id'])->update('booking');
+        else if($this->template_vars['return_bookings']['payment_method'] == 'cash')
+          $this->db->set(array('updated_by' =>'success', 'book_status'=>'cash'))->where('id', $this->template_vars['bookings']['return_book_id'])->update('booking');
+        else
+          $this->db->set(array('updated_by' =>'success', 'book_status'=>'completed'))->where('id', $this->template_vars['bookings']['return_book_id'])->update('booking');
     }
+    $arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
+
+    if (in_array($this->template_vars['bookings']['start_from'], $arr)) {
+      $zone = $this->template_vars['bookings']['end_at'];
+      $str = 'end_at';
+    } else {
+        $zone = $this->template_vars['bookings']['start_from'];
+        $str = 'start_from';
+    }
+    /*Address details*/
+    $this->template_vars['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id ', $this->template_vars['bookings']['collaborator_address_id'])->get()->result_array();      
+
+    $this->db->from('collaborators')->where('id',$this->template_vars['bookings']['collaborator_id']);
+    $terminal = current($this->db->get()->result_array());
+
+    $this->template_vars['bookings'][$str] = $terminal['name'].' - '.(count($this->template_vars['bookings']['collaborator_address']) > 0 ?$this->template_vars['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
+    if($this->template_vars['bookings']['bcnarea_address_id'] != '' && $this->template_vars['bookings']['bcnarea_address_id'] != '0') {
+      $this->template_vars['bookings'][$str] = $this->template_vars['bookings']['address'];
+    }
+
+    $this->template_vars['bookings']['collaborator_name'] = $terminal['name'];
+    $this->db->from('calendars')->where('id', $this->template_vars['bookings']['calendar_id']);
+    $this->template_vars['start_journey'] = current($this->db->get()->result_array());
+    $client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$this->template_vars['bookings']['client_id'])->get();
+    if ($client_qry->num_rows())
+        $this->template_vars['clients'] = current($client_qry->result_array());
+    else
+        $this->template_vars['clients'] = json_decode($this->template_vars['bookings']['client_array'], true);
+
+    $this->template_vars['price'] = $this->input->get('amt');
+    $this->template_vars['book_reference'] = $this->template_vars['start_journey']['reference_id'].' - '.sprintf("%02d", $this->template_vars['bookings']['id']);
+    $this->load->view('layout/templates/success', $this->template_vars);
     
-    public function error() {
-        include_once(APPPATH . "modules/layout/views/templates/config.php");
-        include_once(APPPATH . "modules/layout/views/templates/functions.php");
-        include_once(APPPATH . "modules/layout/views/templates/paypal.class.php");
-        $paypal= new MyPayPal();
+    if ($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12') {
+      $this->load->helper('dompdf');  
+      $html = $this->load->view('layout/templates/pdf', $this->template_vars, true);
+      $mail_html = $this->load->view('layout/templates/email', $this->template_vars, true);
+      //$output = pdf_create($html, 'booking reference', false);
+      $output = pdf_create($html, $this->template_vars['book_reference'], false);
+      $this->load->library('email');
+      $this->email->set_mailtype("html");
+      $this->email->from($this->set['site_email'], $this->set['site_title']);
+      $this->email->to($this->template_vars['clients']['email']); 
+      $cc_array = array('janakiraman@proisc.com');
+      $this->email->cc($cc_array);
+      if($this->template_vars['bookings']['book_status'] == 'completed')
+        $this->email->bcc(array('janakiraman@proisc.com', 'bright@proisc.com'));
+      $this->email->subject('Booking Confirmation: '.$this->template_vars['book_reference']);
+      $this->email->message($mail_html);
+      $this->email->attach($output);
+      $this->email->send();
+    }
+  }
+  
+  /**
+	 * Function error
+	 * Displays the payment failure/errors
+   * 
+	 * @return	void
+	 */  
+  public function error() {
+      $this->load->library('paypal/paypalRequire');
+      $this->load->library('paypal/paypal');
+      $paypal= new paypal();
         $transaction_details = $paypal->GetTransactionDetails();
         $book_id = $transaction_details['CUSTOM'];
     if($book_id != '' && is_numeric($book_id)) {
@@ -555,35 +564,14 @@ class Node extends Anonymous_Controller {
         $this->email->message('rejected');
     $this->email->send();
         /*return journey end*/
-        $this->load->view('layout/templates/error');
+        $this->load->view('layout/templates/error', $this->template_vars);
     }
-  
-  public function paypal_ec_redirect() {  
-    $this->load->view('layout/templates/paypal_ec_redirect');
-  }
-  public function paypal_ec_mark() {  
-    $this->load->view('layout/templates/paypal_ec_mark');
-  }
-  public function process() { 
-    $this->load->view('layout/templates/process');
-  }
-  public function banaba() {  
-    $this->load->view('layout/templates/banaba');
-  }
-  public function phpversion(){
-    echo Date('d-m-Y h:i:s a');
-    echo phpinfo();
-    /*$qry = "SELECT * from tbl_booking where id > 428";
-    $data = $this->db->query($qry)->result_array();
-    echo "<pre>";
-    print_r($data);
-    include_once(APPPATH . "modules/layout/views/templates/config.php");
-    include_once(APPPATH . "modules/layout/views/templates/functions.php");
-    include_once(APPPATH . "modules/layout/views/templates/paypal.class.php");
-    $paypal= new MyPayPal();
-    $array = $paypal->GetTransactionDetails('EC%2d9M798542A2595022G');
-    $book_id = $array['CUSTOM'];*/
-  }
+  /**
+	 * Function changepassword
+	 * Displays the changepassword
+   * 
+	 * @return	void
+	 */
   public function booking_details() {
     if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
       $this->mdl_shuttles->select('booking.bcnarea_address_id,booking.address as book_address,collaborators.address as col_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,booking.book_status,booking.id,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
@@ -617,6 +605,12 @@ class Node extends Anonymous_Controller {
       redirect($this->uri->segment(1));
     }
   }
+  /**
+	 * Function changepassword
+	 * Displays the changepassword
+   * 
+	 * @return	void
+	 */
   public function view_booking_details() {
     $id = $this->uri->segment(3);
     $this->db->from('booking')->where('id', $id);
@@ -664,6 +658,12 @@ class Node extends Anonymous_Controller {
       redirect($this->uri->segment(1));
     }
   }
+  /**
+	 * Function changepassword
+	 * Displays the changepassword
+   * 
+	 * @return	void
+	 */
   public function changepassword() {
     //echo $this->session->userdata('user_id');die;
     $type = $this->uri->segment(3);
@@ -682,16 +682,17 @@ class Node extends Anonymous_Controller {
     }
     $this->load->view('layout/templates/changepassword');
   }
-  public function paypaldemo () {
-    $this->load->view('layout/templates/paypaldemo');
-  }
+  /**
+	 * Function reservation
+	 * Displays the Booking page
+   * 
+	 * @return	void
+	 */
   public function reservation () {
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
     $this->template_vars['terminal_array'] = array('' => 'Select Terminal', 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
     $this->load->view('layout/templates/reservation', $this->template_vars);
   }
-  public function testboot () {
-    $this->load->view('layout/templates/testboot');
-  }
+ 
 }
 ?>

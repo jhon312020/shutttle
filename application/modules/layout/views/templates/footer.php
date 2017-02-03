@@ -51,19 +51,23 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<?php echo base_url(); ?>assets/cc/js/jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/cc/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/datetimepicker/js/moment.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="<?php echo base_url(); ?>assets/cc/js/holder.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="<?php echo base_url(); ?>assets/cc/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/ie10-viewport-bug-workaround.js"></script>
     <!-- Validation Engine js -->
-    <script src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine-en.js"></script>
-    <script src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine-en.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine.js"></script>
     <?php if ($path == 'reservation') { ?>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/cc/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/cc/js/reservation.js"></script>
+    
     <script src="<?php echo base_url(); ?>assets/cc/js/functions.js"></script>
     <?php } ?>
 <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="25" style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text></svg></body>

@@ -22,6 +22,12 @@
             <div class="col-lg-12 clear-pad-RL">
               <form id="firstStepForm" action="" method="post" role="form" style="display: block;" class="validateForm">
                 <input type="hidden" name="mode" value="firstStep">
+                <input type="hidden" name="hours" value="00">
+                <input type="hidden" name="minutes" value="00">
+                <input type="hidden" name="return_hours" value="23">
+                <input type="hidden" name="return_minutes" value="00">
+                <input type="hidden" name="country" value="India">
+                <input type="hidden" name="flight_no" value="00">
                 <div class="form-bottom ribbon-down mar-down">
                   <div class="form-group col-sm-1 clear-pad-form">
                     <label><?php echo lang('start_trip'); ?></label>
@@ -42,7 +48,7 @@
                     <input type="text" class="form-control" name="postal_code" id="postal_code" placeholder="<?php echo lang('postal_code'); ?>"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form jsStartJourney">
-                     <?php echo form_input(array('name'=>'start_journey', 'id'=>'date1', 'placeholder'=>lang('landing_time'), 'class'=>'form-control zd-25 validate[required, funcCall[validHumanDate]]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
+                     <?php echo form_input(array('name'=>'start_journey', 'id'=>'date1', 'placeholder'=>lang('landing_time'), 'class'=>'form-control zd-25 validate[required]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
                   </div>
                 </div>
                 <div class="form-bottom ribbon-down mar-down">

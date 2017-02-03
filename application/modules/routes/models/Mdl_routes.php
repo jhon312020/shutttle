@@ -189,9 +189,6 @@ class Mdl_routes extends Response_Model {
      * @return [type]          [description]
      */
 	public function getcar($data, $details) {
-    //Statically assigning the start hours and time
-    $data['hours'] = '00';
-    $data['minutes'] = '00';
 		// Journey Starting Date and Time
 		$journeyStartDate 	  = str_replace('/','-',$this->input->post('start_journey'));
 		$journeyStartDate 	  = date('Y-m-d', strtotime($journeyStartDate));

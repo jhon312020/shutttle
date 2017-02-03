@@ -1,70 +1,10 @@
-<?php
-	//echo $lang;
-	$template_path = base_url()."assets/cc/";
-	$ln = $this->uri->segment(1);
-	//echo $ln;die;
-	if(!$ln || $ln == ""){	$ln = "es"; }
-?>
 <div class="tab-pane" id="thirdStep">
   <?php $this->load->view('reservation_tab_common_left'); ?>
   <div class="col-sm-9">
-			<div class="row mybox-1">
-				<div class="col-sm-12 pickbluebg"><h4><?php echo lang('includes'); ?></h4></div>
-				<div class="col-sm-12 reserva-include">
-					<div class="col-sm-3">
-						<p><?php echo lang('low_cost'); ?></p>
-						<p><?php echo lang('special_discounts'); ?></p>
-						<p><?php echo lang('child_free'); ?></p>
-					</div>
-					<div class="col-sm-3">
-						<p><?php echo lang('free_internet'); ?></p>
-						<p><?php echo lang('payment_facilities'); ?></p>
-						<p><?php echo lang('bag_free'); ?></p>
-					</div>
-					<div class="col-sm-3">
-						<p><?php echo lang('pack_map'); ?></p>
-						<p><?php echo lang('mb_enable_device'); ?></p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-			<h4 class="sub_sel_ext" style="padding-left: 13px;"><?php echo lang('select_your_extras'); ?></h4>
-			</div>
-			<?php
-			$mat_count=1;
-			foreach($booking as $book) {
-				$title = ($ln == 'en')?$book['title']:$book['title_es'];
-			?>	
-			<div class="row mybox-2" id="extraDiv_<?php echo $book['id']; ?>">
-				<div class="col-sm-2 mycolwid2"><img src="<?php echo $template_path.'/images/booking_extras/'.$book['image']; ?>"></div>
-				<div class="col-sm-10 mycolwid10">
-					<span class="orange txt-size-20"><?php echo $title; ?>: </span>
-					<h5 class="pull-right" data-extra-name="<?php echo $mat_count; ?>" data-extra-title="<?php echo $title; ?>">
-						<span class="my_right_price" data-extra-price="<?php echo $book['price']; ?>"> <?php echo $book['price'].'&euro; / '.(($book['type'])?lang('unit'):$title); ?></span> 
-						<br><br> 
-						<?php 
-						if($book['type']){
-						?>
-						<select size="1" class="mynumber_input">
-						<?php foreach(range(1,10) as $sel) { ?>
-						<option><?php echo $sel<10?'0'.$sel:$sel; ?></option>
-						<?php } ?>
-						</select>
-						<?php } ?>
-						<button class="btn btn-default btnnewsize"><span class="mob_hide_opc"><?php echo lang('add'); ?></span></button>
-					</h5> 
-					<br>
-					<?php echo ($ln == 'en')?$book['subtitle']:$book['subtitle_es']; ?>
-					<br><br> <span class="more_info_click orange txt-size-14"><?php echo lang('more_info'); ?>
-					<div class="show_more_info orange txt-size-14 mar-top-20" style="display:none;">
-					<?php echo ($ln == 'en')?$book['description_en']:$book['description_es']; ?>
-					</div></span>
-				</div>
-			</div>				
-			<?php	
-				$mat_count++;
-			}
-			?>
+    <?php 
+      $this->load->view('reservation_includes'); 
+      $this->load->view('reservation_extras'); 
+    ?>
 			
 			<div class="row mybox-5 clientDetails">
 			<div class="loginform">
@@ -78,7 +18,7 @@
 						<div class="form-group col-sm-4 validTextpassword">
 							<input type="password" class="form-control bord-rad-10 bor-col-wht validate[required]" id="login_password" name="login_password" placeholder="Enter password" required>
 						</div>
-						<div class="col-sm-2"><a href="<?php echo site_url($ln.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
+						<div class="col-sm-2"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
 						<div class="form-group col-sm-2">
 							<button type="button"  id="form-submit" class="btn light_violet btnnewsize logincheck"><?php //echo lang('go'); ?>ENTER</button>
 						</div>
@@ -159,8 +99,8 @@
 					<p class="txt-size-14 validateRadio">
 						<input value="1" class="validate[required]" name="terms_cond" id="terms_cond" type="checkbox">
 						<label style="position: relative; top: -1px;" for="terms_cond">&nbsp;<?php echo lang('accept'); ?></label>
-						<a href="<?php echo site_url($ln.'/terms'); ?>" target="_blank" class="orange" style="position: relative; top: -1px;">&nbsp;<?php echo lang('terms_and_conditions'); ?></a> <span style="position: relative; top: -1px;"><!--&</span> 
-						<a style="position: relative; top: -1px;" href="<?php echo site_url($ln.'/terms'); ?>" class="orange" target="_blank"><?php echo lang('privacy_policy'); ?></a>-->
+						<a href="<?php echo site_url($lang.'/terms'); ?>" target="_blank" class="orange" style="position: relative; top: -1px;">&nbsp;<?php echo lang('terms_and_conditions'); ?></a> <span style="position: relative; top: -1px;"><!--&</span> 
+						<a style="position: relative; top: -1px;" href="<?php echo site_url($lang.'/terms'); ?>" class="orange" target="_blank"><?php echo lang('privacy_policy'); ?></a>-->
 					</p>
 					</div>
 				</div>
@@ -197,7 +137,7 @@
 					<button type="button" id="form-submit" class="btn pull-right btn-lg pickbluebg paypalsubmit"><?php echo lang('pay'); ?></button> 
 					<br> <h3><span id="price_final">12.12</span>&euro;</h3> 
 					<div class="paymentValid mypaypalimg" style="position: relative; top: -61px; left: 115px; width: 50%;">
-					<!--<span><img src="<?php echo $template_path; ?>images/paypal.jpg"></span>-->
+					<!--<span><img src="<?php //echo IMAGEPATH; ?>paypal.jpg"></span>-->
 					<span style="font-size:20px;"><?php echo lang('how_pay'); ?></span><br>
 					<span>
 						<input style="position: relative; top: -2px;" type="radio" class="validate[required]" name="paymentmethod" id="sabadell_bank" value="bank"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
