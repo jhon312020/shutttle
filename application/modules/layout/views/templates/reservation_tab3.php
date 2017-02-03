@@ -9,7 +9,7 @@
   <?php $this->load->view('reservation_tab_common_left'); ?>
   <div class="col-sm-9">
 			<div class="row mybox-1">
-				<div class="col-sm-12 pickbluebg"><h5><?php echo lang('includes'); ?></h5></div>
+				<div class="col-sm-12 pickbluebg"><h4><?php echo lang('includes'); ?></h4></div>
 				<div class="col-sm-12 reserva-include">
 					<div class="col-sm-3">
 						<p><?php echo lang('low_cost'); ?></p>
