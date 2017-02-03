@@ -13,7 +13,7 @@
 				<hr class="marginTB-10 orangeborder">
 			</p>
 			<?php
-				$arrowDownClass = "<span class='pull-right glyphicon glyphicon-chevron-down orange'></span>";
+				$arrowDownClass = "";
 				$leftSidebar = array(
 					'source'=>'start_from',
 					'designation'=>'end_at',
@@ -27,15 +27,15 @@
 				);
 				foreach ($leftSidebar as $key => $value) {
 				?>
-					<h4 style='text-transform:uppercase;'><?php echo lang($key).' '.$arrowDownClass ?></h4>
+					<h4 style='text-transform:uppercase;font-weight:bold;'><?php echo lang($key).' '.$arrowDownClass ?></h4>
 					<p class="duplicateList" style='text-transform:uppercase;' data-id="<?php echo $value; ?>"></p>
 				<?php		
 				}
 			?>
 			
-			<hr class="marginTB-10 orangeborder"> 
 			<H4 class="resumen" style="text-transform:uppercase;"><?php echo lang('price'); ?> 
 				<span class="pull-right orange resumen"><span id="initialPrice">0</span> &euro;</span>
+				<button type="button" id="form-submit" class="btn pull-right btn-lg pickbluebg paypalsubmit"><?php echo lang('price'); ?>:46:00 E</button>
 			</H4>
 			<div class="extras">
 			</div>
@@ -43,12 +43,6 @@
 				<hr class="marginTB-10 orangeborder reduction" style="display:none;">
 				<H4 class="resumen reduction" style="display:none;">Promotional code <span id="percentage_reduction"></span> <span class="pull-right orange resumen">
 					<span id="price_reduction"></span> &euro;</span>
-				</H4>
-			</p>
-			<p class="text-justify">
-				<hr class="marginTB-10 orangeborder">
-				<H4 class="resumen"><?php echo lang('total'); ?> <span class="pull-right orange resumen">
-					<span id="price_total">0</span> &euro;</span>
 				</H4>
 			</p>
 		</div>
