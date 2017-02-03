@@ -56,7 +56,7 @@
 						<div class="formErrorContent"><?php echo lang('seats_error'); ?></div>
 					</div>
 				</form>
-				<div class="col-sm-12">
+				<div class="pull-right">
 					<button class="btn volver editpop"><?php echo lang('return'); ?></button>
 					<button class="btn go goButton"><?php echo lang('next'); ?></button>
 				</div>	

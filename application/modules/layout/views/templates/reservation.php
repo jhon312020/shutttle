@@ -10,15 +10,15 @@
 			<div class="tabbable-panel">
 				<div class="tabbable-line">
 					<ul class="nav nav-tabs ">
-						<li class="active stepClick" data-class="firstStep"><span class="step">1</span>
+						<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
 							<a href="#firstStep">
 							CHOOSE YOUR ROUTE</a>
 						</li>
-						<li class="stepClick disabled" data-class="secondStep"><span class="step">2</span>
+						<li class="stepClick disabled circletwo" data-class="secondStep"><span class="step">2</span>
 							<a href="#secondStep">
 							ROUTE SCHEDULE</a>
 						</li>
-						<li class="stepClick disabled" data-class="thirdStep"><span class="step">3</span>
+						<li class="stepClick disabled circlethree" data-class="thirdStep"><span class="step">3</span>
 							<a href="#thirdStep">
 							INFO AND PAYMENT</a>
 						</li>

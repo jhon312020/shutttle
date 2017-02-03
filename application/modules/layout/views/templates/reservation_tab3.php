@@ -18,9 +18,9 @@
 						<div class="form-group col-sm-4 validTextpassword">
 							<input type="password" class="form-control bord-rad-10 bor-col-wht validate[required]" id="login_password" name="login_password" placeholder="Enter password" required>
 						</div>
-						<div class="col-sm-2"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
+						<div class="col-sm-2 lostpwd"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
 						<div class="form-group col-sm-2">
-							<button type="button"  id="form-submit" class="btn light_violet btnnewsize logincheck"><?php //echo lang('go'); ?>ENTER</button>
+							<button type="button"  id="form-submit" class="btn btnnewsize" style="margin-top:10px;"><?php //echo lang('go'); ?>ENTER</button>
 						</div>
 						<div class="col-sm-12 errorlogin" style="display:none;">
 							<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_credentials'); ?></span>
@@ -132,7 +132,7 @@
 					<input type="hidden" name="itemdesc" value="" /> 
 					<input type="hidden" name="itemprice" class="amount" value="">
 					
-					<div class="col-sm-12">
+					<div class="col-sm-12" style="padding-left:0px;width:104%;">
 					<?php echo lang('total_pay'); ?>: 
 					<button type="button" id="form-submit" class="btn pull-right btn-lg pickbluebg paypalsubmit"><?php echo lang('pay'); ?></button> 
 					<br> <h3><span id="price_final">12.12</span>&euro;</h3> 

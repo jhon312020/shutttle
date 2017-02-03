@@ -16,10 +16,9 @@
 	if(!$ln || $ln == ""){	$ln = "es"; }
 	$modalForm = site_url($ln . '/reserva01');
 ?>
-<div class="container">
   <!-- FOOTER -->
-  <footer id="footer" class="container">
-    <hr>
+  <hr style="border-width: 2px;border-color: #25387D;width:95%;margin-top:50px;">
+  <footer id="footer" class="container"> 
     <div class="mob-hide">
       <div class="col-xs-6" style="padding-left:0px;">
         <p><?php echo (isset($site_title))?$site_title:''; ?>
@@ -46,7 +45,6 @@
       </div>
     </div>
   </footer>
-</div><!-- /.container -->
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

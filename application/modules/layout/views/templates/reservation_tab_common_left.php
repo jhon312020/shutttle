@@ -1,6 +1,6 @@
 <div class="col-sm-3 mob-hide" id="secondLeftStep">
 			<p class="text-justify">
-				<h4 class="resumen" style='text-transform:uppercase;'><?php echo lang('summary'); ?> 
+				<h4 style="font-weight:bold;color: #25387d;"><?php echo lang('summary'); ?> 
 					<!-- <span data-toggle="modal" data-target="#myModal" class="pull-right orange editpop" style="cursor:pointer;text-transform:uppercase;"><?php //echo lang('edit'); ?></span> -->
 				</h4> 
 			</p>
@@ -20,8 +20,8 @@
 				foreach ($leftSidebar as $key => $value) {
 				?>
 					<div>
-            <span style='text-transform:uppercase;font-weight:bold;'><?php echo lang($key);?>: </span>
-            <span class="duplicateList" style='text-transform:uppercase;' data-id="<?php echo $value; ?>"></span>
+            <span class="sumhead"><?php echo lang($key);?>: </span>
+            <span class="duplicateList" style='color: #25387d;' data-id="<?php echo $value; ?>"></span>
           </div>
 				<?php		
 				}
