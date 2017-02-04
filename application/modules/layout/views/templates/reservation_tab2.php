@@ -1,13 +1,10 @@
-<?php
-	//echo $lang;
-	$template_path = base_url()."assets/cc/";
-	$ln = $this->uri->segment(1);
-	//echo $ln;die;
-	if(!$ln || $ln == ""){	$ln = "es"; }
-?>
 <div class="tab-pane" id="secondStep">
-  <?php $this->load->view('reservation_tab_common_left'); ?>
-  <div class="col-sm-9" >
+  <div id="secondStepLeft">
+    <?php 
+      $this->load->view('reservation_tab_common_left'); 
+    ?>
+  </div>
+  <div class="col-sm-9 clear-pad-R">
 			<form id="submitForm">
 				<div class="panel pickbluebgtop">
 					<div class="panel-heading pickbluebg"><?php echo strtoupper(lang('go_trip')); ?> </div> 

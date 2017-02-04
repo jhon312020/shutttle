@@ -48,5 +48,6 @@
   var type_hotel = '<?php echo lang('type_hotel'); ?>';
   var type_terminal = '<?php echo lang('type_terminal'); ?>';
   var invalid_date = '<?php echo lang('invalid_date'); ?>';
+  var image_path = '<?php echo IMAGEPATH; ?>';
 </script>
 <?php $this->load->view('footer');?>

@@ -22,7 +22,7 @@
           <?php } ?>
           </select>
           <?php } ?>
-          <button class="btn btn-default btnnewsize"><span class="mob_hide_opc"><?php echo lang('add'); ?></span></button>
+          <button class="btn btn-default btnnewsize addextra"><span class="mob_hide_opc"><?php echo lang('add'); ?></span></button>
       </h5> 
     <br>
 	<!--<span class="more_info_click orange txt-size-14"><?php //echo lang('more_info'); ?>

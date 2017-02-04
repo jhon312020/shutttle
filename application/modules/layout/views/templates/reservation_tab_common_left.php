@@ -1,4 +1,4 @@
-<div class="col-sm-3 mob-hide" id="secondLeftStep">
+<div class="col-sm-3 mob-hide clear-pad-L" id="secondLeftStep">
 			<p class="text-justify">
 				<h4 style="font-weight:bold;color: #25387d;"><?php echo lang('summary'); ?> 
 					<!-- <span data-toggle="modal" data-target="#myModal" class="pull-right orange editpop" style="cursor:pointer;text-transform:uppercase;"><?php //echo lang('edit'); ?></span> -->
@@ -26,16 +26,22 @@
 				<?php		
 				}
 			?>
-			
-			<div style="padding-top:15px;"> 
-				<button type="button" id="form-submit" class="btn btn-lg pickbluebg paypalsubmit"><?php echo lang('price'); ?>: <span class="initialPrice">00.00</span> &euro;</span></button>
-			</div>
+      <hr class="marginTB-10 orangeborder"> 
+			<h4 class="resumen" style="text-transform:uppercase;"><?php echo lang('price'); ?> 
+				<span class="pull-right orange resumen"><span class="initialPrice">00.00</span> &euro;</span>
+			</h4>
 			<div class="extras">
 			</div>
 			<p class="text-justify">
 				<hr class="marginTB-10 orangeborder reduction" style="display:none;">
 				<h4 class="resumen reduction" style="display:none;">Promotional code <span id="percentage_reduction"></span> <span class="pull-right orange resumen">
 					<span id="price_reduction"></span> &euro;</span>
+				</h4>
+			</p>
+      <p class="text-justify">
+				<hr class="marginTB-10 orangeborder">
+				<h4 class="resumen">
+        <button type="button" id="form-submit" class="btn btn-lg pickbluebg paypalsubmit"><?php echo lang('total'); ?>: <span class="price_total">00.00</span> &euro;</span></button>
 				</h4>
 			</p>
 		</div>
