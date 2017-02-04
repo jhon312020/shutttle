@@ -7,7 +7,7 @@
   <div class="col-sm-9 clear-pad-R">
 			<form id="submitForm">
 				<div class="panel pickbluebgtop">
-					<div class="panel-heading pickbluebg"><?php echo strtoupper(lang('go_trip')); ?> </div> 
+					<div class="panel-heading pickbluebg"><?php echo lang('go_trip'); ?> </div> 
 					<table class="table table-striped displayTable" id="startJourneyTable">
 						<thead> 
 							<tr>
@@ -30,7 +30,7 @@
 					<div class="formErrorContent"><?php echo lang('seats_error'); ?></div>
 				</div>
 				<div class="panel" id="returnJourneyPanel" style="display:none;">  
-					<div class="panel-heading pickbluebg"><?php echo strtoupper(lang('return_trip')); ?> </div> 
+					<div class="panel-heading pickbluebg"><?php echo lang('return_trip'); ?> </div> 
 						<table class="table table-striped displayTable"  id="returnJourneyTable">
 							<thead>
 								<tr>

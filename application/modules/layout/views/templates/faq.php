@@ -1,6 +1,4 @@
 <?php
-	//echo $lang;
-	$template_path = base_url()."assets/cc/";
 	$this->load->view('header');
 ?>
 	<div class="container bodypad" id="faq">
@@ -10,7 +8,7 @@
 			<div class="col-sm-8">
 				<?php
 				?>
-				<h1 class="pickblue"><?php echo $content['content']; ?></h1>
+				<h1 class="pickblue" style="text-align:center"><?php echo $content['content']; ?></h1>
 				<p><?php echo $content['subcontent']; ?></p>
 				<span class="mysub_title">
 				<?php
@@ -20,13 +18,13 @@
 				$cat1 = array_filter($bottom_data, function($el) { return $el->category == 'category1'; });
 				$cat2 = array_filter($bottom_data, function($el) { return $el->category == 'category2'; });
 				$cat3 = array_filter($bottom_data, function($el) { return $el->category == 'category3'; });
-				foreach($engCategory as $key=>$value){
+				//foreach($engCategory as $key=>$value){
 				?>
-				<a href="#<?php echo $key; ?>" class="orange"><?php echo ($lang == 'en')?$engCategory[$key]:$spanCategory[$key]; ?></a> <?php echo ($key != 'category3')?' / ':''; ?> 
+				<!-- <a href="#<?php //echo $key; ?>" class="orange"><?php //echo ($lang == 'en')?$engCategory[$key]:$spanCategory[$key]; ?></a> --> <?php //echo ($key != 'category3')?' / ':''; ?> 
 				<?php	
-				}
+				//}
 				?>
-				<hr class="mob-hide" style="border-color:#E96B68">
+        <br/>
 				</span></p>
 			</div>
 		</div>
@@ -88,7 +86,7 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($lang == 'en')?$engCategory['category3']:$spanCategory['category3']; ?></h2></div>
 			<div class="col-sm-8" id="category3">
-			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:30px;">
+			<div id="accordion" >
 			<ul class="ques">
 		<?php
 		foreach($cat3 as $data){

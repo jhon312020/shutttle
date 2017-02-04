@@ -37,7 +37,9 @@ class Node extends Anonymous_Controller {
     $prepend = array('00', '01','02','03','04','05','06','07','08','09');
     $data['hours'] = array_merge($prepend, range(10, 23));
     $data['adults'] = array_merge($prepend, range(10, 12));
+    $data['adults'][0] = lang('adults');
     $data['kids'] = array_slice($prepend, 0, 7);
+    $data['kids'][0] = lang('child');
     $data['babies'] = array('00', '01','02','03','04','05');
     $data['minutes'] = array('00'=>'00','05'=>'05') + array_combine(range(10, 55, 5), range(10, 55, 5));
     $this->load->vars($data);
@@ -102,6 +104,8 @@ class Node extends Anonymous_Controller {
     $this->template_vars['bottom_data'] = $this->db->select('*')->from('faqs')->order_by('category')->get()->result();
     $this->load->model('captions/mdl_captions');
     $this->template_vars['content'] = $this->mdl_captions->getRow('faq', $this->uri->segment(1));
+    $this->template_vars['page'] = 'faq';
+    $this->template_vars['content']['image'] = 'faq.jpg';
     $this->load->view('layout/templates/faq', $this->template_vars);
   }
   
@@ -114,6 +118,7 @@ class Node extends Anonymous_Controller {
   public function aboutus() {
     $this->load->model('captions/mdl_captions');
     $this->template_vars['content'] = $this->mdl_captions->getRow('aboutus', $this->uri->segment(1));
+    //print_r($this->template_vars);
     $this->load->view('layout/templates/aboutus', $this->template_vars);
   }
   
@@ -236,6 +241,12 @@ class Node extends Anonymous_Controller {
     }
   }
   
+  /**
+	 * Function change password
+	 * Displays the password recovery page
+   * 
+	 * @return	void
+	 */
   public function change_password($route) {
     $type = $this->uri->segment(3);
     if ($type != 'clients' && $type != 'collaborators' && $type != 'drivers')
@@ -271,6 +282,8 @@ class Node extends Anonymous_Controller {
             $this->email->message($message);
             $this->email->send();
             redirect($this->uri->segment(1));
+            //$this->session->set_flashdata('alert_success', lang('change_password_success_message'));
+            //redirect($this->uri->uri_string());
           }
         }
       }
@@ -278,12 +291,12 @@ class Node extends Anonymous_Controller {
     else{
       redirect($this->uri->segment(1));
     }
-    $this->load->view('layout/templates/change_password', $error);
+    $this->load->view('layout/templates/change_password', $this->template_vars);
   }
   
   /**
 	 * Function Password recovery
-	 * Displays the payment success page
+	 * Displays the password recovery page
    * 
 	 * @return	void
 	 */
@@ -308,12 +321,14 @@ class Node extends Anonymous_Controller {
           $this->email->subject($subject);
           $this->email->message($message);
           $this->email->send();
+          $this->session->set_flashdata('alert_success', lang('recover_email_success_message'));
+          redirect($this->uri->uri_string());
         } else {
           $this->session->set_flashdata('alert_error', lang('invalid_username'));
           redirect($this->uri->uri_string());
         }
       }
-    $this->load->view('layout/templates/recovery_password', $error);
+    $this->load->view('layout/templates/recovery_password', $this->template_vars);
   }
   
   /**
@@ -340,11 +355,13 @@ class Node extends Anonymous_Controller {
       $this->email->send();
     } else 
     log_message("debug", "%%%%%%%% FROM NODE CONTACT ELSE");
+    $this->load->model('captions/mdl_captions');
+    $this->template_vars['content'] = $this->mdl_captions->getRow('contacts', $this->uri->segment(1));
     $this->load->view('layout/templates/contacts', $this->template_vars);
   }
   /**
 	 * Function terms
-	 * Displays the payment success page
+	 * Displays the terms and conditions page
    * 
 	 * @return	void
 	 */
@@ -354,8 +371,8 @@ class Node extends Anonymous_Controller {
   }
   
   /**
-	 * Function error
-	 * Displays the payment success page
+	 * Function email
+	 * Displays the email page
    * 
 	 * @return	void
 	 */
@@ -364,8 +381,8 @@ class Node extends Anonymous_Controller {
   }
   
   /**
-	 * Function error
-	 * Displays the payment success page
+	 * Function pdf
+	 * Displays the pdf page
    * 
 	 * @return	void
 	 */
@@ -376,7 +393,7 @@ class Node extends Anonymous_Controller {
   }
   
   /**
-	 * Function error
+	 * Function success
 	 * Displays the payment success page
    * 
 	 * @return	void
@@ -690,9 +707,18 @@ class Node extends Anonymous_Controller {
 	 */
   public function reservation () {
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
-    $this->template_vars['terminal_array'] = array('' => 'Select Terminal', 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
+    $this->template_vars['terminal_array'] = array('' => 'To', 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
     $this->load->view('layout/templates/reservation', $this->template_vars);
   }
- 
+  
+  /**
+	 * Function process
+	 * Displays the payment process
+   * 
+	 * @return	void
+	 */
+  public function process() { 
+    $this->load->view('layout/templates/process', $this->template_vars);
+  }
 }
 ?>

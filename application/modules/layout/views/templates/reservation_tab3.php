@@ -22,7 +22,7 @@
 						</div>
 						<div class="col-sm-2 lostpwd"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
 						<div class="form-group col-sm-2">
-							<button type="button"  id="form-submit" class="btn btnnewsize" style="margin-top:20px;float:right;"><?php //echo lang('go'); ?>ENTER</button>
+							<button type="button"  id="form-submit" class="btn btnnewsize logincheck" style="margin-top:20px;float:right;"><?php echo strtoupper(lang('enter')); ?></button>
 						</div>
 						<div class="col-sm-12 errorlogin" style="display:none;">
 							<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_credentials'); ?></span>
@@ -77,6 +77,7 @@
 						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<!--<input type="text" class="form-control bord-rad-10 validate[required]" id="dni_passport" name="dni_passport" placeholder="pasaporte" required>-->
 							<select class="form-control" id="dni_passport" name="dni_passport" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
+								<option value=""><?php echo lang('id_or_passport'); ?></option>
 								<option value="id"><?php echo lang('dni_id'); ?></option>
 								<option value="passport"><?php echo lang('dni_passport'); ?></option>
 							</select>
@@ -151,7 +152,7 @@
 					
 					<span>
 						<input style="position: relative; top: -2px;"type="radio" class="validate[required]" name="paymentmethod" id="paybyonline" value="online"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-						<label style="position: relative; top: -3px;" for="paybyonline"><?php echo lang('pay_by_online'); ?>.</label>
+						<label style="position: relative; top: -3px;" for="paybyonline"><?php echo lang('pay_by_online'); ?></label>
 					</span>
 					
 					<?php if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2){ 

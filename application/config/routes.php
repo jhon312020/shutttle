@@ -75,8 +75,8 @@ $route['en/search'] = 'node/display_projects/en';
 $route['es/search'] = 'node/display_projects/es';
 $route['ca/search'] = 'node/display_projects/ca';
 
-$route['en/change_password/:any'] = 'node/change_password/$1';
-$route['es/change_password/:any'] = 'node/change_password/$1';
+$route['en/change_password/:any/:any'] = 'node/change_password/$1';
+$route['es/change_password/:any/:any'] = 'node/change_password/$1';
 
 $route['en/changepassword'] = 'node/changepassword';
 $route['es/changepassword'] = 'node/changepassword';

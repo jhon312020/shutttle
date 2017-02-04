@@ -48,7 +48,7 @@
                     <input type="text" class="form-control" name="postal_code" id="postal_code" placeholder="<?php echo lang('postal_code'); ?>"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form jsStartJourney">
-                     <?php echo form_input(array('name'=>'start_journey', 'id'=>'date1', 'placeholder'=>lang('landing_time'), 'class'=>'form-control zd-25 validate[required]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
+                     <?php echo form_input(array('name'=>'start_journey', 'id'=>'date1', 'placeholder'=>lang('landing_day_and_time'), 'class'=>'form-control zd-25 validate[required]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
                   </div>
                 </div>
                 <div class="form-bottom ribbon-down mar-down">
@@ -59,12 +59,12 @@
                     <?php echo form_dropdown('end_at', $terminal_array, null, 'class="form-control validate[required] book-select" id="end_at" data-errormessage-value-missing="'.lang('require_field').'"'); ?>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form jsReturnJourney">
-                   <?php echo form_input(array('name'=>'return_journey', 'id'=>'date2', 'placeholder'=>lang('flight_time'), 'class'=>'form-control zd-23 validate[required, funcCall[validHumanDate]]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
+                   <?php echo form_input(array('name'=>'return_journey', 'id'=>'date2', 'placeholder'=>lang('flight_day_and_time'), 'class'=>'form-control zd-23 validate[required, funcCall[validHumanDate]]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
                   </div>
                 </div>
                 <div class="form-bottom ribbon-down mar-down">
                   <div class="form-group col-sm-1 clear-pad-form">
-                    <label>people:</label>
+                    <label><?php echo lang('people'); ?></label>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form">
                     <?php echo form_dropdown('adults', $adults, null, 'class="form-control validate[required] book-select"  data-errormessage-value-missing="'.lang('require_field').'"'); ?>
@@ -73,7 +73,7 @@
                     <?php echo form_dropdown('kids', $kids, null, 'class="form-control book-select"'); ?>
                   </div>
                 </div>
-                <button type="button" class="btn" style="float:right" id="firstbutton">BOOK NOW</button>
+                <button type="button" class="btn" style="float:right" id="firstbutton"><?php echo lang('book_now'); ?></button>
               </form>
             
             </div>

@@ -1,12 +1,10 @@
 <?php
-	$template_path = base_url()."assets/cc/";
 	$this->load->view('header');
 	$modalForm = site_url($lang.'/reserva01');
 ?>
 <div class="container">
     <div class="row">
 		<div class="col-md-12">
-
 			<div class="tabbable-panel">
 				<div class="tabbable-line">
 					<ul class="nav nav-tabs ">

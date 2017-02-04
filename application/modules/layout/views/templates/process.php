@@ -1,5 +1,4 @@
 <?php
-    
     define('PPL_LANG', strtoupper($lang));
     define('PPL_RETURN_URL', site_url($lang.'/success/'));
     define('PPL_CANCEL_URL', site_url($lang.'/error/'));

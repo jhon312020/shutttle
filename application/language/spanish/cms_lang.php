@@ -1304,5 +1304,11 @@ $lang['pay_by_credit'] = 'Credit card';
 
 $lang['how_pay'] = 'How you want to pay?';
 
+$lang['landing_day_and_time'] = 'Day and landing time';
+$lang['flight_day_and_time'] = 'Day and flight time';
+$lang['people'] = 'People:';
+$lang['id_or_passport'] = 'ID or Passport';
+$lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
+$lang['change_password_success_message'] = 'Your password has been successfully reset!';
 ?>
 

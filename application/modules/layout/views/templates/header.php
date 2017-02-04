@@ -59,7 +59,14 @@ $cms_lang = $this->session->userdata('cms_lang');
     <link href="<?php echo base_url(); ?>assets/cc/css/validationEngine.jquery.css" rel="stylesheet">
 </head>
 <body>
-  <?php $this->load->view('menu'); ?>
-  <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH; ?>ready.jpg') no-repeat center center scroll;">
+  <?php 
+    $this->load->view('menu');
+    if (isset($content['image']) && $content['image'] != '') {
+      $image_name = 'captions/'.$content['image'];
+    } else {
+      $image_name = 'ready.jpg';
+    }
+  ?>
+  <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH.$image_name; ?>') no-repeat center center scroll;">
     <img class="img-responsive img-center"  alt="">
   </header>
