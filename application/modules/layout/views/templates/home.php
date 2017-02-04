@@ -19,7 +19,7 @@
     <section class="main">
       <div class="grid-custom">
         <h2 class="head_2">News</h2>
-        <div class="row col-sm-10 col-sm-offset-1">
+        <div class="row col-sm-10 col-sm-offset-1 newspad">
           <?php $img_url = IMAGEPATH.'homepage/boxes/'; ?>
           <?php foreach($boxes as $box) {   
               if ($ln =='es') { 

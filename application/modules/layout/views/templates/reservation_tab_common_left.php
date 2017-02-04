@@ -27,10 +27,10 @@
 				}
 			?>
       <hr class="marginTB-10 orangeborder"> 
-			<h4 class="resumen" style="text-transform:uppercase;"><?php echo lang('price'); ?> 
-				<span class="pull-right orange resumen"><span class="initialPrice">00.00</span> &euro;</span>
+			<h4 class="resumen sumhead" style="text-transform:uppercase;"><?php echo lang('price'); ?> 
+				<span class="pull-right orange resumen" style="text-transform:uppercase;color: #25387d;"><span class="initialPrice">00.00</span> &euro;</span>
 			</h4>
-			<div class="extras">
+			<div class="extras" style="color: #25387d;">
 			</div>
 			<p class="text-justify">
 				<hr class="marginTB-10 orangeborder reduction" style="display:none;">

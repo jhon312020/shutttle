@@ -3,7 +3,7 @@
 	$template_path = base_url()."assets/cc/";
 	$this->load->view('header');
 ?>
-	<div class="container" id="faq">
+	<div class="container bodypad" id="faq">
 	<hr class="mob-show mob-hr-line">
 		<div class="row faq">
 			<div class="col-sm-4"></div>

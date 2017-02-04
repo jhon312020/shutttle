@@ -1,7 +1,9 @@
 <div class="tab-pane" id="thirdStep">
+	<div id="thirdStepLeft">
   <?php $this->load->view('reservation_tab_common_left'); ?>
+   </div>
   <div class="col-sm-9">
-    <?php 
+    <?php  
       $this->load->view('reservation_includes'); 
       $this->load->view('reservation_extras'); 
     ?>
@@ -12,15 +14,15 @@
 					<input style="display:none" type="text" name="fakeusernameremembered"/>
 					<input style="display:none" type="password" name="fakepassword"/>
 					<div class="col-sm-12 paytop">
-						<div class="form-group col-sm-4" style="padding-left:0px;">
+						<div class="form-group col-sm-4 clear-pad-R" style="margin-top:10px;">
 							<input type="text" class="form-control bord-rad-10 bor-col-wht validate[required,custom[email]]" id="login_email" name="login_email" placeholder="Enter name" required>
 						</div>
-						<div class="form-group col-sm-4 validTextpassword">
+						<div class="form-group col-sm-4 validTextpassword" style="margin-top:10px;">
 							<input type="password" class="form-control bord-rad-10 bor-col-wht validate[required]" id="login_password" name="login_password" placeholder="Enter password" required>
 						</div>
 						<div class="col-sm-2 lostpwd"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
 						<div class="form-group col-sm-2">
-							<button type="button"  id="form-submit" class="btn btnnewsize" style="margin-top:10px;"><?php //echo lang('go'); ?>ENTER</button>
+							<button type="button"  id="form-submit" class="btn btnnewsize" style="margin-top:20px;float:right;"><?php //echo lang('go'); ?>ENTER</button>
 						</div>
 						<div class="col-sm-12 errorlogin" style="display:none;">
 							<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_credentials'); ?></span>
@@ -42,37 +44,37 @@
 							<input type="text" name="promotional_type" id="promotional_type">
 							<input type="text" name="passenger_price" id="passenger_price" value="0">
 						</div>
-						<div class="form-group col-sm-4 validText" style="padding-left:0px;">
+						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10 validate[required]" id="fullname" name="name" placeholder="<?php echo lang('name'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-8 validText">
+						<div class="form-group col-sm-8 validText clear-pad-R">
 							<input type="text" class="form-control bord-rad-10 validate[required]" id="surname" name="surname" placeholder="<?php echo lang('surname'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4 validText" style="padding-left:0px;">
+						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10 validate[required,custom[email]]" id="email" name="email" placeholder="Email" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_email'); ?>" >
 						</div>
-						<div class="form-group col-sm-4 validText">
+						<div class="form-group col-sm-5 validText">
 							<input type="text" class="form-control bord-rad-10 validate[required,equals[email]]" id="confirm_email" name="confirm_email" placeholder="<?php echo lang('confirm_email'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-pattern-mismatch="<?php echo lang('field_match')?>">
 						</div>
-						<div class="form-group col-sm-4 validText">
+						<div class="form-group col-sm-3 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="phone" name="phone" placeholder="<?php echo lang('phone'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_integer'); ?>">
 						</div>
-						<div class="form-group col-sm-8 validText" style="padding-left:0px;">
+						<div class="form-group col-sm-9 validText" style="padding-left:0px;">
 							<input type="text" class="form-control bord-rad-10" id="address" name="address" placeholder="Direction" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" >
 						</div>
-						<div class="form-group col-sm-4 validText">
+						<div class="form-group col-sm-3 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="cp" name="cp" placeholder="<?php echo lang('postcode'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_zip'); ?>">
 						</div>
-						<div class="form-group col-sm-4 validText" style="padding-left:0px;">
+						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="client_country" name="client_country" placeholder="<?php echo lang('country'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
 						<div class="form-group col-sm-4 validText">
 							<input type="text" class="form-control bord-rad-10" id="city" name="city" placeholder="<?php echo lang('city'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4 validText" style="padding-left:0px;">
+						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="nationality" name="nationality" placeholder="<?php echo lang('nationality'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4 validText" style="padding-left:0px;">
+						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<!--<input type="text" class="form-control bord-rad-10 validate[required]" id="dni_passport" name="dni_passport" placeholder="pasaporte" required>-->
 							<select class="form-control" id="dni_passport" name="dni_passport" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 								<option value="id"><?php echo lang('dni_id'); ?></option>
@@ -85,7 +87,7 @@
 						<div class="form-group col-sm-4 showExtras">
 							<input type="checkbox" name="save_extra" id="save_extra" value="1"> <label style="position: relative; top: -1px;" for="save_extra"><?php echo lang('save_my_details_for_future_bookings'); ?></label>
 						</div>
-						<div class="form-group col-sm-4 validText showPassword"  style="padding-left:0px;">
+						<div class="form-group col-sm-4 validText showPassword clear-pad-RL">
 							<input type="password" class="form-control bord-rad-10 validate[required]" id="password" name="password" placeholder="Password" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
 						<div class="form-group col-sm-4 validText showPassword">
@@ -133,10 +135,13 @@
 					<input type="hidden" name="itemprice" class="amount" value="">
 					
 					<div class="col-sm-12" style="padding-left:0px;width:104%;">
-					<?php echo lang('total_pay'); ?>: 
+				    <h3 class="totalpay"><span>
+					<?php echo lang('total_pay'); ?>:
+					<br><span id="price_final">12.12</span>&euro;</h3>
+					</span> 
 					<button type="button" id="form-submit" class="btn pull-right btn-lg pickbluebg paypalsubmit"><?php echo lang('pay'); ?></button> 
-					<br> <h3><span id="price_final">12.12</span>&euro;</h3> 
-					<div class="paymentValid mypaypalimg" style="position: relative; top: -61px; left: 115px; width: 50%;">
+					
+					<div class="paymentValid mypaypalimg">
 					<!--<span><img src="<?php //echo IMAGEPATH; ?>paypal.jpg"></span>-->
 					<span style="font-size:20px;"><?php echo lang('how_pay'); ?></span><br>
 					<span>
