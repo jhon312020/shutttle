@@ -15,10 +15,10 @@
 					<input style="display:none" type="password" name="fakepassword"/>
 					<div class="col-sm-12 paytop">
 						<div class="form-group col-sm-4 clear-pad-R" style="margin-top:10px;">
-							<input type="text" class="form-control bord-rad-10 bor-col-wht validate[required,custom[email]]" id="login_email" name="login_email" placeholder="Enter name" required>
+							<input type="text" class="form-control bord-rad-10 bor-col-wht validate[required,custom[email]]" id="login_email" name="login_email" placeholder="User (E-mail)" required>
 						</div>
 						<div class="form-group col-sm-4 validTextpassword" style="margin-top:10px;">
-							<input type="password" class="form-control bord-rad-10 bor-col-wht validate[required]" id="login_password" name="login_password" placeholder="Enter password" required>
+							<input type="password" class="form-control bord-rad-10 bor-col-wht validate[required]" id="login_password" name="login_password" placeholder="password" required>
 						</div>
 						<div class="col-sm-2 lostpwd"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
 						<div class="form-group col-sm-2">
@@ -85,10 +85,10 @@
 						<div class="form-group col-sm-4 validText">
 							<input type="text" class="form-control bord-rad-10" id="doc_no" name="doc_no" placeholder="<?php echo lang('number_of_document'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4 showExtras">
+						<div class="form-group col-sm-4 showExtras clear-pad-RL">
 							<input type="checkbox" name="save_extra" id="save_extra" value="1"> <label style="position: relative; top: -1px;" for="save_extra"><?php echo lang('save_my_details_for_future_bookings'); ?></label>
 						</div>
-						<div class="form-group col-sm-4 validText showPassword clear-pad-RL">
+						<div class="form-group col-sm-4 validText showPassword clear-pad-RL" style="clear:both">
 							<input type="password" class="form-control bord-rad-10 validate[required]" id="password" name="password" placeholder="Password" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
 						<div class="form-group col-sm-4 validText showPassword">
@@ -101,7 +101,7 @@
 					<div class="col-sm-8">
 					<p class="txt-size-14 validateRadio">
 						<input value="1" class="validate[required]" name="terms_cond" id="terms_cond" type="checkbox">
-						<label style="position: relative; top: -1px;" for="terms_cond">&nbsp;<?php echo lang('accept'); ?></label>
+						<label style="position: relative; top: -1px; font-weight:normal" for="terms_cond">&nbsp;<?php echo lang('accept'); ?></label>
 						<a href="<?php echo site_url($lang.'/terms'); ?>" target="_blank" class="orange" style="position: relative; top: -1px;">&nbsp;<?php echo lang('terms_and_conditions'); ?></a> <span style="position: relative; top: -1px;"><!--&</span> 
 						<a style="position: relative; top: -1px;" href="<?php echo site_url($lang.'/terms'); ?>" class="orange" target="_blank"><?php echo lang('privacy_policy'); ?></a>-->
 					</p>
@@ -112,7 +112,7 @@
 			<div class="row mybox-3">
 				<div class="col-xs-12 myapplicar">
 				<!--<div class="col-xs-4" style="padding-left:0px;"><h4 style="font-weight:bold;"><?php //echo lang('promotional_code'); ?></h4></div>-->
-					<div class="col-xs-5" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
+					<div class="col-xs-5" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput applicarbtn" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
 				<!--<div style="margin-top:3px"> <button class="btn btn-default pull-right applicarbtn"><?php //echo lang('apply'); ?></button></div>-->
 				</div>
 				<div class="col-sm-12 errorCodes" style="display:none;">

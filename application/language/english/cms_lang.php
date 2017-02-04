@@ -520,7 +520,7 @@ $lang['confirm_password'] = 'Confirm password';
 $lang['parents'] = 'parents';
 $lang['unit'] = 'Unit';
 $lang['total_pay'] = 'Total pay';
-$lang['save_my_details_for_future_bookings'] = 'Save my details for future bookings';
+$lang['save_my_details_for_future_bookings'] = 'save my details for future bookings';
 $lang['no_reference'] = 'No. Reference';
 $lang['reference'] = 'Reference';
 $lang['booking_information'] = 'Booking Information';
@@ -679,4 +679,5 @@ $lang['people'] = 'People:';
 $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
 $lang['change_password_success_message'] = 'Your password has been successfully reset!';
+$lang['promotional_code'] = 'Promotional code';
 ?>

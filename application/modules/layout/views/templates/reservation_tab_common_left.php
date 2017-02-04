@@ -21,22 +21,22 @@
 				?>
 					<div>
             <span class="sumhead"><?php echo lang($key);?>: </span>
-            <span class="duplicateList" style='color: #25387d;' data-id="<?php echo $value; ?>"></span>
+            <span class="duplicateList" data-id="<?php echo $value; ?>"></span>
           </div>
 				<?php		
 				}
 			?>
       <hr class="marginTB-10 orangeborder"> 
-			<h4 class="resumen sumhead" style="text-transform:uppercase;"><?php echo lang('price'); ?> 
-				<span class="pull-right orange resumen" style="text-transform:uppercase;color: #25387d;"><span class="initialPrice">00.00</span> &euro;</span>
-			</h4>
-			<div class="extras" style="color: #25387d;">
+			<div class="resumen"><span class="sumhead"><?php echo lang('price'); ?>:</span>
+				<span class="pull-right orange resumen"><span class="initialPrice">00.00</span> &euro;</span>
+			</div>
+			<div class="extras">
 			</div>
 			<p class="text-justify">
 				<hr class="marginTB-10 orangeborder reduction" style="display:none;">
-				<h4 class="resumen reduction" style="display:none;">Promotional code <span id="percentage_reduction"></span> <span class="pull-right orange resumen">
+				<div class="resumen reduction" style="display:none;"><span class="sumhead"><?php echo lang('promotional_code'); ?>:</span> <span id="percentage_reduction"></span> <span class="pull-right orange resumen">
 					<span id="price_reduction"></span> &euro;</span>
-				</h4>
+				</div>
 			</p>
       <p class="text-justify">
 				<hr class="marginTB-10 orangeborder">

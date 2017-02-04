@@ -20,7 +20,7 @@
 									<?php echo  form_input(array('name'=>'password', 'id'=>'password', 'type'=>'password', 'placeholder'=>lang('password'), 'class'=>'form-control')); ?>
 								</div>
 								<div class="form-group col-xs-12">
-									<?php echo  form_input(array('name'=>'user_passwordv', 'id'=>'user_passwordv', 'type'=>'password', 'placeholder'=>lang('verify_password'), 'class'=>'form-control')); ?>
+									<?php echo  form_input(array('name'=>'user_passwordv', 'id'=>'user_password', 'type'=>'password', 'placeholder'=>lang('verify_password'), 'class'=>'form-control')); ?>
 								</div>
 								<div class="form-group col-xs-12"><hr></div>
 								<div class="form-group col-xs-12">

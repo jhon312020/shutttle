@@ -948,7 +948,7 @@ $lang['unit'] = 'Unidad';
 
 $lang['total_pay'] = 'Total Pagar';
 
-$lang['save_my_details_for_future_bookings'] = 'Guardar mis datos para futuras reservas.';
+$lang['save_my_details_for_future_bookings'] = 'guardar mis datos para futuras reservas.';
 
 $lang['no_reference'] = 'No. Referencia';
 
@@ -1310,5 +1310,6 @@ $lang['people'] = 'People:';
 $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
 $lang['change_password_success_message'] = 'Your password has been successfully reset!';
+$lang['promotional_code'] = 'Promotional code';
 ?>
 
