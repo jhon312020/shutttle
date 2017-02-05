@@ -34,8 +34,8 @@
 			</div>
 			<p class="text-justify">
 				<hr class="marginTB-10 orangeborder reduction" style="display:none;">
-				<div class="resumen reduction" style="display:none;"><span class="sumhead"><?php echo lang('promotional_code'); ?>:</span> <span id="percentage_reduction"></span> <span class="pull-right orange resumen">
-					<span id="price_reduction"></span> &euro;</span>
+				<div class="resumen reduction" style="display:none;"><span class="sumhead"><?php echo lang('promotional_code'); ?>:</span> <span class="percentage_reduction"></span> <span class="pull-right orange resumen">
+					<span class="price_reduction"></span> &euro;</span>
 				</div>
 			</p>
       <p class="text-justify">

@@ -8,7 +8,7 @@
 	<?php
 	foreach($bottom_data as $data){
 	?>
-	<div class="container" id="concierge">
+	<div class="container bodypad" id="concierge">
 	<div class="row">
 	<div class="col-sm-12 text-justify sub-head"><p><?php echo ($ln == 'en')?$data->content_en:$data->content_es; ?></p></div>
 	</div>

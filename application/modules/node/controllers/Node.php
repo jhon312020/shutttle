@@ -546,11 +546,11 @@ class Node extends Anonymous_Controller {
 	 * @return	void
 	 */  
   public function error() {
-      $this->load->library('paypal/paypalRequire');
-      $this->load->library('paypal/paypal');
-      $paypal= new paypal();
-        $transaction_details = $paypal->GetTransactionDetails();
-        $book_id = $transaction_details['CUSTOM'];
+    $this->load->library('paypal/paypalRequire');
+    $this->load->library('paypal/paypal');
+    $paypal= new paypal();
+    $transaction_details = $paypal->GetTransactionDetails();
+    $book_id = $transaction_details['CUSTOM'];
     if($book_id != '' && is_numeric($book_id)) {
       $book_data = $this->db->from('booking')->where('id', $book_id)->get()->row();
       if($book_data->book_status != 'pending') {
@@ -559,30 +559,29 @@ class Node extends Anonymous_Controller {
     } else {
       redirect($this->uri->segment(1));
     }
-        $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id',$book_id)->update('booking');
+    $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id',$book_id)->update('booking');
+    $this->db->set(array('is_active'=>0))->where('book_id',$book_id)->update('seats');
+    /*return journey start*/
+    $this->db->from('booking')->where('id', $book_id);
+    $res['bookings'] = current($this->db->get()->result_array());
         
-        $this->db->set(array('is_active'=>0))->where('book_id',$book_id)->update('seats');
-        /*return journey start*/
-        $this->db->from('booking')->where('id', $book_id);
-        $res['bookings'] = current($this->db->get()->result_array());
-        
-        if ($res['bookings']['return_book_id']) {
-            $this->db->from('booking')->where('id', $res['bookings']['return_book_id']);
-            $res['return_bookings'] = current($this->db->get()->result_array());
-            
-            $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id', $res['bookings']['return_book_id'])->update('booking');
-            $this->db->set(array('is_active'=>0))->where('book_id', $res['bookings']['return_book_id'])->update('seats');
-        }
+    if ($res['bookings']['return_book_id']) {
+      $this->db->from('booking')->where('id', $res['bookings']['return_book_id']);
+      $res['return_bookings'] = current($this->db->get()->result_array());
+      
+      $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id', $res['bookings']['return_book_id'])->update('booking');
+      $this->db->set(array('is_active'=>0))->where('book_id', $res['bookings']['return_book_id'])->update('seats');
+  }
     $this->load->library('email');
     //$this->email->set_mailtype("html");
     $this->email->from($this->set['site_email'], $this->set['site_title']);
     $this->email->to('bright@proisc.com'); 
     $this->email->subject('Booking Confirmation: '.$book_id.' has been rejected');
-        $this->email->message('rejected');
+    $this->email->message('rejected');
     $this->email->send();
-        /*return journey end*/
-        $this->load->view('layout/templates/error', $this->template_vars);
-    }
+    /*return journey end*/
+    $this->load->view('layout/templates/error', $this->template_vars);
+  }
   /**
 	 * Function changepassword
 	 * Displays the changepassword

@@ -32,12 +32,14 @@
                 $content = $box->text_above_banner_es; 
               }
             ?>
+          <a href="#" target="_blank">
           <div class="col-sm-4 col-xs-6"><img src="<?php echo $img_url.'/'.$image_name; ?>" alt="" class="img-responsive">
             <div class="text">
               <h1><?php echo $title; ?></h1>
                 <p><?php echo $content; ?></p>    
             </div>
             </div>
+            </a>
           <?php } ?>
         </div>
       </div>

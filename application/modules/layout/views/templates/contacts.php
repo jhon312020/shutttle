@@ -18,12 +18,12 @@
 			<div class="col-xs-12">
 				<div class="row contacto">
 					<form method="post" name="contact_form">
-						<div class="form-group col-sm-12 contacto_title"><?php echo lang('send_us_your_suggestion'); ?></div>
+						<div class="form-group col-sm-12 contacto_title"><?php echo lang('we_will_contact_with_you_as_soon_as_possible'); ?></div>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="name" name="name" placeholder="<?php echo lang('name_and_surname'); ?>" required>
+							<input type="text" class="form-control" id="name" name="name" placeholder="<?php echo lang('name'); ?>" required>
 						</div>
 						<div class="col-sm-6 con_msg">
-							<input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+							<input type="text" class="form-control" name="email" id="email" placeholder="<?php echo lang('surname'); ?>" required>
 						</div>
 						<div class="col-sm-10 con_msg">
 							<textarea name="description" id="description" class="form-control" rows="8" placeholder="<?php echo lang('Comment'); ?>" required></textarea>
