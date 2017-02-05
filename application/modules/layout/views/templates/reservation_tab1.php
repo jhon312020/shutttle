@@ -1,3 +1,13 @@
+<div class="tabbable-panel circle-show">
+		<div class="tabbable-line">
+			<ul class="nav nav-tabs ">
+				<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
+					<a href="#firstStep">
+					CHOOSE YOUR ROUTE</a>
+				</li>
+			</ul>
+		</div>
+</div>
 <div class="tab-pane active" id="firstStep">
   <div class="row">
     <div class="col-md-12">
@@ -64,7 +74,7 @@
                 </div>
                 <div class="form-bottom ribbon-down mar-down">
                   <div class="form-group col-sm-1 clear-pad-form">
-                    <label><?php echo lang('people'); ?></label>
+                    <label style="padding-top: 10px;"><?php echo lang('people'); ?></label>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form">
                     <?php echo form_dropdown('adults', $adults, null, 'class="form-control validate[required] book-select"  data-errormessage-value-missing="'.lang('require_field').'"'); ?>
@@ -73,7 +83,7 @@
                     <?php echo form_dropdown('kids', $kids, null, 'class="form-control book-select"'); ?>
                   </div>
                 </div>
-                <button type="button" class="btn" style="float:right" id="firstbutton"><?php echo lang('book_now'); ?></button>
+                <button type="button" class="btn" style="float:right;font-size: 26px;" id="firstbutton"><?php echo lang('book_now'); ?></button>
               </form>
             
             </div>

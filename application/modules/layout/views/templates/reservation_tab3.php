@@ -1,3 +1,13 @@
+<div class="tabbable-panel circle-show">
+		<div class="tabbable-line">
+			<ul class="nav nav-tabs ">
+				<li class="stepClick disabled circlethree" data-class="thirdStep"><span class="step">3</span>
+							<a href="#thirdStep">
+							INFO AND PAYMENT</a>
+				</li>
+			</ul>
+		</div>
+</div>
 <div class="tab-pane" id="thirdStep">
 	<div id="thirdStepLeft">
   <?php $this->load->view('reservation_tab_common_left'); ?>
@@ -101,8 +111,8 @@
 					<div class="col-sm-8">
 					<p class="txt-size-14 validateRadio">
 						<input value="1" class="validate[required]" name="terms_cond" id="terms_cond" type="checkbox">
-						<label style="position: relative; top: -1px; font-weight:normal" for="terms_cond">&nbsp;<?php echo lang('accept'); ?></label>
-						<a href="<?php echo site_url($lang.'/terms'); ?>" target="_blank" class="orange" style="position: relative; top: -1px;">&nbsp;<?php echo lang('terms_and_conditions'); ?></a> <span style="position: relative; top: -1px;"><!--&</span> 
+						<label style="font-family: Gothamlight;font-size: 12px;" for="terms_cond">&nbsp;<?php echo lang('accept'); ?></label>
+						<a href="<?php echo site_url($lang.'/terms'); ?>" target="_blank" class="orange" style="font-family: Gothamlight;font-size: 12px;">&nbsp;<?php echo lang('terms_and_conditions'); ?></a> <span style="position: relative; top: -1px;"><!--&</span> 
 						<a style="position: relative; top: -1px;" href="<?php echo site_url($lang.'/terms'); ?>" class="orange" target="_blank"><?php echo lang('privacy_policy'); ?></a>-->
 					</p>
 					</div>
@@ -136,23 +146,23 @@
 					<input type="hidden" name="itemprice" class="amount" value="">
 					
 					<div class="col-sm-12" style="padding-left:0px;width:104%;">
-				    <h3 class="totalpay"><span>
+				    <h3 class="totalpay"><span style="font-size: 18px;">
 					<?php echo lang('total_pay'); ?>:
 					<br><span id="price_final">12.12</span>&euro;</h3>
 					</span> 
-					<button type="button" id="form-submit" class="btn pull-right btn-lg pickbluebg paypalsubmit"><?php echo lang('pay'); ?></button> 
+					<button type="button" id="form-submit" class="btn pull-right btn-lg paypalsubmit"><?php echo lang('pay'); ?></button> 
 					
 					<div class="paymentValid mypaypalimg">
 					<!--<span><img src="<?php //echo IMAGEPATH; ?>paypal.jpg"></span>-->
-					<span style="font-size:20px;"><?php echo lang('how_pay'); ?></span><br>
+					<span style="font-size:16px;font-family: Gothambook;"><?php echo lang('how_pay'); ?></span><br>
 					<span>
 						<input style="position: relative; top: -2px;" type="radio" class="validate[required]" name="paymentmethod" id="sabadell_bank" value="bank"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-						<label style="position: relative; top: -3px;" for="sabadell_bank"><?php echo lang('pay_by_credit'); ?></label>
+						<label style="position: relative; top: -3px;font-family: Gothamlight;" for="sabadell_bank"><?php echo lang('pay_by_credit'); ?></label>
 					</span>
 					
 					<span>
 						<input style="position: relative; top: -2px;"type="radio" class="validate[required]" name="paymentmethod" id="paybyonline" value="online"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-						<label style="position: relative; top: -3px;" for="paybyonline"><?php echo lang('pay_by_online'); ?></label>
+						<label style="position: relative; top: -3px;font-family: Gothamlight;" for="paybyonline"><?php echo lang('pay_by_online'); ?></label>
 					</span>
 					
 					<?php if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2){ 

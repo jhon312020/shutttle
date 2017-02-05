@@ -4,14 +4,14 @@
 	$pattern = '/[A-Za-z0-9_-]+@[A-Za-z0-9_-]+\.([A-Za-z0-9_-][A-Za-z0-9_]+)/';
 	preg_match($pattern,$address,$matches);
 	if(count($matches) > 0){
-		$address = str_replace($matches[0], '<a style="color:#4577D8;" href="mailto:'.$matches[0].'">'.$matches[0].'</a>', $address);
+		$address = str_replace($matches[0], '<a style="color: #25387d;" href="mailto:'.$matches[0].'">'.$matches[0].'</a>', $address);
 	}
 ?>
 <div class="container" id="contactus">
 	<div class="col-sm-10 col-sm-offset-1">
 		<div class="col-sm-3">
-			<h4 id="fobo"><?php echo lang('contact_details'); ?></h4><p><?php echo (isset($address))?$address:''; ?>
-			<br>Telf. <?php echo (isset($telephone))?$telephone:''; ?></p>
+			<h4 id="fobo"><?php echo lang('contact_details'); ?></h4><p class="contactp"><?php echo (isset($address))?$address:''; ?>
+			<br>Tel. <?php echo (isset($telephone))?$telephone:''; ?></p>
 			<p>&nbsp;</p>
 		</div>
 		<div class="col-sm-9">

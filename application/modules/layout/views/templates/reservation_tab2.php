@@ -1,3 +1,13 @@
+<div class="tabbable-panel circle-show">
+		<div class="tabbable-line">
+			<ul class="nav nav-tabs ">
+				<li class="stepClick disabled circletwo" data-class="secondStep"><span class="step">2</span>
+							<a href="#secondStep">
+							ROUTE SCHEDULE</a>
+				</li>
+			</ul>
+		</div>
+</div>
 <div class="tab-pane" id="secondStep">
   <div id="secondStepLeft">
     <?php 
