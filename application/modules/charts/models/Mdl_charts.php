@@ -89,8 +89,8 @@ class Mdl_charts extends Response_Model {
 			$res['color'][$item['country']] = '#FF9900';
 			$res['count'][$item['country']] = $item['passenger_count'];
 		});
-		$data['country_color'] = $res['color'];
-		$data['country_count'] = $res['count'];
+		$data['country_color'] = isset($res['color'])?$res['color']:'';
+		$data['country_count'] = isset($res['count'])?$res['count']:'';
         return $data;
 	}
 	/**
@@ -106,9 +106,9 @@ class Mdl_charts extends Response_Model {
 			$res['color'][$item['country']] = '#FF9900';
 			$res['count'][$item['country']] = $item['passenger_count'];
 		});
-		$data['country_color'] = $res['color'];
-		$data['country_count'] = $res['count'];
-        return $data;
+		$data['country_color'] = isset($res['color'])?$res['color']:'';
+		$data['country_count'] = isset($res['count'])?$res['count']:'';
+    return $data;
 	}
 	/**
      * Function get_bookBillByCollaborator()

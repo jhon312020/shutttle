@@ -1,4 +1,5 @@
-<div class="tabbable-panel circle-show">
+<div class="tab-pane" id="secondStep">
+  <div class="tabbable-panel circle-show">
 		<div class="tabbable-line">
 			<ul class="nav nav-tabs ">
 				<li class="stepClick disabled circletwo" data-class="secondStep"><span class="step">2</span>
@@ -8,7 +9,6 @@
 			</ul>
 		</div>
 </div>
-<div class="tab-pane" id="secondStep">
   <div id="secondStepLeft">
     <?php 
       $this->load->view('reservation_tab_common_left'); 

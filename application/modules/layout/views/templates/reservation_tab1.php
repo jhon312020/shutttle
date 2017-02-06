@@ -1,4 +1,5 @@
-<div class="tabbable-panel circle-show">
+<div class="tab-pane active" id="firstStep">
+  <div class="tabbable-panel circle-show">
 		<div class="tabbable-line">
 			<ul class="nav nav-tabs ">
 				<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
@@ -7,8 +8,7 @@
 				</li>
 			</ul>
 		</div>
-</div>
-<div class="tab-pane active" id="firstStep">
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-login">

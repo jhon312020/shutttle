@@ -1,6 +1,7 @@
 		<?php
 			$websiteClass = array('homepage','partners','aboutus','franchises','concierge','faq','contacts', 'captions', 'booking_extras', 'promotional_codes', 'terms_and_conditions');
-			$end_segment = end($this->uri->segment_array());
+      $segment = $this->uri->segment_array();
+			$end_segment = end($segment);
 			$url_segment = $this->uri->segment_array();
 			if (! isset($url_segment[4])) {
 				$url_segment[4] = '';
@@ -90,6 +91,12 @@
 					<span><?php echo lang('clients'); ?></span>
 				</a>
 			</li>
+      <li class="<?php echo $this->router->class == 'collaborators' ? 'opened active' : ''; ?>">
+        <a href="<?php echo site_url('admin/collaborators/index'); ?>">
+          <i class="entypo-users"></i>
+          <span><?php echo lang('collaborators'); ?></span>
+        </a>
+      </li>
 			<li class="<?php echo ($this->router->class == 'routes' && $this->router->method != 'bcn_area' && $this->router->method != 'bcn_form' && $this->router->method != 'bcnareas_address' && $this->router->method != 'bcn_address_form') ? 'opened active' : ''; ?>">
 				<a href="#"><i class="entypo-address"></i><span><?php echo lang('routes'); ?></span></a>
 				<ul>
