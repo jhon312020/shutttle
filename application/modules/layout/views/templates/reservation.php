@@ -7,7 +7,7 @@
 		<div class="col-md-12">
 			<div class="tabbable-panel">
 				<div class="tabbable-line">
-					<ul class="nav nav-tabs ">
+					<ul class="nav nav-tabs book-desk">
 						<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
 							<a href="#firstStep">
 							CHOOSE YOUR ROUTE</a>
