@@ -24,15 +24,15 @@
 					<input style="display:none" type="text" name="fakeusernameremembered"/>
 					<input style="display:none" type="password" name="fakepassword"/>
 					<div class="col-sm-12 paytop">
-						<div class="form-group col-sm-4 clear-pad-R" style="margin-top:10px;">
+						<div class="form-group col-sm-4 clear-pad-R Add-pad-R" style="margin-top:10px;">
 							<input type="text" class="form-control bord-rad-10 bor-col-wht validate[required,custom[email]]" id="login_email" name="login_email" placeholder="User (E-mail)" required>
 						</div>
 						<div class="form-group col-sm-4 validTextpassword" style="margin-top:10px;">
 							<input type="password" class="form-control bord-rad-10 bor-col-wht validate[required]" id="login_password" name="login_password" placeholder="password" required>
 						</div>
-						<div class="col-sm-2 lostpwd"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
+						<div class="col-sm-2 lostpwd Add-pad-L"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
 						<div class="form-group col-sm-2">
-							<button type="button"  id="form-submit" class="btn btnnewsize logincheck" style="margin-top:20px;float:right;"><?php echo strtoupper(lang('enter')); ?></button>
+							<button type="button"  id="form-submit" class="btn btnnewsize logincheck" class="Enter-lg"><?php echo strtoupper(lang('enter')); ?></button>
 						</div>
 						<div class="col-sm-12 errorlogin" style="display:none;">
 							<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_credentials'); ?></span>
@@ -57,19 +57,19 @@
 						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10 validate[required]" id="fullname" name="name" placeholder="<?php echo lang('name'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-8 validText clear-pad-R">
+						<div class="form-group col-sm-8 validText clear-pad-R Mob-pad-L">
 							<input type="text" class="form-control bord-rad-10 validate[required]" id="surname" name="surname" placeholder="<?php echo lang('surname'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
 						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10 validate[required,custom[email]]" id="email" name="email" placeholder="Email" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_email'); ?>" >
 						</div>
-						<div class="form-group col-sm-5 validText">
+						<div class="form-group col-sm-5 validText mob-pad-RL">
 							<input type="text" class="form-control bord-rad-10 validate[required,equals[email]]" id="confirm_email" name="confirm_email" placeholder="<?php echo lang('confirm_email'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-pattern-mismatch="<?php echo lang('field_match')?>">
 						</div>
 						<div class="form-group col-sm-3 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="phone" name="phone" placeholder="<?php echo lang('phone'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_integer'); ?>">
 						</div>
-						<div class="form-group col-sm-9 validText" style="padding-left:0px;">
+						<div class="form-group col-sm-9 validText Mob-pad-R clear-pad-L">
 							<input type="text" class="form-control bord-rad-10" id="address" name="address" placeholder="Direction" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" >
 						</div>
 						<div class="form-group col-sm-3 validText clear-pad-RL">
@@ -78,7 +78,7 @@
 						<div class="form-group col-sm-4 validText clear-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="client_country" name="client_country" placeholder="<?php echo lang('country'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4 validText">
+						<div class="form-group col-sm-4 validText mob-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="city" name="city" placeholder="<?php echo lang('city'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
 						<div class="form-group col-sm-4 validText clear-pad-RL">
@@ -92,7 +92,7 @@
 								<option value="passport"><?php echo lang('dni_passport'); ?></option>
 							</select>
 						</div>
-						<div class="form-group col-sm-4 validText">
+						<div class="form-group col-sm-4 validText mob-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="doc_no" name="doc_no" placeholder="<?php echo lang('number_of_document'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
 						<div class="form-group col-sm-4 showExtras clear-pad-RL">
@@ -101,7 +101,7 @@
 						<div class="form-group col-sm-4 validText showPassword clear-pad-RL" style="clear:both">
 							<input type="password" class="form-control bord-rad-10 validate[required]" id="password" name="password" placeholder="Password" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4 validText showPassword">
+						<div class="form-group col-sm-4 validText showPassword mob-pad-RL">
 							<input type="password" class="form-control bord-rad-10 validate[required,equals[password]]" id="confirm_password" name="confirm_password" placeholder="<?php echo lang('confirm_password'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
 						<div class="form-group col-sm-4"><?php// echo lang('terms_and_conditions'); ?></div>

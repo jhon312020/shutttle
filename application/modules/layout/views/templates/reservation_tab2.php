@@ -14,7 +14,7 @@
       $this->load->view('reservation_tab_common_left'); 
     ?>
   </div>
-  <div class="col-sm-9 clear-pad-R">
+  <div class="col-sm-9 clear-pad-R Mob-pad-L">
 			<form id="submitForm">
 				<div class="panel pickbluebgtop">
 					<div class="panel-heading pickbluebg"><?php echo lang('go_trip'); ?> </div> 
