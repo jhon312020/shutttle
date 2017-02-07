@@ -32,7 +32,7 @@
 						</div>
 						<div class="col-sm-2 lostpwd Add-pad-L"><a href="<?php echo site_url($lang.'/recovery_password/clients'); ?>" class="forget_link" target="_blank"><?php //echo lang('you_have_forgotten_the_password'); ?>Lost your password?</a></div>
 						<div class="form-group col-sm-2">
-							<button type="button"  id="form-submit" class="btn btnnewsize logincheck" class="Enter-lg"><?php echo strtoupper(lang('enter')); ?></button>
+							<button type="button"  id="form-submit" class="btn btnnewsize logincheck Enter-lg"><?php echo strtoupper(lang('enter')); ?></button>
 						</div>
 						<div class="col-sm-12 errorlogin" style="display:none;">
 							<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_credentials'); ?></span>
