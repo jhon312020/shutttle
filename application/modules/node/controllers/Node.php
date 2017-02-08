@@ -122,11 +122,6 @@ class Node extends Anonymous_Controller {
     $this->load->view('layout/templates/aboutus', $this->template_vars);
   }
   
-  public function mobile_booking() {
-    $this->load->view('layout/templates/mobile_booking');
-  }
-  
- 
   public function update_journey() {
     $id = $this->uri->segment(3);
     $this->db->set(array('journey_completed'=>1))->where('id', $id)->update('booking');
@@ -582,122 +577,7 @@ class Node extends Anonymous_Controller {
     /*return journey end*/
     $this->load->view('layout/templates/error', $this->template_vars);
   }
-  /**
-	 * Function changepassword
-	 * Displays the changepassword
-   * 
-	 * @return	void
-	 */
-  public function booking_details() {
-    if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
-      $this->mdl_shuttles->select('booking.bcnarea_address_id,booking.address as book_address,collaborators.address as col_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,booking.book_status,booking.id,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
-                        booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,
-                        booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array,
-                        clients.name as first_name, clients.surname,calendars.reference_id')
-                        ->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
-                        ->join('collaborators_address', 'collaborators_address.id = booking.collaborator_address_id', 'left')
-                        ->join('clients', 'clients.id=booking.client_id', 'left')
-                        ->join('calendars', 'calendars.id=booking.calendar_id', 'left')
-                        ->where('booking.is_active = 1  and tbl_booking.book_role=2 and tbl_booking.collaborator_id = '.$this->details['collaborator_details']['id']);
-      $res = array();
-      if ($this->input->post('from_date')) {
-        $fromUnixTime = strtotime(str_replace('/', '-', $this->input->post('from_date')));
-        $fromDate = date('d-m-Y', $fromUnixTime);
-        $shuttles = $this->mdl_shuttles->where('DATE(tbl_booking.start_journey)', date('Y-m-d', $fromUnixTime))
-                        ->order_by('booking.hour', 'asc')->get()->result();
-        /*$return_id = $this->db->query("select tbl_booking.id, mm.id as return_book_id from tbl_booking inner join (select id from tbl_booking where tbl_booking.is_active = 1 and tbl_booking.start_journey = '".Date('Y-m-d', $fromUnixTime)."' and tbl_booking.round_trip = 1) mm on mm.id = tbl_booking.return_book_id")->result_array();
-
-        array_walk($return_id, function($item) use (&$res) {
-            // flatten the array
-            $res[$item['return_book_id']] = $item['id'];
-        });*/
-      } else {
-        $shuttles = $this->mdl_shuttles->where('booking.round_trip', '0')
-                        ->order_by('booking.created', 'desc')->get()->result();
-      }
-      
-      $this->load->view('layout/templates/booking_details', array('shuttles'=>$shuttles, 'res' => $res));
-    } else {
-      redirect($this->uri->segment(1));
-    }
-  }
-  /**
-	 * Function changepassword
-	 * Displays the changepassword
-   * 
-	 * @return	void
-	 */
-  public function view_booking_details() {
-    $id = $this->uri->segment(3);
-    $this->db->from('booking')->where('id', $id);
-    $res['bookings'] = current($this->db->get()->result_array());
-    if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2 && $res['bookings']['collaborator_id'] == $this->details['collaborator_details']['id']) {
-      if ($res['bookings']['return_book_id']) {
-        $this->db->from('booking')->where('id', $res['bookings']['return_book_id']);
-        $res['return_bookings'] = current($this->db->get()->result_array());
-      }
-      $res['error'] = array();
-      $arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
-      
-      if (in_array($res['bookings']['start_from'], $arr)) {
-        $zone = $res['bookings']['end_at'];
-        $str = 'end_at';
-      } else {
-        $zone = $res['bookings']['start_from'];
-        $str = 'start_from';
-      }
-      /*Address details*/
-      $res['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id', $res['bookings']['collaborator_address_id'])->get()->result_array();
-      
-      $this->db->from('collaborators')->where('id',$res['bookings']['collaborator_id']);
-      $terminal = current($this->db->get()->result_array());
-      $res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
-      if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
-        $res['bookings'][$str] = $res['bookings']['address'];
-      }
-      
-      $res['bookings']['collaborator_name'] = $terminal['name'];
-      $this->db->from('calendars')->where('id', $res['bookings']['calendar_id']);
-      $res['start_journey'] = current($this->db->get()->result_array());
-      $client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$res['bookings']['client_id'])->get();
-      
-      $res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);
-      if ($client_qry->num_rows())
-        $res['clients'] = current($client_qry->result_array());
-      else
-        $res['clients'] = json_decode($res['bookings']['client_array'], true);
-      
-      $res['edit'] = false;
-
-      $this->load->view('layout/templates/view_booking_details', $res);
-    } else {
-      redirect($this->uri->segment(1));
-    }
-  }
-  /**
-	 * Function changepassword
-	 * Displays the changepassword
-   * 
-	 * @return	void
-	 */
-  public function changepassword() {
-    //echo $this->session->userdata('user_id');die;
-    $type = $this->uri->segment(3);
-    if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
-      if($this->mdl_users->run_validation('validation_rules_changepassword')){
-        //if($this->mdl_users->findByPassword($this->input->post('oldpassword'))) {
-          $this->mdl_users->save_changepassword($this->input->post('newpassword'));
-          redirect($this->uri->segment(1).'/changepassword');
-          
-        /*} else {
-          redirect($this->uri->segment(1).'/changepassword');
-        }*/
-      }
-    } else {
-      redirect($this->uri->segment(1).'/changepassword');
-    }
-    $this->load->view('layout/templates/changepassword');
-  }
+ 
   /**
 	 * Function reservation
 	 * Displays the Booking page
