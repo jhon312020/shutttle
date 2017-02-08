@@ -610,7 +610,7 @@ $lang['exists_username'] = 'Email id alredy exists';
 $lang['pending'] = 'Pending';
 $lang['avail_seats'] = 'City to Airp. Available seats.';
 $lang['return_seats'] = 'Airp. To City available seats.';
-$lang['pay_by_online'] = 'Paypal';
+$lang['pay_by_online'] = 'Stripe';
 $lang['pay_by_cash'] = 'Pay by cash';
 $lang['less_seats'] = 'The booking seats is greater than the available seats';
 $lang['pre_paid'] = 'Pre-Paid';
@@ -680,4 +680,11 @@ $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
 $lang['change_password_success_message'] = 'Your password has been successfully reset!';
 $lang['promotional_code'] = 'Promotional code';
+/* Stripe Payment variables */
+$lang['card_number'] = 'Card Number';
+$lang['cvc'] = 'CVC';
+$lang['mm'] = 'MM';
+$lang['yyyy'] = 'YYYY';
+$lang['payment_process'] = 'Payment Process';
+
 ?>

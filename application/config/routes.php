@@ -148,6 +148,12 @@ $route['es/confirmation'] = 'node/confirmation';
 $route['en/error'] = 'node/error';
 $route['es/error'] = 'node/error';
 
+$route['en/payment'] = 'node/stripePayment';
+$route['es/payment'] = 'node/stripePayment';
+
+$route['en/paymentprocess'] = 'node/stripePaymentProcess';
+$route['es/paymentprocess'] = 'node/stripePaymentProcess';
+
 $route['en/process'] = 'node/process';
 $route['es/process'] = 'node/process';
 

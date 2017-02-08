@@ -135,7 +135,7 @@
 					<input type="text" name="Ds_Signature" id="Ds_Signature" value="" />
 				</form>
 				<!--<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="paypalform" target="_top">-->
-				<form action="process/?paypal=checkout" method="post" id="paypalform">
+				<form action="payment/" method="post" id="stripeform">
 					<input type="hidden" name="duplicate_bool" id="duplicate_bool" value="0">
 					<input type="hidden" name="amount" class="amount" value="">
 					<input type="hidden" name="itemname" value="Reservation">

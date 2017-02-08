@@ -705,6 +705,17 @@ class Node extends Anonymous_Controller {
 	 * @return	void
 	 */
   public function reservation () {
+    $base_path = base_url().'assets/cc';
+    $this->template_vars['css'] = array(
+      '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
+      $base_path.'/datetimepicker/css/bootstrap-datetimepicker.min.css',
+    );
+    $this->template_vars['js'] = array(
+      '//code.jquery.com/ui/1.12.1/jquery-ui.js',
+      $base_path.'/datetimepicker/js/bootstrap-datetimepicker.min.js',
+      $base_path.'/js/reservation.js',
+      $base_path.'/js/functions.js',
+    );
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
     $this->template_vars['terminal_array'] = array('' => 'To', 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
     $this->load->view('layout/templates/reservation', $this->template_vars);
@@ -718,6 +729,100 @@ class Node extends Anonymous_Controller {
 	 */
   public function process() { 
     $this->load->view('layout/templates/process', $this->template_vars);
+  }
+  
+  /**
+	 * Function stripePayment
+	 * Displays the payment process
+   * 
+	 * @return	void
+	 */
+  public function stripePayment() {
+    if ($this->input->post('BookId') != '' && $this->input->post('amount') > 0 ){
+      $booking_id = (int)strip_tags($this->input->post('BookId'));
+      $booking_amount = strip_tags($this->input->post('amount'));
+      $booking_info['bookingInfo'] = array('id'=>$booking_id,'amount'=>$booking_amount);
+      $this->session->set_userdata($booking_info);
+      $base_path = base_url().'assets/cc';
+      $this->template_vars['js'] = array(
+        'https://js.stripe.com/v2/',
+        $base_path.'/js/stripe/payment.js',
+      );
+      
+      $this->load->view('layout/templates/stripe_payment', $this->template_vars);
+    } else {
+      $this->redirect($this->template_vars['lang']);
+    }
+  }
+  
+  /**
+	 * Function stripePaymentProcess
+	 * Displays the payment process
+   * 
+	 * @return	void
+	 */
+  public function stripePaymentProcess() { 
+    
+    // If no errors, process the order:
+    $errors = array();
+    // Set the order amount somehow:
+    //print_r($_POST);
+    //exit;
+    if ($this->input->post('stripeToken')!= '' && $this->session->userdata('bookingInfo')) {
+      //echo 'comes in';
+      //exit;
+      $booking_info = $this->session->userdata('bookingInfo');
+      $lang = $this->template_vars['lang'];
+      $success_url = site_url($lang.'/success/?cm='.$booking_info['id']);
+      $failure_url = site_url($lang.'/error/?cm='.$booking_info['id']);
+    
+      $token = $this->input->post('stripeToken');
+      // create the charge on Stripe's servers - this will charge the user's card
+      try {
+        // Include the Stripe library:
+        $this->load->library('stripe/stripeInit');
+
+        // set your secret key: remember to change this to your live secret key in production
+        // see your keys here https://manage.stripe.com/account
+        \Stripe\Stripe::setApiKey($this->config->item('STRIPE_PRIVATE_KEY'));
+
+        // Charge the order:
+        $charge = \Stripe\Charge::create(array(
+          "amount" => ($booking_info['amount'] * 100), // amount in cents, again
+          "currency" => "usd",
+          "source" => $token,
+          "description" => $booking_info['id']
+          )
+        );
+        // Check that it was paid:
+        if ($charge->paid == true) {
+            redirect($success_url);
+        } else { // Charge was not paid!
+          redirect($failure_url);
+          echo '<div class="alert alert-error"><h4>Payment System Error!</h4>Your payment could NOT be processed (i.e., you have not been charged) because the payment system rejected the transaction. You can try again or use another card.</div>';
+        }
+
+      } catch (\Stripe\Error\Card $e) {
+          // Card was declined.
+        $e_json = $e->getJsonBody();
+        $err = $e_json['error'];
+        echo $errors['stripe'] = $err['message'];
+      } catch (\Stripe\Error\ApiConnection $e) {
+          // Network problem, perhaps try again.
+          echo $e;
+      } catch (\Stripe\Error\InvalidRequest $e) {
+          // You screwed up in your programming. Shouldn't happen!
+          echo $e;
+      } catch (\Stripe\Error\Api $e) {
+          // Stripe's servers are down!
+          echo $e;
+      } catch (\Stripe\Error\Base $e) {
+          // Something else that's not the customer's fault.
+          echo $e;
+      }
+      
+    }
+  
   }
 }
 ?>
