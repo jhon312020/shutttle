@@ -235,18 +235,18 @@
 
 								<?php } ?>
 
-								<tr>
+								<!-- <tr>
 
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('country'); ?>:</td>
+									<td style="color:#25387d; font-weight:bold;"><?php //echo lang('country'); ?>:</td>
 
 									<td><?php //echo $countries[$bookings['country']]; ?></td>
-									<td><?php echo $bookings['country']; ?></td>
+									<td><?php //echo $bookings['country']; ?></td>
 
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('flight_no'); ?>:</td>
+									<td style="color:#25387d; font-weight:bold;"><?php //echo lang('flight_no'); ?>:</td>
 
-									<td><?php echo $bookings['flight_no']; ?></td>
+									<td><?php //echo $bookings['flight_no']; ?></td>
 
-								</tr>
+								</tr> -->
 
 								<tr>
 

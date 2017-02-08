@@ -10,23 +10,26 @@
     <div class="panel-body">
       <?php $this->load->view('layout/alerts'); ?>
         <div class="row">
-          <div id="payment-errors"></div>
+          <div class="form-group col-xs-12">
+            <div id="payment-errors" ></div>
+          </div>
             <form method="POST" class="validateForm" action="<?php echo site_url().$lang.'/paymentprocess'; ?>" id="payment-form">
               <div class="form-group col-xs-12">
                 <?php 
-                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_number'), 'class'=>'card-number form-control', 'autocomplete'=>'off', 'maxlength'=>'16')); ?>
+                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_number'), 'class'=>'card-number form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'16','data-errormessage-value-missing'=>lang('require_field') )); ?>
+                
               </div>
               <div class="form-group col-xs-12">
-                <?php echo  form_input(array('type'=>'text', 'placeholder'=>lang('cvc'), 'class'=>'card-cvc form-control', 'autocomplete'=>'off', 'maxlength'=>'4')); ?>
+                <?php echo  form_input(array('type'=>'text', 'placeholder'=>lang('cvc'), 'class'=>'card-cvc form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'4', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
               </div>
               <div class="form-group col-xs-12">
                 <?php 
-                  echo  form_input(array('type'=>'text', 'placeholder'=>lang('mm'), 'class'=>'card-expiry-month form-control', 'autocomplete'=>'off', 'maxlength'=>'2'));
+                  echo  form_input(array('type'=>'text', 'placeholder'=>lang('mm'), 'class'=>'card-expiry-month form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'2', 'data-errormessage-value-missing'=>lang('require_field')));
                 ?>
               </div>
               <div class="form-group col-xs-12">
                 <?php 
-                  echo  form_input(array('type'=>'text', 'placeholder'=>lang('yyyy'), 'class'=>'card-expiry-year form-control', 'autocomplete'=>'off', 'maxlength'=>'4'));
+                  echo  form_input(array('type'=>'text', 'placeholder'=>lang('yyyy'), 'class'=>'card-expiry-year form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'4', 'data-errormessage-value-missing'=>lang('require_field')));
                 ?>
               </div>
             <div class="form-group col-xs-12"></div>

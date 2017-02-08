@@ -170,13 +170,13 @@
 					?>
 						<span id="collaborator_seats">
 							<input style="position: relative; top: -2px;"type="radio" class="validate[required]" name="paymentmethod" id="available_seats" value="available_seats"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-							<label style="position: relative; top: -3px;" for="available_seats"><?php echo lang('available_seats'); ?>.</label>
+							<label style="position: relative; top: -3px; font-family: Gothamlight;" for="available_seats"><?php echo lang('available_seats'); ?>.</label>
 						</span>
 					<?php } ?>	
 					<?php  if($collaborator_details['payment_methods'] == 'online_and_cash'){ ?>
 						<span>
 							<input type="radio" class="validate[required]" name="paymentmethod" id="paybycash" value="cash"> 
-							<label style="position: relative; top: -2px;" for="paybycash"  data-errormessage-value-missing="<?php echo lang('require_field')?>"><?php echo lang('pay_by_cash'); ?>.</label>
+							<label style="position: relative; top: -2px; font-family: Gothamlight;" for="paybycash"  data-errormessage-value-missing="<?php echo lang('require_field')?>"><?php echo lang('pay_by_cash'); ?>.</label>
 						</span>
 					<?php } } ?>
 						</div>

@@ -64,7 +64,9 @@ $cms_lang = $this->session->userdata('cms_lang');
     $this->load->view('menu');
     if (isset($content['image']) && $content['image'] != '') {
       $image_name = 'captions/'.$content['image'];
-    } else {
+    } else if ($this->session->userdata('user_type') == 2) {
+      $image_name = 'collaborators.jpg';
+    }else{
       $image_name = 'ready.jpg';
     }
   ?>

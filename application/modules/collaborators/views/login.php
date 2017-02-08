@@ -18,6 +18,9 @@
               <div class="form-group col-xs-12">
                 <?php echo  form_input(array('name'=>'password', 'id'=>'password', 'type'=>'password', 'placeholder'=>lang('password'), 'class'=>'form-control')); ?>
               </div>
+              <div id="select_ida" class="form-group col-xs-12" style="text-align:center;">
+									<a href="<?php echo site_url($lang).'/recovery_password/collaborators' ?>" style="color:#25377d;"><?php echo lang('password_recovery'); ?></a>
+								</div>
             <div class="form-group col-xs-12"></div>
             <div class="form-group col-xs-12 col-xs-6 col-md-offset-3">
               <button type="submit" class="btn btn-block" style=""><?php echo lang('go'); ?></button>

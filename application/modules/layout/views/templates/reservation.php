@@ -46,6 +46,7 @@
   var type_hotel = '<?php echo lang('type_hotel'); ?>';
   var type_terminal = '<?php echo lang('type_terminal'); ?>';
   var invalid_date = '<?php echo lang('invalid_date'); ?>';
+  var less_seats = '<?php echo lang('less_seats'); ?>';
   var image_path = '<?php echo IMAGEPATH; ?>';
   var collaborator_address = <?php echo json_encode($this->details['collaborator_address']); ?>;
 	var collaborator_details = <?php echo json_encode($this->details['collaborator_details']); ?>;
