@@ -60,7 +60,8 @@ $cms_lang = $this->session->userdata('cms_lang');
     <link href="<?php echo base_url(); ?>assets/cc/css/validationEngine.jquery.css" rel="stylesheet">
 </head>
 <body>
-  <?php 
-	$this->load->view('menu'); 
+  <?php
+  $this->load->view('collaborators/header');  
+	$this->load->view('menu');
 	$this->load->view('slider'); 
   ?>

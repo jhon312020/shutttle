@@ -59,22 +59,8 @@ $cms_lang = $this->session->userdata('cms_lang');
     <link href="<?php echo base_url(); ?>assets/cc/css/validationEngine.jquery.css" rel="stylesheet">
 </head>
 <body>
-<div id="navbarLogin" class="navbar-inverse top-nav-bg">
-        <div class="navbar-collapse top-nav-pad">
-            <ul class="nav navbar-nav top-nav">
-                    <li><a href="#">Booking History</a></li>
-					<li class="divider">|</li>
-					<li><a href="#">Change Password</a></li>
-			</ul>
-            <ul class="nav navbar-nav top-nav navbar-right">
-                    <li><a href="#">Available Seats: 15</a></li>
-                    <li><a href="#">Hotel Lorem Ipusm</a></li>
-					<li class="divider">|</li>
-					<li><a href="#">Logout<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
-            </ul>
-        </div>
-</div>
-  <?php 
+  <?php
+    $this->load->view('collaborators/header');
     $this->load->view('menu');
     if (isset($content['image']) && $content['image'] != '') {
       $image_name = 'captions/'.$content['image'];

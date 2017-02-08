@@ -47,5 +47,11 @@
   var type_terminal = '<?php echo lang('type_terminal'); ?>';
   var invalid_date = '<?php echo lang('invalid_date'); ?>';
   var image_path = '<?php echo IMAGEPATH; ?>';
+  var collaborator_address = <?php echo json_encode($this->details['collaborator_address']); ?>;
+	var collaborator_details = <?php echo json_encode($this->details['collaborator_details']); ?>;
+  console.log(collaborator_address );
+  var autoSource =  '';
+  var user_name = '<?php echo $this->session->userdata('user_name'); ?>';
+  var user_type = '<?php echo $this->session->userdata('user_type'); ?>';
 </script>
 <?php $this->load->view('footer');?>

@@ -188,7 +188,7 @@ $lang['payment_date'] = 'Payment Date';
 $lang['payment_form'] = 'Payment Form';
 $lang['payment_history'] = 'Payment History';
 $lang['payment_method_form'] = 'Payment Method Form';
-$lang['payment_method'] = 'Payment Method';
+$lang['payment'] = 'Payment';
 $lang['payment_methods'] = 'Payment Methods';
 $lang['payments'] = 'Payments';
 $lang['pay_now'] = 'Pay Now';
@@ -686,5 +686,7 @@ $lang['cvc'] = 'CVC';
 $lang['mm'] = 'MM';
 $lang['yyyy'] = 'YYYY';
 $lang['payment_process'] = 'Payment Process';
+$lang['end'] = 'End';
+$lang['bookings'] = 'Bookings';
 
 ?>

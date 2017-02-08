@@ -16,5 +16,7 @@
         <?php } ?>
       </div>
 	</div>
-<?php } ?>
-<?php $this->load->view('footer');?>
+<?php 
+  } 
+  $this->load->view('footer');
+?>

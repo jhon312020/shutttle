@@ -5,6 +5,18 @@ if (!defined('BASEPATH'))
 
 class Ajax extends Anonymous_Controller {
   public $details = array();
+  public function __construct() {
+    parent::__construct();
+    $this->details = array();
+    $this->details['collaborator_details'] = array();
+    $this->details['collaborator_address'] = array();
+    if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
+      $qry = $this->db->select('collaborators.address,collaborators.id,collaborators.name,collaborators.zone, collaborators.no_of_available_seats,collaborators.available_seats,collaborators.payment_methods,collaborators.price')->from('users')->where(array('users.id'=>$this->session->userdata('user_id')))
+              ->join('collaborators', 'collaborators.id=users.collaborator_id', 'left');
+      $this->details['collaborator_details'] = current($qry->get()->result_array());
+      $this->details['collaborator_address'] = $this->db->query("select CONCAT(col.name,' - ',coladd.address) as label,CONCAT(col.name,' - ',coladd.address) as value,coladd.zone,col.id, coladd.id as collaborator_address_id from tbl_collaborators_address coladd left join tbl_collaborators col on coladd.collaborator_id = col.id where col.id = ".$this->details['collaborator_details']['id']." and coladd.is_active=1")->result_array();     
+    }
+  }
   public function getData() {
   if ($this->input->post()) {
     $this->load->model('routes/mdl_routes');

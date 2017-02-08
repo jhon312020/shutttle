@@ -99,11 +99,8 @@ $route['es/route_details'] = 'node/route_details';
 $route['en/calendar_details/:any'] = 'node/calendar_details/$1';
 $route['es/calendar_details/:any'] = 'node/calendar_details/$1';
 
-$route['en/booking_details'] = 'node/booking_details';
-$route['es/booking_details'] = 'node/booking_details';
-
-$route['en/view_booking_details/:any'] = 'node/view_booking_details/$1';
-$route['es/view_booking_details/:any'] = 'node/view_booking_details/$1';
+$route['en/booking_details/:any'] = 'collaborators/booking_details/$1';
+$route['es/booking_details/:any'] = 'collaborators/booking_details/$1';
 
 
 $route['en/contact']  = 'node/contact/en/';
@@ -162,6 +159,20 @@ $route['es/reservation'] = 'node/reservation';
 
 $route['en/getData'] = 'ajax/getData';
 $route['es/getData'] = 'ajax/getData';
+
+$route['en/collaborators/login'] = 'collaborators/login';
+$route['es/collaborators/login'] = 'collaborators/login';
+
+$route['en/collaborators/logout'] = 'collaborators/logout';
+$route['es/collaborators/login'] = 'collaborators/logout';
+
+$route['en/collaborators/changepassword'] = 'collaborators/changepassword';
+$route['es/collaborators/changepassword'] = 'collaborators/changepassword';
+
+$route['en/bookings'] = 'collaborators/bookings';
+$route['es/bookings'] = 'collaborators/bookings';
+
+
 
 $route['en/(:any)'] = 'node/loaddata_en/$1';
 $route['es/(:any)'] = 'node/loaddata_es/$1';

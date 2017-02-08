@@ -1,10 +1,7 @@
 <?php
-	//echo $lang;
-	$template_path = base_url()."assets/cc/";
-	$ln = $this->uri->segment(1);
 	$path = $this->uri->segment(2);
 	
-	if($ln=='en'){
+	if($lang=='en'){
 		$full_path_en = current_url();
 		$full_path_es = str_replace('/en', '/es', current_url());
 	}
@@ -13,8 +10,7 @@
 		$full_path_en = str_replace('/es', '/en', current_url());
 	}
 
-	if(!$ln || $ln == ""){	$ln = "es"; }
-	$modalForm = site_url($ln . '/reserva01');
+	$modalForm = site_url($lang . '/reserva01');
 ?>
   <!-- FOOTER -->
   <hr style="border-width: 2px;border-color: #25387D;width:95%;margin-top:50px;">
@@ -28,8 +24,8 @@
         </p>
       </div>
       <div class="col-xs-6 text-right" style="padding-right:0px;">
-        <a href="<?php echo site_url('/').$ln; ?>/terms"><?php echo lang('terms_and_conditions'); ?></a> <span class="separator">|</span> 
-        <a href="<?php echo (isset($social_facebook))?$social_facebook:'#'; ?>" style="display:none;"><img src="<?php echo $template_path;?>images/facebook.png" style="width:20px;"></a> <span class="separator" style="display:none;">|</span> 
+        <a href="<?php echo site_url('/').$lang.'/collaborators/login'; ?>"><?php echo lang('collaborators_access'); ?></a> <span class="separator">|</span>  <a href="<?php echo site_url('/').$lang; ?>/terms"><?php echo lang('terms_and_conditions'); ?></a> <span class="separator">|</span> 
+        <a href="<?php echo (isset($social_facebook))?$social_facebook:'#'; ?>" style="display:none;"><img src="<?php echo IMAGEPATH;?>facebook.png" style="width:20px;"></a> <span class="separator" style="display:none;">|</span> 
         <a href="<?php echo $full_path_es; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>spain.png" style="width:20px;"></a> <span class="separator">|</span> 
         <a href="<?php echo $full_path_en; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>english.png" style="width:20px;"></a>
       </div>
@@ -37,10 +33,10 @@
     <div class="row">
       <div class="col-xs-12"  style="clear:both;">
         <div style="text-align: center;">
-          <img src="<?php echo $template_path; ?>images/sabadell.png">
-          <img src="<?php echo $template_path; ?>images/visamaster.png">
-          <img src="<?php echo $template_path; ?>images/mastermaestro.png">
-          <img src="<?php echo $template_path; ?>images/paypal.png">
+          <img src="<?php echo IMAGEPATH; ?>sabadell.png">
+          <img src="<?php echo IMAGEPATH; ?>visamaster.png">
+          <img src="<?php echo IMAGEPATH; ?>mastermaestro.png">
+          <img src="<?php echo IMAGEPATH; ?>paypal.png">
         </div>
       </div>
     </div>
