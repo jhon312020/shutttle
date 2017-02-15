@@ -104,10 +104,10 @@
 						<div class="form-group col-sm-4 validText showPassword mob-pad-RL">
 							<input type="password" class="form-control bord-rad-10 validate[required,equals[password]]" id="confirm_password" name="confirm_password" placeholder="<?php echo lang('confirm_password'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4"><?php// echo lang('terms_and_conditions'); ?></div>
+						<div class="form-group col-sm-4"><?php // echo lang('terms_and_conditions'); ?></div>
 				</div>
 				<div class="col-sm-12">
-					<div class="col-sm-4" style="padding-left:0px;"><?php// echo lang('terms_and_conditions'); ?></div>
+					<div class="col-sm-4" style="padding-left:0px;"><?php // echo lang('terms_and_conditions'); ?></div>
 					<div class="col-sm-8">
 					<p class="txt-size-14 validateRadio">
 						<input value="1" class="validate[required]" name="terms_cond" id="terms_cond" type="checkbox">

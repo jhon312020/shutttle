@@ -646,8 +646,8 @@ class Node extends Anonymous_Controller {
     // If no errors, process the order:
     $errors = array();
     // Set the order amount somehow:
-    //print_r($_POST);
-    //exit;
+    /*print_r($_POST);
+    exit;*/
     if ($this->input->post('stripeToken')!= '' && $this->session->userdata('bookingInfo')) {
       //echo 'comes in';
       //exit;
@@ -674,6 +674,8 @@ class Node extends Anonymous_Controller {
           "description" => $booking_info['id']
           )
         );
+        $this->db->where('id', $booking_info['id']);
+        $this->db->update('tbl_booking', array('paypal_transaction_response' => json_encode($charge)));
         // Check that it was paid:
         if ($charge->paid == true) {
             redirect($success_url);
