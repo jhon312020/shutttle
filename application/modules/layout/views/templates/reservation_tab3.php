@@ -148,7 +148,7 @@
 					<div class="col-sm-12" style="padding-left:0px;width:104%;">
 				    <h3 class="totalpay"><span style="font-size: 18px;">
 					<?php echo lang('total_pay'); ?>:
-					<br><span id="price_final">12.12</span>&euro;</h3>
+					<br><span id="price_final">12.12</span><b class="euro">&euro;</b></h3>
 					</span> 
 					<button type="button" id="form-submit" class="btn pull-right btn-lg paypalsubmit"><?php echo lang('pay'); ?></button> 
 					
