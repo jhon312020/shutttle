@@ -88,6 +88,8 @@ class Node extends Anonymous_Controller {
     $ln = $this->uri->segment(1);
     if ($ln == '')
       redirect("en");
+    $this->load->model('booking/mdl_booking');
+    $this->template_vars['total_people'] = $this->mdl_booking->get_total_people_tavelled();
     $this->template_vars['sliders'] = $this->mdl_nodes->fetchAllSliders();
     $this->template_vars['banner'] = $this->mdl_nodes->fetchBannerLast();
     $this->template_vars['boxes'] = $this->mdl_nodes->fetchAllBoxes();
