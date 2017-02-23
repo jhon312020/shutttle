@@ -412,7 +412,7 @@ class Ajax extends Anonymous_Controller {
               $str['payment_method'] = 'online';
               $str['error'] = false;
               $pay = 'online';
-    if ($post_params['paymentmethod'] == 'bank') {
+    if (isset($post_params['paymentmethod']) && $post_params['paymentmethod'] == 'bank') {
       $str['payment_method'] = 'bank';
       $pay = 'bank';
     }

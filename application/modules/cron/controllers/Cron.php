@@ -20,7 +20,7 @@ class Cron extends Anonymous_Controller {
     	$sync = false;
         $calendar = $this->mdl_calendars->where('is_active',1)->order_by('service_date DESC')->limit(1)->get()->result();
         $date = ($calendar) ? date('Y-m-d', strtotime($calendar['0']->service_date . '+1 day')) : date('Y-m-d');
-    	$todayDate = 'PNG-'.date('dmY', strtotime($date)).'-';
+    	$todayDate = 'SHT-'.date('dmY', strtotime($date)).'-';
     	$referenceIDColumn = "CONCAT('$todayDate', (reference_id)) AS reference_id";
     	$liveRoutes = $this->mdl_routes->select('id AS route_id,'.$referenceIDColumn.',car, driver AS service_date,driver,seats,days,from_zone,from_time,to_zone,to_time,steps')->where('is_active',1)->get()->result_array();
         $serialize = json_encode($liveRoutes);
@@ -48,7 +48,7 @@ class Cron extends Anonymous_Controller {
         $date = date('dmY');
         $liveRoutes = array();
         $dayCount = 1;
-        $todayDate = 'PNG-'.$date.'-';
+        $todayDate = 'SHT-'.$date.'-';
         $referenceIDColumn = "CONCAT('$todayDate', (reference_id)) AS reference_id";
         $liveRoutes = $this->mdl_routes->select('id AS route_id,'.$referenceIDColumn.',car,driver,seats,days,from_zone,from_time,to_zone,to_time,steps')->where('is_active',1)->get()->result_array();
         $date = date('d-m-Y');

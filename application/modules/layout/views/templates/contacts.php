@@ -10,7 +10,8 @@
 <div class="container" id="contactus">
 	<div class="col-sm-10 col-sm-offset-1">
 		<div class="col-sm-3">
-			<h4 id="fobo"><?php echo lang('contact_details'); ?></h4><p class="contactp"><?php echo (isset($address))?$address:''; ?>
+			<span class="contact-details" id="fobo"><?php echo lang('contact_details'); ?></span>
+			<p class="contactp">Mail. <?php echo (isset($address))?$address:''; ?>
 			<br>Tel. <?php echo (isset($telephone))?$telephone:''; ?></p>
 			<p>&nbsp;</p>
 		</div>
@@ -19,13 +20,13 @@
 				<div class="row contacto">
 					<form method="post" name="contact_form">
 						<div class="form-group col-sm-12 contacto_title"><?php echo lang('we_will_contact_with_you_as_soon_as_possible'); ?></div>
-						<div class="col-sm-6">
+						<div class="col-sm-6 no-pad-right pad-top">
 							<input type="text" class="form-control" id="name" name="name" placeholder="<?php echo lang('name'); ?>" required>
 						</div>
-						<div class="col-sm-6 con_msg">
+						<div class="col-sm-6 con_msg pad-top">
 							<input type="text" class="form-control" name="email" id="email" placeholder="<?php echo lang('surname'); ?>" required>
 						</div>
-						<div class="col-sm-10 con_msg">
+						<div class="col-sm-10 con_msg mar-bottom">
 							<textarea name="description" id="description" class="form-control" rows="8" placeholder="<?php echo lang('Comment'); ?>" required></textarea>
 							<button type="submit" id="form-submit" class="btn btn-block mob-show downbtn"><?php echo lang('send'); ?></button>
 						</div>

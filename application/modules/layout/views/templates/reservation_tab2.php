@@ -1,4 +1,4 @@
-<div class="tab-pane" id="secondStep">
+<div class="tab-pane jsTabPane" id="secondStep">
   <div class="tabbable-panel circle-show">
 		<div class="tabbable-line">
 			<ul class="nav nav-tabs ">

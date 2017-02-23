@@ -22,6 +22,7 @@
         <div class="row col-sm-10 col-sm-offset-1 newspad">
           <?php $img_url = IMAGEPATH.'homepage/boxes/'; ?>
           <?php foreach($boxes as $box) {   
+              $link = $box->link;
               if ($ln =='es') { 
                 $image_name = $box->image_es;
                 $title = $box->title_es;
@@ -32,7 +33,7 @@
                 $content = $box->text_above_banner_es; 
               }
             ?>
-          <a href="#" target="_blank">
+          <a href="<?php echo $link; ?>" target="_blank">
           <div class="col-sm-4 col-xs-6"><img src="<?php echo $img_url.'/'.$image_name; ?>" alt="" class="img-responsive">
             <div class="text">
               <h1><?php echo $title; ?></h1>

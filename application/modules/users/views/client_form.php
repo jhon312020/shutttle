@@ -116,6 +116,12 @@
     </div>
 </form>
 <script>
+var client_id = '<?php echo $id; ?>';
+var post = <?php echo json_encode($_POST); ?>;
+if((!client_id && !post.btn_submit) || (post.btn_submit && post.password == '')) {
+    $('input:password').val('');
+}
+
 $('.showpassword').click(function(){
 	if($(this).hasClass('glyphicon-eye-open')){
 		$(this).removeClass('glyphicon-eye-open').addClass('glyphicon-eye-close');
@@ -126,4 +132,5 @@ $('.showpassword').click(function(){
 		$('#password').attr('type', 'password');
 	}
 });
+
 </script>

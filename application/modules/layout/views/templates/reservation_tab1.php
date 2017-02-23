@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="firstStep">
+<div class="tab-pane jsTabPane active" id="firstStep">
   <div class="tabbable-panel circle-show">
 		<div class="tabbable-line">
 			<ul class="nav nav-tabs ">
@@ -66,7 +66,7 @@
                     <label><?php echo lang('end_trip'); ?></label>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form" id="return_journey_div">
-                    <?php echo form_dropdown('end_at', $terminal_array, null, 'class="form-control validate[required] book-select" id="end_at" data-errormessage-value-missing="'.lang('require_field').'"'); ?>
+                    <?php echo form_dropdown('end_at', $terminal_array, null, 'class="form-control validate[required] book-select jsTerminal" id="end_at" data-errormessage-value-missing="'.lang('require_field').'"'); ?>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form jsReturnJourney">
                    <?php echo form_input(array('name'=>'return_journey', 'id'=>'date2', 'placeholder'=>lang('flight_day_and_time'), 'class'=>'form-control zd-23 validate[required, funcCall[validHumanDate]]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
@@ -83,7 +83,19 @@
                     <?php echo form_dropdown('kids', $kids, null, 'class="form-control book-select"'); ?>
                   </div>
                 </div>
-                <button type="button" class="btn" style="float:right;font-size: 26px;" id="firstbutton"><?php echo lang('book_now'); ?></button>
+                <div class="row row-eq-height vert-align">
+                  <div class="col-sm-9">
+                    <div class="formErrorArrow formErrorArrowBottom" id="firstPageError">
+                      <span>* </span>
+                      <span class="formErrorContent">
+                          Test error content
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <button type="button" class="btn" style="float:right;font-size: 26px;" id="firstbutton"><?php echo lang('book_now'); ?></button>
+                  </div>
+                </div>
               </form>
             
             </div>

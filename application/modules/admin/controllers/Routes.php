@@ -127,7 +127,7 @@ class Routes extends Admin_Controller {
                     for($i=0;$i<$countOfDates;$i++){
                         $data = $this->input->post();
                         $date = date('Y-m-d', strtotime('+'.$i.' days'));
-                        $data['reference_id'] = 'PNG-'.date('dmY', strtotime($date)).'-'.$data['reference_id'];
+                        $data['reference_id'] = 'SHT-'.date('dmY', strtotime($date)).'-'.$data['reference_id'];
                         $data['service_date'] = $date;
                         $data['route_id'] = $newId;
                         $routes[] = $data;
@@ -255,7 +255,7 @@ class Routes extends Admin_Controller {
                     unset($data['is_active']);
                     for($i=0;$i<$countOfDates;$i++){
                         $date = date('Y-m-d', strtotime('+'.$i.' days'));
-                        $data['reference_id'] = 'PNG-'.date('dmY', strtotime($date)).'-'.$reference_id;
+                        $data['reference_id'] = 'SHT-'.date('dmY', strtotime($date)).'-'.$reference_id;
                         $data['service_date'] = $date;
                         $data['route_id'] = $id;
                         $routes[] = $data;
@@ -575,7 +575,7 @@ class Routes extends Admin_Controller {
      * @return [type]      [description]
      */
     function dmYtoDateFormat($str = null){
-        $str = str_replace('PNG-', '', $str);
+        $str = str_replace('SHT-', '', $str);
         $str = substr($str, 0, 8);
         $str = substr($str, 0, 2) . '-' . substr($str, 2, 2) . '-' . substr($str, 4, 4);
         return $str;

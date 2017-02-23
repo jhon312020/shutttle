@@ -7,7 +7,7 @@ class Mdl_clients extends Response_Model {
 
     public $table               = 'clients';
     public $primary_key         = 'clients.id';
-    public $date_created_field  = 'date_created';
+    //public $date_created_field  = 'date_created';
     //public $date_modified_field = 'date_modified';
 	public $rules = array(
             'name' => array(
@@ -25,7 +25,7 @@ class Mdl_clients extends Response_Model {
                 'label' => 'Email',
                 'rules' => 'required|valid_email'
             ),
-            'phone' => array(
+            /*'phone' => array(
                 'field' => 'phone',
                 'label' => 'Phone',
                 'rules' => 'required'
@@ -64,7 +64,7 @@ class Mdl_clients extends Response_Model {
                 'field' => 'doc_no',
                 'label' => 'Document No',
                 'rules' => 'required'
-            ),
+            ),*/
 			'password' => array(
                 'field' => 'password',
                 'label' => 'Password',

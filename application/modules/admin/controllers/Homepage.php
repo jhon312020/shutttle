@@ -12,6 +12,7 @@ class Homepage extends Admin_Controller {
 		$this->load->model('homepage/mdl_box');
 		$this->load->model('settings/mdl_settings');
 		$this->path = $this->mdl_settings->setting('site_url').$this->mdl_settings->setting('upload_folder')."images/homepage/";
+		//echo $this->path;die;
 	}
 
 	public function index() {

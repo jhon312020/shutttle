@@ -1,7 +1,7 @@
 <?php
 	$this->load->view('header');
 ?>
-	<div class="container bodypad" id="faq">
+	<div class="container bodypad" id="faq" style="padding-top:0px!important;">
 	<hr class="mob-show mob-hr-line">
 		<div class="row faq">
 			<div class="col-sm-4"></div>
@@ -9,8 +9,7 @@
 				<?php
 				?>
 				<h1 class="pickblue" style="text-align:center"><?php echo $content['content']; ?></h1>
-				<p><?php echo $content['subcontent']; ?></p>
-				<span class="mysub_title">
+				<p class="faq-sub"><?php echo $content['subcontent']; ?></p>
 				<?php
 				$last = end($bottom_data);
 				$engCategory = array('category1' => 'Before my reservation', 'category2' => 'The day of my reservation', 'category3' => 'After my booking');
@@ -24,8 +23,7 @@
 				<?php	
 				//}
 				?>
-        <br/>
-				</span></p>
+				</p>
 			</div>
 		</div>
 		<?php
@@ -34,12 +32,12 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($lang == 'en')?$engCategory['category1']:$spanCategory['category1']; ?></h2></div>
 			<div class="col-sm-8" id="category1">
-			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:30px;">
+			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:20px;">
 			<ul class="ques">
 		<?php
 		foreach($cat1 as $data){
 		?>
-			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><span><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></span>
+			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></p>
 				<ul id="collapse<?php echo $data->id; ?>" class="ans panel-collapse collapse">
 					<li><?php echo ($lang == 'es')?$data->answer_es:$data->answer; ?></li>
 				</ul>
@@ -60,12 +58,12 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($lang == 'en')?$engCategory['category2']:$spanCategory['category2']; ?></h2></div>
 			<div class="col-sm-8" id="category2">
-			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:30px;">
+			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:20px;">
 			<ul class="ques">
 		<?php
 		foreach($cat2 as $data){
 		?>
-			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><span><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></span>
+			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></p>
 				<ul id="collapse<?php echo $data->id; ?>" class="ans panel-collapse collapse">
 					<li><?php echo ($lang == 'es')?$data->answer_es:$data->answer; ?></li>
 				</ul>
@@ -91,7 +89,7 @@
 		<?php
 		foreach($cat3 as $data){
 		?>
-			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><span><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></span>
+			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></p>
 				<ul id="collapse<?php echo $data->id; ?>" class="ans panel-collapse collapse">
 					<li><?php echo ($lang == 'es')?$data->answer_es:$data->answer; ?></li>
 				</ul>

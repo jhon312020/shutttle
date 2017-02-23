@@ -103,13 +103,18 @@ if (!defined('BASEPATH'))
 					if(is_null($id) || $id == ''){
 						$id = $this->mdl_collaborators->save(null, $data);
 						$col_id = $id;
-						$user['collaborator_id'] = $this->db->insert_id();
+						$user['collaborator_id'] = $col_id;
 						$this->mdl_users->save(null, $user);
 					}
 					else{
 						$col_id = $id;
 						$user_array = current($this->db->from('users')->where('collaborator_id',$id)->get()->result_array());
-						$this->mdl_users->save($user_array['id'], $user);
+						if($user_array['id']) {
+							$this->mdl_users->save($user_array['id'], $user);
+						} else {
+							$user['collaborator_id'] = $col_id;
+							$this->mdl_users->save(null, $user);
+						}
 						$this->mdl_collaborators->save($id,$data);
 					}
 					//$this->db->where('collaborator_id', $col_id)->delete('collaborators_address');

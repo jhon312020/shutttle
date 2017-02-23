@@ -1,4 +1,4 @@
-<div class="tab-pane" id="thirdStep">
+<div class="tab-pane jsTabPane" id="thirdStep">
   <div class="tabbable-panel circle-show">
 		<div class="tabbable-line">
 			<ul class="nav nav-tabs ">
@@ -122,8 +122,10 @@
 			<div class="row mybox-3">
 				<div class="col-xs-12 myapplicar">
 				<!--<div class="col-xs-4" style="padding-left:0px;"><h4 style="font-weight:bold;"><?php //echo lang('promotional_code'); ?></h4></div>-->
-					<div class="col-xs-5" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput applicarbtn" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
-				<!--<div style="margin-top:3px"> <button class="btn btn-default pull-right applicarbtn"><?php //echo lang('apply'); ?></button></div>-->
+					<div class="col-xs-6" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
+					<div class="col-xs-2" style="margin-top:3px"> 
+						<button class="btn btn-default pull-right applicarbtn"><?php echo lang('apply'); ?></button>
+					</div>
 				</div>
 				<div class="col-sm-12 errorCodes" style="display:none;">
 					<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_codes'); ?></span>

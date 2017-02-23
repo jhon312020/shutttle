@@ -22,9 +22,6 @@
 						</li>
 					</ul>
 					<div class="tab-content">
-            <div class="formErrorArrow formErrorArrowBottom" id="firstPageError" style="display:none;">
-              <div class="formErrorContent"></div>
-            </div>
 						<?php
               $this->load->view('reservation_tab1');
               $this->load->view('reservation_tab2');
@@ -54,5 +51,7 @@
   var autoSource =  '';
   var user_name = '<?php echo $this->session->userdata('user_name'); ?>';
   var user_type = '<?php echo $this->session->userdata('user_type'); ?>';
+  var landing_day_and_time = '<?php echo lang("landing_day_and_time"); ?>';
+  var flight_day_and_time = '<?php echo lang("flight_day_and_time"); ?>';
 </script>
 <?php $this->load->view('footer');?>

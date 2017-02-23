@@ -633,7 +633,7 @@ class Node extends Anonymous_Controller {
       
       $this->load->view('layout/templates/stripe_payment', $this->template_vars);
     } else {
-      $this->redirect($this->template_vars['lang']);
+      redirect($this->template_vars['lang']);
     }
   }
   

@@ -9,7 +9,7 @@ class Node extends Admin_Controller {
     public function __construct()
     {
         parent::__construct();
-
+        redirect('admin/dashboard');
         $this->load->model('node/mdl_nodes');
         $this->load->model('media/mdl_media');
     }
