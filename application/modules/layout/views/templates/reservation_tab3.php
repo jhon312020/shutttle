@@ -156,20 +156,24 @@
 					
 					<div class="paymentValid mypaypalimg">
 					<!--<span><img src="<?php //echo IMAGEPATH; ?>paypal.jpg"></span>-->
-					<span style="font-size:16px;font-family: Gothambook;"><?php echo lang('how_pay'); ?></span><br>
+
+					<?php /*
 					<span>
 						<input style="position: relative; top: -2px;" type="radio" class="validate[required]" name="paymentmethod" id="sabadell_bank" value="bank"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						<label style="position: relative; top: -3px;font-family: Gothamlight;" for="sabadell_bank"><?php echo lang('pay_by_credit'); ?></label>
 					</span>
+					*/ ?>
 					
-					<span>
-						<input style="position: relative; top: -2px;"type="radio" class="validate[required]" name="paymentmethod" id="paybyonline" value="online"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-						<label style="position: relative; top: -3px;font-family: Gothamlight;" for="paybyonline"><?php echo lang('pay_by_online'); ?></label>
-					</span>
-					
-					<?php if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2){ 
+					<?php if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) { 
 						if($collaborator_details['available_seats'] == 'activate') {
 					?>
+						<span style="font-size:16px;font-family: Gothambook;"><?php echo lang('how_pay'); ?></span><br>
+
+						<span>
+							<input style="position: relative; top: -2px;"type="radio" class="validate[required]" name="paymentmethod" id="paybyonline" value="online"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
+							<label style="position: relative; top: -3px;font-family: Gothamlight;" for="paybyonline"><?php echo lang('pay_by_online'); ?></label>
+						</span>
+
 						<span id="collaborator_seats">
 							<input style="position: relative; top: -2px;"type="radio" class="validate[required]" name="paymentmethod" id="available_seats" value="available_seats"  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 							<label style="position: relative; top: -3px; font-family: Gothamlight;" for="available_seats"><?php echo lang('available_seats'); ?>.</label>

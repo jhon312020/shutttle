@@ -204,7 +204,7 @@ class Mdl_routes extends Response_Model {
 		$startDate = date('Y-m-d', strtotime($startDateTime));
 		$startTime = date('H:i', strtotime($startDateTime));
 		
-		$tommorrowDateTime = date('Y-m-d H:i', strtotime('+4 hour'));
+		$tommorrowDateTime = date('Y-m-d H:i', strtotime('+6 hour'));
 		/*echo "<pre>";print_r($this->input->post());
 		echo '<br/>FROM Date : ' . $startDate . '<br/>FROM Time : ' . $startTime;*/
 		$zone = $data['zone'];

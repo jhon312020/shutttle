@@ -88,7 +88,7 @@
                     <div class="formErrorArrow formErrorArrowBottom" id="firstPageError">
                       <span>* </span>
                       <span class="formErrorContent">
-                          Test error content
+                          
                       </span>
                     </div>
                   </div>

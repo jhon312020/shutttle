@@ -19,6 +19,7 @@ class Node extends Anonymous_Controller {
     $this->load->model('users/mdl_users');
     $this->load->model('shuttles/mdl_shuttles');
     $this->load->model('routes/mdl_bcnareas');
+    $this->load->model('booking/mdl_booking');
     $this->load->model('booking_extras/mdl_booking_extras');
     if (isset($_SESSION['screen_width'])) {
       log_message("debug", 'User resolution: ' . $_SESSION['screen_width']);
@@ -630,7 +631,51 @@ class Node extends Anonymous_Controller {
         'https://js.stripe.com/v2/',
         $base_path.'/js/stripe/payment.js',
       );
-      
+      $this->template_vars['bookings'] = 
+          current($this->mdl_booking
+            ->where('id', $this->input->post('BookId'))->get()->result_array());
+
+
+      $arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
+
+      if (in_array($this->template_vars['bookings']['start_from'], $arr)) {
+        $zone = $this->template_vars['bookings']['end_at'];
+        $str = 'end_at';
+        $this->template_vars['bookings']['start_from_lang'] = 'flightlanding_time';
+        $this->template_vars['bookings']['end_at_lang'] = 'flight_time';
+      } else {
+          $zone = $this->template_vars['bookings']['start_from'];
+          $str = 'start_from';
+          $this->template_vars['bookings']['start_from_lang'] = 'flight_time';
+          $this->template_vars['bookings']['end_at_lang'] = 'flightlanding_time';
+      }
+      /*Address details*/
+      $this->template_vars['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id ', $this->template_vars['bookings']['collaborator_address_id'])->get()->result_array();      
+
+      $this->db->from('collaborators')->where('id',$this->template_vars['bookings']['collaborator_id']);
+      $terminal = current($this->db->get()->result_array());
+
+      $this->template_vars['bookings'][$str] = $terminal['name'].' - '.(count($this->template_vars['bookings']['collaborator_address']) > 0 ?$this->template_vars['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
+      if($this->template_vars['bookings']['bcnarea_address_id'] != '' && $this->template_vars['bookings']['bcnarea_address_id'] != '0') {
+        $this->template_vars['bookings'][$str] = $this->template_vars['bookings']['address'];
+      }
+
+      $this->template_vars['bookings']['collaborator_name'] = $terminal['name'];
+
+    if ($this->template_vars['bookings']['return_book_id']) {
+      $this->db->from('booking')->where('id', $this->template_vars['bookings']['return_book_id']);
+      $this->template_vars['return_bookings'] = 
+          current($this->mdl_booking
+            ->where('id', $this->template_vars['bookings']['return_book_id'])->get()->result_array());
+    }
+    
+    $client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$this->template_vars['bookings']['client_id'])->get();
+    if ($client_qry->num_rows())
+        $this->template_vars['clients'] = current($client_qry->result_array());
+    else
+        $this->template_vars['clients'] = json_decode($this->template_vars['bookings']['client_array'], true);
+
+
       $this->load->view('layout/templates/stripe_payment', $this->template_vars);
     } else {
       redirect($this->template_vars['lang']);

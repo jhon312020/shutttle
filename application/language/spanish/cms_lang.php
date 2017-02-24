@@ -1056,7 +1056,7 @@ $lang['no_of_available_seats'] = 'Nº Available Seats';
 
 //Error Messages
 
-$lang['date_error'] = 'Reservas disponibles con 4h de antelación';
+$lang['date_error'] = 'Reservas disponibles con 6h de antelación';
 
 $lang['select_route_error'] = 'Atleast select one to proceed further';
 
@@ -1178,7 +1178,7 @@ $lang['return_seats'] = 'Airp. To City available seats.';
 
 $lang['less_seats'] = 'The booking seats is greater than the available seats';
 
-$lang['pay_by_online'] = 'Paypal';
+$lang['pay_by_online'] = 'Stripe';
 
 $lang['pay_by_cash'] = 'Pay by cash';
 
@@ -1311,5 +1311,7 @@ $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
 $lang['change_password_success_message'] = 'Your password has been successfully reset!';
 $lang['promotional_code'] = 'Promotional code';
+$lang['card_holder'] = 'Cardholder';
+$lang['add_credit_card'] = 'Add your credit card';
 ?>
 

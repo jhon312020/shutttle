@@ -551,7 +551,7 @@ $lang['sort_news'] = 'Sort';
 $lang['trip_alert'] = 'The return route must be from same points as the go route. If you need to go from other points please make another reservation.';
 
 //Error Messages
-$lang['date_error'] = 'The booking is allowed only before 4 hours';
+$lang['date_error'] = 'The booking is allowed only before 6 hours';
 $lang['select_route_error'] = 'Atleast select one to proceed further';
 $lang['seats_error'] = 'There is no enough seats for booking';
 $lang['seat_availability_error'] = 'There is no available seats for this route';
@@ -688,5 +688,6 @@ $lang['yyyy'] = 'YYYY';
 $lang['payment_process'] = 'Payment Process';
 $lang['end'] = 'End';
 $lang['bookings'] = 'Bookings';
-
+$lang['card_holder'] = 'Cardholder';
+$lang['add_credit_card'] = 'Add your credit card';
 ?>
