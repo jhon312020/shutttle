@@ -199,6 +199,21 @@ class Mdl_routes extends Response_Model {
 		if($data['start_from1'] == 'city') {
 			$startDateTime = date('Y-m-d H:i',strtotime('-2 hour -30 minutes',strtotime($journeyStartDateTime)));
 		}
+
+		/*Validation for start and return journey*/
+		if($data['return_journey']) {
+
+			$retjourneyDate 	  = str_replace('/','-',$this->input->post('return_journey'));
+			$retjourneyDate 	  = date('Y-m-d', strtotime($retjourneyDate));
+			$retjourneyTime	  = $data['return_hours'].':'.$data['return_minutes'];
+			$retjourneyDateTime = $retjourneyDate.' '.$retjourneyTime;
+
+			if(strtotime($journeyStartDateTime) >= strtotime($retjourneyDateTime)) {
+
+			$result['error'] = 'The start date should be less than return date';
+			return $result;
+			}
+		}
 		
 		// Query Filter - Start Date and Time
 		$startDate = date('Y-m-d', strtotime($startDateTime));

@@ -588,9 +588,14 @@
 
 		<div class="row" style="margin-top:20px;">
 
-			<div class="col-sm-12">
+			<div class="col-sm-6">
 
-				<img src="<?php echo IMAGEPATH.'/routes.png'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">			
+				<img src="<?php echo IMAGEPATH.'/Terminal-1.jpg'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">
+
+			</div>	
+			<div class="col-sm-6">
+
+				<img src="<?php echo IMAGEPATH.'/Terminal-2.jpg'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">
 
 			</div>	
 

@@ -1,5 +1,6 @@
 <?php
   $actual_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+  $pname = '';
   if($lang == 'en') {
 		$full_path_es = str_replace('/en', '/es', $actual_link);
 		$full_path_en = $actual_link;
@@ -23,9 +24,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url($lang."/aboutus"); ?>" class="page-scroll"><?php echo lang('about_us'); ?></a></li>
-            <li><a href="<?php echo site_url($lang."/faq"); ?>" class="page-scroll"><?php echo lang('faq'); ?></a></li>
-            <li><a href="<?php echo site_url($lang."/contacts"); ?>" class="page-scroll"><?php echo lang('contact'); ?></a></li>
+            <?php
+            foreach($this->config->item('menus') as $url => $menu) {
+            ?>
+            <li class="<?php echo $url == METHOD_NAME ? 'active' : ''; ?>"><a href="<?php echo site_url($lang."/".$url); ?>" class="page-scroll"><?php echo lang($menu); ?></a></li>
+            <?php 
+            }
+            ?>
           </ul>
         </div>
         <div class="navbar-lang">

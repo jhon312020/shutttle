@@ -53,5 +53,6 @@
   var user_type = '<?php echo $this->session->userdata('user_type'); ?>';
   var landing_day_and_time = '<?php echo lang("landing_day_and_time"); ?>';
   var flight_day_and_time = '<?php echo lang("flight_day_and_time"); ?>';
+  var invalid_date = "<?php echo lang('invalid_date'); ?>";
 </script>
 <?php $this->load->view('footer');?>

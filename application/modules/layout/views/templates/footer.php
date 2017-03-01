@@ -1,6 +1,5 @@
 <?php
 	$path = $this->uri->segment(2);
-	
 	if($lang=='en'){
 		$full_path_en = current_url();
 		$full_path_es = str_replace('/en', '/es', current_url());
@@ -13,7 +12,18 @@
 	$modalForm = site_url($lang . '/reserva01');
 ?>
   <!-- FOOTER -->
-  <hr style="border-width: 2px;border-color: #25387D;width:95%;margin-top:50px;">
+  <?php if(in_array(METHOD_NAME, $this->config->item('book_now_menus'))) { ?>
+  <div class="col-sm-12 faq-book">
+    <a href="<?php echo site_url($lang."/reservation"); ?>" class="btn btn-primary"><?php echo lang('book_now'); ?></a>
+  </div>
+  <?php } ?>
+  
+  <div class="">
+    <div class="col-sm-12">
+      <hr style="border-width: 2px;border-color: #25387D;width:68%;margin-top:10px;">
+    </div>
+  </div>
+  
   <footer id="footer" class="container"> 
     <div class="mob-hide">
       <div class="col-xs-6" style="padding-left:0px;">
@@ -33,10 +43,10 @@
     <div class="row">
       <div class="col-xs-12"  style="clear:both;">
         <div style="text-align: center;">
-          <img src="<?php echo IMAGEPATH; ?>sabadell.png">
+          <!--<img src="<?php echo IMAGEPATH; ?>sabadell.png">-->
           <img src="<?php echo IMAGEPATH; ?>visamaster.png">
           <img src="<?php echo IMAGEPATH; ?>mastermaestro.png">
-          <img src="<?php echo IMAGEPATH; ?>paypal.png">
+          <!--<img src="<?php echo IMAGEPATH; ?>paypal.png">-->
         </div>
       </div>
     </div>

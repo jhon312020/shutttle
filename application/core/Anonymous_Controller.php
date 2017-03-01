@@ -13,6 +13,11 @@ class Anonymous_Controller extends MX_Controller {
       if ($this->ajax_controller and !$this->input->is_ajax_request()) {
         exit;
       }
+
+      //define('MENUS', array("contacts" => "contacts", "faq" => "faq", "aboutus" => "about_us"));
+
+      define('METHOD_NAME', $this->router->fetch_method());
+
       $this->load->library('session');
       $this->load->helper('url');
       $this->load->database();

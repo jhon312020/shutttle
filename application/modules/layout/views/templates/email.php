@@ -75,7 +75,7 @@
 
         <p style="margin:0px;height:10px !important;">&nbsp;</p>
 
-		<img src="<?php echo $lang=='en'? IMAGEPATH.'header_english.jpg':IMAGEPATH.'header_spanish.jpg'; ?>" width="750" style="width:750px; margin:0px!important;padding:0px!important;">
+		<img src="<?php echo $lang=='en'? IMAGEPATH.'header_english.png':IMAGEPATH.'header_spanish.png'; ?>" width="750" style="width:750px; margin:0px!important;padding:0px!important;">
 
         <p style="margin:0px;height:10px !important;">&nbsp;</p><p style="margin:0px;height:10px !important;">&nbsp;</p>
 
@@ -489,7 +489,9 @@
 
                 <td width="750" style="width:750px;">
 
-                    <img src="<?php echo IMAGEPATH.'routes.png'; ?>" style="margin:0px!important;padding:0px!important;padding-top:10px;width:750px;" width="750">
+                    <img src="<?php echo IMAGEPATH.'Terminal-1.jpg'; ?>" style="margin:0px!important;padding:0px!important;padding-top:10px;width:360px;" width="360">
+										
+										<img src="<?php echo IMAGEPATH.'Terminal-2.jpg'; ?>" style="margin:0px!important;padding:0px!important;padding-top:10px;width:360px;" width="360">
 
                 </td>
 
