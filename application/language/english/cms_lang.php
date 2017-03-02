@@ -690,4 +690,7 @@ $lang['end'] = 'End';
 $lang['bookings'] = 'Bookings';
 $lang['card_holder'] = 'Cardholder';
 $lang['add_credit_card'] = 'Add your credit card';
+$lang['about_us1'] = 'About us';
+$lang['book_now1'] = 'Book now';
+$lang['contact_us'] = 'Contact us';
 ?>

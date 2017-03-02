@@ -26,7 +26,7 @@ $config = array(
 		'prev_tag_close'	=> '</li>',
 		'num_links'			=> '10'
 	),
-	'menus' => array("contacts" => "contacts", "faq" => "faq", "aboutus" => "about_us"),
+	'menus' => array("reservation" => "book_now1", "aboutus" => "about_us1", "faq" => "faq", "contacts" => "contact_us"),
 	'book_now_menus' => array("faq", "aboutus")
 );
 

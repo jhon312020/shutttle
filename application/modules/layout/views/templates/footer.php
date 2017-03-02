@@ -14,7 +14,7 @@
   <!-- FOOTER -->
   <?php if(in_array(METHOD_NAME, $this->config->item('book_now_menus'))) { ?>
   <div class="col-sm-12 faq-book">
-    <a href="<?php echo site_url($lang."/reservation"); ?>" class="btn btn-primary"><?php echo lang('book_now'); ?></a>
+    <a href="<?php echo site_url($lang."/reservation"); ?>" class="btn btn-primary btn-blue"><?php echo lang('book_now'); ?></a>
   </div>
   <?php } ?>
   
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12"  style="clear:both;">
+      <div class="col-xs-12 mar-bottom"  style="clear:both;">
         <div style="text-align: center;">
           <!--<img src="<?php echo IMAGEPATH; ?>sabadell.png">-->
           <img src="<?php echo IMAGEPATH; ?>visamaster.png">

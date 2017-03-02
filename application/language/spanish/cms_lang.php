@@ -1313,5 +1313,10 @@ $lang['change_password_success_message'] = 'Your password has been successfully 
 $lang['promotional_code'] = 'Promotional code';
 $lang['card_holder'] = 'Cardholder';
 $lang['add_credit_card'] = 'Add your credit card';
+
+$lang['contact_us'] = 'Contact us';
+$lang['book_now1'] = 'Reserva';
+$lang['about_us1'] = 'Nosotros';
+$lang['contact_us'] = 'Contact us';
 ?>
 
