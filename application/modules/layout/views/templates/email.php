@@ -92,8 +92,9 @@
 					</td>
 
                     <td style="width:350px;padding-top:10px;padding-bottom:10px;vertical-align:top !important;">
-
+                        <?php if($bookings['book_role'] == 2){ ?>
 						<span style="padding:10px;padding-right:0px;font-size:13px;font-weight:bold;color:#fff;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('collaborator_name'); ?>:</span>&nbsp;<span style="padding:10px;padding-left:0px;font-size:13px;font-weight:bold;color:#fff;"><?php echo $bookings['collaborator_name']; ?></span>
+                        <?php } ?>
 
 					</td>
 
@@ -429,9 +430,9 @@
 
                                 <?php if($lang == 'en') { ?>
 
-                                <td bgcolor="#4577d8" style="color: #fff;"><table style="width:100%;" cellpadding="10" cellspacing="5" ><tr><td style="color: #fff;">Pick’n Go is a shared shuttle service. (Keep it simple. Who cares if it's minivan or minibus?).</td></tr></table></td>
+                                <td bgcolor="#4577d8" style="color: #fff;"><table style="width:100%;" cellpadding="10" cellspacing="5" ><tr><td style="color: #fff;">Shuttleing is a shared shuttle service. (Keep it simple. Who cares if it's minivan or minibus?).</td></tr></table></td>
 
-                                <td style="color: #fff;background-color: #25387d;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">All our drivers hold a sign with Pick'n Go logo. They all wear blue jeans and colorful converse shoes.</td></tr></table></td>
+                                <td style="color: #fff;background-color: #25387d;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">All our drivers hold a sign with shuttleing logo. They all wear blue jeans and colorful converse shoes.</td></tr></table></td>
 
                                 <td bgcolor="#4577d8" style="color: #fff;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">All our vans have logo on doors (is it necessary to explain the car- exceptions? You will let them know if that's the case, right?).</td></tr></table></td>
 
@@ -441,9 +442,9 @@
 
                                 <?php } else { ?>
 
-                                <td bgcolor="#4577d8" style="color: #fff;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">Pick'n es un servicio de transporte compartido. (Asi de simple. Que importa si es un minivan o microbús?)</td></tr></table></td>
+                                <td bgcolor="#4577d8" style="color: #fff;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">Shuttleing es un servicio de transporte compartido. (Asi de simple. Que importa si es un minivan o microbús?)</td></tr></table></td>
 
-                                <td style="color: #fff;background-color: #25387d;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">Todos nuestros conductores llevan un distintivo con el logo de Pick'n Go Todos usan jeans azul y converse de colores</td></tr></table></td>
+                                <td style="color: #fff;background-color: #25387d;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">Todos nuestros conductores llevan un distintivo con el logo de shuttleing Todos usan jeans azul y converse de colores</td></tr></table></td>
 
                                 <td bgcolor="#4577d8" style="color: #fff;"><table style="width:100%;" cellpadding="10" cellspacing="5"><tr><td style="color: #fff;">Todos nuestros vehículos tienen logotipo en las puertas (¿es necesario explicar las excepciones de coche? Nos lo hareis saber si es necesario, no?)</td></tr></table></td>
 
@@ -569,7 +570,7 @@
                                             
                                             <p style="margin:0px;height:10px !important;">&nbsp;</p>
                                             
-                                            <p style="margin:0px;color:#25387d;">Pick'n Go is an independent company that serves hotels and individuals in Barcelona. Pick'n Go does not belong to any hotel and its activity is totally external.</p>
+                                            <p style="margin:0px;color:#25387d;">Shuttleing is an independent company that serves hotels and individuals in Barcelona. Shuttleing does not belong to any hotel and its activity is totally external.</p>
 
                                         </td>
 
@@ -667,7 +668,7 @@
 
                                             <p style="margin:0px;height:10px !important;">&nbsp;</p>
 
-                                            <p style="margin:0px;color:#25387d;">Por favor esten listos con 10 minutos de antelacion. Pick'n Go dispondrá un margen de 30 minutos, desde la hora de su reserva, para recogerle, normalmente recogemos a otros pasajeros en el mismo trayecto. Por favor tenga paciencia, SIEMPRE llegamos.</p>
+                                            <p style="margin:0px;color:#25387d;">Por favor esten listos con 10 minutos de antelacion. Shuttleing dispondrá un margen de 30 minutos, desde la hora de su reserva, para recogerle, normalmente recogemos a otros pasajeros en el mismo trayecto. Por favor tenga paciencia, SIEMPRE llegamos.</p>
 
                                             <p style="margin:0px;height:10px !important;">&nbsp;</p>
 
@@ -675,7 +676,7 @@
                                             
                                             <p style="margin:0px;height:10px !important;">&nbsp;</p>
                                             
-                                            <p style="margin:0px;color:#25387d;">Pick'n Go es una empresa independiente que da servicio a hoteles y particulares en Barcelona. Pick'n Go no pertenece a ningún hotel y su actividad es totalemnte externa.</p>
+                                            <p style="margin:0px;color:#25387d;">Shuttleing es una empresa independiente que da servicio a hoteles y particulares en Barcelona. Shuttleing no pertenece a ningún hotel y su actividad es totalemnte externa.</p>
 
                                         </td>
 

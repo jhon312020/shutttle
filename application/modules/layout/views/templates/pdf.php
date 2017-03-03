@@ -157,9 +157,9 @@
 					</td>
 
 					<td style="width:50%;padding-right:10px;padding-top:10px;padding-bottom:10px;">
-
+						<?php if($bookings['book_role'] == 2){ ?>
 						<span style="font-size: 12px !important;color:#fff !important;font-weight:bold !important;"><?php echo lang('collaborator_name').': '.$bookings['collaborator_name']; ?></span>
-
+						<?php } ?>
 					</td>
 
 				</tr>
@@ -542,13 +542,13 @@
 
 										<td style="width:22%;padding:10px;">
 
-											<span style="color:#fff !important;font-size:12px !important;"> Pick’n Go is a shared shuttle service. (Keep it simple. Who cares if it's minivan or minibus?)</span>
+											<span style="color:#fff !important;font-size:12px !important;"> Shuttleing is a shared shuttle service. (Keep it simple. Who cares if it's minivan or minibus?)</span>
 
 										</td>
 
 										<td style="background-color:#25387d;width:22%;padding:10px;">
 
-											<span style="color:#fff !important;font-size:12px !important;">All our drivers hold a sign with Pick'n Go logo. They all wear blue jeans and colorful converse shoes</span>	
+											<span style="color:#fff !important;font-size:12px !important;">All our drivers hold a sign with shuttleing logo. They all wear blue jeans and colorful converse shoes</span>	
 
 										</td>
 
@@ -586,13 +586,13 @@
 
 										<td style="width:22%;padding:10px;">
 
-											<span style="color:#fff !important;font-size:12px !important;"> Pick'n es un servicio de transporte compartido. (Asi de simple. Que importa si es un minivan o microbús?)</span>
+											<span style="color:#fff !important;font-size:12px !important;"> Shuttleing es un servicio de transporte compartido. (Asi de simple. Que importa si es un minivan o microbús?)</span>
 
 										</td>
 
 										<td style="background-color:#25387d;width:22%;padding:10px;">
 
-											<span style="color:#fff !important;font-size:12px !important;">Todos nuestros conductores llevan un distintivo con el logo de Pick'n Go Todos usan jeans azul y converse de colores</span>	
+											<span style="color:#fff !important;font-size:12px !important;">Todos nuestros conductores llevan un distintivo con el logo de shuttleing Todos usan jeans azul y converse de colores</span>	
 
 										</td>
 
@@ -673,7 +673,7 @@
 
 				<p>In case we come pick you and you’re not ready you will have 5 extra minutes to show up, otherwise our drivers will leave you. No expenses will be covered.</p>
                 
-                 <p>Pick'n Go is an independent company that serves hotels and individuals in Barcelona. Pick'n Go does not belong to any hotel and its activity is totally external.</p>
+                 <p>Shuttleing is an independent company that serves hotels and individuals in Barcelona. Shuttleing does not belong to any hotel and its activity is totally external.</p>
 
 			</div>
 
@@ -711,11 +711,11 @@
 
 				<p style="font-weight:bold;">Hotel / otros Pick-up</p>
 
-				<p>Por favor esten listos con 10 minutos de antelacion. Pick'n Go dispondrá un margen de 30 minutos, desde la hora de su reserva, para recogerle, normalmente recogemos a otros pasajeros en el mismo trayecto. Por favor tenga paciencia, SIEMPRE llegamos.</p>
+				<p>Por favor esten listos con 10 minutos de antelacion. Shuttleing dispondrá un margen de 30 minutos, desde la hora de su reserva, para recogerle, normalmente recogemos a otros pasajeros en el mismo trayecto. Por favor tenga paciencia, SIEMPRE llegamos.</p>
 
 				<p>En caso de que vengamos  a buscarle y usted no esté listo tendrá 5 minutos extras o de lo contrario nuestros conductors se iran. En ese caso no nos haremos responsables de cualquier gasto extra que pudiera tener. </p>
                 
-               <p>Pick'n Go es una empresa independiente que da servicio a hoteles y particulares en Barcelona. Pick'n Go no pertenece a ningún hotel y su actividad es totalemnte externa.</p>
+               <p>Shuttleing es una empresa independiente que da servicio a hoteles y particulares en Barcelona. Shuttleing no pertenece a ningún hotel y su actividad es totalemnte externa.</p>
 
 			</div>
 
