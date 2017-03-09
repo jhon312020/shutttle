@@ -14,7 +14,7 @@
   <!-- FOOTER -->
   <?php if(in_array(METHOD_NAME, $this->config->item('book_now_menus'))) { ?>
   <div class="col-sm-12 faq-book">
-    <a href="<?php echo site_url($lang."/reservation"); ?>" class="btn btn-primary btn-blue"><?php echo lang('book_now'); ?></a>
+    <a href="<?php echo site_url($lang."/reservation"); ?>" class="btn btn-primary btn-blue"><?php echo lang('reserve_now'); ?></a>
   </div>
   <?php } ?>
   
@@ -27,7 +27,7 @@
   <footer id="footer" class="container"> 
     <div class="mob-hide">
       <div class="col-xs-6" style="padding-left:0px;">
-        <p><?php echo (isset($site_title))?$site_title:''; ?>
+        <p><strong><?php echo (isset($site_title))?$site_title:''; ?></strong>
           <span class="separator">|</span>  
           Email: <a href="mailto:<?php echo (isset($site_email))?$site_email:''; ?>"><?php echo (isset($site_email))?$site_email:''; ?></a> 
           <span class="separator">|</span> Telf. <?php echo (isset($telephone))?$telephone:''; ?> 

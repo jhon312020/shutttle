@@ -76,7 +76,7 @@
               </div>
               <div class="form-group col-xs-12">
                 <?php 
-                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_holder'), 'class'=>'card-number form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'16','data-errormessage-value-missing'=>lang('require_field') )); ?>
+                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_holder'), 'class'=>'card-number-holder form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'16','data-errormessage-value-missing'=>lang('require_field') )); ?>
               </div>
               <div class="form-group col-xs-12">
                 <?php 

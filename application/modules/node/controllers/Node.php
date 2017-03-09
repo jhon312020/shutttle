@@ -600,7 +600,8 @@ class Node extends Anonymous_Controller {
       $base_path.'/js/functions.js',
     );
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
-    $this->template_vars['terminal_array'] = array('' => 'To', 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
+    $this->template_vars['terminal_array'] = array('' => lang('to'), 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
+    //echo '<pre>'; print_r($this->template_vars); echo '</pre>';
     $this->load->view('layout/templates/reservation', $this->template_vars);
   }
   

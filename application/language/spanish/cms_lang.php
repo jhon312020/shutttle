@@ -594,7 +594,7 @@ $lang['to_date'] = 'To Date';
 
 $lang['to_email'] = 'To Email';
 
-$lang['total'] = 'Total a pagar';
+$lang['total'] = 'Total';
 
 $lang['try_again'] = 'Try Again';
 
@@ -660,7 +660,7 @@ $lang['hour'] = 'Hora';
 
 $lang['from'] = 'Desde';
 
-$lang['to'] = 'Hasta';
+$lang['to'] = 'A';
 
 $lang['arrival_time'] = 'Hora llegada';
 
@@ -684,19 +684,19 @@ $lang['password_recovery'] = 'Recuperar contraseña';
 
 
 
-$lang['source'] = "desde";
+$lang['source'] = "Desde";
 
-$lang['designation'] = "hasta";
+$lang['designation'] = "Hasta";
 
-$lang['start_date'] = "fecha ida";
+$lang['start_date'] = "Fecha ida";
 
-$lang['end_date'] = "fecha vuelta";
+$lang['end_date'] = "Fecha vuelta";
 
-$lang['no_of_passengers'] = "no pasajeros";
+$lang['no_of_passengers'] = "No pasajeros";
 
-$lang['country_origin'] = "pais de origen";
+$lang['country_origin'] = "Pais de origen";
 
-$lang['flight_no'] = "no de vuelo";
+$lang['flight_no'] = "No de vuelo";
 
 $lang['flight_time'] = "Hora de vuelo";
 
@@ -794,17 +794,20 @@ $lang['send'] = 'Enviar';
 
 /* Reservation */
 
-$lang['book_now'] = 'RESERVA';
+$lang['book_now'] = 'CONTINUAR';
+//Just given spaces to fix the design issues.
+$lang['choose_your_route'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELIGE TU RUTA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
-$lang['choose_your_route'] = 'Selecciona tu ruta';
 
-$lang['one_way'] = 'Solo Ida';
+$lang['route_schedule'] = 'HORARIO DE RUTAS';
+$lang['info_and_payment'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INFO Y PAGO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+$lang['one_way'] = 'SÓLO IDA';
 
-$lang['round_trip'] = 'Ida y Vuelta';
+$lang['round_trip'] = 'IDA Y VUELTA';
 
 $lang['from'] = 'Desde';
 
-$lang['to'] = 'Hasta';
+$lang['to'] = 'A';
 
 $lang['go'] = 'Ida';
 
@@ -829,6 +832,7 @@ $lang['kids'] = "Niños";
 $lang['return_time'] = 'Vu. Hora';
 
 $lang['back_minutes'] = 'Vu. mins';
+$lang['select_terminal'] = 'Selecciona Terminal';
 
 
 
@@ -966,7 +970,7 @@ $lang['hour_back'] = 'Hora de vuelta';
 
 $lang['doc_no'] = 'N<sup style="top:-0.4em;"><u>o</u></sup> Document';
 
-$lang['book_now'] = 'RESERVA';
+$lang['book_now'] = 'CONTINUAR';
 
 //CMS Menu Items
 
@@ -1154,7 +1158,7 @@ $lang['field_match'] = 'Los campos no son iguales';
 
 $lang['invalid_zip'] = 'Formato Zip no válido';
 
-$lang['invalid_codes'] = 'Código no válido';
+$lang['invalid_codes'] = 'El código promocional introducido no es válido';
 
 $lang['invalid_date'] = '* Fecha no válida';
 
@@ -1260,7 +1264,7 @@ $lang['start_trip'] = 'Tu viaje empieza en:';
 
 $lang['end_trip'] = 'Tu viaje finalize en:';
 
-$lang['postal_code'] = 'Postal code';
+$lang['postal_code'] = 'Código Postal';
 
 $lang['find_postal'] = 'Find my postal code';
 
@@ -1304,19 +1308,24 @@ $lang['pay_by_credit'] = 'Credit card';
 
 $lang['how_pay'] = 'How you want to pay?';
 
-$lang['landing_day_and_time'] = 'Day and landing time';
-$lang['flight_day_and_time'] = 'Day and flight time';
-$lang['people'] = 'People:';
+$lang['landing_day_and_time'] = 'Día y hora de llegada';
+$lang['flight_day_and_time'] = 'Día y hra de vuelo';
+$lang['people'] = 'Viajeros:';
 $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
 $lang['change_password_success_message'] = 'Your password has been successfully reset!';
 $lang['promotional_code'] = 'Promotional code';
-$lang['card_holder'] = 'Cardholder';
-$lang['add_credit_card'] = 'Add your credit card';
+$lang['card_holder'] = 'Nombre y Apellidos';
+$lang['add_credit_card'] = 'Introduce tus datos de pago';
 
 $lang['contact_us'] = 'Contact us';
-$lang['book_now1'] = 'Reserva';
+$lang['book_now1'] = 'Reservar';
 $lang['about_us1'] = 'Nosotros';
-$lang['contact_us'] = 'Contact us';
+$lang['contact_us'] = 'Contáctanos';
+$lang['reserve_now'] = 'RESERVA AHORA';
+$lang['card_number'] = 'Número de Tarjeta';
+$lang['cvc'] = 'CVC';
+$lang['mm'] = 'MM';
+$lang['yyyy'] = 'YYYY';
 ?>
 
