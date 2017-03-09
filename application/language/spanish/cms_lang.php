@@ -1318,5 +1318,3 @@ $lang['contact_us'] = 'Contact us';
 $lang['book_now1'] = 'Reserva';
 $lang['about_us1'] = 'Nosotros';
 $lang['contact_us'] = 'Contact us';
-?>
-

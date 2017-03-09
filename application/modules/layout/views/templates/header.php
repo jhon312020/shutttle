@@ -61,7 +61,6 @@ $cms_lang = $this->session->userdata('cms_lang');
 <body>
   <?php
     $this->load->view('collaborators/header');
-    $this->load->view('menu');
     if (isset($content['image']) && $content['image'] != '') {
       $image_name = 'captions/'.$content['image'];
     } else if ($this->session->userdata('user_type') == 2) {
@@ -69,6 +68,8 @@ $cms_lang = $this->session->userdata('cms_lang');
     }else{
       $image_name = 'ready.jpg';
     }
+    $this->load->view('menu');
+    
   ?>
   <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH.$image_name; ?>') no-repeat center center scroll;">
     <img class="img-responsive img-center"  alt="">

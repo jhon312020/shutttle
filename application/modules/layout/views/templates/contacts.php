@@ -28,9 +28,9 @@
 						</div>
 						<div class="col-sm-10 con_msg mar-bottom">
 							<textarea name="description" id="description" class="form-control" rows="8" placeholder="<?php echo lang('Comment'); ?>" required></textarea>
-							<button type="submit" id="form-submit" class="btn btn-block mob-show downbtn"><?php echo lang('send'); ?></button>
+							<button type="submit" id="form-submit" class="btn btn-block downbtn"><?php echo lang('send'); ?></button>
 						</div>
-						<div class="col-sm-2 send-pad">						
+						<div class="col-sm-2 send-pad" style="display:none;">						
 							<button type="submit" id="form-submit" class="btn btn-block mob-hide downbtn"><?php echo lang('send'); ?></button>
 						</div>						
 					</form>

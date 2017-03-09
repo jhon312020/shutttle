@@ -1,14 +1,5 @@
 <div class="tab-pane jsTabPane active" id="firstStep">
-  <div class="tabbable-panel circle-show">
-		<div class="tabbable-line">
-			<ul class="nav nav-tabs ">
-				<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
-					<a href="#firstStep">
-					CHOOSE YOUR ROUTE</a>
-				</li>
-			</ul>
-		</div>
-  </div>
+  
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-login">
