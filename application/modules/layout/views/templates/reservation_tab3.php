@@ -128,7 +128,7 @@
 					</div>
 				</div>
 				<div class="col-sm-12 errorCodes" style="display:none;">
-					<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_codes'); ?></span>
+					<span style="position: relative; left: 0%; top: -4px; color: red;"><?php echo lang('invalid_codes'); ?></span>
 				</div>
 			</div>
 			<form id="bank_form" action="" method="POST" style="display:none;">

@@ -388,7 +388,7 @@ $lang['go_back'] = 'Go + Back';
 
 
 $lang['source'] = "From";
-$lang['designation'] = "Until";
+$lang['designation'] = "To";
 $lang['start_date'] = "Trip Date";
 $lang['end_date'] = "Return Date";
 $lang['no_of_passengers'] = "Passengers";
@@ -445,9 +445,11 @@ $lang['send'] = 'Send';
 
 /* Reservation */
 $lang['book_now'] = 'BOOK NOW';
-$lang['choose_your_route'] = 'Choose your route';
-$lang['one_way'] = 'One way';
-$lang['round_trip'] = 'Round Trip';
+$lang['choose_your_route'] = 'CHOOSE YOUR ROUTE';
+$lang['route_schedule'] = 'ROUTE SCHEDULE';
+$lang['info_and_payment'] = 'INFO AND PAYMENT';
+$lang['one_way'] = 'ONE WAY';
+$lang['round_trip'] = 'ROUND TRIP';
 $lang['from'] = 'From';
 $lang['to'] = 'To';
 $lang['go'] = 'Go';
@@ -461,11 +463,12 @@ $lang['child'] = 'Child (under 5)';
 $lang['baby'] = 'Baby';
 $lang['return_time'] = 'Re. time';
 $lang['back_minutes'] = 'Re. mins';
+$lang['select_terminal'] = 'Select Terminal';
 
 /* booking 2nd page */
 $lang['summary'] = 'Summary:';
 $lang['edit'] = 'Edit';
-$lang['until'] = 'Until';
+$lang['until'] = 'To';
 $lang['trip_date'] = 'Trip date';
 $lang['return_date'] = 'Return date';
 $lang['no_passengers'] = 'Nº Passengers';
@@ -511,7 +514,7 @@ $lang['number_of_document'] = 'Number of document';
 $lang['terms_&_conditions'] = 'Terms & Conditions';
 $lang['total'] = 'Total';
 $lang['pay'] = 'Pay';
-$lang['return'] = 'PREV.';
+$lang['return'] = 'BACK';
 $lang['more_info'] = 'More info';
 $lang['you_have_forgotten_the_password'] = 'You have forgotten the password';
 $lang['invalid_credentials'] = 'Invalid credentials';
@@ -599,7 +602,7 @@ $lang['invalid_email'] = 'Invalid email address';
 $lang['invalid_integer'] = 'Not a valid integer';
 $lang['field_match'] = 'Fields do not match';
 $lang['invalid_zip'] = 'Invalid zip fromat';
-$lang['invalid_codes'] = 'Invalid codes';
+$lang['invalid_codes'] = 'This promotional code is not valid';
 $lang['invalid_date'] = '* Invalid date';
 $lang['time_start'] = 'Time start';
 $lang['time_end'] = 'Time end';
@@ -688,9 +691,11 @@ $lang['yyyy'] = 'YYYY';
 $lang['payment_process'] = 'Payment Process';
 $lang['end'] = 'End';
 $lang['bookings'] = 'Bookings';
-$lang['card_holder'] = 'Cardholder';
+$lang['card_holder'] = 'Card Holder';
 $lang['add_credit_card'] = 'Add your credit card';
 $lang['about_us1'] = 'About us';
 $lang['book_now1'] = 'Book now';
 $lang['contact_us'] = 'Contact us';
+$lang['reserve_now'] = 'BOOK NOW';
+
 ?>

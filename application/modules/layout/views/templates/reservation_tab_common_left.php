@@ -12,8 +12,8 @@
 					'start_date'=>'start_journey',
 					'end_date'=>'return_journey',
 					'no_of_passengers'=>'adults',
-					'country_origin'=>'country',
-					'flight_no'=>'flight_no',
+					/*'country_origin'=>'country',
+					'flight_no'=>'flight_no',*/
 					'flight_time'=>'flight_time',
 					'flightlanding_time'=>'flightlanding_time',
 				);
