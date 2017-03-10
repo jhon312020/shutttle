@@ -14,7 +14,7 @@
    </div>
   <div class="col-sm-9">
     <?php  
-      $this->load->view('reservation_includes'); 
+      //$this->load->view('reservation_includes'); 
       $this->load->view('reservation_extras'); 
     ?>
 			
@@ -120,11 +120,11 @@
 				</form>
 			</div>
 			<div class="row mybox-3">
-				<div class="col-xs-12 myapplicar">
+				<div class="col-xs-12 myapplicar no-pad-left">
 				<!--<div class="col-xs-4" style="padding-left:0px;"><h4 style="font-weight:bold;"><?php //echo lang('promotional_code'); ?></h4></div>-->
 					<div class="col-xs-6" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
 					<div class="col-xs-2" style="margin-top:3px"> 
-						<button class="btn btn-default pull-right applicarbtn"><?php echo lang('apply'); ?></button>
+						<button class="btn btn-default pull-right applicarbtn promo-btn"><?php echo lang('apply'); ?></button>
 					</div>
 				</div>
 				<div class="col-sm-12 errorCodes" style="display:none;">
@@ -147,7 +147,7 @@
 					<input type="hidden" name="itemdesc" value="" /> 
 					<input type="hidden" name="itemprice" class="amount" value="">
 					
-					<div class="col-sm-12" style="padding-left:0px;width:104%;">
+					<div class="row mybox-3" style="padding-left:0px;width:104%;">
 				    <h3 class="totalpay"><span style="font-size: 18px;">
 					<?php echo lang('total_pay'); ?>:
 					<br><span id="price_final">12.12</span><b class="euro">&euro;</b></h3>

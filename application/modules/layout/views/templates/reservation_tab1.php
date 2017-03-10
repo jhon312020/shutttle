@@ -40,7 +40,7 @@
                 <input type="hidden" name="flight_no" value="00">
                 <div class="form-bottom ribbon-down mar-down">
                   <div class="form-group col-sm-1 clear-pad-form">
-                    <label><?php echo lang('start_trip'); ?></label>
+                    <label class="no-bold-step1"><?php echo lang('start_trip'); ?></label>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form">
                     <?php 
@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-bottom ribbon-down mar-down">
                   <div class="form-group col-sm-1 clear-pad-form">
-                    <label><?php echo lang('end_trip'); ?></label>
+                    <label class="no-bold-step1"><?php echo lang('end_trip'); ?></label>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form" id="return_journey_div">
                     <?php echo form_dropdown('end_at', $terminal_array, null, 'class="form-control validate[required] book-select jsTerminal" id="end_at" data-errormessage-value-missing="'.lang('require_field').'"'); ?>
@@ -74,14 +74,15 @@
                 </div>
                 <div class="form-bottom ribbon-down mar-down">
                   <div class="form-group col-sm-1 clear-pad-form">
-                    <label style="padding-top: 10px;"><?php echo lang('people'); ?></label>
+                    <label class="no-bold-step1" style="padding-top: 10px;"><?php echo lang('people'); ?></label>
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form">
                     <?php echo form_dropdown('adults', $adults, null, 'class="form-control validate[required] book-select"  data-errormessage-value-missing="'.lang('require_field').'"'); ?>
                   </div>
-                  <div class="form-group col-sm-3 clear-pad-form">
+                  <?php /* <div class="form-group col-sm-3 clear-pad-form">
                     <?php echo form_dropdown('kids', $kids, null, 'class="form-control book-select"'); ?>
                   </div>
+                  */ ?>
                 </div>
                 <div class="row row-eq-height vert-align">
                   <div class="col-sm-9">

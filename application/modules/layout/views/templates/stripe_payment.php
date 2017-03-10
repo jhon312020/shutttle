@@ -1,7 +1,3 @@
-<?php
-	$this->load->view('header');
-?>
-<div class="container bodypad">
   <form method="POST" class="validateForm" action="<?php echo site_url().$lang.'/paymentprocess'; ?>" id="payment-form">
     <div class="row row-eq-height payment-div">
       <div class="col-md-3 bor-grey">
@@ -76,7 +72,7 @@
               </div>
               <div class="form-group col-xs-12">
                 <?php 
-                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_holder'), 'class'=>'card-number-holder form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'16','data-errormessage-value-missing'=>lang('require_field') )); ?>
+                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_holder'), 'class'=>'card-number-holder form-control validate[required]', 'autocomplete'=>'off', 'data-errormessage-value-missing'=>lang('require_field') )); ?>
               </div>
               <div class="form-group col-xs-12">
                 <?php 
@@ -87,7 +83,7 @@
               </div>
               <div class="form-group col-xs-6 pad-mon">
                 <?php 
-                  echo  form_input(array('type'=>'text', 'placeholder'=>lang('mm'), 'class'=>'card-expiry-month form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'2', 'data-errormessage-value-missing'=>lang('require_field')));
+                  echo  form_dropdown('months', $months, null, 'class="card-expiry-month form-control validate[required]" data-errormessage-value-missing="'.lang('require_field').'"');
                 ?>
               </div>
               <div class="form-group col-xs-6 pad-year">
@@ -120,8 +116,6 @@
       </div>
     </div>
   </form>
-</div>
 <script type='text/javascript'>
   var stripeKey = '<?php echo $this->config->item('STRIPE_PUBLIC_KEY'); ?>';
 </script>
-<?php $this->load->view('footer');?>

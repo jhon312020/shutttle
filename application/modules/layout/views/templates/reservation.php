@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
 		<div class="col-md-12">
-			<div class="tabbable-panel">
+			<div class="tabbable-panel" id="booking_details">
 				<div class="tabbable-line">
 					<ul class="nav nav-tabs book-desk">
 						<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
@@ -31,6 +31,9 @@
           </div>
 				</div>
 			</div>
+			<?php
+			$this->load->view('stripe_payment');
+			?>
 		</div>
 	</div>
 </div>

@@ -246,16 +246,16 @@ class Ajax extends Anonymous_Controller {
   $end_at = (in_array($post_params['end_at'], $terminal))?$post_params['end_at']:$post_params['zone'];
   $babySeats = (isset($extras_array[2]['extra_count']))?$extras_array[2]['extra_count']:0;
   if ($post_params['duplicate_bool'] == 0) {
-    $start_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.kids ='".$post_params['kids']."' and b.baby ='".$babySeats."' and b.start_journey ='".$hidden_data['service_date']."' and b.hour ='".$hidden_data['journey_start']."' and b.arrival_time ='".$hidden_data['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
+    $start_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.baby ='".$babySeats."' and b.start_journey ='".$hidden_data['service_date']."' and b.hour ='".$hidden_data['journey_start']."' and b.arrival_time ='".$hidden_data['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
     $start_duplicate = $this->db->query($start_duplicate_qry);
     if ($start_duplicate->num_rows() > 0) {
       $error['start_duplicate'] = true;
     }
-
+    //and b.kids ='".$post_params['kids']."'
     if ($this->input->post('return_book_id')) {
       $return_book_id1 = $post_params['return_book_id'];
       $return_hidden_data1 = json_decode($post_params['return_journey_'.$return_book_id1], true);
-      $return_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.kids ='".$post_params['kids']."' and b.baby ='".$babySeats."' and b.start_journey ='".$return_hidden_data1['service_date']."' and b.hour ='".$return_hidden_data1['journey_start']."' and b.arrival_time ='".$return_hidden_data1['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
+      $return_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.baby ='".$babySeats."' and b.start_journey ='".$return_hidden_data1['service_date']."' and b.hour ='".$return_hidden_data1['journey_start']."' and b.arrival_time ='".$return_hidden_data1['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
       $return_duplicate = $this->db->query($return_duplicate_qry);
       if ($return_duplicate->num_rows() > 0) {
         $error['return_duplicate'] = true;
@@ -308,8 +308,8 @@ class Ajax extends Anonymous_Controller {
                               'arrival_time'=>$hidden_data['journey_end'],
                               'price'=>$post_params['amount'], 'start_journey'=>$hidden_data['service_date']
                               ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
-                              'kids'=>$post_params['kids']
-                              ,'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$book_id, 'collaborator_id'=>$post_params['collaborators_id']
+                              //'kids'=>$post_params['kids'],
+                              'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$book_id, 'collaborator_id'=>$post_params['collaborators_id']
                               ,'book_status'=>'pending', 'passenger_price'=>$post_params['passenger_price'], 'book_role'=>$book_role, 'baby'=>$babySeats, 'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id']);
               if ($this->input->post('promotional_codes_id')) {
                   $book_array['promotional_code_id'] = $post_params['promotional_codes_id'];
@@ -338,8 +338,8 @@ class Ajax extends Anonymous_Controller {
                                   'arrival_time'=>$return_hidden_data['journey_end'],
                                   'price'=>$post_params['amount'], 'start_journey'=>$return_hidden_data['service_date']
                                   ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
-                                  'kids'=>$post_params['kids']
-                                  ,'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$return_book_id
+                                  //'kids'=>$post_params['kids'],
+                                  'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$return_book_id
                                   , 'collaborator_id'=>$post_params['collaborators_id'],'book_status'=>'pending', 
                                   'passenger_price'=>$post_params['passenger_price'], 'book_role'=>$book_role, 'baby'=>$babySeats, 'round_trip'=>1, 'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id']);
                       if ($this->input->post('promotional_codes_id')) {
@@ -441,7 +441,7 @@ class Ajax extends Anonymous_Controller {
     
     /*Sabadell payment start*/
     //include_once(APPPATH . "modules/layout/views/templates/apiRedsys.php");
-    $this->load->library('apiRedsys');
+    /* $this->load->library('apiRedsys');
     $ln = $this->uri->segment(1);
     $miObj = new apiRedsys;
     
@@ -480,7 +480,7 @@ class Ajax extends Anonymous_Controller {
     $str['version'] = $version;
     $str['params'] = $params;
     $str['signature'] = $signature;
-    $str['banaba_url'] = $realurlPago;
+    $str['banaba_url'] = $realurlPago; */
     /*Sabadell payment end*/
     
               echo json_encode($str);
@@ -712,7 +712,7 @@ class Ajax extends Anonymous_Controller {
         $end_at = (in_array($post_params['end_at'], $terminal))?$post_params['end_at']:$post_params['zone'];
         $babySeats = (isset($extras_array[2]['extra_count']))?$extras_array[2]['extra_count']:0;
         if ($post_params['duplicate_bool'] == 0) {
-          $start_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.kids ='".$post_params['kids']."' and b.baby ='".$babySeats."' and b.start_journey ='".$hidden_data['service_date']."' and b.hour ='".$hidden_data['journey_start']."' and b.arrival_time ='".$hidden_data['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
+          $start_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.baby ='".$babySeats."' and b.start_journey ='".$hidden_data['service_date']."' and b.hour ='".$hidden_data['journey_start']."' and b.arrival_time ='".$hidden_data['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
           $start_duplicate = $this->db->query($start_duplicate_qry);
           if ($start_duplicate->num_rows() > 0) {
             $error['start_duplicate'] = true;
@@ -721,7 +721,7 @@ class Ajax extends Anonymous_Controller {
           if ($this->input->post('return_book_id')) {
             $return_book_id1 = $post_params['return_book_id'];
             $return_hidden_data1 = json_decode($post_params['return_journey_'.$return_book_id1], true);
-            $return_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.kids ='".$post_params['kids']."' and b.baby ='".$babySeats."' and b.start_journey ='".$return_hidden_data1['service_date']."' and b.hour ='".$return_hidden_data1['journey_start']."' and b.arrival_time ='".$return_hidden_data1['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
+            $return_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.baby ='".$babySeats."' and b.start_journey ='".$return_hidden_data1['service_date']."' and b.hour ='".$return_hidden_data1['journey_start']."' and b.arrival_time ='".$return_hidden_data1['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
             $return_duplicate = $this->db->query($return_duplicate_qry);
             if ($return_duplicate->num_rows() > 0) {
               $error['return_duplicate'] = true;
@@ -748,8 +748,8 @@ class Ajax extends Anonymous_Controller {
                   'arrival_time'=>$hidden_data['journey_end'],
                   'price'=>$post_params['amount'], 'start_journey'=>$hidden_data['service_date']
                   ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
-                  'kids'=>$post_params['kids']
-                  ,'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$book_id, 'collaborator_id'=>$post_params['collaborators_id']
+                  //'kids'=>$post_params['kids'],
+                  'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$book_id, 'collaborator_id'=>$post_params['collaborators_id']
                   ,'book_status'=>'pending', 'passenger_price'=>$post_params['seats_price_'.$book_id], 'book_role'=>$book_role, 'baby'=>$babySeats);
           if ($this->input->post('promotional_codes_id')) {
             $book_array['promotional_code_id'] = $post_params['promotional_codes_id'];
@@ -778,8 +778,8 @@ class Ajax extends Anonymous_Controller {
                     'arrival_time'=>$return_hidden_data['journey_end'],
                     'price'=>$post_params['amount'], 'start_journey'=>$return_hidden_data['service_date']
                     ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
-                    'kids'=>$post_params['kids']
-                    ,'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$return_book_id
+                    //'kids'=>$post_params['kids'],
+                    'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$return_book_id
                     , 'collaborator_id'=>$post_params['collaborators_id'],'book_status'=>'pending', 
                     'passenger_price'=>$post_params['seats_price_'.$book_id], 'book_role'=>$book_role, 'baby'=>$babySeats, 'round_trip'=>1);
               if ($this->input->post('promotional_codes_id')) {

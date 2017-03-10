@@ -930,7 +930,7 @@ $lang['number_of_document'] = 'Numero de documento';
 
 $lang['terms_&_conditions'] = 'Terminos y Condiciones';
 
-$lang['total'] = 'Total a pagar';
+$lang['total'] = 'Total';
 
 $lang['pay'] = 'Pagar';
 
@@ -1315,7 +1315,7 @@ $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
 $lang['change_password_success_message'] = 'Your password has been successfully reset!';
 $lang['promotional_code'] = 'Promotional code';
-$lang['card_holder'] = 'Nombre y Apellidos';
+$lang['card_holder'] = 'Card Holder';
 $lang['add_credit_card'] = 'Introduce tus datos de pago';
 
 $lang['contact_us'] = 'Contact us';

@@ -66,6 +66,17 @@ class Node extends Anonymous_Controller {
       $this->details['car_details'] = current($qry->get()->result_array());
       $this->load->vars($this->details);
     }
+
+    $range_months = 
+      array_map(function($n) { 
+        if($n < 10) return '0'.$n;
+        else return $n; }, 
+      range(1, 12) );
+    $months = array("" => "Select") + array_combine($range_months, $range_months);
+    //print_r($months);die;
+    //echo json_encode($months);die;
+    $this->template_vars['months'] = $months;
+
     $lang = $this->uri->segment(1);
     if ($lang == '' || $lang == 'es' || $lang == 'en' ) {
       $this->template_vars['lang'] = $lang;

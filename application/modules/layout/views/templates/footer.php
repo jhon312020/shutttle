@@ -27,10 +27,16 @@
   <footer id="footer" class="container"> 
     <div class="mob-hide">
       <div class="col-xs-6" style="padding-left:0px;">
-        <p><strong><?php echo (isset($site_title))?$site_title:''; ?></strong>
+        <p><strong><b><?php echo (isset($site_title))?$site_title:'Shuttleing S.L.'; ?></b></strong>
+          <?php /* if(isset($site_email) && trim($site_email)) { ?>
           <span class="separator">|</span>  
-          Email: <a href="mailto:<?php echo (isset($site_email))?$site_email:''; ?>"><?php echo (isset($site_email))?$site_email:''; ?></a> 
+          <a href="mailto:<?php echo (isset($site_email))?$site_email:''; ?>"><?php echo (isset($site_email))?$site_email:''; ?></a> 
+          <?php 
+              }
+              if(isset($telephone) && trim($telephone)) {
+          ?> 
           <span class="separator">|</span> Telf. <?php echo (isset($telephone))?$telephone:''; ?> 
+          <?php } */ ?>
         </p>
       </div>
       <div class="col-xs-6 text-right" style="padding-right:0px;">
