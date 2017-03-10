@@ -184,13 +184,13 @@
 
                             <tr>
 
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('adults'); ?>:</td>
+                                <td colspan=2 style="padding-top:5px;color:#25387d;"><?php echo lang('adults'); ?>:</td>
 
-                                <td style="padding-top:5px;color:#25387d;"><?php echo $bookings['adults']; ?></td>
+                                <td colspan=2 style="padding-top:5px;color:#25387d;"><?php echo $bookings['adults']; ?></td>
 
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('kids'); ?>:</td>
+                                <!--<td style="padding-top:5px;color:#25387d;"><?php echo lang('kids'); ?>:</td>
 
-                                <td style="padding-top:5px;color:#25387d;"><?php echo $bookings['kids']; ?></td>
+                                <td style="padding-top:5px;color:#25387d;"><?php echo $bookings['kids']; ?></td>-->
 
                             </tr>
 

@@ -702,7 +702,9 @@ $lang['flight_time'] = "Hora de vuelo";
 
 $lang['flightlanding_time'] = "Hora de aterrizaje";
 
-$lang['adults'] = "Adulto";
+//$lang['adults'] = "Adulto";
+
+$lang['adults'] = "Núnero pasajeros";
 
 $lang['child'] = "ninos";
 
@@ -821,7 +823,7 @@ $lang['hour'] = 'Hora';
 
 $lang['minutes'] = 'Minutos';
 
-$lang['adults'] = 'Adultos';
+//$lang['adults'] = 'Adultos';
 
 $lang['child'] = 'Niños';
 

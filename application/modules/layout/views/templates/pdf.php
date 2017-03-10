@@ -250,13 +250,13 @@
 
 							<tr>
 
-								<td style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;color:#25387d !important;"><?php echo lang('adults'); ?>:</td>
+								<td colspan=2 style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;color:#25387d !important;"><?php echo lang('adults'); ?>:</td>
 
-								<td style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['adults']; ?></td>
+								<td colspan=2 style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['adults']; ?></td>
 
-								<td style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;color:#25387d !important;"><?php echo lang('kids'); ?>:</td>
+								<!--<td style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;color:#25387d !important;"><?php echo lang('kids'); ?>:</td>
 
-								<td style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['kids']; ?></td>
+								<td style="padding-bottom: 10px !important; border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['kids']; ?></td>-->
 
 							</tr>
 
