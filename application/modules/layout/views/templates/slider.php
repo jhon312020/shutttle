@@ -20,7 +20,7 @@
             }
 
             ?>
-            <div class="item active">
+            <div class="item <?php echo $active_class; ?>">
                 <div style="background:url(<?php echo IMAGEPATH.'homepage/slider/'.$slider->image;?>);background-repeat: no-repeat;background-position: center top;background-size: cover;" class="carousel-image cs-item">&nbsp;</div>
                 <div class="container">
                     <div class="carousel-caption">
