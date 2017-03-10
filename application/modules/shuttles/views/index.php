@@ -57,14 +57,14 @@
 			<th><?php echo lang('trip_type'); ?></th>
 			<th><?php echo lang('reference'); ?></th>
 			<th><?php echo lang('name'); ?></th>
-            <th><?php echo lang('date'); ?></th>
-            <th><?php echo lang('hour'); ?></th>
+      <th><?php echo lang('date'); ?></th>
+      <th><?php echo lang('hour'); ?></th>
 			<th><?php echo lang('from'); ?></th>
 			<th><?php echo lang('to'); ?></th>
 			<th><?php echo lang('price'); ?></th>
 			<th style="display: none;"><?php echo lang('payment_method'); ?></th>
 			<th><?php echo lang('passengers'); ?></th>
-			<th style="display: none;"><?php echo lang('flight_no'); ?></th>
+			<!--<th style="display: none;"><?php echo lang('flight_no'); ?></th>-->
 			<th style="display: none;"><?php echo lang('address'); ?></th>
 			<th style="display: none;"><?php echo lang('phone'); ?></th>
 			<th style="display: none;"><?php echo lang('reservation_date'); ?></th>
@@ -140,7 +140,7 @@
 			<td><?php echo $shuttle->price; ?></td>
 			<td style="display: none;"><?php echo $payment; ?></td>
 			<td><?php echo $shuttle->adults + $shuttle->kids; ?></td>
-			<td style="display: none;"><?php echo $shuttle->flight_no; ?></td>
+			<!--<td style="display: none;"><?php echo $shuttle->flight_no; ?></td>-->
 			<td style="display: none;"><?php echo $shuttle->name.' / '.$address; ?></td>
 			<td style="display: none;"><?php echo $shuttle->phone; ?></td>
 			<td style="display: none;"><?php echo date('d/m/Y', strtotime($shuttle->created)); ?></td>

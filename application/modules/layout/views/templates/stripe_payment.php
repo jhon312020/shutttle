@@ -1,64 +1,38 @@
-<?php
-	$this->load->view('header');
-?>
-<div class="container bodypad">
-  <form method="POST" class="validateForm" action="<?php echo site_url().$lang.'/paymentprocess'; ?>" id="payment-form">
+  <form method="POST" class="stripeForm" action="<?php echo site_url().$lang.'/paymentprocess'; ?>" id="payment-form">
+    <input type="hidden" name="book_id" class="bookId">
+    <input type="hidden" name="amount" class="amount">
     <div class="row row-eq-height payment-div">
       <div class="col-md-3 bor-grey">
         <h4 style="font-weight:bold;color: #25387d;">Summary: 
         </h4> 
         <p></p>
-        <div>
-          <span class="sumhead"><?php echo lang('source'); ?>: </span>
-          <span class="duplicateList" data-id="start_from"> <?php echo $bookings['start_from']; ?> </span>
-        </div>
-        <div>
-          <span class="sumhead"><?php echo lang('designation'); ?>: </span>
-          <span class="duplicateList" data-id="end_at"> <?php echo $bookings['end_at']; ?></span>
-        </div>
-        <div>
-          <span class="sumhead"><?php echo lang('start_date'); ?>: </span>
-          <span class="duplicateList" data-id="start_journey"> <?php echo Date('d/m/Y', strtotime($bookings['start_journey'])); ?></span>
-        </div>
         <?php
-          if(isset($return_bookings)) {
+        $arrowDownClass = "";
+        $leftSidebar = array(
+          'source'=>'start_from',
+          'designation'=>'end_at',
+          'start_date'=>'start_journey',
+          'end_date'=>'return_journey',
+          'no_of_passengers'=>'adults',
+          /*'country_origin'=>'country',
+          'flight_no'=>'flight_no',*/
+          'flight_time'=>'flight_time',
+          'flightlanding_time'=>'flightlanding_time',
+        );
+        foreach ($leftSidebar as $key => $value) {
         ?>
-        <div>
-          <span class="sumhead"><?php echo lang('end_date'); ?>: </span>
-          <span class="duplicateList" data-id="return_journey"> <?php echo Date('d/m/Y', strtotime($return_bookings['start_journey'])); ?></span>
-        </div>
-        <?php } ?>
-        <div>
-          <span class="sumhead"><?php echo lang('no_of_passengers'); ?>: </span>
-          <span class="duplicateList" data-id="adults"> <?php echo $bookings['adults'] + $bookings['kids']; ?></span>
-        </div>
+          <div>
+            <span class="sumhead"><?php echo lang($key);?>: </span>
+            <span class="duplicateList" data-id="<?php echo $value; ?>"></span>
+          </div>
+        <?php   
+        }
+      ?>
         
-        <div>
-          <span class="sumhead"><?php echo lang('country'); ?>: </span>
-          <span class="duplicateList" data-id="country"> <?php echo $clients['country']; ?></span>
-        </div>
-        <?php /*
-        <div>
-          <span class="sumhead">Flight nº: </span>
-          <span class="duplicateList" data-id="flight_no"> <?php echo $bookings['flight_no']; ?></span>
-        </div>
-        */ ?>
-        <div>
-          <span class="sumhead"><?php echo lang($bookings['start_from_lang']); ?>: </span>
-          <span class="duplicateList" data-id="flight_time"> <?php echo date('H:i', strtotime($bookings['hour'])); ?></span>
-        </div>
-        <?php
-          if(isset($return_bookings)) {
-        ?>
-        <div>
-          <span class="sumhead"><?php echo lang($bookings['end_at_lang']); ?>: </span>
-          <span class="duplicateList" data-id="flightlanding_time"> <?php echo $return_bookings['hour']; ?></span>
-        </div>
-        <?php } ?>
         <p class="text-justify">
         </p>
         <h4 class="resumen price-h">
-          <button type="button" class="btn btn-lg pickbluebg" style="background:#25377d;"><?php echo lang('price'); ?>: <span class="price_total"><?php echo $bookings['price']; ?></span>&nbsp;&euro;</button>
+          <button type="button" class="btn btn-lg pickbluebg" style="background:#25377d;"><?php echo lang('price'); ?>: <span class="price_total"></span>&nbsp;&euro;</button>
         </h4>
       </div>
       <div class="col-md-6 panel-div">
@@ -76,7 +50,7 @@
               </div>
               <div class="form-group col-xs-12">
                 <?php 
-                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_holder'), 'class'=>'card-number-holder form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'16','data-errormessage-value-missing'=>lang('require_field') )); ?>
+                echo  form_input(array('type'=>'text', 'placeholder'=>lang('card_holder'), 'class'=>'card-number-holder form-control validate[required]', 'autocomplete'=>'off', 'data-errormessage-value-missing'=>lang('require_field') )); ?>
               </div>
               <div class="form-group col-xs-12">
                 <?php 
@@ -87,7 +61,7 @@
               </div>
               <div class="form-group col-xs-6 pad-mon">
                 <?php 
-                  echo  form_input(array('type'=>'text', 'placeholder'=>lang('mm'), 'class'=>'card-expiry-month form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'2', 'data-errormessage-value-missing'=>lang('require_field')));
+                  echo  form_dropdown('months', $months, null, 'class="card-expiry-month form-control validate[required]" data-errormessage-value-missing="'.lang('require_field').'"');
                 ?>
               </div>
               <div class="form-group col-xs-6 pad-year">
@@ -114,14 +88,8 @@
     </div> 
     <div class="row">
       <div class="col-md-12 mar-btn">
-        <center>
-          <button type="submit" class="btn btn-block btn-pay"  id="submitBtn"><?php echo lang('pay'); ?></button>
-        </center>
+        <button type="button" class="btn btn-block btn-pay pull-left jsbackToDetails"><?php echo lang('back'); ?></button>
+        <button type="button" class="btn btn-block btn-pay pull-right paypalsubmit"  id="submitBtn"><?php echo lang('pay'); ?></button>
       </div>
     </div>
   </form>
-</div>
-<script type='text/javascript'>
-  var stripeKey = '<?php echo $this->config->item('STRIPE_PUBLIC_KEY'); ?>';
-</script>
-<?php $this->load->view('footer');?>

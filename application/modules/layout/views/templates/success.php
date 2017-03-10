@@ -250,13 +250,13 @@
 
 								<tr>
 
-									<td style="color:#25387d; font-weight:bold;border-bottom: 1px dotted #25387d!important;"><?php echo lang('adults'); ?>:</td>
+									<td colspan=2 style="color:#25387d; font-weight:bold;border-bottom: 1px dotted #25387d!important;"><?php echo lang('adults'); ?>:</td>
 
-									<td style=""><?php echo $bookings['adults']; ?></td>
+									<td colspan=2 style="border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['adults']; ?></td>
 
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('kids'); ?>:</td>
+									<!--<td style="color:#25387d; font-weight:bold;"><?php echo lang('kids'); ?>:</td>
 
-									<td style="border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['kids']; ?></td>
+									<td style="border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['kids']; ?></td>-->
 
 								</tr>
 

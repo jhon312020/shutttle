@@ -14,7 +14,7 @@
    </div>
   <div class="col-sm-9">
     <?php  
-      $this->load->view('reservation_includes'); 
+      //$this->load->view('reservation_includes'); 
       $this->load->view('reservation_extras'); 
     ?>
 			
@@ -23,8 +23,8 @@
 				<form id="loginform">
 					<input style="display:none" type="text" name="fakeusernameremembered"/>
 					<input style="display:none" type="password" name="fakepassword"/>
-					<div class="col-sm-12 paytop">
-						<div class="form-group col-sm-4 clear-pad-R Add-pad-R" style="margin-top:10px;">
+					<div class="col-sm-12 paytop" style="height:40px;">
+						<!--<div class="form-group col-sm-4 clear-pad-R Add-pad-R" style="margin-top:10px;">
 							<input type="text" class="form-control bord-rad-10 bor-col-wht validate[required,custom[email]]" id="login_email" name="login_email" placeholder="User (E-mail)" required>
 						</div>
 						<div class="form-group col-sm-4 validTextpassword" style="margin-top:10px;">
@@ -36,11 +36,11 @@
 						</div>
 						<div class="col-sm-12 errorlogin" style="display:none;">
 							<span style="position: relative; left: 33%; top: -4px; color: red;"><?php echo lang('invalid_credentials'); ?></span>
-						</div>
+						</div>-->
 					</div>
 				</form>
 			</div>
-				<form class="validateForm1">
+				<form class="validateForm1 client-form">
 					<input style="display:none" type="text" name="fakeusernameremembered"/>
 					<input style="display:none" type="password" name="fakepassword"/>
 					<div class="col-sm-12">
@@ -95,9 +95,9 @@
 						<div class="form-group col-sm-4 validText mob-pad-RL">
 							<input type="text" class="form-control bord-rad-10" id="doc_no" name="doc_no" placeholder="<?php echo lang('number_of_document'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
-						<div class="form-group col-sm-4 showExtras clear-pad-RL">
+						<!--<div class="form-group col-sm-4 showExtras clear-pad-RL">
 							<input type="checkbox" name="save_extra" id="save_extra" value="1"> <label style="position: relative; top: -1px;" for="save_extra"><?php echo lang('save_my_details_for_future_bookings'); ?></label>
-						</div>
+						</div>-->
 						<div class="form-group col-sm-4 validText showPassword clear-pad-RL" style="clear:both">
 							<input type="password" class="form-control bord-rad-10 validate[required]" id="password" name="password" placeholder="Password" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
 						</div>
@@ -120,11 +120,11 @@
 				</form>
 			</div>
 			<div class="row mybox-3">
-				<div class="col-xs-12 myapplicar">
+				<div class="col-xs-12 myapplicar no-pad-left">
 				<!--<div class="col-xs-4" style="padding-left:0px;"><h4 style="font-weight:bold;"><?php //echo lang('promotional_code'); ?></h4></div>-->
 					<div class="col-xs-6" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
 					<div class="col-xs-2" style="margin-top:3px"> 
-						<button class="btn btn-default pull-right applicarbtn"><?php echo lang('apply'); ?></button>
+						<button class="btn btn-default pull-right applicarbtn promo-btn"><?php echo lang('apply'); ?></button>
 					</div>
 				</div>
 				<div class="col-sm-12 errorCodes" style="display:none;">
@@ -147,12 +147,12 @@
 					<input type="hidden" name="itemdesc" value="" /> 
 					<input type="hidden" name="itemprice" class="amount" value="">
 					
-					<div class="col-sm-12" style="padding-left:0px;width:104%;">
+					<div class="row mybox-3" style="padding-left:0px;width:104%;">
 				    <h3 class="totalpay"><span style="font-size: 18px;">
 					<?php echo lang('total_pay'); ?>:
 					<br><span id="price_final">12.12</span><b class="euro">&euro;</b></h3>
 					</span> 
-					<button type="button" id="form-submit" class="btn pull-right btn-lg paypalsubmit"><?php echo lang('pay'); ?></button> 
+					<button type="button" id="form-submit" class="btn pull-right btn-lg jslastSubmit"><?php echo lang('pay'); ?></button> 
 					
 					<div class="paymentValid mypaypalimg">
 					<!--<span><img src="<?php //echo IMAGEPATH; ?>paypal.jpg"></span>-->

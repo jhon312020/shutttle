@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
 		<div class="col-md-12">
-			<div class="tabbable-panel">
+			<div class="tabbable-panel" id="booking_details">
 				<div class="tabbable-line">
 					<ul class="nav nav-tabs book-desk">
 						<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
@@ -31,9 +31,17 @@
           </div>
 				</div>
 			</div>
+			<div class="tabbable-panel">
+			<?php
+			$this->load->view('stripe_payment');
+			?>
+			</div>
 		</div>
 	</div>
 </div>
+<?php
+$this->load->view('modals/duplicate_modal');
+?>
 <script type='text/javascript'>
   /* Intializing the javascript variables using php as per the language selected */
   var siteUrl = '<?php echo site_url($lang);?>'; 
@@ -48,7 +56,7 @@
   var image_path = '<?php echo IMAGEPATH; ?>';
   var collaborator_address = <?php echo json_encode($this->details['collaborator_address']); ?>;
 	var collaborator_details = <?php echo json_encode($this->details['collaborator_details']); ?>;
-  console.log(collaborator_address );
+  //console.log(collaborator_address );
   var autoSource =  '';
   var user_name = '<?php echo $this->session->userdata('user_name'); ?>';
   var user_type = '<?php echo $this->session->userdata('user_type'); ?>';
@@ -56,5 +64,6 @@
   var flight_day_and_time = '<?php echo lang("flight_day_and_time"); ?>';
   var invalid_date = "<?php echo lang('invalid_date'); ?>";
   var select_terminal = "<?php echo lang('select_terminal'); ?>";
+  var stripeKey = '<?php echo $this->config->item('STRIPE_PUBLIC_KEY'); ?>';
 </script>
 <?php $this->load->view('footer');?>

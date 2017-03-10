@@ -66,6 +66,17 @@ class Node extends Anonymous_Controller {
       $this->details['car_details'] = current($qry->get()->result_array());
       $this->load->vars($this->details);
     }
+
+    $range_months = 
+      array_map(function($n) { 
+        if($n < 10) return '0'.$n;
+        else return $n; }, 
+      range(1, 12) );
+    $months = array("" => "Select Month") + array_combine($range_months, $range_months);
+    //print_r($months);die;
+    //echo json_encode($months);die;
+    $this->template_vars['months'] = $months;
+
     $lang = $this->uri->segment(1);
     if ($lang == '' || $lang == 'es' || $lang == 'en' ) {
       $this->template_vars['lang'] = $lang;
@@ -598,6 +609,8 @@ class Node extends Anonymous_Controller {
       $base_path.'/datetimepicker/js/bootstrap-datetimepicker.min.js',
       $base_path.'/js/reservation.js',
       $base_path.'/js/functions.js',
+      'https://js.stripe.com/v2/',
+      $base_path.'/js/stripe/payment.js',
     );
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
     $this->template_vars['terminal_array'] = array('' => lang('to'), 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
@@ -689,7 +702,7 @@ class Node extends Anonymous_Controller {
    * 
 	 * @return	void
 	 */
-  public function stripePaymentProcess() { 
+  public function stripePaymentOldProcess() { 
     
     // If no errors, process the order:
     $errors = array();
@@ -752,7 +765,80 @@ class Node extends Anonymous_Controller {
       }
       
     }
+
   
+  }
+
+  /**
+   * Function stripePaymentProcess
+   * Displays the payment process
+   * 
+   * @return  void
+   */
+  public function stripePaymentProcess() { 
+    
+    // If no errors, process the order:
+    $errors = array();
+    // Set the order amount somehow:
+    /*print_r($_POST);
+    exit;*/
+    $post_params = $this->input->post();
+    if ($post_params['stripeToken'] && $post_params['book_id']) {
+      //echo 'comes in';
+      //exit;
+      $book_id = $post_params['book_id'];
+      $amount = $post_params['amount'];
+      $lang = $this->template_vars['lang'];
+      $success_url = site_url($lang.'/success/?cm=' . $book_id);
+      $failure_url = site_url($lang.'/error/?cm=' . $book_id);
+    
+      $token = $post_params['stripeToken'];
+      // create the charge on Stripe's servers - this will charge the user's card
+      try {
+        // Include the Stripe library:
+        $this->load->library('stripe/stripeInit');
+
+        // set your secret key: remember to change this to your live secret key in production
+        // see your keys here https://manage.stripe.com/account
+        \Stripe\Stripe::setApiKey($this->config->item('STRIPE_PRIVATE_KEY'));
+
+        // Charge the order:
+        $charge = \Stripe\Charge::create(array(
+          "amount" => ($amount * 100), // amount in cents, again
+          "currency" => "usd",
+          "source" => $token,
+          "description" => $book_id
+          )
+        );
+        $this->db->where('id', $book_id);
+        $this->db->update('tbl_booking', array('paypal_transaction_response' => json_encode($charge)));
+        // Check that it was paid:
+        if ($charge->paid == true) {
+            redirect($success_url);
+        } else { // Charge was not paid!
+          redirect($failure_url);
+          echo '<div class="alert alert-error"><h4>Payment System Error!</h4>Your payment could NOT be processed (i.e., you have not been charged) because the payment system rejected the transaction. You can try again or use another card.</div>';
+        }
+
+      } catch (\Stripe\Error\Card $e) {
+          // Card was declined.
+        $e_json = $e->getJsonBody();
+        $err = $e_json['error'];
+        echo $errors['stripe'] = $err['message'];
+      } catch (\Stripe\Error\ApiConnection $e) {
+          // Network problem, perhaps try again.
+          echo $e;
+      } catch (\Stripe\Error\InvalidRequest $e) {
+          // You screwed up in your programming. Shouldn't happen!
+          echo $e;
+      } catch (\Stripe\Error\Api $e) {
+          // Stripe's servers are down!
+          echo $e;
+      } catch (\Stripe\Error\Base $e) {
+          // Something else that's not the customer's fault.
+          echo $e;
+      }
+    }
   }
 }
 ?>

@@ -323,13 +323,13 @@ class Shuttles extends Admin_Controller {
 		$this->db->from('booking')->where('id', $id);
 		$bookings = current($this->db->get()->result_array());
 		$this->db->set(array('is_active'=>0))->where('book_id', $id)->update('seats');
-		if ($bookings['return_book_id'] > 0) {
+		/* if ($bookings['return_book_id'] > 0) {
 			$this->db->from('booking')->where('id', $bookings['return_book_id']);
 			$res['return_bookings'] = current($this->db->get()->result_array());
 			
 			$this->db->set(array('updated_by' =>'shuttle delete', 'is_active'=>0))->where('id', $bookings['return_book_id'])->update('booking');
 			$this->db->set(array('is_active'=>0))->where('book_id', $bookings['return_book_id'])->update('seats');
-		}
+		} */
 		$this->db->set(array('updated_by' =>'shuttle delete', 'is_active'=>0))->where('id', $id)->update('booking');
 		//$this->mdl_shuttles->delete($id);
 		redirect('admin/shuttles');
