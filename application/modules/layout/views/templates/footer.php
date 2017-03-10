@@ -29,14 +29,14 @@
   
   <footer id="footer" class="container"> 
     <div class="mob-hide">
-      <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-0" style="padding-left:0px;">      
+      <div class="col-xs-12 col-md-6 footerLeft">      
         <p><strong><?php echo (isset($site_title))?$site_title:''; ?></strong>
           <span class="separator">|</span>  
           Email: <a href="mailto:<?php echo (isset($site_email))?$site_email:''; ?>"><?php echo (isset($site_email))?$site_email:''; ?></a> 
           <span class="separator">|</span> Telf. <?php echo (isset($telephone))?$telephone:''; ?> 
         </p>
       </div>
-      <div class="col-xs-12 col-md-6 col-md-offset-2" style="padding-right:0px;">
+      <div class="col-xs-12 col-md-6 footerRight">
         <a href="<?php echo site_url('/').$lang.'/collaborators/login'; ?>"><?php echo lang('collaborators_access'); ?></a> <span class="separator">|</span>  <a href="<?php echo site_url('/').$lang; ?>/terms"><?php echo lang('terms_and_conditions'); ?></a> <span class="separator">|</span> 
         <a href="<?php echo (isset($social_facebook))?$social_facebook:'#'; ?>" style="display:none;"><img src="<?php echo IMAGEPATH;?>facebook.png" style="width:20px;"></a> <span class="separator" style="display:none;">|</span> 
         <a href="<?php echo $full_path_es; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>spain.png" style="width:20px;"></a> <span class="separator">|</span> 

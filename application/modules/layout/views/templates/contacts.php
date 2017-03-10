@@ -8,30 +8,31 @@
 	}
 ?>
 <div class="container" id="contactus">
-	<div class="col-sm-10 col-sm-offset-1">
-		<div class="col-sm-3">
+	<div class="col-sm-12">
+		<div class="col-md-3 col-md-offset-1 col-sm-12 contactDetailsDiv">
 			<span class="contact-details" id="fobo"><?php echo lang('contact_details'); ?></span>
 			<p class="contactp">Mail. <?php echo (isset($address))?$address:''; ?>
 			<br>Tel. <?php echo (isset($telephone))?$telephone:''; ?></p>
 			<p>&nbsp;</p>
 		</div>
-		<div class="col-sm-9">
-			<div class="col-xs-12">
+		<div class="col-md-8">
+			<div class="col-sm-12">
 				<div class="row contacto">
 					<form method="post" name="contact_form">
 						<div class="form-group col-sm-12 contacto_title"><?php echo lang('we_will_contact_with_you_as_soon_as_possible'); ?></div>
-						<div class="col-sm-6 no-pad-right pad-top">
+						<div class="col-sm-6 col-xs-12 pad-top removeRightPad">
 							<input type="text" class="form-control" id="name" name="name" placeholder="<?php echo lang('name'); ?>" required>
 						</div>
-						<div class="col-sm-6 con_msg pad-top">
+						<div class="col-sm-6 col-xs-12 con_msg pad-top">
 							<input type="text" class="form-control" name="email" id="email" placeholder="<?php echo lang('surname'); ?>" required>
 						</div>
-						<div class="col-sm-10 con_msg mar-bottom">
-							<textarea name="description" id="description" class="form-control" rows="8" placeholder="<?php echo lang('Comment'); ?>" required></textarea>
-							<button type="submit" id="form-submit" class="btn btn-block downbtn"><?php echo lang('send'); ?></button>
+                        
+						<div class="col-sm-9 col-xs-12 con_msg mar-bottom removeRightPad">
+							<textarea name="description" id="description" class="form-control" placeholder="<?php echo lang('Comment'); ?>" required></textarea>
+							<!--<button type="submit" id="form-submit" class="btn btn-block downbtn"><?php echo lang('send'); ?></button>-->
 						</div>
-						<div class="col-sm-2 send-pad" style="display:none;">						
-							<button type="submit" id="form-submit" class="btn btn-block mob-hide downbtn"><?php echo lang('send'); ?></button>
+						<div class="col-sm-3 col-xs-12 send-pad no-pad">						
+							<button type="submit" id="form-submit" class="btn btn-block downbtn contactSubmitBtn"><?php echo lang('send'); ?></button>
 						</div>						
 					</form>
 		        </div>
