@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<?php
-			$this->load->view('stripe_payment');
+			//$this->load->view('stripe_payment');
 			?>
 		</div>
 	</div>

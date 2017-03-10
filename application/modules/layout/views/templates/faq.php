@@ -23,7 +23,7 @@
 				<?php	
 				//}
 				?>
-				</p>
+				
 			</div>
 		</div>
 		<?php
@@ -32,7 +32,7 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($lang == 'en')?$engCategory['category1']:$spanCategory['category1']; ?></h2></div>
 			<div class="col-sm-8" id="category1">
-			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:20px;">
+			<div id="accordion" style="padding-bottom:10px;margin-bottom:20px;">
 			<ul class="ques">
 		<?php
 		foreach($cat1 as $data){
@@ -58,7 +58,7 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($lang == 'en')?$engCategory['category2']:$spanCategory['category2']; ?></h2></div>
 			<div class="col-sm-8" id="category2">
-			<div id="accordion" style="border-bottom: 1px solid #E96B68;padding-bottom:10px;margin-bottom:20px;">
+			<div id="accordion" style="padding-bottom:10px;margin-bottom:20px;">
 			<ul class="ques">
 		<?php
 		foreach($cat2 as $data){
@@ -84,7 +84,7 @@
 		<div class="row faq">
 			<div class="col-sm-4"><h2><?php echo ($lang == 'en')?$engCategory['category3']:$spanCategory['category3']; ?></h2></div>
 			<div class="col-sm-8" id="category3">
-			<div id="accordion" >
+			<div id="accordion" style="margin-bottom:50px;">
 			<ul class="ques">
 		<?php
 		foreach($cat3 as $data){

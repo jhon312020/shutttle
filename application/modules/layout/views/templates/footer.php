@@ -19,9 +19,12 @@
   <?php } ?>
   
   <div class="">
-    <div class="col-sm-12">
-      <hr style="border-width: 2px;border-color: #25387D;width:68%;margin-top:10px;">
+    <div class="col-lg-12">
+      <hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:10px;" class="bigHR">
     </div>
+      <div class="col-sm-8">
+        <hr style="border-width: 2px;border-color: #25387D;width:88%;margin-top:50px;" class="faqHR" />
+      </div>
   </div>
   
   <footer id="footer" class="container"> 
@@ -29,6 +32,9 @@
       <div class="col-xs-6" style="padding-left:0px;">
         <p><strong><b><?php echo (isset($site_title))?$site_title:'Shuttleing S.L.'; ?></b></strong>
           <?php /* if(isset($site_email) && trim($site_email)) { ?>
+
+      <div class="col-xs-12 col-md-6 footerLeft">      
+        <p><strong><?php echo (isset($site_title))?$site_title:''; ?></strong>
           <span class="separator">|</span>  
           <a href="mailto:<?php echo (isset($site_email))?$site_email:''; ?>"><?php echo (isset($site_email))?$site_email:''; ?></a> 
           <?php 
@@ -39,7 +45,7 @@
           <?php } */ ?>
         </p>
       </div>
-      <div class="col-xs-6 text-right" style="padding-right:0px;">
+      <div class="col-xs-12 col-md-6 footerRight">
         <a href="<?php echo site_url('/').$lang.'/collaborators/login'; ?>"><?php echo lang('collaborators_access'); ?></a> <span class="separator">|</span>  <a href="<?php echo site_url('/').$lang; ?>/terms"><?php echo lang('terms_and_conditions'); ?></a> <span class="separator">|</span> 
         <a href="<?php echo (isset($social_facebook))?$social_facebook:'#'; ?>" style="display:none;"><img src="<?php echo IMAGEPATH;?>facebook.png" style="width:20px;"></a> <span class="separator" style="display:none;">|</span> 
         <a href="<?php echo $full_path_es; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>spain.png" style="width:20px;"></a> <span class="separator">|</span> 

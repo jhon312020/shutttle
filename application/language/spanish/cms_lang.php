@@ -1328,4 +1328,3 @@ $lang['cvc'] = 'CVC';
 $lang['mm'] = 'MM';
 $lang['yyyy'] = 'YYYY';
 ?>
-
