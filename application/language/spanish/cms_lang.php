@@ -882,7 +882,7 @@ $lang['children_under_5_free'] = 'Gratis niños menores de 5 años';
 
 $lang['1_bag_free'] = '1 Maleta Gratis';
 
-$lang['select_your_extras'] = 'Selecciones sus extras';
+$lang['select_your_extras'] = 'Extras';
 
 $lang['extra_luggage'] = 'Maletas extra';
 
@@ -1311,7 +1311,7 @@ $lang['pay_by_credit'] = 'Credit card';
 $lang['how_pay'] = 'How you want to pay?';
 
 $lang['landing_day_and_time'] = 'Día y hora de llegada';
-$lang['flight_day_and_time'] = 'Día y hra de vuelo';
+$lang['flight_day_and_time'] = 'Día y hora de vuelo';
 $lang['people'] = 'Viajeros:';
 $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';

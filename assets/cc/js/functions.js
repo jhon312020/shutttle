@@ -147,6 +147,9 @@ function addPlaceInput(select){
 			start_journey.attr('placeholder', flight_day_and_time);
 			$('.jsTerminal option:first').text(select_terminal);
 
+			$('span[data-id="flight_time"]').prev().text(flight_time);
+			$('span[data-id="flightlanding_time"]').prev().text(flight_landing_time);
+			console.log(flight_time, flight_landing_time)
 		} else if (_this.val()== 'airport') {
 			if($( "[name=end_at]").prop('tagName').toLowerCase() == 'select') {
 				var start_clone = $('[name=start_from]').clone();
@@ -172,8 +175,12 @@ function addPlaceInput(select){
 			return_journey.attr('placeholder', flight_day_and_time);
 			start_journey.attr('placeholder', landing_day_and_time);
 			$('.jsTerminal option:first').text(select_terminal);
+
+			$('span[data-id="flight_time"]').prev().text(flight_landing_time);
+			$('span[data-id="flightlanding_time"]').prev().text(flight_time);	
 		}
 		$('#autoCompletePlace').attr('Placeholder', type_hotel);
+
 		//$( "#autoCompletePlace").focus();
 		postcodeChange();
 }

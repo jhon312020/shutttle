@@ -10,12 +10,12 @@
 					'source'=>'start_from',
 					'designation'=>'end_at',
 					'start_date'=>'start_journey',
+					'flight_time'=>'flight_time',
 					'end_date'=>'return_journey',
+					'flightlanding_time'=>'flightlanding_time',
 					'no_of_passengers'=>'adults',
 					/*'country_origin'=>'country',
 					'flight_no'=>'flight_no',*/
-					'flight_time'=>'flight_time',
-					'flightlanding_time'=>'flightlanding_time',
 				);
 				foreach ($leftSidebar as $key => $value) {
 				?>

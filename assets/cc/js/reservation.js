@@ -139,28 +139,30 @@ $(document).ready(function(){
 								$('#secondLeftStep').show();
 							}
 							
-							$('.duplicateList').each(function(){
+							$('.duplicateList').each(function() {
 								var dataId = $(this).data('id');
 								if(dataId == 'flight_time') {
 									$(this).text(data['format_starttime']);
 								} else if(dataId == 'flightlanding_time') {
-									if($('[name=return_hours]').val() != '') {
+									if($('[name=return_journey]').val() != '') {
+										$(this).closest('div').show();
 										$(this).text(data['format_returntime']);
 									}
 									else {
-										$(this).hide();
-										$(this).prev().hide();
+										$(this).closest('div').hide();
+										//$(this).prev().hide();
 									}
 									
 								} else if(dataId == 'start_journey') {
 									$(this).text(data['format_startdate']);
 								} else if(dataId == 'return_journey') {
 									if($('[name=return_journey]').val() != '') {
+										$(this).closest('div').show();
 										$(this).text(data['format_returndate']);
 									}
 									else {
-										$(this).hide();
-										$(this).prev().hide();
+										$(this).closest('div').hide();
+										//$(this).prev().hide();
 									}
 									
 								} else if(dataId == 'country') {
@@ -674,10 +676,17 @@ $(document).ready(function(){
 		}
 		
 		var valid = $(".validateForm1").validationEngine('validate');
+		var payment_valid = true;
+		var paymentmethod = null;
+		if($('[name=paymentmethod]').length && $('[name=paymentmethod]:visible')) {
+			payment_valid = $("#stripeform").validationEngine('validate');
+			var paymentmethod = $('[name=paymentmethod]:checked').val();
+		}
 
-		if(valid) {
+		if(valid && payment_valid) {
+			
 			ele.prop('disabled', false);
-			if(totAmount == 0) {
+			if(totAmount == 0 || (paymentmethod != null && paymentmethod != 'online')) {
 				createBooking(ele);
 			} else {
 				$('#booking_details').hide();

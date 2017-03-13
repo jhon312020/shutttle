@@ -122,7 +122,7 @@
 			<div class="row mybox-3">
 				<div class="col-xs-12 myapplicar no-pad-left">
 				<!--<div class="col-xs-4" style="padding-left:0px;"><h4 style="font-weight:bold;"><?php //echo lang('promotional_code'); ?></h4></div>-->
-					<div class="col-xs-6" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
+					<div class="col-xs-4" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
 					<div class="col-xs-2" style="margin-top:3px"> 
 						<button class="btn btn-default pull-right applicarbtn promo-btn"><?php echo lang('apply'); ?></button>
 					</div>
