@@ -65,6 +65,8 @@ $this->load->view('modals/duplicate_modal');
   var invalid_date = "<?php echo lang('invalid_date'); ?>";
   var select_terminal = "<?php echo lang('select_terminal'); ?>";
   var stripeKey = '<?php echo $this->config->item('STRIPE_PUBLIC_KEY'); ?>';
+ 	var flight_time = "<?php echo lang('flight_time'); ?>";
+ 	var flight_landing_time = "<?php echo lang('flightlanding_time'); ?>";
   var startValid = false;
 </script>
 <?php $this->load->view('footer');?>

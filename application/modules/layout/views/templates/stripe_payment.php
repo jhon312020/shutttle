@@ -3,7 +3,7 @@
     <input type="hidden" name="amount" class="amount">
     <div class="row row-eq-height payment-div">
       <div class="col-md-3 bor-grey">
-        <h4 style="font-weight:bold;color: #25387d;">Summary: 
+        <h4 style="font-weight:bold;color: #25387d;"><?php echo lang('summary'); ?>: 
         </h4> 
         <p></p>
         <?php
@@ -12,12 +12,12 @@
           'source'=>'start_from',
           'designation'=>'end_at',
           'start_date'=>'start_journey',
+          'flight_time'=>'flight_time',
           'end_date'=>'return_journey',
+          'flightlanding_time'=>'flightlanding_time',
           'no_of_passengers'=>'adults',
           /*'country_origin'=>'country',
           'flight_no'=>'flight_no',*/
-          'flight_time'=>'flight_time',
-          'flightlanding_time'=>'flightlanding_time',
         );
         foreach ($leftSidebar as $key => $value) {
         ?>
@@ -88,7 +88,7 @@
     </div> 
     <div class="row">
       <div class="col-md-12 mar-btn">
-        <button type="button" class="btn btn-block btn-pay pull-left jsbackToDetails"><?php echo lang('back'); ?></button>
+        <button type="button" class="btn btn-block btn-pay pull-left jsbackToDetails"><?php echo lang('return'); ?></button>
         <button type="button" class="btn btn-block btn-pay pull-right paypalsubmit"  id="submitBtn"><?php echo lang('pay'); ?></button>
       </div>
     </div>

@@ -33,6 +33,7 @@
               <form id="firstStepForm" action="" method="post" role="form" style="display: block;" class="validateForm">
                 <input type="hidden" name="mode" value="firstStep">
                 <input type="hidden" name="hours" value="00">
+                <input type="hidden" name="lang" value="<?php echo $lang; ?>">
                 <input type="hidden" name="minutes" value="00">
                 <input type="hidden" name="return_hours" value="23">
                 <input type="hidden" name="return_minutes" value="00">

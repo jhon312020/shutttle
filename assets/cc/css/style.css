@@ -1094,6 +1094,7 @@ span.step {
         color: #4577d8;
         margin-top: 15px;
         margin-bottom: 15px;
+        height: 40px !important;
     }
     .mycolwid2{
         padding: 20px;
@@ -1576,8 +1577,8 @@ textarea {
 /* This is from our end */
 #phone, #address, #cp, #client_country, #city, #nationality, #dni_passport, #doc_no {
     /* background-color: #F5F5F5; */
-    background-color: #D3D3D3 !important;
-    border-color: 1px solid #D3D3D3 !important;
+    background-color: #808080 !important;
+    border-color: #808080 !important;
 }
 input[type="text"]#phone:-moz-placeholder, 
 input[type="text"]#address:-moz-placeholder,
@@ -1630,7 +1631,10 @@ input[type="text"]#doc_no::-webkit-input-placeholder
 .promo-btn {
   margin-top: 14px !important;
   float: none !important;
-  padding: 9px 15px !important;
+  padding: 5px 15px !important;
+  background-color: #808080 !important;
+    border-color: #808080 !important;
+
 }
 .no-bold-step1 {
     font-family:Gothamlight !important;

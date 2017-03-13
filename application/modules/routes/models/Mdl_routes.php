@@ -189,6 +189,15 @@ class Mdl_routes extends Response_Model {
      * @return [type]          [description]
      */
 	public function getcar($data, $details) {
+
+		if($data['lang'] == 'es') {
+			setlocale(LC_ALL, "es_ES", 'Spanish_Spain', 'Spanish');
+			// Set locale to Spanish Argentina, change to your installed language
+			//setlocale(LC_TIME, 'ca_ES');
+
+			//echo json_encode(strftime("%B %d, %Y", time()));exit;
+		}
+		
 		// Journey Starting Date and Time
 		$journeyStartDate 	  = str_replace('/','-',$this->input->post('start_journey'));
 		$journeyStartDate 	  = date('Y-m-d', strtotime($journeyStartDate));
@@ -441,7 +450,8 @@ class Mdl_routes extends Response_Model {
 							$journeyReturnTime 		= $data['return_hours'].':'.$data['return_minutes'];
 							$journeyReturnDateTime	= $journeyReturnDate.' '.$journeyReturnTime;
 							
-							$result['format_returndate'] = date('l d - F', strtotime($journeyReturnDateTime));
+							//$result['format_returndate'] = date('l d - F', strtotime($journeyReturnDateTime));
+							$result['format_returndate'] = utf8_encode(ucwords(strftime('%A %d - %B', strtotime($journeyReturnDateTime))));
 							$result['format_returntime'] = date('H:i', strtotime($journeyReturnDateTime));
 							
 							$returnDateTime = date('Y-m-d H:i',strtotime('-2 hour -30 minutes',strtotime($journeyReturnDateTime)));
@@ -583,7 +593,10 @@ class Mdl_routes extends Response_Model {
 						
 						//$rates = explode('^', (isset($rate[$total_seats]))?$rate[$total_seats]:end($rate));
 						$result['rates'] = 0;
-						$result['format_startdate'] = date('l d - F', strtotime($journeyStartDateTime));
+						//$result['format_startdate'] = ucwords(strftime('%A %d - %B', strtotime($journeyStartDateTime)));
+
+						$result['format_startdate'] = utf8_encode(ucwords(strftime('%A %d - %B', strtotime($journeyStartDateTime))));
+						//$result['format_startdate'] = date('l d - F', strtotime($journeyStartDateTime));
 						$result['format_starttime'] = date('H:i', strtotime($journeyStartDateTime));
 						$result['bcnaddress_id'] = $bcnaddress_id;
 						$result['zone'] = $data['zone'];
