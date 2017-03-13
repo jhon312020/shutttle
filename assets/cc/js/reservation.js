@@ -674,10 +674,17 @@ $(document).ready(function(){
 		}
 		
 		var valid = $(".validateForm1").validationEngine('validate');
+		var payment_valid = true;
+		var paymentmethod = null;
+		if($('[name=paymentmethod]').length && $('[name=paymentmethod]:visible')) {
+			payment_valid = $("#stripeform").validationEngine('validate');
+			var paymentmethod = $('[name=paymentmethod]:checked').val();
+		}
 
-		if(valid) {
+		if(valid && payment_valid) {
+			
 			ele.prop('disabled', false);
-			if(totAmount == 0) {
+			if(totAmount == 0 || (paymentmethod != null && paymentmethod != 'online')) {
 				createBooking(ele);
 			} else {
 				$('#booking_details').hide();

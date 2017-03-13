@@ -65,5 +65,6 @@ $this->load->view('modals/duplicate_modal');
   var invalid_date = "<?php echo lang('invalid_date'); ?>";
   var select_terminal = "<?php echo lang('select_terminal'); ?>";
   var stripeKey = '<?php echo $this->config->item('STRIPE_PUBLIC_KEY'); ?>';
+  var startValid = false;
 </script>
 <?php $this->load->view('footer');?>
