@@ -29,8 +29,8 @@
                 $content = $box->text_above_banner_es;
               } else {
                 $image_name = $box->image;
-                $title = $box->title_es;
-                $content = $box->text_above_banner_es; 
+                $title = $box->title;
+                $content = $box->text_above_banner; 
               }
             ?>
           <a href="<?php echo $link; ?>" target="_blank">
