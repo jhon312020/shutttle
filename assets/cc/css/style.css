@@ -1295,7 +1295,7 @@ span.step{
 .circle-show{
     display:none;
 }
-.book-desk{
+.book-desk ul{
     display: block;
 }
 .Enter-lg{
@@ -1328,7 +1328,7 @@ span.step{
     .circle-show{
         display:block;
     }
-    .book-desk{
+    .book-desk ul {
         display: none;
     }
     .tabbable-line > .tab-content{
@@ -1380,7 +1380,7 @@ span.step{
 .circle-show{
     display:block;
 }
-.book-desk{
+.book-desk ul{
     display: none;
 }
 .tabbable-line > .tab-content{
