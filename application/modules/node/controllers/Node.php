@@ -77,6 +77,11 @@ class Node extends Anonymous_Controller {
     //echo json_encode($months);die;
     $this->template_vars['months'] = $months;
 
+    $rang_years = range(date('Y'), date('Y') + 30);
+    $years = array("" => "Select Year") + array_combine($rang_years, $rang_years);
+    $this->template_vars['years'] = $years;
+    //print_r($years);die;
+
     $lang = $this->uri->segment(1);
     if ($lang == '' || $lang == 'es' || $lang == 'en' ) {
       $this->template_vars['lang'] = $lang;

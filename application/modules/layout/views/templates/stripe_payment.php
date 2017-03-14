@@ -3,7 +3,7 @@
     <input type="hidden" name="amount" class="amount">
     <div class="row row-eq-height payment-div">
       <div class="col-md-3 bor-grey">
-        <h4 style="font-weight:bold;color: #25387d;"><?php echo lang('summary'); ?>: 
+        <h4 style="font-weight:bold;color: #25387d;"><?php echo lang('summary'); ?>
         </h4> 
         <p></p>
         <?php
@@ -66,7 +66,7 @@
               </div>
               <div class="form-group col-xs-6 pad-year">
                 <?php 
-                  echo  form_input(array('type'=>'text', 'placeholder'=>lang('yyyy'), 'class'=>'card-expiry-year form-control validate[required]', 'autocomplete'=>'off', 'maxlength'=>'4', 'data-errormessage-value-missing'=>lang('require_field')));
+                  echo  form_dropdown('years', $years, null, 'class="card-expiry-year form-control validate[required]" data-errormessage-value-missing="'.lang('require_field').'"');
                 ?>
               </div>
             </div>
