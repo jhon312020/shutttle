@@ -19,17 +19,40 @@
   <?php } ?>
   
   <div class="">
-    <div class="col-lg-12">
-      <hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:10px;" class="bigHR">
-    </div>
-      <div class="col-sm-8">
-        <hr style="border-width: 2px;border-color: #25387D;width:88%;margin-top:50px;" class="faqHR" />
+    <!--<div class="col-lg-12 footerBorder" style="padding:0;">
+      <hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:10px;padding-left:40px;" class="bigHR">
+    </div>-->
+      <div class="col-sm-12">
+        <hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:50px;" class="faqHR" />
       </div>
   </div>
   
-  <footer id="footer" class="container"> 
-    <div class="mob-hide">
-      <div class="col-xs-12 col-md-6" style="padding-left:0px;">
+  <footer id="footer" class="container" style="padding:0;"> 
+	 <!-- FOR HOME PAGE MORE THAN 768px --> 
+    <div class="mob-hide col-md-12" style="padding: 0 11.7%;">
+		<div class="col-xs-12 col-md-12 footerBorder" style="padding:0;">
+      		<hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:10px;" class="bigHR">	
+		</div>
+		
+	<!-- FOR HOME PAGE LESS THAN 768px -->
+	<!--<div class="mob-hide col-md-12" style="padding: 0">
+		<div class="col-xs-12 col-md-12 footerBorder" style="padding:0;">
+      		<hr style="border-width: 2px;border-color: #25387D;width:100%;margin:0;margin-top:10px;" class="bigHR">	
+		</div>
+	  -->
+	  <!-- FOR CONTACT PAGE FROM 1200+ WIDTH -->
+	  <!--<div class="mob-hide col-md-12" style="padding: 0 3.9%;">
+		<div class="col-xs-12 col-md-12 footerBorder" style="padding:0;">
+      		<hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:10px;" class="bigHR">	
+    	</div>
+	  
+	  <!-- FOR CONTACT PAGE FROM 768-1200 WIDTH -->
+	  <!--<div class="mob-hide col-md-12" style="padding: 0 11.7%;">
+		<div class="col-xs-12 col-md-12 footerBorder" style="padding:0;">
+      		<hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:10px;" class="bigHR">	
+    	</div>-->
+		  
+      <div class="col-xs-12 col-md-6 footerLeft">
         <p><strong><b><?php echo (isset($site_title))?$site_title:'Shuttleing S.L.'; ?></b></strong>
           <?php /* if(isset($site_email) && trim($site_email)) { ?>
 

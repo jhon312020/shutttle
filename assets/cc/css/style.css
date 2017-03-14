@@ -1325,6 +1325,9 @@ textarea {
     background: #25377d;
 }
 
+.footerBorder {
+}
+
 /* This is from our end */
 #phone, #address, #cp, #client_country, #city, #nationality, #dni_passport, #doc_no {
     /* background-color: #F5F5F5; */
@@ -1462,11 +1465,19 @@ input:focus#promo_code:-ms-input-placeholder {
 	.mob-hide > div {
 		padding: 0;
 	}
-	.mob-hide > div:first-child {
+	.footerLeft {
 		text-align: left;
 	}
-	.mob-hide > div:last-child {
+	.footerRight {
 		text-align: right;
+	}
+	
+	.contacto input {
+		width: 220px;
+	}
+	
+	.contacto textarea {
+		width: 300px;
 	}
 }
 
@@ -1486,6 +1497,14 @@ input:focus#promo_code:-ms-input-placeholder {
         padding-right:5%;
         margin-left: 18px;
     }
+	
+	.contacto input {
+		width: 280px;
+	}
+	
+	.contacto textarea {
+		width: 420px;
+	}
 }
 @media (min-width: 992px) and (max-width: 1199px){
 .circleone{

@@ -15,7 +15,7 @@
 			<br>Tel. <?php echo (isset($telephone))?$telephone:''; ?></p>
 			<p>&nbsp;</p>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-7">
 			<div class="col-sm-12">
 				<div class="row contacto">
 					<form method="post" name="contact_form">
@@ -27,7 +27,7 @@
 							<input type="text" class="form-control" name="email" id="email" placeholder="<?php echo lang('surname'); ?>" required>
 						</div>
                         
-						<div class="col-sm-9 col-xs-12 con_msg mar-bottom removeRightPad">
+						<div class="col-sm-8 col-xs-12 con_msg mar-bottom removeRightPad">
 							<textarea name="description" id="description" class="form-control" placeholder="<?php echo lang('Comment'); ?>" required></textarea>
 							<!--<button type="submit" id="form-submit" class="btn btn-block downbtn"><?php echo lang('send'); ?></button>-->
 						</div>
