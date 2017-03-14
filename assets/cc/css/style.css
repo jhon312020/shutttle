@@ -36,9 +36,13 @@ Licensed under MIT
 .titleFont {
 	font-family: kingbasil, sans-serif;
 	position: relative;
-	padding-top: 150px;
+	padding-top: 80px;
 	font-size: 100px;
-	color: #f7e772;
+	/*color: #f7e772;*/
+    color: #fff;
+    -ms-transform: rotate(-12deg); /* IE 9 */
+    -webkit-transform: rotate(-12deg); /* Chrome, Safari, Opera */
+    transform: rotate(-12deg);
 }
 
 .shuttleingBox {
@@ -46,14 +50,14 @@ Licensed under MIT
 	background: #ea5b55;
 	color: #ffffff;
 	width: 240px;
-	height: 80px;
-	line-height: 80px;
+	height: 60px;
+	line-height: 60px;
 	font-size: 40px;
 	margin: auto;
 	font-family: Trumpgothiceastbold;
 	letter-spacing: 8px;
 	position: relative;
-	top: -70px;
+	top: -40px;
 }
 
 #csl-item1 {
@@ -1636,11 +1640,6 @@ span.step{
     .contactDetailsDiv {
         text-align: center;
     }
-    
-    .bigHR {
-        display: none;
-    }
-    
     section {
         padding-top: 25px;
         padding-bottom: 25px;
@@ -1649,10 +1648,6 @@ span.step{
     .section-heading {
         font-size: 2em;
     }
-    .navbar-lang {
-        right: 120px;
-    }
-    
     .home-label {
         padding: 0 5% !important;
     }
@@ -1662,6 +1657,9 @@ span.step{
     #navbar li a {
         margin-top: 15px;
         margin-left: 0px !important;
+    }
+    .bigHR {
+        display: none;
     }
 }
 

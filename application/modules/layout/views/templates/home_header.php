@@ -1,43 +1,40 @@
 <?php
 $user_name = $this->session->userdata('user_name');
-$title = $this->mdl_settings->setting('site_title') . " | Admin Panel";
+$title = $this->mdl_settings->setting('site_title');
 $cms_lang = $this->session->userdata('cms_lang');
 //$language = array('english'=>'en', 'spanish'=>'es');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Shuttleing – Low cost shuttle Barcelona </title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="<?php echo $title; ?>" />
-	<meta name="author" content="" />
-	
-	<!--<title><?php echo $title; ?></title>-->
-	
 	<?php
 	if($cms_lang == 'english'){
 	?>
-	<title><?php echo $title; ?> Shuttle </title>
-	<meta name="description" content="Shuttle">
-	<meta name="keywords" content="Shuttle">
-	<meta name="robot" content="index,follow">
-	<meta name="copyright" content="Copyright © Shuttle">
-	<meta name="author" content="Grupo Visualiza - www.grupovisualiza.com">
-	<meta name="generator" content="www.onlinemetatag.com">
+	<meta name="description" content="Best low cost transport from Barcelona Airport to the City and vice versa. Free Wifi Internet.">
+	<meta name="keywords" content="Shuttle, shuttleing, barcelona, driver, transport, taxi, airport, city, transfer, bus">
+	<meta name="copyright" content="Shuttleing S.L.">
+	<meta name="author" content="Grupo Visualiza">
+	<meta name="designer" content="www.grupovisualiza.com">
+	<meta name="email" content="info@shuttleing.com">
+	<meta name="robots" content="index, follow">
+	<meta name="googlebot" content="index, follow">
 	<meta name="language" content="EN">
 	<?php
 	}
 	else{
 	?>
-	<title><?php echo $title; ?>  Shuttle </title>
-	<meta name="description" content="Shuttle">
-	<meta name="keywords" content="Shuttle">
-	<meta name="robot" content="index,follow">
-	<meta name="copyright" content="Copyright © Shuttle">
-	<meta name="author" content="Grupo Visualiza - www.grupovisualiza.com">
-	<meta name="generator" content="www.onlinemetatag.com">
+	<meta name="description" content="Best low cost transport from Barcelona Airport to the City and vice versa. Free Wifi Internet.">
+	<meta name="keywords" content="Shuttle, shuttleing, barcelona, driver, transport, taxi, airport, city, transfer, bus">
+	<meta name="copyright" content="Shuttleing S.L.">
+	<meta name="author" content="Grupo Visualiza">
+	<meta name="designer" content="www.grupovisualiza.com">
+	<meta name="email" content="info@shuttleing.com">
+	<meta name="robots" content="index, follow">
+	<meta name="googlebot" content="index, follow">
 	<meta name="language" content="ES">
 	<?php	
 	}
