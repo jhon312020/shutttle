@@ -72,5 +72,7 @@ $cms_lang = $this->session->userdata('cms_lang');
     
   ?>
   <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH.$image_name; ?>') no-repeat center center scroll;">
+	  <div class="titleFont">HELLO</div>
+	  <div class="shuttleingBox"><p>SHUTTLEING.</p></div>
     <img class="img-responsive img-center"  alt="">
   </header>

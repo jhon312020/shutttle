@@ -29,7 +29,7 @@
   
   <footer id="footer" class="container"> 
     <div class="mob-hide">
-      <div class="col-xs-6" style="padding-left:0px;">
+      <div class="col-xs-12 col-md-6" style="padding-left:0px;">
         <p><strong><b><?php echo (isset($site_title))?$site_title:'Shuttleing S.L.'; ?></b></strong>
           <?php /* if(isset($site_email) && trim($site_email)) { ?>
 
