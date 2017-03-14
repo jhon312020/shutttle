@@ -381,6 +381,7 @@ class Node extends Anonymous_Controller {
 	 */
   public function terms() {
     $this->template_vars['bottom_data'] = $this->db->select('*')->from('captions')->where(array('type' => 'terms_and_conditions'))->get()->result();
+    $this->template_vars['content']['image'] = 'termsandconditions-v2.jpg';
     $this->load->view('layout/templates/terms', $this->template_vars);
   }
   
@@ -530,6 +531,7 @@ class Node extends Anonymous_Controller {
 
     $this->template_vars['price'] = $this->input->get('amt');
     $this->template_vars['book_reference'] = $this->template_vars['start_journey']['reference_id'].' - '.sprintf("%02d", $this->template_vars['bookings']['id']);
+    $this->template_vars['content']['image'] = 'payment.jpg';
     $this->load->view('layout/templates/success', $this->template_vars);
     
     if ($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12') {
@@ -620,6 +622,7 @@ class Node extends Anonymous_Controller {
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
     $this->template_vars['terminal_array'] = array('' => lang('to'), 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
     //echo '<pre>'; print_r($this->template_vars); echo '</pre>';
+    $this->template_vars['content']['image'] = 'reserva.jpg';
     $this->load->view('layout/templates/reservation', $this->template_vars);
   }
   

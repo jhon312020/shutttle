@@ -64,7 +64,7 @@ $cms_lang = $this->session->userdata('cms_lang');
     if (isset($content['image']) && $content['image'] != '') {
       $image_name = 'captions/'.$content['image'];
     } else if ($this->session->userdata('user_type') == 2) {
-      $image_name = 'collaborators.jpg';
+      $image_name = 'captions/collaborators.jpg';
     }else{
       $image_name = 'ready.jpg';
     }
@@ -72,7 +72,7 @@ $cms_lang = $this->session->userdata('cms_lang');
     
   ?>
   <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH.$image_name; ?>') no-repeat center center scroll;">
-	  <div class="titleFont">HELLO</div>
-	  <div class="shuttleingBox"><p>SHUTTLEING.</p></div>
+	  <!-- <div class="titleFont">HELLO</div>
+	  <div class="shuttleingBox"><p>SHUTTLEING.</p></div> -->
     <img class="img-responsive img-center"  alt="">
   </header>
