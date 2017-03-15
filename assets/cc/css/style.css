@@ -1468,6 +1468,9 @@ input:focus#promo_code:-ms-input-placeholder {
 	#footer {
 		padding: 0;
 	}
+	.mob-hide {
+		padding: 0 3.5% !important;
+	}
 	.mob-hide > div {
 		padding: 0;
 	}
@@ -1479,17 +1482,23 @@ input:focus#promo_code:-ms-input-placeholder {
 	}
 	
 	.contacto input {
-		width: 220px;
+		width: 300px;
 	}
 	
 	.contacto textarea {
-		width: 300px;
+		width: 470px;
+	}
+	.newspad {
+		margin: auto;
 	}
 }
 
 /* Above 1200px */
 
 @media (min-width: 1199px) {
+	.mob-hide {
+		padding: 0 5% !important;
+	}
     .circleone{
         padding-left:4%;
         padding-right:5%;
@@ -1505,11 +1514,17 @@ input:focus#promo_code:-ms-input-placeholder {
     }
 	
 	.contacto input {
-		width: 280px;
+		width: 360px;
 	}
 	
 	.contacto textarea {
-		width: 420px;
+		width: 580px;
+	}
+	.newspad a img {
+		margin: auto;
+	}
+	.newspad a h1 {
+		padding-left: 20px;
 	}
 }
 @media (min-width: 992px) and (max-width: 1199px){
@@ -1526,10 +1541,13 @@ input:focus#promo_code:-ms-input-placeholder {
     padding-right:3%;
     margin-left: 7px;
 }
+	.contactSection {
+		padding: 0;
+	}
 }
 @media (min-width: 768px) and (max-width: 992px){
 	.contactSection {
-		padding: 0 9%;
+		padding: 0 0.3%;
 	}
 .nav-tabs {
     font-size: 15px;
@@ -1556,6 +1574,9 @@ span.step{
 .container{
     width: 100%;
 }
+	.mob-hide {
+		padding: 0 3.5% !important;
+	}
 }
 @media (min-width: 768px){
 .circle-show{
@@ -1574,6 +1595,9 @@ span.step{
 .downbtn{
     margin-top:99px;
 }
+.newspad {
+		margin: auto;
+	}
 }
 @media (max-width: 768px){
 	#contactus.container {
@@ -1635,6 +1659,12 @@ span.step{
     .downbtn{
         margin-bottom:10px;
     }
+	.newspad a img {
+		margin: auto;
+	}
+	.newspad a h1 {
+		padding-left: 20px;
+	}
 }
 @media (min-width: 768px) {   
     .faqHR {
