@@ -11,6 +11,7 @@ class Node extends Anonymous_Controller {
    * 
 	 * @return	void
 	 */
+  
   public function __construct() {
     parent::__construct();
     $this->load->model('node/mdl_nodes');
@@ -76,6 +77,7 @@ class Node extends Anonymous_Controller {
     //print_r($months);die;
     //echo json_encode($months);die;
     $this->template_vars['months'] = $months;
+    $this->template_vars['header_text_images'] = $this->header_text_images;
 
     $rang_years = range(date('Y'), date('Y') + 30);
     $years = array("" => "Select Year") + array_combine($rang_years, $rang_years);

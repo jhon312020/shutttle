@@ -24,8 +24,9 @@
                 <div style="background:url(<?php echo IMAGEPATH.'homepage/slider/'.$slider->image;?>);background-repeat: no-repeat;background-position: center top;background-size: cover;" class="carousel-image cs-item">&nbsp;</div>
                 <div class="container">
                     <div class="carousel-caption">
-                    <div class="titleFont">Ready?</div>
-                        <div class="shuttleingBox"><p>SHUTTLEING.</p></div>
+                    <!-- <div class="titleFont">Ready?</div>
+                    <div class="shuttleingBox"><p>SHUTTLEING.</p></div> -->
+                    <img src="<?php echo IMAGEPATH.'header/sliders/'.$count.".png" ?>" class="headerTexto img-center" />
                         <p><?php echo $slogan; ?></p>
                         <p><a class="btn btn-lg" href="<?php echo site_url($ln."/reservation"); ?>" role="button"><?php echo lang('book_now1'); ?></a></p>
                     </div>

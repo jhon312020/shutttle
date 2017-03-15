@@ -5,6 +5,15 @@ if (!defined('BASEPATH'))
 class Anonymous_Controller extends MX_Controller {
 
     public $ajax_controller = false;
+    var $header_text_images = array(
+        "aboutus"=>"aboutus.png", 
+        "reservation"=>"booknow.png",
+        "faq"=>"faq.png",
+        "contacts"=>"contacts.png",
+        "terms"=>"terms.png",
+        "success"=>"payment.png",
+        "collaborators"=>"collaborators.png"
+    );
 
     public function __construct() {
       parent::__construct();

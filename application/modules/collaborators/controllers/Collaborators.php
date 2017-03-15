@@ -71,6 +71,8 @@ class Collaborators extends Anonymous_Controller {
     } else {
       $this->template_vars['lang'] = 'es';
     }
+    $this->template_vars['header_text_images'] = $this->header_text_images;
+
   }
   
   /**

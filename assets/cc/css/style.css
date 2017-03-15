@@ -1607,7 +1607,7 @@ span.step{
 		padding: 0;
 	}
 	.headerTexto {
-		width: 70%;
+		width: 80%;
 		position: relative;
 	}
     .form-bottom{
@@ -1681,7 +1681,7 @@ span.step{
     }
 	
 	.headerTexto {
-		width: 40%;
+		width: 50%;
 		position: relative;
 	}
 }
