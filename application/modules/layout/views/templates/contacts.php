@@ -8,7 +8,7 @@
 	}
 ?>
 <div class="container" id="contactus">
-	<div class="col-sm-12">
+	<div class="col-sm-12 contactSection">
 		<div class="col-md-3 col-md-offset-1 col-sm-12 contactDetailsDiv">
 			<span class="contact-details" id="fobo"><?php echo lang('contact_details'); ?></span>
 			<p class="contactp">Mail. <?php echo (isset($address))?$address:''; ?>

@@ -638,6 +638,7 @@ span.step {
     .image-bg-fluid-height {
        height: 450px;
        margin-bottom: 30px;
+		line-height: 450px;
     }
 
     .image-bg-fixed-height {
@@ -1527,6 +1528,9 @@ input:focus#promo_code:-ms-input-placeholder {
 }
 }
 @media (min-width: 768px) and (max-width: 992px){
+	.contactSection {
+		padding: 0 9%;
+	}
 .nav-tabs {
     font-size: 15px;
 }
@@ -1572,6 +1576,16 @@ span.step{
 }
 }
 @media (max-width: 768px){
+	#contactus.container {
+		padding: 0 !important;
+	}
+	.contactSection {
+		padding: 0;
+	}
+	.headerTexto {
+		width: 70%;
+		position: relative;
+	}
     .form-bottom{
         height:100%;
     }
@@ -1635,6 +1649,11 @@ span.step{
     .navbar-toggle{
         display: block;
     }
+	
+	.headerTexto {
+		width: 40%;
+		position: relative;
+	}
 }
 @media(max-width:768px) {
     
