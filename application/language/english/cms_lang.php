@@ -290,7 +290,7 @@ $lang['tax_rates'] = 'Tax Rates';
 $lang['tax'] = 'Tax';
 $lang['team'] = 'Team';
 $lang['terms'] = 'Terms';
-$lang['collaborators_access'] = 'Collaborators Access';
+$lang['collaborators_access'] = 'Partners Access';
 $lang['this_month'] = 'This Month';
 $lang['this_year'] = 'This Year';
 $lang['title'] = 'Title';
@@ -698,5 +698,5 @@ $lang['about_us1'] = 'About us';
 $lang['book_now1'] = 'Book now';
 $lang['contact_us'] = 'Contact us';
 $lang['reserve_now'] = 'BOOK NOW';
-
+$lang['home_intro'] = "Comfortable, reliable transportation is hard thing to find. It's even more difficult to find a driver that you know and trust. You need a chauffeur that will get you where you want to go, when you need to be there. At Shuttleing we provide luxurious, reliable, and professional shuttle service whenever you need it. Don't mess around with sketchy transportation services. Use a service you know and trust.";
 ?>

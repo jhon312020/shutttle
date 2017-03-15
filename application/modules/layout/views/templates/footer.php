@@ -100,6 +100,8 @@
     <!-- Validation Engine js -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine-en.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/jquery.validationEngine.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/cc/js/jquery.counterup.min.js"></script>
     <!-- Loading the necessary js and css based on the contoller values as per the page needs -->
     <?php 
       if (isset($css)) { 
@@ -113,5 +115,10 @@
         }
       }
     ?>
+  <script type="text/javascript">
+  $(document).ready( function() {
+    $('.counter').counterUp();
+  });
+</script>
 <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="25" style="font-weight:bold;font-size:25pt;font-family:Arial, Helvetica, Open Sans, sans-serif">500x500</text></svg></body>
 </html>

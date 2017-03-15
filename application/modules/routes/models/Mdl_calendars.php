@@ -86,6 +86,18 @@ class Mdl_calendars extends Response_Model {
             }
         }
     }
+    
+  /* Function to get total number of trips
+  *
+  */
+  public function get_total_trips() {
+    $total_trips = 0;
+    $calendars = $this->mdl_calendars->select('id')->where('service_date < ', date('Y-m-d'))->get();
+    if ($calendars) {
+      $total_trips = $calendars->num_rows();
+    }
+    return $total_trips;
+  } 
 
 }
 

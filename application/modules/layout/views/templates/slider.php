@@ -27,7 +27,7 @@
                     <div class="titleFont">Ready?</div>
                         <div class="shuttleingBox"><p>SHUTTLEING.</p></div>
                         <p><?php echo $slogan; ?></p>
-                        <p><a class="btn btn-lg" href="<?php echo site_url($ln."/reservation"); ?>" role="button">BOOK NOW</a></p>
+                        <p><a class="btn btn-lg" href="<?php echo site_url($ln."/reservation"); ?>" role="button"><?php echo lang('book_now1'); ?></a></p>
                     </div>
                 </div>
             </div>

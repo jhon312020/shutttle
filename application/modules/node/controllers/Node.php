@@ -106,7 +106,9 @@ class Node extends Anonymous_Controller {
     if ($ln == '')
       redirect("en");
     $this->load->model('booking/mdl_booking');
+    $this->load->model('calendars/mdl_calendars');
     $this->template_vars['total_people'] = $this->mdl_booking->get_total_people_tavelled();
+    $this->template_vars['total_trips'] = $this->mdl_calendars->get_total_trips();
     $this->template_vars['sliders'] = $this->mdl_nodes->fetchAllSliders();
     $this->template_vars['banner'] = $this->mdl_nodes->fetchBannerLast();
     $this->template_vars['boxes'] = $this->mdl_nodes->fetchAllBoxes();
@@ -380,8 +382,9 @@ class Node extends Anonymous_Controller {
 	 * @return	void
 	 */
   public function terms() {
-    $this->template_vars['bottom_data'] = $this->db->select('*')->from('captions')->where(array('type' => 'terms_and_conditions'))->get()->result();
-    $this->template_vars['content']['image'] = 'termsandconditions-v2.jpg';
+    //$this->template_vars['content'] = $this->db->select('*')->from('captions')->where(array('type' => 'terms_and_conditions'))->get()->row();
+    $this->load->model('captions/mdl_captions');
+    $this->template_vars['content'] = $this->mdl_captions->getRow('terms_and_conditions', $this->uri->segment(1));
     $this->load->view('layout/templates/terms', $this->template_vars);
   }
   

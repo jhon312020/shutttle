@@ -580,7 +580,7 @@ $lang['team'] = 'Equipo';
 
 $lang['terms'] = 'Terms';
 
-$lang['collaborators_access'] = 'Acceso Colaboradores';
+$lang['collaborators_access'] = 'Acceso Asociados';
 
 $lang['this_month'] = 'This Month';
 
@@ -1321,12 +1321,13 @@ $lang['card_holder'] = 'Card Holder';
 $lang['add_credit_card'] = 'Introduce tus datos de pago';
 
 $lang['contact_us'] = 'Contact us';
-$lang['book_now1'] = 'Reservar';
+$lang['book_now1'] = 'Reservar Ya';
 $lang['about_us1'] = 'Nosotros';
 $lang['contact_us'] = 'Contáctanos';
-$lang['reserve_now'] = 'RESERVA AHORA';
+$lang['reserve_now'] = 'RESERVA YA!';
 $lang['card_number'] = 'Número de Tarjeta';
 $lang['cvc'] = 'CVC';
 $lang['mm'] = 'MM';
 $lang['yyyy'] = 'YYYY';
+$lang['home_intro'] = "Shuttleing es una creciente empresa de transporte, comprometida a proporcionar un servicio excepcional desde el Aeropuerto a los viajeros de negocios como de placer. Shuttleing se está expandiendo a nuevos mercados. ¡Esperamos verte pronto en tu ciudad o en el aeropuerto de destino!";
 ?>
