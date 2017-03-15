@@ -33,6 +33,33 @@ Licensed under MIT
     src: url('./../fonts/King-Basil-Lite.otf');
 }
 
+.titleFont {
+	font-family: kingbasil, sans-serif;
+	position: relative;
+	padding-top: 80px;
+	font-size: 100px;
+	/*color: #f7e772;*/
+    color: #fff;
+    -ms-transform: rotate(-12deg); /* IE 9 */
+    -webkit-transform: rotate(-12deg); /* Chrome, Safari, Opera */
+    transform: rotate(-12deg);
+}
+
+.shuttleingBox {
+	text-align: center;
+	background: #ea5b55;
+	color: #ffffff;
+	width: 240px;
+	height: 60px;
+	line-height: 60px;
+	font-size: 40px;
+	margin: auto;
+	font-family: Trumpgothiceastbold;
+	letter-spacing: 8px;
+	position: relative;
+	top: -40px;
+}
+
 #csl-item1 {
     /*background:url(../images/homepage/slider/Slide01.jpg);*/
     background-repeat: no-repeat;   
@@ -1302,6 +1329,9 @@ textarea {
     background: #25377d;
 }
 
+.footerBorder {
+}
+
 /* This is from our end */
 #phone, #address, #cp, #client_country, #city, #nationality, #dni_passport, #doc_no {
     /* background-color: #F5F5F5; */
@@ -1379,11 +1409,80 @@ input[type="text"]#doc_no::-webkit-input-placeholder
     background-position: center top; 
     background-size: cover;
 }
+
+/* to hide the place holder text */
+input:focus::-webkit-input-placeholder { color:transparent !important; }
+input:focus:-moz-placeholder { color:transparent !important; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent !important; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent !important;; } /* IE 10+ */
+
+input:focus#phone::-webkit-input-placeholder,
+input:focus#address::-webkit-input-placeholder,
+input:focus#cp::-webkit-input-placeholder,
+input:focus#client_country::-webkit-input-placeholder,
+input:focus#city::-webkit-input-placeholder,
+input:focus#nationality::-webkit-input-placeholder,
+input:focus#doc_no::-webkit-input-placeholder,
+input:focus#promo_code::-webkit-input-placeholder {
+  color: transparent !important;
+}
+
+input:focus#phone:-moz-placeholder, 
+input:focus#address:-moz-placeholder,
+input:focus#cp:-moz-placeholder,
+input:focus#client_country:-moz-placeholder,
+input:focus#city:-moz-placeholder,
+input:focus#nationality:-moz-placeholder,
+input:focus#doc_no:-moz-placeholder,
+input:focus#promo_code:-moz-placeholder { /* Firefox 18- */
+    color: transparent; !important;  
+}
+ 
+input:focus#phone::-moz-placeholder,
+input:focus#address::-moz-placeholder,
+input:focus#cp::-moz-placeholder,
+input:focus#client_country::-moz-placeholder,
+input:focus#city::-moz-placeholder,
+input:focus#nationality::-moz-placeholder,
+input:focus#doc_no::-moz-placeholder,
+input:focus#promo_code::-moz-placeholder {  /* Firefox 19+ */
+    color: transparent; !important;  
+}
+
+input:focus#phone:-ms-input-placeholder,
+input:focus#address:-ms-input-placeholder,
+input:focus#cp:-ms-input-placeholder,
+input:focus#client_country:-ms-input-placeholder,
+input:focus#city:-ms-input-placeholder,
+input:focus#nationality:-ms-input-placeholder,
+input:focus#doc_no:-ms-input-placeholder,
+input:focus#promo_code:-ms-input-placeholder {  
+    color: transparent; !important;  
+}
+
 /* Media queries */
 
 @media (min-width: 992px) {
-    
-    
+	#footer {
+		padding: 0;
+	}
+	.mob-hide > div {
+		padding: 0;
+	}
+	.footerLeft {
+		text-align: left;
+	}
+	.footerRight {
+		text-align: right;
+	}
+	
+	.contacto input {
+		width: 220px;
+	}
+	
+	.contacto textarea {
+		width: 300px;
+	}
 }
 
 /* Above 1200px */
@@ -1402,6 +1501,14 @@ input[type="text"]#doc_no::-webkit-input-placeholder
         padding-right:5%;
         margin-left: 18px;
     }
+	
+	.contacto input {
+		width: 280px;
+	}
+	
+	.contacto textarea {
+		width: 420px;
+	}
 }
 @media (min-width: 992px) and (max-width: 1199px){
 .circleone{
@@ -1533,11 +1640,6 @@ span.step{
     .contactDetailsDiv {
         text-align: center;
     }
-    
-    .bigHR {
-        display: none;
-    }
-    
     section {
         padding-top: 25px;
         padding-bottom: 25px;
@@ -1546,10 +1648,6 @@ span.step{
     .section-heading {
         font-size: 2em;
     }
-    .navbar-lang {
-        right: 120px;
-    }
-    
     .home-label {
         padding: 0 5% !important;
     }
@@ -1559,6 +1657,9 @@ span.step{
     #navbar li a {
         margin-top: 15px;
         margin-left: 0px !important;
+    }
+    .bigHR {
+        display: none;
     }
 }
 

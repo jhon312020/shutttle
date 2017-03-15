@@ -164,7 +164,7 @@ $route['en/collaborators/login'] = 'collaborators/login';
 $route['es/collaborators/login'] = 'collaborators/login';
 
 $route['en/collaborators/logout'] = 'collaborators/logout';
-$route['es/collaborators/login'] = 'collaborators/logout';
+$route['es/collaborators/logout'] = 'collaborators/logout';
 
 $route['en/collaborators/changepassword'] = 'collaborators/changepassword';
 $route['es/collaborators/changepassword'] = 'collaborators/changepassword';

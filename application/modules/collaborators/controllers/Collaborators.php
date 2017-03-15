@@ -94,6 +94,7 @@ class Collaborators extends Anonymous_Controller {
         redirect($this->uri->uri_string());
       }
     }
+    $this->template_vars['content']['image'] = 'collaborators.jpg';
     $this->load->view('login', $this->template_vars);
   }
   
