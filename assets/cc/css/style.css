@@ -435,7 +435,7 @@ span.step {
 
 .parajustigy{   
         text-align: center;
-        padding: 1% 10%;
+        padding: 1% 2%;
         font-size: 18px;
         color: #484848;
         margin-bottom: 3em;
@@ -969,7 +969,7 @@ span.step {
     }
     .parajustigy{   
         text-align: center;
-        padding: 1% 10%;
+        padding: 1% 2%;
         font-size: 18px;
         color: #484848;
         margin-bottom: 3em;
@@ -1094,7 +1094,7 @@ span.step {
         font-family: Gothamlight;
     }
     .bodypad{
-        padding:1% 10%;
+        padding:1% 5%;
     }
     .newspad{
         padding: 0% 3%;
@@ -1526,6 +1526,9 @@ input:focus#promo_code:-ms-input-placeholder {
 	.newspad a h1 {
 		padding-left: 20px;
 	}
+	.contactSection {
+		padding: 0 2.5%;
+	}
 }
 @media (min-width: 992px) and (max-width: 1199px){
 .circleone{
@@ -1544,6 +1547,7 @@ input:focus#promo_code:-ms-input-placeholder {
 	.contactSection {
 		padding: 0;
 	}
+	
 }
 @media (min-width: 768px) and (max-width: 992px){
 	.contactSection {
@@ -1576,6 +1580,9 @@ span.step{
 }
 	.mob-hide {
 		padding: 0 3.5% !important;
+	}
+	.contactDetailsDiv {
+		text-align: center;
 	}
 }
 @media (min-width: 768px){
