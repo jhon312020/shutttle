@@ -446,7 +446,8 @@ span.step {
         color: #484848;
         text-align: center;
         font-size:18px;
-        padding: 0% 11%;
+        /*padding: 0% 11%;*/
+        padding: 0% 4%;
         font-family: 'Gothambook';
     }
 
@@ -907,7 +908,8 @@ span.step {
         color: #484848;
         text-align: center;
         font-size:18px;
-        padding: 0% 11%;
+        /* padding: 0% 11%; */
+        padding: 0% 4%;
         font-family: 'Gothambook';
     }
 
@@ -1614,8 +1616,10 @@ span.step{
 		padding: 0;
 	}
 	.headerTexto {
-		width: 80%;
+        height: auto;
 		position: relative;
+        padding-bottom: 5%;
+        width: 82%;
 	}
     .form-bottom{
         height:100%;
@@ -1688,8 +1692,9 @@ span.step{
     }
 	
 	.headerTexto {
-		width: 50%;
+        height: auto;
 		position: relative;
+        padding-bottom: 10%;
 	}
 }
 @media(max-width:768px) {
@@ -1717,6 +1722,12 @@ span.step{
     }
     .bigHR {
         display: none;
+    }
+    .headerTexto {
+        width: 82%;
+        height: auto;
+        position: relative;
+        padding-bottom: 50%;
     }
 }
 
@@ -1780,6 +1791,12 @@ span.step{
 }
 .button.btn{
     font-size: 18px;
+}
+.headerTexto {
+    height: auto;
+    position: relative;
+    width: 82%;
+    padding-bottom: 40% !important;
 }
 }
 @media (min-width: 768px) {
