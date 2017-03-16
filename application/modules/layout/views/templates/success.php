@@ -136,32 +136,64 @@
 		  }
 
 		}
+		.row-content {
+	  	margin-top: 15px;
+	  }
+
+		@media (max-width: 767px) {
+		  .right-span {
+		  	text-align: left !important;
+		  	padding-left: 10px;
+		  }
+		  .book-info-left {
+		  	width: 100%;
+		  }
+		  .book-info-right {
+		  	width: 100%;
+		  	margin-top: 10px;
+		  }
+		  .promo-text {
+		  	padding-left: 0px !important;
+		  	padding-right: 5px !important;
+		  }
+		  .go-text {
+		  	padding-right: 0px !important;
+		  }
+		  .row-content {
+		  	margin-top: 10px !important;
+		  }
+		  .row-same-height .col-sm-height {
+		  	width:100% !important;
+		  }
+		}
 
 	</style>
 
 	</head>
 
-	<body>
+	<body style="background:#fff;">
 
 	<div class="container" id="reserva01" style="padding:1% 10%;">
 
-		<div class="row" style="margin-top:25px!important;">
+		<div class="row" style="margin-top:0px!important;">
 
 			<div class="col-sm-12">
 
-				<div class="col-sm-6" style="height:50px;background-color:#25387d;display: table;">
+				<div class="col-sm-6 book-info-left" style="height:50px;background-color:#25387d;display: table;">
 
-					<span style="font-size:18;padding-left:10px;color:#fff;vertical-align:middle;display: table-cell;"><?php echo lang('no_reference').': <span style="font-weight:bold;">'.$book_reference; ?></span></span>
+					<span style="font-size:18px;padding-left:10px;color:#fff;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo lang('booking_information'); ?></span></span>
 
 				</div>
 
-				<div class="col-sm-6" style="height:50px;background-color:#25387d;color:#fff;display: table;font-weight:bold;">
+				<div class="col-sm-6 book-info-right" style="height:50px;background-color:#25387d;color:#fff;display: table;font-weight:bold;">
 
-					<?php if($bookings['book_role'] == 2){ ?>
+					<span class="right-span" style="font-size:18px;padding-right:10px;color:#fff;vertical-align:middle;display: table-cell;text-align:right;font-weight:bold;"><?php echo lang('no_reference').': <span style="font-weight:bold;">'.$book_reference; ?></span></span>
+
+					<?php /*if($bookings['book_role'] == 2){ ?>
 
 						<span style="font-size: 18px !important;color:#fff;vertical-align:middle;display: table-cell;"><?php echo lang('collaborator_name').': '.$bookings['collaborator_name']; ?></span>
 
-					<?php } ?>
+					<?php } */ ?>
 
 				</div>
 
@@ -169,286 +201,135 @@
 
 		</div>
 
-		<div class="row" >
+		<div class="row row-content">
 
 			<div class="col-sm-12">
 
-				<div class="col-sm-6">
+				<div class="col-sm-6 book-info-left" style="height:50px;background-color:#f5f5f5;display: table;">
 
-					<div style="width:100%;display: table;height:50px;border-bottom: 1px dotted #25387d !important;margin-top:10px;">
-
-						<span style="font-size:18px !important;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell; font-weight:bold;"><?php echo lang('booking_information'); ?></span>	
-
-					</div>
-
-					<div>
-
-						<table class="table" style="margin-top:10px;">
-
-							<tbody>
-
-								<tr>
-
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('from'); ?>:</td>
-
-									<td style="" colspan=3><?php echo $bookings['start_from']; ?></td>
-
-								</tr>
-
-								<tr>
-
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('to'); ?>:</td>
-
-									<td colspan=3><?php echo $bookings['end_at']; ?></td>
-
-								</tr>
-
-								<tr>
-
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('date_go'); ?>:</td>
-
-									<td><?php echo Date('d/m/Y', strtotime($bookings['start_journey'])); ?></td>
-
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('hour_go'); ?>:</td>
-
-									<td><?php echo Date('H:i', strtotime($bookings['hour'])).'h'; ?></td>
-
-								</tr>
-
-								<?php
-
-								if(isset($return_bookings)){
-
-								?>
-
-								<tr>
-
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('date_back'); ?></td>
-
-									<td><?php echo Date('d/m/Y', strtotime($return_bookings['start_journey'])); ?>:</td>
-
-									<td style="color:#25387d; font-weight:bold;"><?php echo lang('hour_back'); ?>:</td>
-
-									<td><?php echo Date('H:i', strtotime($return_bookings['hour'])).'h'; ?></td>
-
-								</tr>
-
-								<?php } ?>
-
-								<!-- <tr>
-
-									<td style="color:#25387d; font-weight:bold;"><?php //echo lang('country'); ?>:</td>
-
-									<td><?php //echo $countries[$bookings['country']]; ?></td>
-									<td><?php //echo $bookings['country']; ?></td>
-
-									<td style="color:#25387d; font-weight:bold;"><?php //echo lang('flight_no'); ?>:</td>
-
-									<td><?php //echo $bookings['flight_no']; ?></td>
-
-								</tr> -->
-
-								<tr>
-
-									<td colspan=2 style="color:#25387d; font-weight:bold;border-bottom: 1px dotted #25387d!important;"><?php echo lang('adults'); ?>:</td>
-
-									<td colspan=2 style="border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['adults']; ?></td>
-
-									<!--<td style="color:#25387d; font-weight:bold;"><?php echo lang('kids'); ?>:</td>
-
-									<td style="border-bottom: 1px dotted #25387d!important;"><?php echo $bookings['kids']; ?></td>-->
-
-								</tr>
-
-								<tr style="border-bottom:1px solid #25387d !important;">
-
-									<td colspan=3 style="color:#25387d;padding-top: 15px; padding-bottom: 15px; font-weight:bold;"><?php echo lang('passengers_price'); ?>:</td>
-
-									<td style="text-align:right;padding-top: 15px; padding-bottom: 15px;"><?php echo $bookings['passenger_price']; ?>&nbsp;&euro;</td>
-
-								</tr>
-
-							</tbody>
-
-						</table>
-
-					</div>
-
-					<div style="width:100%;display: table;height:50px;border-bottom: 1px dotted #25387d !important;color:#25387d !important;">
-
-						<span style="font-size:20px;padding-left:10px;vertical-align:middle;display: table-cell; font-weight:bold">Extras</span>	
-
-					</div>
-
-					<?php if(count($extra_array) > 0) { ?>
-
-					<div style="width:100%;display: table;height:50px;border-bottom: 1px dotted #25387d !important;color:#25387d !important;">
-
-						<table class="table">
-
-							<tbody>
-
-								<?php
-
-								$count=1;
-
-									foreach($extra_array as $ex) {
-
-								?>
-
-								<tr>
-
-									<td style="font-size:20px !important;"><?php echo $ex['extra_name'].' (+'.$ex['extra_count'].')'; ?></td>
-
-									<td style="text-align:right;font-size:20px !important;">+<?php echo $ex['extra_value']; ?>&nbsp;&euro;</td>
-
-								</tr>
-
-								<?php
-
-									$count++;
-
-								}
-
-								?>
-
-							</tbody>
-
-						</table>
-
-					</div>
-
-					<?php } ?>
-
-					<?php if($bookings['promotional_code_id']){ ?>
-
-					<div style="width:100%;display: table;height:50px;">
-
-						<table class="table">
-
-							<tbody>
-
-								<tr style="border-bottom:1px solid #391B38 !important;color:#25387d;">
-
-									<td style="font-size:20px !important;padding-top: 15px; padding-bottom: 15px;"><?php echo ($bookings['promotional_type'] == 'price')?'Promotional code deduction price':'Promotional code deduction '.$bookings['promotional_value'].' %'; ?></td>
-
-									<td style="font-size:20px !important;text-align:right;padding-top: 15px; padding-bottom: 15px;">-<?php echo $bookings['reduction_value']; ?>&nbsp;&euro;</td>
-
-								</tr>
-
-							</tbody>
-
-						</table>	
-
-					</div>
-
-					<?php } ?>
+					<span style="font-size:22px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo $clients['name']; ?></span></span>
 
 				</div>
 
-				<div class="col-sm-6">
+				<div class="col-sm-6 book-info-right" style="height:50px;background-color:#f5f5f5;color:#fff;display: table;">
 
-					<div style="width:100%;display: table;height:50px;border-bottom: 1px dotted #25387d !important;margin-top:10px;">
-
-						<span style="font-size:18px !important;padding-left:10px;color:#25387d;font-weight:bold;vertical-align:middle;display: table-cell;"><?php echo lang('personal_information'); ?></span>	
-
-					</div>
-
-					<div style="width:100%;">
-
-						<table class="table" style="margin-top:10px;">
-
-							<tbody>
-
-								<?php
-
-									$key = array('name', 'surname', 'email', 'phone', 'address', 'postcode', 'country', 'city', 'nationality', 'id_or_passport', 'number_of_document');
-
-									$i=0;
-
-									foreach($clients as $ckey=>$cvalue){
-
-									?>
-
-									<tr style="<?php echo ($key[$i] == 'number_of_document')?'border-bottom: 1px solid #391B38 !important;padding-bottom:10px !important;':''; ?>">
-
-										<td style="color:#25387d;font-weight:bold;"><?php echo lang($key[$i]); ?>:</td>
-
-										<td style=""><?php echo ($ckey == 'dni_passport')?lang('dni_'.$cvalue):$cvalue; ?></td>
-
-									</tr>
-
-									<?php
-
-									$i++;
-
-									}
-
-								?>
-
-							</tbody>
-
-						</table>
-
-					</div>
-
-					<?php 
-
-						$payment_status = '';
-
-						switch($bookings['book_status']) {
-
-							case 'completed':
-
-								$payment_status = lang('completed');
-
-								break;
-
-							case 'pending':
-
-								$payment_status = lang('pending');
-
-								break;
-
-							case 'cash':
-
-								$payment_status = lang('cash_payment');
-
-								break;
-
-							case 'paid':
-
-								$payment_status = lang('pre_paid');
-
-								break;		
-
-						}
-
-					?>
-
-					<div style="width:100%;">
-
-						<div class="col-sm-6" style="display: table;height:50px;background-color:#DFDFDF;">
-
-							<span style="vertical-align:middle;display: table-cell;font-size:20px;color:#25387d !important;font-weight:bold;padding-left:10px;color:#f58847;"><?php echo lang('price').'  <span style="color:#25387d !important;font-weight:normal;">('.$payment_status.')</span>'; ?></span>	
-
-						</div>
-
-						<div class="col-sm-6" style="display: table;height:50px;background-color:#DFDFDF;">
-
-							<span style="color:#25387d !important;font-weight:bold;text-align:right;vertical-align:middle;display: table-cell;font-size:20px;"><?php echo $bookings['price']; ?>&nbsp;&euro;</span>	
-
-						</div>
-
-					</div>
+					<span class="right-span" style="font-size:18px;padding-right:10px;color:#25387d;vertical-align:middle;display: table-cell;text-align:right;"><?php echo $clients['email']; ?></span></span>
 
 				</div>
 
 			</div>
 
-		</div>	
+		</div>
 
-		<div class="row">
+		<div class="row row-content">
+
+			<div class="col-sm-12">
+
+				<div class="col-sm-6 book-info-left" style="height:50px;background-color:#f5f5f5;display: table;">
+
+					<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo '<span>'. lang('passengers') .'</span>'. ': <span style="font-weight:normal;">'. $bookings['adults'] . '</span>'; ?></span></span>
+
+				</div>
+
+				<div class="col-sm-6 book-info-right" style="height:50px;background-color:#f5f5f5;color:#fff;display: table;">
+
+					
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+		<div class="row row-content">
+
+			<div class="col-sm-12">
+
+				<div class="col-sm-6 book-info-left go-text" style="padding-left: 0px;padding-right: 5px;">
+					<div class="col-sm-12" style="background-color:#f5f5f5;">
+						<p style="font-size:22px;padding-left:10px;padding-top:20px;color:#EA5B55;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('go'); ?></p>	
+
+						<p>
+							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('from'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
+						</p>
+
+						<p>
+							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('to'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
+						</p>
+
+						<p style="padding-bottom:20px;">
+							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
+						</p>
+					</div>
+					
+
+				</div>
+				<?php
+
+				if(isset($return_bookings)){
+
+				?>
+				<div class="col-sm-6 book-info-right go-text" style="padding-right: 0px;padding-left: 5px;">
+					<div class="col-sm-12" style="background-color:#f5f5f5;">
+						<p style="font-size:22px;padding-left:10px;padding-top:20px;color:#EA5B55;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('back'); ?></p>	
+
+						<p>
+							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('from'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
+						</p>
+
+						<p>
+							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('to'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
+						</p>
+
+						<p style="padding-bottom:20px;">
+							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
+						</p>
+					</div>
+					
+
+				</div>
+				<?php } ?>
+			</div>
+
+		</div>
+		<?php
+			if(count($extra_array) > 0) {
+				$extra_value = array_column($extra_array, 'extra_value');
+				$sum_extra = array_sum($extra_value);
+			} else {
+				$sum_extra = 0;
+			}
+		?>
+
+		<div class="row row-content">
+
+			<div class="col-sm-12">
+				<div class="col-sm-6" style="padding-left: 0px;padding-right: 5px;">
+					<div class="col-sm-12 book-info-left" style="height:50px;background-color:#f5f5f5;display: table;">
+
+						<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo '<span>'. lang('extra_luggage') .'</span>'. ': <span style="font-weight:normal;">'. $sum_extra . '&nbsp;&euro;</span>'; ?></span></span>
+
+					</div>
+				</div>
+
+				<div class="col-sm-6 book-info-right promo-text" style="padding-right: 0px;padding-left: 5px;">
+					<div class="col-sm-6 book-info-right" style="height:50px;background-color:#f5f5f5;color:#fff;display: table;">
+						<span class="right-span" style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;">Promotional code:  <span style="font-weight:normal;"><?php echo $bookings['promotional_code_id']?$bookings['reduction_value'] : 0; ?>&nbsp;&euro;</span></span>
+						
+					</div>
+					<div class="col-sm-6 book-info-right" style="height:50px;background-color:#25387d;color:#fff;display: table;">
+						<span style="font-size:18px;padding-left:10px;color:#fff;vertical-align:middle;display: table-cell;text-align:center;text-transform:uppercase;"><?php echo lang('total') . ' '. lang('price') . ':  ' . $bookings['price']; ?>&nbsp;&euro;</span></span>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div class="row" style="margin-top:20px;">
 
 			<div class="col-sm-12">
 
@@ -572,7 +453,7 @@
 
 		</div>
 
-		<div class="row" style="margin-top:30px;border-top:1px dotted #25387d;">
+		<div class="row" style="margin-top:0px;">
 
 			<div class="col-sm-12">
 
@@ -601,11 +482,11 @@
 
 		</div>
 
-		<div class="row" style="margin-top:20px;">
+		<div class="row" style="margin-top:0px;">
 
 			<div class="col-sm-12">
 
-				<h3 style="font-weight:bold;color:#25387d;">BOOKING TERMS & CONDITIONS<h3>
+				<h4 style="font-weight:normal;color:#25387d;">BOOKING TERMS & CONDITIONS<h4>
 
 			</div>	
 
@@ -613,7 +494,7 @@
 
 		<?php if($lang == 'en') { ?>
 
-		<div class="row">
+		<div class="row" style="font-size:14px;">
 
 			<div class="col-sm-12">
 
@@ -621,7 +502,7 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;">Airport pick-up</p>
+						<p style="font-weight:bold;font-size:16px;">Airport pick-up</p>
 
 						<p>Our hostess will be waiting for you at arrivals lounge, holding a board with your name. If you can’t find her, please call to our airport assistance number +34628 000 785 (9.00am-22.00pm) or +34646 401 942 (24hs)</p>
 
@@ -639,7 +520,7 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;">Hotel / other pick-up</p>
+						<p style="font-weight:bold;font-size:16px;">Hotel / other pick-up</p>
 
 						<p>Please be ready 10 minutes beforehand. We may take up to 30 minutes to pick you up from the time you designate, as we normally pick up other passengers in the same ride. Please be patient as we ALWAYS deliver. </p>
 
@@ -655,7 +536,7 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;">CANCELLATION POLICY</p>
+						<p style="font-weight:bold;font-size:16px;">CANCELLATION POLICY</p>
 
 						<p>No fees for cancellation up to 24hours prior the start time of service.</p>
 
@@ -671,7 +552,7 @@
 
 		<?php } else { ?>
 
-		<div class="row">
+		<div class="row" style="font-size:14px;">
 
 			<div class="col-sm-12">
 
@@ -679,7 +560,7 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;">Recogida en el aeropuerto</p>
+						<p style="font-weight:bold;font-size:16px;">Recogida en el aeropuerto</p>
 
 						<p>Nuestra hostes le estará esperando en la puerta de llegadas, sosteniendo  una tablet con su nombre. Si no puede encontrarla, por favor llame a nuestro número de asistencia en aeropuerto +34628 000 785 (9:00-10:00) o al +34646 401 942 (24 hs)</p>
 
@@ -697,7 +578,7 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;">Hotel / otros Pick-up</p>
+						<p style="font-weight:bold;font-size:16px;">Hotel / otros Pick-up</p>
 
 						<p>Por favor esten listos con 10 minutos de antelacion. Shuttleing dispondrá un margen de 30 minutos, desde la hora de su reserva, para recogerle, normalmente recogemos a otros pasajeros en el mismo trayecto. Por favor tenga paciencia, SIEMPRE llegamos.</p>
 
@@ -713,7 +594,7 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;">POLITICA DE CANCELACION</p>
+						<p style="font-weight:bold;font-size:16px;">POLITICA DE CANCELACION</p>
 
 						<p>No se cobrara el recargo de los servicios cuando se cancele con 24hrs de antelacion al servicio.</p>
 

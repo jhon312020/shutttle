@@ -537,6 +537,12 @@ class Node extends Anonymous_Controller {
     $this->template_vars['price'] = $this->input->get('amt');
     $this->template_vars['book_reference'] = $this->template_vars['start_journey']['reference_id'].' - '.sprintf("%02d", $this->template_vars['bookings']['id']);
     $this->template_vars['content']['image'] = 'payment.jpg';
+
+    /* $this->load->helper('dompdf');  
+    $html = $this->load->view('layout/templates/pdf', $this->template_vars, true);
+    $mail_html = $this->load->view('layout/templates/email', $this->template_vars, true);
+    pdf_create($html, $this->template_vars['book_reference'], true); */
+
     $this->load->view('layout/templates/success', $this->template_vars);
     
     if ($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12') {

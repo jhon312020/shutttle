@@ -85,16 +85,16 @@
 
 				<tr style="padding: 19px;margin-bottom: 20px;">
 
-					<td style="width:350px;padding-top:10px;padding-bottom:10px;vertical-align:top !important;">
+					<td style="width:350px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;">
 
-						<span style="padding:10px;padding-right:0px;font-size:13px;font-weight:bold;color:#fff;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('no_reference'); ?>:</span>&nbsp;<span style="padding:10px;padding-left:0px;font-size:13px;font-weight:bold;color:#fff;"><?php echo $book_reference; ?></span>
+						<span style="padding:10px;padding-right:0px;font-size:13px;font-weight:bold;color:#fff;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('booking_information'); ?></span>
 
 					</td>
 
-                    <td style="width:350px;padding-top:10px;padding-bottom:10px;vertical-align:top !important;">
-                        <?php if($bookings['book_role'] == 2){ ?>
-						<span style="padding:10px;padding-right:0px;font-size:13px;font-weight:bold;color:#fff;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('collaborator_name'); ?>:</span>&nbsp;<span style="padding:10px;padding-left:0px;font-size:13px;font-weight:bold;color:#fff;"><?php echo $bookings['collaborator_name']; ?></span>
-                        <?php } ?>
+                    <td style="width:350px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;text-align:right !important;padding-right:10px !important;">
+                        
+                        <span class="right-span" style="padding:10px;padding-right:0px;font-size:13px;font-weight:bold;color:#fff;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('no_reference').':&nbsp;<span style="padding:10px;padding-left:0px;font-size:13px;font-weight:bold;color:#fff;">'.$book_reference; ?></span>
+
 
 					</td>
 
@@ -104,305 +104,152 @@
 
 		</table>
 
-		<table style="padding:0px !important;margin:0px !important; width:750px;" width="750">
+        <table width="750" style="margin:0px!important;width:750px;background-color: #f5f5f5;margin-top:10px !important;">
 
             <tbody>
 
-                <tr>
+                <tr style="padding: 19px;margin-bottom: 20px;">
 
-                    <td style="padding-right:5px !important; width:375px !important;padding-top:10px;vertical-align: text-top;" width="375">
+                    <td style="width:350px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;">
 
-                        <table  style="width:100%;padding-left:10px;padding-right:10px;">
+                        <span style="padding:10px !important;padding-right:0px !important;font-size:13px !important;font-weight:bold !important;color:#25387d !important;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $clients['name']; ?></span>
 
-                        <tbody>
+                    </td>
 
-                            <tr>
+                    <td style="width:350px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;text-align:right !important;padding-right:20px !important;">
+                        
+                        <span class="right-span" style="padding:10px !important;padding-right:0px !important;font-size:13px !important;color:#25387d !important;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $clients['email']; ?></span>
 
-                                <td colspan=4 style="font-size:15px!important;color:#25387d;"><?php echo lang('booking_information'); ?><p style="border-bottom:1px dotted #25387d;margin-top:0px;height:10px;margin-bottom:0px;">&nbsp;</p></td>
 
-                            </tr>
-
-                            <tr>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('from'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;" colspan=3><?php echo $bookings['start_from']; ?></td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('to'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;" colspan=3><?php echo $bookings['end_at']; ?></td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('date_go'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo Date('d/m/Y', strtotime($bookings['start_journey'])); ?></td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('hour_go'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo Date('H:i', strtotime($bookings['hour'])).'h'; ?></td>
-
-                            </tr>
-
-                            <?php
-
-                            if(isset($return_bookings)){
-
-                            ?>
-
-                            <tr>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('date_back'); ?></td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo Date('d/m/Y', strtotime($return_bookings['start_journey'])); ?></td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('hour_back'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo Date('H:i', strtotime($return_bookings['hour'])).'h'; ?></td>
-
-                            </tr>
-
-                            <?php } ?>
-
-                            <tr>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('country'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo $countries[$bookings['country']]; ?></td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo lang('flight_no'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo $bookings['flight_no']; ?></td>
-
-                            </tr>
-
-                            <tr>
-
-                                <td colspan=2 style="padding-top:5px;color:#25387d;"><?php echo lang('adults'); ?>:</td>
-
-                                <td colspan=2 style="padding-top:5px;color:#25387d;"><?php echo $bookings['adults']; ?></td>
-
-                                <!--<td style="padding-top:5px;color:#25387d;"><?php echo lang('kids'); ?>:</td>
-
-                                <td style="padding-top:5px;color:#25387d;"><?php echo $bookings['kids']; ?></td>-->
-
-                            </tr>
-
-                            <tr><td colspan=4> <p style="border-bottom:1px dotted #25387d;margin:0px !important;">&nbsp;</p> </td></tr>
-
-                            <tr>
-
-                                <td colspan=3 style="padding-top:10px;padding-bottom:8px; color:#25387d;"><?php echo lang('passengers_price'); ?>:</td>
-
-                                <td style="padding-top:10px;padding-bottom:8px;color:#25387d;text-align:right;"><?php echo $bookings['passenger_price']; ?>&nbsp;&euro;&nbsp;&nbsp;</td>
-
-                            </tr>
-
-                            <tr><td colspan=4> <p style="border-top:1px solid #25387d;margin:0px !important;">&nbsp;</p> </td></tr>
-
-                            
-
-                        </tbody>
-
-                    </table>
-
-                    <table  style="padding:10px;width:100%;">
-
-                        <tbody>
-
-                            <tr>
-
-                                <td colspan=4 style="font-size: 15px !important; color:#25387d;font-weight:bold;">Extras<p style="border-bottom:1px dotted #25387d;margin-top:0px;height:10px!important;margin-bottom:0px;">&nbsp;</p></td>
-
-                            </tr>
-
-                            <?php
-
-                            
-
-                            $count=1;
-
-                            if(count($extra_array) > 0){
-
-                                foreach($extra_array as $ex){
-
-                            ?>
-
-                            <tr>
-
-                                <td colspan=2 style="<?php echo ($count == 1)?'padding-top:5px;':''; ?>color:#25387d;padding-top:5px;font-weight:bold;"><?php echo $ex['extra_name'].' (+'.$ex['extra_count'].')'; ?></td>
-
-                                <td colspan=2 style="<?php echo ($count == 1)?'padding-top:5px;':''; ?>float:right;color:#25387d;padding-top:5px;font-weight:bold;text-align:right;">+<?php echo $ex['extra_value']; ?>&nbsp;&euro;&nbsp;&nbsp;</td>
-
-                            </tr>
-
-                            <?php
-
-                                $count++;
-
-                                }
-
-                            }
-
-                            ?>
-
-                        </tbody>
-
-                    </table>
-
-                </td>
-
-                <td style="padding-top:10px;vertical-align: top;">
-
-                    <?php 
-
-                    $payment_status = '';
-
-                    switch($bookings['book_status']) {
-
-                        case 'completed':
-
-                            $payment_status = lang('completed');
-
-                            break;
-
-                        case 'pending':
-
-                            $payment_status = lang('pending');
-
-                            break;
-
-                        case 'cash':
-
-                            $payment_status = lang('cash_payment');
-
-                            break;
-
-                        case 'paid':
-
-                            $payment_status = lang('pre_paid');
-
-                            break;		
-
-                    }
-
-                    ?>
-
-                    <table  style="width:100%;padding-left:10px;padding-right:10px;">
-
-                        <tbody>
-
-                            <tr>
-
-                                <td colspan=2 style="font-size:15px !important;color:#25387d;"><?php echo lang('personal_information'); ?> <p style="border-bottom:1px dotted #25387d;margin-top:0px;height:10px !important;margin-bottom:0px;">&nbsp;</p></td>
-
-                            </tr>
-
-                            <?php
-
-                                $key = array('name', 'surname', 'email', 'phone', 'address', 'postcode', 'country', 'city', 'nationality', 'id_or_passport', 'number_of_document');
-
-                                $i=0;
-
-                                foreach($clients as $ckey=>$cvalue){
-
-                                ?>
-
-                                <tr>
-
-                                    <td style="<?php echo ($i == 0)?'padding-top:5px;':''; ?>color:#25387d;padding-top:5px;"><?php $lang_key = $key[$i]; echo lang($key[$i]); ?>:</td>
-
-                                    <td style="<?php echo ($i == 0)?'padding-top:5px;':''; ?>color:#25387d;padding-top:5px;"><?php echo (($ckey == 'dni_passport')?lang('dni_'.$cvalue):$cvalue); ?></td>
-
-                                </tr>
-
-                                <?php
-
-                                $i++;
-
-                                }
-
-                            ?>
-
-                            <td colspan=2 ><p style="border-bottom:1px solid #25387d;margin:0px !important;">&nbsp;</p></td>
-
-                        </tbody>
-
-                    </table>
-
-                </td>
+                    </td>
 
                 </tr>
 
-                <tr>
+            </tbody>
 
-                <td><?php if($bookings['promotional_code_id']){ ?>
+        </table>
 
-                    <table  style="width:100%;padding-left:10px;padding-right:10px;font-weight:bold;">
+        <table width="750" style="margin:0px!important;width:750px;background-color: #f5f5f5;margin-top:10px !important;">
 
+            <tbody>
+
+                <tr style="padding: 19px;margin-bottom: 20px;">
+
+                    <td style="width:350px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;">
+
+                        <span style="padding:10px !important;padding-right:0px !important;font-size:13px !important;font-weight:bold !important;color:#25387d !important;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('passengers'); ?>: </span style="font-weight:normal !important;"><span> <?php echo $bookings['adults']; ?></span>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <table width="750" style="margin:0px!important;width:750px;margin-top:10px !important;">
+
+            <tbody>
+
+                <tr style="margin-bottom: 20px;">
+
+                    <td style="width:342px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;background-color:#f5f5f5;">
+                        
+
+                    <p style="font-size:22px;padding-left:10px !important;color:#EA5B55 !important;vertical-align:middle !important;font-weight:bold !important;text-transform:uppercase !important;"><?php echo lang('go'); ?></p>
+
+                       <p>
+                            <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('from'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo $bookings['start_from']; ?></span>
+                        </p>
+
+                        <p>
+                            <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('to'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo $bookings['end_at']; ?></span>
+                        </p>
+
+                        <p style="padding-bottom:20px;">
+                            <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('date'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo date('d/m/Y - H:i', strtotime($bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
+                        </p>
+                        
+                    </td>
+                    <td style="width:6px;"></td>
+                    <td style="width:342px !important;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important; <?php echo isset($return_bookings) ? 'background-color:#f5f5f5;': ''; ?>">
+                    <?php
+
+                if(isset($return_bookings)){
+
+                ?>
+                    
+                        <p style="font-size:22px !important;padding-left:10px !important;color:#EA5B55 !important;vertical-align:middle !important;font-weight:bold !important;text-transform:uppercase !important;"><?php echo lang('back'); ?></p> 
+
+                        <p>
+                            <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('from'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo $bookings['end_at']; ?></span>
+                        </p>
+
+                        <p>
+                            <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('to'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo $bookings['start_from']; ?></span>
+                        </p>
+
+                        <p style="padding-bottom:20px !important;">
+                            <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('date'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
+                        </p>
+                    
+                    <?php } ?>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <?php
+            if(count($extra_array) > 0) {
+                $extra_value = array_column($extra_array, 'extra_value');
+                $sum_extra = array_sum($extra_value);
+            } else {
+                $sum_extra = 0;
+            }
+        ?>
+
+        <table width="750" style="margin:0px!important;width:750px;margin-top:10px !important;">
+
+            <tbody>
+
+                <tr style="margin-bottom: 20px;">
+
+                    <td style="width:342px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:middle !important;background-color:#f5f5f5;">
+
+                        <span style="padding:10px !important;padding-right:0px !important;font-size:13px !important;font-weight:bold !important;color:#25387d !important;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('extra_luggage'); ?>: </span style="font-weight:normal;"><span> <?php echo $sum_extra; ?>&nbsp;&euro;</span>
+
+                    </td>
+                    <td style="width:6px;"></td>
+                    <td style="width:342px;vertical-align:top !important;background-color:#f5f5f5;">
+                        
+                       <table style="padding:0px !important;">
                         <tbody>
-
-                            <tr><td colspan=4> <p style="border-bottom:1px dotted #25387d;margin:0px !important;">&nbsp;</p> </td></tr>
-
                             <tr>
+                                <td style="width:170px;background-color:#f5f5f5;padding-top:10px !important;padding-bottom:10px !important;">
 
-                                <td colspan=3 style="padding-top:10px;padding-bottom:8px; color:#25387d;"><?php echo ($bookings['promotional_type'] == 'price')?'Promotional code deduction price':'Promotional code deduction '.$bookings['promotional_value'].' %'; ?>:</td>
+                                    <p style="padding-right:0px !important;font-size:13px !important;font-weight:bold !important;color:#25387d !important;padding-left:0px !important;margin-top: 4px !important;margin-bottom:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo 'Promotional code: '; ?><span style="font-weight:normal !important;vertical-align:middle !important;"> <?php echo $bookings['promotional_code_id']?$bookings['reduction_value'] : 0; ?>&nbsp;&euro;</span></p>
+                                </td>
 
-                                <td style="padding-top:10px;padding-bottom:8px;color:#25387d;text-align:right;">-<?php echo $bookings['reduction_value']; ?>&nbsp;&euro;&nbsp;&nbsp;</td>
-
+                                <td style="width:190px;text-transform:uppercase;background-color: #25387d;text-align:center !important;vertical-align:middle !important;">
+                                    <p style="font-size:13px !important;font-weight:bold !important;color:#fff !important;padding-left:0px !important;background-color: #25387d;transform:uppercase !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('total') . ' '. lang('price') . ':  ' . $bookings['price']; ?>&nbsp;&euro;</p>
+                                </td>
                             </tr>
-
-                            <tr><td colspan=4> <p style="border-top:1px solid #25387d;margin:0px !important;">&nbsp;</p> </td></tr>
-
                         </tbody>
 
-                    </table>
+                       </table>
 
-                    <?php } ?>
 
-                </td>
+                    </td>
 
-                <td>
+                </tr>
 
-                    <table  style="width:100%;padding-left:10px;padding-right:10px;">
+            </tbody>
 
-                        <tr>
-
-                            <td colspan=2>
-
-                                <table  style="width:100%;background-color:#DFDFDF;">
-
-                                    <tbody>
-
-                                        <tr>
-
-                                            <td style="font-size: 14px !important;font-weight:bold;"><p style="margin:0px !important;">&nbsp;</p><p style="margin:0px !important;">&nbsp;&nbsp;<?php echo '<span style="color:#25387d;">'.lang('price').'</span> <span style="color:#25387d!important;font-weight:normal !important;">('.$payment_status.')</span>'; ?></p><p style="margin:0px !important;">&nbsp;</p></td>
-
-                                            <td style="font-size: 15px !important;text-align:right;color:#25387d;"><p style="margin:0px !important;">&nbsp;</p><p style="margin:0px !important;font-weight:bold;"><?php echo $bookings['price']; ?>&nbsp;&euro;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="margin:0px !important;">&nbsp;</p></td>
-
-                                        </tr>
-
-                                    </tbody>
-
-                                </table>
-
-                            </td>
-
-                        </tr>
-
-                    </table>
-
-                </td>
-
-			</tr>
-
-		</table>
+        </table>
+		
 
 		<table cellpadding="0" cellspacing="0" style="width:750px;" width="750">
 
