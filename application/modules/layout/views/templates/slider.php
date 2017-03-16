@@ -26,7 +26,7 @@
                     <div class="carousel-caption">
                     <!-- <div class="titleFont">Ready?</div>
                     <div class="shuttleingBox"><p>SHUTTLEING.</p></div> -->
-                    <img src="<?php echo IMAGEPATH.'header/sliders/'.$count.".png" ?>" class="headerTexto img-center" />
+                    <img src="<?php echo IMAGEPATH.'header/sliders/'.$count.".png" ?>" class="sliderHeaderTexto img-center" />
                         <p><?php echo $slogan; ?></p>
                         <p><a class="btn btn-lg" href="<?php echo site_url($ln."/reservation"); ?>" role="button"><?php echo lang('book_now1'); ?></a></p>
                     </div>

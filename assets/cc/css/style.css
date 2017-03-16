@@ -1615,12 +1615,17 @@ span.step{
 	.contactSection {
 		padding: 0;
 	}
-	.headerTexto {
+	.sliderHeaderTexto {
         height: auto;
 		position: relative;
         padding-bottom: 5%;
         width: 82%;
 	}
+    .headerTexto {
+        height: auto;
+        position: relative;
+        width: 82%;
+    }
     .form-bottom{
         height:100%;
     }
@@ -1691,11 +1696,15 @@ span.step{
         display: block;
     }
 	
-	.headerTexto {
+	.sliderHeaderTexto {
         height: auto;
 		position: relative;
         padding-bottom: 10%;
 	}
+    .headerTexto {
+        height: auto;
+        position: relative;
+    }
 }
 @media(max-width:768px) {
     
@@ -1723,11 +1732,16 @@ span.step{
     .bigHR {
         display: none;
     }
-    .headerTexto {
+    .sliderHeaderTexto {
         width: 82%;
         height: auto;
         position: relative;
         padding-bottom: 50%;
+    }
+    headerTexto {
+        width: 82%;
+        height: auto;
+        position: relative;
     }
 }
 
@@ -1792,11 +1806,16 @@ span.step{
 .button.btn{
     font-size: 18px;
 }
-.headerTexto {
+.sliderHeaderTexto {
     height: auto;
     position: relative;
     width: 82%;
     padding-bottom: 40% !important;
+}
+.headerTexto {
+    height: auto;
+    position: relative;
+    width: 82%;
 }
 }
 @media (min-width: 768px) {
