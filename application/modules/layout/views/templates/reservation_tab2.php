@@ -39,7 +39,7 @@
 				<div class="formErrorArrow formErrorArrowBottom" id="seats_error" style="display:none;">
 					<div class="formErrorContent"><?php echo lang('seats_error'); ?></div>
 				</div>
-				<div class="panel" id="returnJourneyPanel" style="display:none;">  
+				<div class="panel pickbluebgtop" id="returnJourneyPanel" style="display:none;">  
 					<div class="panel-heading pickbluebg"><?php echo lang('return_trip'); ?> </div> 
 						<table class="table table-striped displayTable"  id="returnJourneyTable">
 							<thead>

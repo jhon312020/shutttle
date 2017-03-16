@@ -446,7 +446,8 @@ span.step {
         color: #484848;
         text-align: center;
         font-size:18px;
-        padding: 0% 11%;
+        /*padding: 0% 11%;*/
+        padding: 0% 4%;
         font-family: 'Gothambook';
     }
 
@@ -907,7 +908,8 @@ span.step {
         color: #484848;
         text-align: center;
         font-size:18px;
-        padding: 0% 11%;
+        /* padding: 0% 11%; */
+        padding: 0% 4%;
         font-family: 'Gothambook';
     }
 
@@ -1613,10 +1615,17 @@ span.step{
 	.contactSection {
 		padding: 0;
 	}
-	.headerTexto {
-		width: 80%;
+	.sliderHeaderTexto {
+        height: auto;
 		position: relative;
+        padding-bottom: 5%;
+        width: 82%;
 	}
+    .headerTexto {
+        height: auto;
+        position: relative;
+        width: 82%;
+    }
     .form-bottom{
         height:100%;
     }
@@ -1687,10 +1696,15 @@ span.step{
         display: block;
     }
 	
-	.headerTexto {
-		width: 50%;
+	.sliderHeaderTexto {
+        height: auto;
 		position: relative;
+        padding-bottom: 10%;
 	}
+    .headerTexto {
+        height: auto;
+        position: relative;
+    }
 }
 @media(max-width:768px) {
     
@@ -1717,6 +1731,17 @@ span.step{
     }
     .bigHR {
         display: none;
+    }
+    .sliderHeaderTexto {
+        width: 82%;
+        height: auto;
+        position: relative;
+        padding-bottom: 50%;
+    }
+    headerTexto {
+        width: 82%;
+        height: auto;
+        position: relative;
     }
 }
 
@@ -1780,6 +1805,17 @@ span.step{
 }
 .button.btn{
     font-size: 18px;
+}
+.sliderHeaderTexto {
+    height: auto;
+    position: relative;
+    width: 82%;
+    padding-bottom: 40% !important;
+}
+.headerTexto {
+    height: auto;
+    position: relative;
+    width: 82%;
 }
 }
 @media (min-width: 768px) {
