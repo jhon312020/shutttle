@@ -15,7 +15,7 @@
 			<br>Tel. <?php echo (isset($telephone))?$telephone:''; ?></p>
 			<p>&nbsp;</p>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9" style="padding-right: 3%;">
 			<div class="col-sm-12">
 				<div class="row contacto">
 					<form method="post" name="contact_form">

@@ -109,7 +109,9 @@ class Node extends Anonymous_Controller {
       redirect("en");
     $this->load->model('booking/mdl_booking');
     $this->load->model('calendars/mdl_calendars');
+    $this->load->model('clients/mdl_clients');
     $this->template_vars['total_people'] = $this->mdl_booking->get_total_people_tavelled();
+    $this->template_vars['total_nationalites'] = $this->mdl_clients->get_total_nationalities();
     $this->template_vars['total_trips'] = $this->mdl_calendars->get_total_trips();
     $this->template_vars['sliders'] = $this->mdl_nodes->fetchAllSliders();
     $this->template_vars['banner'] = $this->mdl_nodes->fetchBannerLast();
