@@ -3,6 +3,7 @@
 	if(!$ln || $ln == ""){	$ln = "es"; }
 	$this->load->view('home_header');
 ?>
+<div class="bgColor" style="background-color:#ececec; padding: 60px 0;">
 <div class="container">
 	<div class="row">
 	<p class="homepara"><?php echo lang('home_intro'); ?> </p>
@@ -13,12 +14,12 @@
 	</div>
 	</div>
 </div>
+</div>
 <div class="container">
   <div class="row">
     <!-- content -->
     <section class="main">
       <div class="grid-custom home-news">
-        <h2 class="head_2">News</h2>
         <div class="row col-sm-12 newspad">
           <?php $img_url = IMAGEPATH.'homepage/boxes/'; ?>
           <?php foreach($boxes as $box) {   

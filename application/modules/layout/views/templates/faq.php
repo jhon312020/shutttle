@@ -8,7 +8,7 @@
 			<div class="col-sm-8">
 				<?php
 				?>
-				<h1 class="pickblue" style="text-align:center"><?php echo $content['content']; ?></h1>
+				<h1 class="pickblue" style="text-align:left"><?php echo $content['content']; ?></h1>
 				<p class="faq-sub"><?php echo $content['subcontent']; ?></p>
 				<?php
 				$last = end($bottom_data);

@@ -33,6 +33,9 @@ Licensed under MIT
     src: url('./../fonts/King-Basil-Lite.otf');
 }
 
+.carousel {
+	margin-bottom: 0 !important;
+}
 .titleFont {
 	font-family: kingbasil, sans-serif;
 	position: relative;
@@ -1609,6 +1612,9 @@ span.step{
 	}
 }
 @media (max-width: 768px){
+	.pickblue {
+		text-align: center !important;
+	}
 	#contactus.container {
 		padding: 0 !important;
 	}
