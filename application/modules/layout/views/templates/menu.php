@@ -27,7 +27,7 @@
             <?php
             foreach($this->config->item('menus') as $url => $menu) {
             ?>
-            <li class="<?php echo $url == METHOD_NAME ? 'active' : ''; ?>"><a href="<?php echo site_url($lang."/".$url); ?>" class="page-scroll"><?php echo lang($menu); ?></a></li>
+            <li class="<?php echo $url == METHOD_NAME ? 'active' : ''; ?>"><a style="text-transform:uppercase;" href="<?php echo site_url($lang."/".$url); ?>" class="page-scroll"><?php echo lang($menu); ?></a></li>
             <?php 
             }
             ?>
