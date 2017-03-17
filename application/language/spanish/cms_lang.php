@@ -1082,7 +1082,7 @@ $lang['thanks_booking']='Gracias por realizar la reserva.';
 
 $lang['print_booking']='Por favor imprime esta confirmación y muéstrasela al conductor de vehículo.';
 
-$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  admin@shuttleing.com o teléfono: +34 935 227 445.';
+$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  bookings@shuttleing.com o teléfono: +34 000 000 000.';
 
 
 

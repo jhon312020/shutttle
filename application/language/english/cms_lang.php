@@ -563,7 +563,7 @@ $lang['seat_availability_error'] = 'There is no available seats for this route';
 //confirmation page
 $lang['thanks_booking']='Thanks for your Booking.';
 $lang['print_booking']='Please print this confirmation email and show it to the driver.';
-$lang['query_booking']='For any queries or doubts please contact to shuttleing by Email:  admin@shuttleing.com or phone: +34 935 227 445';
+$lang['query_booking']='For any queries or doubts please contact to shuttleing by Email:  bookings@shuttleing.com or phone: +34 000 000 000';
 
 $lang['time_go'] = 'Your flight time';
 $lang['time_back'] = 'Your landing time';

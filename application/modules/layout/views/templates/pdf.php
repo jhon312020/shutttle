@@ -27,10 +27,12 @@
 	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 	   <style>
-
+	   @page {
+	   	margin:2em;
+	   }
 		body{margin:0px;}
 
-		.footer { position: absolute; bottom: 0px;height:30px; }
+		.footer { position: absolute; bottom: 0px;height:20px; }
 
 		td{
 
@@ -124,7 +126,7 @@
 
 	</head>
 
-	<body style="font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;line-height:normal;font-size:12px;color:#25387d;">
+	<body style="font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;line-height:normal;font-size:12px;color:#25387d;background:#f5f5f5 !important;padding:15px !important;">
 
 		<div class="footer">
 
@@ -166,7 +168,7 @@
 
 		</table>
 
-		<table style="margin:0px!important;margin-top:15px; padding:0px!important;width:100%;height:40px;background-color:#f5f5f5;">
+		<table style="margin:0px!important;margin-top:15px; padding:0px!important;width:100%;height:40px;background-color:#fff;">
 
 			<tbody>
 
@@ -188,7 +190,7 @@
 
 		</table>
 
-		<table style="margin:0px!important;margin-top:15px; padding:0px!important;width:100%;height:40px;background-color:#f5f5f5;">
+		<table style="margin:0px!important;margin-top:15px; padding:0px!important;width:100%;height:40px;background-color:#fff;">
 
 			<tbody>
 
@@ -211,8 +213,8 @@
 
 				<tr style="width:100%;margin:0px!important;padding:0px!important;">
 
-					<td style="width:48%;padding-right:15px;background-color:#f5f5f5;background-color:#f5f5f5;">
-						<div style="width:100%;background-color:#f5f5f5;">
+					<td style="width:48%;padding-right:15px;background-color:#fff;background-color:#fff;">
+						<div style="width:100%;background-color:#fff;">
 							<p style="font-size:22px;padding-left:10px;padding-top:20px;color:#EA5B55 !important;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('go'); ?></p>	
 
 						<p>
@@ -232,15 +234,15 @@
 					</td>
 					<td style="width:1%;">
 					</td>
-					<td style="width:48%;padding-left:5px;<?php echo isset($return_bookings) ? 'background-color:#f5f5f5;': ''; ?>">
-						<?php
+					<td style="width:48%;padding-left:5px;background-color:#fff;">
+						
+					<div style="width:100%;background-color:#fff;">
+						<p style="font-size:22px;padding-left:10px;padding-top:20px;color:#EA5B55 !important;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('back'); ?></p>	
+				<?php
 
 				if(isset($return_bookings)){
 
 				?>
-					<div style="width:100%;background-color:#f5f5f5;">
-						<p style="font-size:22px;padding-left:10px;padding-top:20px;color:#EA5B55 !important;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('back'); ?></p>	
-
 						<p>
 							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('from'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
 						</p>
@@ -252,8 +254,9 @@
 						<p style="padding-bottom:20px;">
 							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
 						</p>
-						</div>
 						<?php } ?>
+						</div>
+						
 					</td>
 				</tr>
 
@@ -277,16 +280,16 @@
 				<tr style="width:100%;margin:0px!important;padding:0px!important;">
 
 					<td style="width:50%;padding-right:3px;">
-						<div style="width:100%;background-color:#f5f5f5;padding-top:15px;padding-bottom:15px;padding-left:10px;">
+						<div style="width:100%;background-color:#fff;padding-top:15px;padding-bottom:15px;padding-left:10px;">
 
 						<span style="font-size:18px;padding-left:10px;color:#25387d;font-weight:bold;"><?php echo '<span>'. lang('extra_luggage') .'</span>'. ': <span style="font-weight:normal;">'. $sum_extra . '&nbsp;&euro;</span>'; ?></span>
 
 						</div>
 					</td>
 					<td style="width:50%;padding-bottom:10px;padding-left:4px;">
-						<div style="width:100%;background-color:#f5f5f5;padding-top:10px;padding-bottom:10px;position:relative;">
-							<div style="position:absolute;right:0px;width:50%;text-align:center;background:#25387d;top:0px;color:#fff !important;padding-top:15px;padding-bottom:15px;">
-								<span style="font-size:18px;color:#fff;text-align:center;vertical-align:middle;padding-top:10px !important;text-transform:uppercase;"><?php echo lang('total') . ' '. lang('price') . ':  ' . $bookings['price']; ?>&nbsp;&euro;</span>
+						<div style="width:100%;background-color:#fff;padding-top:10px;padding-bottom:10px;position:relative;">
+							<div style="position:absolute;right:0px;width:50%;text-align:center;background:#25387d;top:0px;color:#f5f5f5 !important;padding-top:15px;padding-bottom:15px;">
+								<span style="font-size:18px;color:#f5f5f5;text-align:center;vertical-align:middle;padding-top:10px !important;text-transform:uppercase;"><?php echo lang('total') . ' '. lang('price') . ':  ' . $bookings['price']; ?>&nbsp;&euro;</span>
 							</div>
 						<table>
 							<tbody>
@@ -330,37 +333,21 @@
 
 							<?php if($ln == 'en') { ?>
 
-							<table style="background-color:#4577d8;border-collapse:collapse;">
+							<table style="background-color:#25387d;border-collapse:collapse;">
 
 								<thead>
 
 									<tr>
 
-										<td style="width:22%;padding:10px;">
+										
 
-											<span style="color:#fff !important;font-size:12px !important;"> Shuttleing is a shared shuttle service. (Keep it simple. Who cares if it's minivan or minibus?)</span>
-
-										</td>
-
-										<td style="background-color:#25387d;width:22%;padding:10px;">
-
-											<span style="color:#fff !important;font-size:12px !important;">All our drivers hold a sign with shuttleing logo. They all wear blue jeans and colorful converse shoes</span>	
-
-										</td>
-
-										<td style="width:28%;padding:10px;">
-
-											<span style="color:#fff !important;font-size:12px !important;">All our vans have logo on doors (is it necessary to explain the car- exceptions? You will let them know if that's the case, right?)</span>	
-
-										</td>
-
-										<td style="background-color:#25387d;width:18%;padding:10px;">
+										<td style="background-color:#4577d8;width:50%;padding:10px;text-align:center;">
 
 											<span style="color:#fff !important;font-size:12px !important;">Check the map below to locate our vehicles at the exit of the terminal</span>	
 
 										</td>
 
-										<td style="width:18%;padding:10px;">
+										<td style="width:50%;padding:10px;text-align:center;">
 
 											<span style="color:#fff !important;font-size:12px !important;">It is strictly forbidden to get off the vehicle until final destination.</span>	
 
@@ -374,37 +361,20 @@
 
 							<?php } else { ?>
 
-							<table style="background-color:#4577d8;border-collapse:collapse;">
+							<table style="background-color:#25387d;border-collapse:collapse;">
 
 								<thead>
 
 									<tr>
 
-										<td style="width:22%;padding:10px;">
-
-											<span style="color:#fff !important;font-size:12px !important;"> Shuttleing es un servicio de transporte compartido. (Asi de simple. Que importa si es un minivan o microbús?)</span>
-
-										</td>
-
-										<td style="background-color:#25387d;width:22%;padding:10px;">
-
-											<span style="color:#fff !important;font-size:12px !important;">Todos nuestros conductores llevan un distintivo con el logo de shuttleing Todos usan jeans azul y converse de colores</span>	
-
-										</td>
-
-										<td style="width:28%;padding:10px;">
-
-											<span style="color:#fff !important;font-size:12px !important;">Todos nuestros vehículos tienen logotipo en las puertas (¿es necesario explicar las excepciones de coche? Nos lo hareis saber si es necesario, no?)</span>	
-
-										</td>
-
-										<td style="background-color:#25387d;width:18%;padding:10px;">
+										
+										<td style="background-color:#4577d8;width:50%;padding:10px;text-align:center;">
 
 											<span style="color:#fff !important;font-size:12px !important;">Comprobar el mapa para localizar nuestros vehículos a la salida de la terminal</span>	
 
 										</td>
 
-										<td style="width:18%;padding:10px;">
+										<td style="width:50%;padding:10px;text-align:center;">
 
 											<span style="color:#fff !important;font-size:12px !important;">Está estrictamente prohibido bajarse del vehículo hasta llegar a su destino.</span>	
 
@@ -432,6 +402,21 @@
 			<img src="assets/cc/images/Terminal-2.jpg" style="width:50%;">
 
 		</div>
+		<div class="row" style="padding-left:10px !important;width:100%;">
+			<table style="width:100%;">
+				<tbody>
+					<tr>
+						<td style="width:50% !important;">
+							<span style="font-size:12px !important;">Pick up at T1 every 00" & 30"</span>
+						</td>
+						<td style="width:50%;">
+							<span style="font-size:12px !important;">Pick up at T2 every 15" & 45"</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
 
 		<div class="row" style="margin-left:10px !important;">
 
@@ -447,25 +432,16 @@
 
 				<p style="font-weight:bold;">Airport pick-up</p>
 
-				<p>Our hostess will be waiting for you at arrivals lounge, holding a board with your name. If you can’t find her, please call to our airport assistance number +34628 000 785 (9.00am-22.00pm) or +34646 401 942 (24hs)</p>
+				<p>Pick up at T1 every 00" & 30"</p>
 
-				<p>Once you meet our staff, you may be waiting up to 30 minutes. Please understand it’s a shared van and we need to accommodate other passengers.</p>
-
-				<p>If your flight is delayed, don’t worry! We check all the timings and we wait for you.</p>
-
-				<p>We reserve the right for pick-ups on flights arriving at 23hr that have a 2 hour delay or more.</p>
-
+				<p>Pick up at T2 every 15" & 45"</p>
 			</div>
 
 			<div class="row" style="">
 
 				<p style="font-weight:bold;">Hotel / other pick-up</p>
 
-				<p>Please be ready 10 minutes beforehand. We may take up to 30 minutes to pick you up from the time you designate, as we normally pick up other passengers in the same ride. Please be patient as we ALWAYS deliver. </p>
-
-				<p>In case we come pick you and you’re not ready you will have 5 extra minutes to show up, otherwise our drivers will leave you. No expenses will be covered.</p>
-                
-                 <p>Shuttleing is an independent company that serves hotels and individuals in Barcelona. Shuttleing does not belong to any hotel and its activity is totally external.</p>
+				<p>Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance</p>
 
 			</div>
 
@@ -489,13 +465,9 @@
 
 				<p style="font-weight:bold;">Recogida en el aeropuerto</p>
 
-				<p>Nuestra hostes le estará esperando en la puerta de llegadas, sosteniendo  una tablet con su nombre. Si no puede encontrarla, por favor llame a nuestro número de asistencia en aeropuerto +34628 000 785 (9:00-10:00) o al +34646 401 942 (24 hs)</p>
+				<p>Pick up at T1 every 00" & 30"</p>
 
-				<p>Una vez que usted este con nuestro personal,  puede que tenga que  esperar hasta 30 minutos. Por favor, comprenda que es una furgoneta compartida y necesitamos dar cabida a otros pasajeros. </p>
-
-				<p>Si su vuelo se retrasa, no se preocupe! Comprobamos todos los horarios y sus modificaciones  y le esperamos!!</p>
-
-				<p>En vuelos con llegadas a partir de las 23h y que tengan un retraso de 2 horas o más, nos reservamos el derecho de realizar el servicio.</p>
+				<p>Pick up at T2 every 15" & 45"</p>
 
 			</div>
 
@@ -503,11 +475,7 @@
 
 				<p style="font-weight:bold;">Hotel / otros Pick-up</p>
 
-				<p>Por favor esten listos con 10 minutos de antelacion. Shuttleing dispondrá un margen de 30 minutos, desde la hora de su reserva, para recogerle, normalmente recogemos a otros pasajeros en el mismo trayecto. Por favor tenga paciencia, SIEMPRE llegamos.</p>
-
-				<p>En caso de que vengamos  a buscarle y usted no esté listo tendrá 5 minutos extras o de lo contrario nuestros conductors se iran. En ese caso no nos haremos responsables de cualquier gasto extra que pudiera tener. </p>
-                
-               <p>Shuttleing es una empresa independiente que da servicio a hoteles y particulares en Barcelona. Shuttleing no pertenece a ningún hotel y su actividad es totalemnte externa.</p>
+				<p>Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance</p>
 
 			</div>
 
