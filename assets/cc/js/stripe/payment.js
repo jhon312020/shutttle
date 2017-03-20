@@ -20,7 +20,7 @@ function reportError(msg) {
 $(document).ready(function() {
   Stripe.setPublishableKey(stripeKey);
 	// Watch for a form submission:
-	/* $("#payment-form").submit(function(event) {
+	$("#payment-form").submit(function(event) {
     var valid = $(".validateForm").validationEngine('validate');
     if (!valid)
     return false;
@@ -72,14 +72,12 @@ $(document).ready(function() {
 		// Prevent the form from submitting:
 		return false;
 
-	}); */ // Form submission
+	}); // Form submission
 
 }); // Document ready.
 
 // Function handles the Stripe response:
 function stripeResponseHandler(status, response) {
-
-	//console.log('Payment done');
 
 	// Check for an error:
 	if (response.error) {
@@ -88,7 +86,7 @@ function stripeResponseHandler(status, response) {
 
 	} else { // No errors, submit the form:
 
-	  var stripe_form = $("#payment-form");
+	  var f = $("#payment-form");
 
 	  // Token contains id, last4, and card type:
 	  var token = response['id'];
@@ -96,10 +94,10 @@ function stripeResponseHandler(status, response) {
     console.log(token);
 
 	  // Insert the token into the form so it gets submitted to the server
-	  stripe_form.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+	  f.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
 
 	  // Submit the form:
-	  stripe_form.submit();
+	  f.get(0).submit();
     //return false;
 
 	}
