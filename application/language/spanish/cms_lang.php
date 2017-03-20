@@ -1330,4 +1330,6 @@ $lang['cvc'] = 'CVC';
 $lang['mm'] = 'MM';
 $lang['yyyy'] = 'YYYY';
 $lang['home_intro'] = "Shuttleing es una creciente empresa de transporte, comprometida a proporcionar un servicio excepcional desde el Aeropuerto a los viajeros de negocios como de placer. Shuttleing se está expandiendo a nuevos mercados. ¡Esperamos verte pronto en tu ciudad o en el aeropuerto de destino!";
+
+$lang['button_go'] = 'Go';
 ?>

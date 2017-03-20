@@ -32,7 +32,7 @@
         <p class="text-justify">
         </p>
         <h4 class="resumen price-h">
-          <button type="button" class="btn btn-lg pickbluebg" style="background:#25377d;"><?php echo lang('price'); ?>: <span class="price_total"></span>&nbsp;&euro;</button>
+          <span type="button" class="btn-span pickbluebg" style="background:#25377d;"><?php echo lang('price'); ?>: <span class="price_total"></span>&nbsp;&euro;</span>
         </h4>
       </div>
       <div class="col-md-6 panel-div">

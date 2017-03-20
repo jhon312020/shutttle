@@ -699,4 +699,6 @@ $lang['book_now1'] = 'Book now';
 $lang['contact_us'] = 'Contact us';
 $lang['reserve_now'] = 'BOOK NOW';
 $lang['home_intro'] = "Comfortable, reliable transportation is hard thing to find. It's even more difficult to find a driver that you know and trust. You need a chauffeur that will get you where you want to go, when you need to be there. At Shuttleing we provide luxurious, reliable, and professional shuttle service whenever you need it. Don't mess around with sketchy transportation services. Use a service you know and trust.";
+
+$lang['button_go'] = 'Go';
 ?>

@@ -41,7 +41,7 @@
       <p class="text-justify">
 				<hr class="marginTB-10 orangeborder">
 				<h4 class="resumen">
-        <button type="button" id="form-submit" class="btn btn-lg pickbluebg paypalsubmit"><?php echo lang('total'); ?>: <span class="price_total">00.00</span> &euro;</span></button>
+        <span type="button" id="form-submit" class="btn-span pickbluebg paypalsubmit"><?php echo lang('total'); ?>: <span class="price_total">00.00</span> &euro;</span></span>
 				</h4>
 			</p>
 		</div>

@@ -23,7 +23,7 @@
 								</div>
             <div class="form-group col-xs-12"></div>
             <div class="form-group col-xs-12 col-xs-6 col-md-offset-3">
-              <button type="submit" class="btn btn-block" style=""><?php echo lang('go'); ?></button>
+              <button type="submit" class="btn btn-block" style=""><?php echo lang('button_go'); ?></button>
             </div>
             </form>
           </div>

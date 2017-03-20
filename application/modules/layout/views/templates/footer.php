@@ -14,7 +14,7 @@
   <!-- FOOTER -->
   <?php if(in_array(METHOD_NAME, $this->config->item('book_now_menus'))) { ?>
   <div class="col-sm-12 faq-book">
-    <a href="<?php echo site_url($lang."/reservation"); ?>" class="btn btn-primary btn-blue"><?php echo lang('reserve_now'); ?></a>
+    <a href="<?php echo site_url($lang."/reservation"); ?>" class="btn btn-primary btn-blue"><?php echo lang('book_now'); ?></a>
   </div>
   <?php } ?>
   
