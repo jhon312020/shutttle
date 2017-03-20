@@ -29,7 +29,16 @@
   
   <footer id="footer" class="container" style="padding:0;"> 
 	 <!-- FOR HOME PAGE MORE THAN 768px --> 
-    <div class="mob-hide col-md-12" style="padding: 0 5%;">
+    <!-- <div class="mob-hide col-md-12" style="padding: 0 5%;"> -->
+    <?php 
+      $action = $this->uri->segment(2); 
+      if ($action == 'contacts') {
+        $padding = "padding: 0 4.8%";
+      } else {
+        $padding = "padding: 0 3.5%";
+      }
+    ?>
+    <div class="mob-hide col-md-12" style="<?php echo $padding;?>">
 		<div class="col-xs-12 col-md-12 footerBorder" style="padding:0;">
       		<hr style="border-width: 2px;border-color: #25387D;width:100%;margin-top:10px;" class="bigHR">	
 		</div>

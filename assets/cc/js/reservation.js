@@ -655,12 +655,8 @@ $(document).ready(function(){
   	$('#navbar a').click( function() {
   		window.onbeforeunload = null;
   	});
-  	/*$(document).on('submit', '#stripeform, #bank_form, #payment-form', function(e) {
 
-  	$(document).on('click', '#form-submit', function(e) {
-  		window.onbeforeunload = null;
-  	});
-  	$(document).on('submit', '#stripeform, #bank_form, #payment-form', function(e) {
+  	/*$(document).on('submit', '#stripeform, #bank_form, #payment-form', function(e) {
   		window.onbeforeunload = null;
   	});
 

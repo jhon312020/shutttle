@@ -1473,9 +1473,9 @@ input:focus#promo_code:-ms-input-placeholder {
 	#footer {
 		padding: 0;
 	}
-	.mob-hide {
-		padding: 0 3.5% !important;
-	}
+	/*.mob-hide {
+		padding: 0 4.8% !important;
+	}*/
 	.mob-hide > div {
 		padding: 0;
 	}
@@ -1502,7 +1502,7 @@ input:focus#promo_code:-ms-input-placeholder {
 
 @media (min-width: 1199px) {
 	.mob-hide {
-		padding: 0 5% !important;
+		/*padding: 0 5% !important;*/
 	}
     .circleone{
         padding-left:4%;
@@ -1584,7 +1584,7 @@ span.step{
     width: 100%;
 }
 	.mob-hide {
-		padding: 0 3.5% !important;
+		/*padding: 0 3.5% !important; */
 	}
 	.contactDetailsDiv {
 		text-align: center;
@@ -1621,12 +1621,22 @@ span.step{
 	.contactSection {
 		padding: 0;
 	}
-	.sliderHeaderTexto {
+	/*.sliderHeaderTexto {
         height: auto;
 		position: relative;
         padding-bottom: 5%;
         width: 82%;
-	}
+	}*/
+    .sliderHeaderTexto {
+        height: auto;
+        /*position: relative;
+        padding-bottom: 10%;*/
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        transform: translate(-45%, -50%); 
+        width: 82%;
+    }
     .headerTexto {
         height: auto;
         position: relative;
@@ -1704,8 +1714,12 @@ span.step{
 	
 	.sliderHeaderTexto {
         height: auto;
-		position: relative;
-        padding-bottom: 10%;
+		/*position: relative;
+        padding-bottom: 10%;*/
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        transform: translate(-45%, -50%); 
 	}
     .headerTexto {
         height: auto;
@@ -1738,11 +1752,21 @@ span.step{
     .bigHR {
         display: none;
     }
-    .sliderHeaderTexto {
+    /*.sliderHeaderTexto {
         width: 82%;
         height: auto;
         position: relative;
         padding-bottom: 50%;
+    }*/
+    .sliderHeaderTexto {
+        height: auto;
+        /*position: relative;
+        padding-bottom: 10%;*/
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        transform: translate(-45%, -50%);
+        width: 82% 
     }
     headerTexto {
         width: 82%;
@@ -1812,12 +1836,22 @@ span.step{
 .button.btn{
     font-size: 18px;
 }
-.sliderHeaderTexto {
+/*.sliderHeaderTexto {
     height: auto;
     position: relative;
     width: 82%;
     padding-bottom: 40% !important;
-}
+}*/
+.sliderHeaderTexto {
+        height: auto;
+        /*position: relative;
+        padding-bottom: 10%;*/
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        transform: translate(-45%, -50%);
+        width: 50%; 
+    }
 .headerTexto {
     height: auto;
     position: relative;

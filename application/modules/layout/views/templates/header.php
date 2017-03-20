@@ -3,6 +3,8 @@ $user_name = $this->session->userdata('user_name');
 $title = $this->mdl_settings->setting('site_title');
 $cms_lang = $this->session->userdata('cms_lang');
 $action = $this->uri->segment(2);
+$ln = $this->uri->segment(1);
+ if(!$ln || $ln == ""){	$ln = "es"; }
 //print_r($header_text_images);
 ?>
 <!DOCTYPE html>
@@ -71,7 +73,7 @@ $action = $this->uri->segment(2);
     
   ?>
   <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH.$image_name; ?>') no-repeat center center scroll;">
-	  <img src="<?php echo IMAGEPATH.'header/'.$header_text_images[$action] ?>" class="headerTexto img-center" />
+	  <img src="<?php echo IMAGEPATH.'header/'.$ln.'/'.$header_text_images[$action] ?>" class="headerTexto img-center" />
 	  <!-- <div class="titleFont">HELLO</div>
 	  <div class="shuttleingBox"><p>SHUTTLEING.</p></div> -->
     <img class="img-responsive img-center"  alt="">
