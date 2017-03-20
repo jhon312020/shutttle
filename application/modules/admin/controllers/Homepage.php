@@ -34,6 +34,7 @@ class Homepage extends Admin_Controller {
 	}
 	
 	public function banner() {
+		show_404();exit;
 		$banners = $this->db->get_where('boxes', array('location'=>'banner'))->result();
 		$this->layout->set(array('path'=>$this->path, 'boxes'=>$banners, 'type'=>'banner'));
 		$this->layout->buffer('content', 'homepage/box');
@@ -56,7 +57,11 @@ class Homepage extends Admin_Controller {
 	public function form($type = null, $id = null) {
 		//echo '<pre>';
 		//print_r($_FILES);
-		//print_r($_POST);
+		//print_r($_POST);exit;
+		if($type == 'banner') {
+			show_404();exit;
+		}
+
 		if (is_null($type) || $type === '') {
 			redirect('admin/homepage/slider');
 		} else if($this->input->post('btn_cancel')) {

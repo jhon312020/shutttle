@@ -37,7 +37,7 @@
           <a href="<?php echo $link; ?>" target="_blank">
           <div class="col-sm-4 col-xs-6"><img src="<?php echo $img_url.'/'.$image_name; ?>" alt="" class="img-responsive">
             <div class="text">
-              <h1><?php echo $title; ?></h1>
+              <!--<h1><?php echo $title; ?></h1>-->
                 <p><?php echo $content; ?></p>    
             </div>
             </div>

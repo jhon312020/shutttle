@@ -27,12 +27,13 @@
 									<span><?php echo lang('slider_texts'); ?></span>
 								</a>
 							</li>
-							<li class="<?php echo ($this->router->method == 'banner' or $url_segment[4]== 'banner') ? 'opened active' : ''; ?>">
+							<?php /*<li class="<?php echo ($this->router->method == 'banner' or $url_segment[4]== 'banner') ? 'opened active' : ''; ?>">
 								<a href="<?php echo site_url('admin/homepage/banner'); ?>">
 									<i class="entypo-pencil"></i>
 									<span><?php echo lang('banner'); ?></span>
 								</a>
 							</li>
+							*/ ?>
 							<li class="<?php echo ($this->router->method == 'box' or  $url_segment[4]== 'box') ? 'opened active' : ''; ?>">
 								<a href="<?php echo site_url('admin/homepage/box'); ?>">
 									<i class="entypo-pencil"></i>

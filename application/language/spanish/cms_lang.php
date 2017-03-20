@@ -796,7 +796,7 @@ $lang['send'] = 'Enviar';
 
 /* Reservation */
 
-$lang['book_now'] = 'CONTINUAR';
+$lang['book_now'] = 'RESERVAR';
 //Just given spaces to fix the design issues.
 $lang['choose_your_route'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELIGE TU RUTA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
@@ -972,7 +972,7 @@ $lang['hour_back'] = 'Hora de vuelta';
 
 $lang['doc_no'] = 'N<sup style="top:-0.4em;"><u>o</u></sup> Document';
 
-$lang['book_now'] = 'CONTINUAR';
+$lang['book_now'] = 'RESERVAR';
 
 //CMS Menu Items
 
@@ -1082,7 +1082,7 @@ $lang['thanks_booking']='Gracias por realizar la reserva.';
 
 $lang['print_booking']='Por favor imprime esta confirmación y muéstrasela al conductor de vehículo.';
 
-$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  bookings@shuttleing.com o teléfono: +34 000 000 000.';
+$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  checking@shuttleing.com o teléfono: +34 000 000 000.';
 
 
 

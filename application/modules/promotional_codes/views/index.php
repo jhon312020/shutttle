@@ -36,8 +36,8 @@
 				<a class="btn btn-warning btn-sm <?php echo $promotional_code->is_active ? '' : 'inactive'; ?>" href="<?php echo site_url('admin/promotional_codes/toggle/' . $promotional_code->id . '/' . $promotional_code->is_active); ?>">
 					<i class="entypo-check" title="<?php echo $promotional_code->is_active ? 'Active' : 'In Active'; ?>"></i>
 				</a>
-				<!-- <a class="btn btn-danger btn-sm" href="<?php //echo site_url('admin/promotional_codes/delete/' . $promotional_code->id); ?>" onclick="return confirm('<?php //echo lang('delete_record_warning'); ?>');" > -->
-					<!-- <i class="entypo-trash"></i> -->
+				<a class="btn btn-danger btn-sm" href="<?php echo site_url('admin/promotional_codes/delete/' . $promotional_code->id); ?>" onclick="return confirm('<?php echo lang('delete_record_warning'); ?>');" >
+					<i class="entypo-trash"></i>
 				</a>
 			</td>
 		</tr>

@@ -61,12 +61,10 @@ if (!defined('BASEPATH'))
 		else
 			echo json_encode(array('error'=>"Invalid codes"));
 	}
-	/*public function delete($id) {
-		$this->db->where('collaborator_id',$id);
-		$this->db->delete('tbl_users');
+	public function delete($id) {
 		$this->mdl_promotional_codes->delete($id);
 		redirect('admin/promotional_codes');
-	}*/
+	}
 	
 	public function toggle($id, $bool){
 		if ($id){

@@ -116,6 +116,7 @@
 							<input class="form-control" type="text" id="link" name="link" value="<?php echo $this->mdl_box->form_value('link'); ?>">
 						</div>
 					</div>
+					<?php /*
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo lang('title_bgcolor'); ?>: </label>
 						<div class="col-sm-5">
@@ -129,6 +130,7 @@
 							</select>
 						</div>
 					</div>
+					*/ ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo lang('sort_news'); ?>: </label>
 						<div class="col-sm-5">
