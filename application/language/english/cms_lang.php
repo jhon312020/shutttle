@@ -5,39 +5,38 @@ $lang['customer'] = 'Customer';
 $lang['fleet'] = 'Fleet';
 $lang['shuttles'] = 'Bookings';
 $lang['shuttle'] = 'Booking';
-$lang['hour'] = 'Time';
-$lang['from'] = 'From';
-$lang['to'] = 'To';
-$lang['arrival_time'] = 'Arrival';
+
+
+
 $lang['logo'] = 'Logo';
 $lang['slider'] = 'Main Slider';
 $lang['slogan'] = 'Slogan';
 $lang['box'] = 'Box';
 $lang['boxes'] = 'Boxes';
-$lang['banner'] = 'Banner';
+
 $lang['url'] = 'URL';
 $lang['add_more'] = 'Add More';
 $lang['gallery'] = 'Gallery';
-$lang['faq'] = 'FAQ';
+
 $lang['question'] = 'Question';
 $lang['answer'] = 'Answer';
 $lang['category'] = 'Category';
 $lang['first_name'] = 'First Name';
 $lang['last_name'] = 'Last Name';
 $lang['collaborator'] = 'Collaborator';
-$lang['franchises'] = 'Franchises';
-$lang['concierge'] = 'Concierge';
+
+
 $lang['schedule'] = 'Schedule';
 $lang['bcn_area'] = 'BCN Area';
 $lang['routes'] = 'Routes';
 $lang['route'] = 'Route';
-$lang['surname'] = 'Surname';
+
 $lang['cp'] = 'C.P';
-$lang['nationality'] = 'Nationality';
-$lang['dni_passport'] = 'DNI / Passport';
+
+
 $lang['dentist'] = 'Dentist';
 $lang['no_of_available_seats'] = 'Nº Available Seats';
-$lang['available_seats'] = 'Available Seats';
+
 $lang['calendar'] = 'Calendar';
 $lang['driver'] = 'Driver';
 $lang['seats'] = 'Seats';
@@ -54,12 +53,12 @@ $lang['banner_content'] = 'Banner Content';
 $lang['rates'] = 'Rates';
 $lang['login_title'] = 'User area';
 $lang['username'] = 'User';
-$lang['password'] = 'Password';
+
 $lang['password_recovery'] = 'Recover password';
 $lang['change_password'] = 'Change password';
 $lang['enter'] = 'Enter';
 $lang['places'] = 'Places';
-$lang['go'] = 'Go';
+
 $lang['go_back'] = 'Go + Back';
 
 
@@ -69,24 +68,24 @@ $lang['start_date'] = "Trip Date";
 $lang['end_date'] = "Return Date";
 $lang['no_of_passengers'] = "Passengers";
 $lang['country_origin'] = "Country";
-$lang['flight_no'] = "Flight no";
+
 $lang['flight_time'] = "Flight Time";
 $lang['flightlanding_time'] = "Landing Time";
-//$lang['adults'] = "Adults";
+
 $lang['adults'] = "Number of people";
-$lang['child'] = "Child (under 5)";
-$lang['baby'] = "babies";
+
+
 $lang['kids'] = "Kids";
-$lang['summary'] = "summary";
-$lang['arrival_time'] = "arrival time";
+
+
 
 /*reserva*/
 $lang['includes'] = "Your reservation includes";
-$lang['low_cost'] = "Low cost";
-$lang['special_discounts'] = "Special discounts";
+
+
 $lang['child_free'] = "Children under 5 free";
-$lang['free_internet'] = "Free Internet";
-$lang['payment_facilities'] = "Payment facilities";
+
+
 $lang['bag_free'] = "1 Bag free";
 $lang['pack_map'] = "Welcome pack & map";
 $lang['mb_enable_device'] = "Mobile enabled device";
@@ -121,7 +120,7 @@ $lang['Comment'] = 'Comment';
 $lang['send'] = 'Send';
 
 /* Reservation */
-$lang['book_now'] = 'BOOK NOW';
+
 $lang['choose_your_route'] = 'CHOOSE YOUR ROUTE';
 $lang['route_schedule'] = 'ROUTE SCHEDULE';
 $lang['info_and_payment'] = 'INFO AND PAYMENT';
@@ -131,11 +130,11 @@ $lang['from'] = 'From';
 $lang['to'] = 'To';
 $lang['go'] = 'Go';
 $lang['back'] = 'Back';
-$lang['your_country'] = 'Your Country';
+
 $lang['flight'] = 'Flight Nº';
 $lang['hour'] = 'Time';
 $lang['minutes'] = 'Minutes';
-//$lang['adults'] = 'Adults';
+
 $lang['child'] = 'Child (under 5)';
 $lang['baby'] = 'Baby';
 $lang['return_time'] = 'Re. time';
@@ -155,7 +154,7 @@ $lang['arrival_time'] = 'Arrival';
 $lang['price'] = 'Price';
 
 /* booking last page */
-$lang['your_reservation_includes'] = 'Your reservation includes';
+
 $lang['low_cost'] = 'Low cost';
 $lang['free_internet'] = 'Free Internet';
 $lang['welcome_pack'] = 'welcome_pack';
@@ -166,12 +165,12 @@ $lang['children_under_5_free'] = 'Children under 5 Free';
 $lang['1_bag_free'] = '1 Bag Free';
 $lang['select_your_extras'] = 'Extras';
 $lang['extra_luggage'] = 'Extra luggage';
-$lang['more_info'] = 'More Info';
+
 $lang['child_chair'] = 'Child Chair';
 $lang['concierge_initial_caps'] = 'Concierge';
 $lang['dental_insurance'] = 'Dental insurance';
 $lang['add'] = 'ADD';
-$lang['promotional_code'] = 'PROMOTIONAL CODE';
+
 $lang['apply'] = 'Apply';
 $lang['user'] = 'User ( E-mail)';
 $lang['password'] = 'Password';
@@ -186,7 +185,7 @@ $lang['postcode'] = 'Postcode';
 $lang['country'] = 'Country';
 $lang['city'] = 'City';
 $lang['nationality'] = 'Nationality';
-$lang['id_or_passport'] = 'ID or Passport';
+
 $lang['number_of_document'] = 'Number of document';
 $lang['terms_&_conditions'] = 'Terms & Conditions';
 $lang['total'] = 'Total';
@@ -378,4 +377,33 @@ $lang['home_intro'] = "Do you arrive or leave Barcelona?<br>
 Whether traveling for business or pleasure, Shuttleing offers transportation between the airport and the city of Barcelona. A fully comfortable door to door service.<br><br>";
 
 $lang['button_go'] = 'Go';
+
+//CMS language
+$lang['login'] = 'Login';
+$lang['logout'] = 'Logout';
+$lang['dashboard'] = 'Dashboard';
+$lang['customer'] = 'Customer';
+$lang['settings'] = 'Settings';
+$lang['language'] = 'Language';
+$lang['client'] = 'Client';
+$lang['clients'] = 'Clients';
+$lang['home'] = 'Home';
+$lang['contact'] = 'CONTACT';
+$lang['contacts'] = 'Contacts';
+$lang['new'] = 'New';
+$lang['edit'] = 'Edit';
+$lang['id'] = 'ID';
+$lang['image'] = 'Image';
+$lang['images'] = 'Images';
+$lang['options'] = 'Options';
+$lang['save'] = 'Save';
+$lang['cancel'] = 'Cancel';
+$lang['description'] = 'Description';
+$lang['date'] = 'Date';
+$lang['email_address'] = 'Email Address';
+$lang['account_information'] = 'Account Information';
+$lang['client_form'] = 'Client Form';
+$lang['payment_methods'] = 'Payment Methods';
+$lang['payment_method'] = 'Payment Method';
+$lang['next'] = 'NEXT';
 ?>

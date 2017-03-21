@@ -681,11 +681,11 @@ $(document).ready(function(){
 		var valid = $(".validateForm1").validationEngine('validate');
 		var payment_valid = true;
 		var paymentmethod = null;
-		if($('[name=paymentmethod]').length && $('[name=paymentmethod]:visible')) {
+		//if($('[name=paymentmethod]').length && $('[name=paymentmethod]:visible')) {
 			payment_valid = $("#stripeform").validationEngine('validate');
 			var paymentmethod = $('[name=paymentmethod]:checked').val();
-		}
-
+		//}
+		//console.log(paymentmethod)
 		if(valid && payment_valid) {
 			
 			ele.prop('disabled', false);
