@@ -1110,8 +1110,8 @@ span.step {
     }
     .totalpay{
         float:left;
-        margin:0px;
-        margin-right: 20px;
+        /*margin:0px;*/
+        /*margin-right: 20px;*/
         font-family: Gothambold;
     }
     h3 .totalpay{
@@ -1775,7 +1775,7 @@ span.step{
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 767px) {
   .row-eq-height {
         display: block;
     }
@@ -1783,6 +1783,18 @@ span.step{
         padding-right: 0px;
         padding-left: 0px;
         margin-top: 15px;
+    }
+}
+@media (max-width: 767px) {
+    .pay-div {
+        float: none !important;
+    }
+    .pay-accept {
+        float: none !important;
+        padding-bottom: 20px;
+    }
+    .pay-btn {
+        float: none !important;
     }
 }
 
@@ -1914,4 +1926,21 @@ span.step{
     span.btn:hover {
         color: #fff !important;
     }
-
+    .checkboxes label {
+      display: block;
+      float: left;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+    .checkboxes input {
+      vertical-align: middle;
+    }
+    .checkboxes label span {
+      vertical-align: middle;
+    }
+    .pay-div {
+        padding-left: 0px !important;
+    }
+    .pay-option {
+        padding-left: 0px !important;   
+    }
