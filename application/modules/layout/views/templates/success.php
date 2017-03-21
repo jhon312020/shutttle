@@ -247,11 +247,21 @@
 						<p style="font-size:22px;padding-top:20px;color:#EA5B55;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('go'); ?></p>	
 
 						<p>
-							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('from'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('from'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
+								</span>
+							</span>
 						</p>
 
 						<p>
-							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('to'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('to'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
+								</span>
+							</span>
 						</p>
 
 						<p style="padding-bottom:20px;">
@@ -271,15 +281,25 @@
 
 				?>
 						<p>
-							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('from'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('from'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
+								</span>
+							</span>
 						</p>
 
 						<p>
-							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('to'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('to'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
+								</span>
+							</span>
 						</p>
 
 						<p style="padding-bottom:20px;">
-							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
+							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $return_bookings['hour'])); ?>h</span>
 						</p>
 
 						<?php } ?>
@@ -408,19 +428,31 @@
 			<div class="col-sm-6">
 
 				<img src="<?php echo IMAGEPATH.'/Terminal-1.jpg'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">
+				<?php if($lang == 'en') { ?>
 				<p style="font-size:14px !important;">Pick up at T1 every 00" & 30"</p>
+				<?php } else { ?>
+				<p style="font-size:14px !important;">Recogida en T1 cada 00" y 30"</p>
+				<?php } ?>
 
 			</div>	
 			<div class="col-sm-6">
 
 				<img src="<?php echo IMAGEPATH.'/Terminal-2.jpg'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">
+				<?php if($lang == 'en') { ?>
 				<p style="font-size:14px !important;">Pick up at T2 every 15" & 45"</p>
+				<?php } else { ?>
+				<p style="font-size:14px !important;">Recogida en T2 cada 15" y 45"</p>
+				<?php } ?>
 
 			</div>	
 
 		</div>
 
 		
+		
+
+		<?php if($lang == 'en') { ?>
+
 		<div class="row" style="margin-top:0px;">
 
 			<div class="col-sm-12">
@@ -430,9 +462,6 @@
 			</div>	
 
 		</div>
-
-		<?php if($lang == 'en') { ?>
-
 		<div class="row" style="font-size:14px;">
 
 			<div class="col-sm-12">
@@ -482,7 +511,15 @@
 		</div>	
 
 		<?php } else { ?>
+		<div class="row" style="margin-top:0px;">
 
+			<div class="col-sm-12">
+
+				<h4 style="font-weight:normal;color:#25387d;">TÉRMINOS Y CONDICIONES DE LA RESERVA<h4>
+
+			</div>	
+
+		</div>
 		<div class="row" style="font-size:14px;">
 
 			<div class="col-sm-12">
@@ -493,9 +530,9 @@
 
 						<p style="font-weight:bold;font-size:16px;">Recogida en el aeropuerto</p>
 
-						<p>Pick up at T1 every 00" & 30"</p>
+						<p>Recogida en T1 cada 00" y 30"</p>
 
-						<p>Pick up at T2 every 15" & 45"</p>
+						<p>Recogida en T2 cada 15" y 45"</p>
 
 					</div>	
 
@@ -507,7 +544,7 @@
 
 						<p style="font-weight:bold;font-size:16px;">Hotel / otros Pick-up</p>
 
-						<p>Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance</p>
+						<p>Hasta 30 minutos de espera desde la hora de recogida. Cancelación gratis con 24h de antelación.</p>
 
 
 					</div>	

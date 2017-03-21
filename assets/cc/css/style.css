@@ -1634,7 +1634,11 @@ span.step{
         position: fixed;
         top: 45%;
         left: 50%;
-        transform: translate(-45%, -50%); 
+        -webkit-transform: translate(-45%, -50%);
+        -moz-transform: translate(-45%, -50%); 
+        -ms-transform: translate(-45%, -50%); 
+        -o-transform: translate(-45%, -50%); 
+        transform: translate(-45%, -50%);
         width: 40%;
     }
     .headerTexto {
@@ -1717,6 +1721,10 @@ span.step{
         position: fixed;
         top: 45%;
         left: 50%;
+        -webkit-transform: translate(-45%, -50%);
+        -moz-transform: translate(-45%, -50%); 
+        -ms-transform: translate(-45%, -50%); 
+        -o-transform: translate(-45%, -50%); 
         transform: translate(-45%, -50%);
         width: 40%; 
 	}
@@ -1764,6 +1772,10 @@ span.step{
         position: fixed;
         top: 45%;
         left: 50%;
+        -webkit-transform: translate(-45%, -50%);
+        -moz-transform: translate(-45%, -50%); 
+        -ms-transform: translate(-45%, -50%); 
+        -o-transform: translate(-45%, -50%); 
         transform: translate(-45%, -50%);
         width: 40% 
     }
@@ -1860,6 +1872,10 @@ span.step{
         position: fixed;
         top: 45%;
         left: 50%;
+        -webkit-transform: translate(-45%, -50%);
+        -moz-transform: translate(-45%, -50%); 
+        -ms-transform: translate(-45%, -50%); 
+        -o-transform: translate(-45%, -50%); 
         transform: translate(-45%, -50%);
         width: 40%; 
     }
