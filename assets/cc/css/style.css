@@ -1635,7 +1635,7 @@ span.step{
         top: 45%;
         left: 50%;
         transform: translate(-45%, -50%); 
-        width: 82%;
+        width: 40%;
     }
     .headerTexto {
         height: auto;
@@ -1714,12 +1714,11 @@ span.step{
 	
 	.sliderHeaderTexto {
         height: auto;
-		/*position: relative;
-        padding-bottom: 10%;*/
         position: fixed;
         top: 45%;
         left: 50%;
-        transform: translate(-45%, -50%); 
+        transform: translate(-45%, -50%);
+        width: 40%; 
 	}
     .headerTexto {
         height: auto;
@@ -1766,7 +1765,7 @@ span.step{
         top: 45%;
         left: 50%;
         transform: translate(-45%, -50%);
-        width: 82% 
+        width: 40% 
     }
     headerTexto {
         width: 82%;
@@ -1862,7 +1861,7 @@ span.step{
         top: 45%;
         left: 50%;
         transform: translate(-45%, -50%);
-        width: 50%; 
+        width: 40%; 
     }
 .headerTexto {
     height: auto;
