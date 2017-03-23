@@ -36,6 +36,35 @@ Licensed under MIT
 .carousel {
 	margin-bottom: 0 !important;
 }
+
+.sliderSection p {
+    margin-bottom: 20px;
+    font-size: 28px;
+    line-height: 1.4;
+	font-weight: bold;
+  }
+.sliderSubtitle {
+	color: #fff;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, .6)
+}
+
+.sliderSection .btn{
+  background-color: #fff;
+  color: #47538D;
+  font-size: 20px;
+  font-weight:bold;
+}
+/* Since positioning the image, we need to help out the caption */
+.sliderSection {
+  z-index: 10;
+  font-family: 'Gothambook';
+	text-align: center;
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .titleFont {
 	font-family: kingbasil, sans-serif;
 	position: relative;
@@ -1612,6 +1641,7 @@ span.step{
 	}
 }
 @media (max-width: 768px){
+	
 	.pickblue {
 		text-align: center !important;
 	}
@@ -1885,6 +1915,16 @@ span.step{
     width: 82%;
 }
 }
+
+@media (max-width: 640px) {
+	.sliderSection img {
+		width: 100%;
+	}
+	.sliderSection p {
+		font-size: 20px;
+	}
+}
+
 @media (min-width: 768px) {
     
     .removeRightPad {
