@@ -8,8 +8,8 @@
 	<div class="row">
 	<p class="homepara"><?php echo lang('home_intro'); ?> </p>
 	<div class="col-sm-12 col-xs-12 home-label" style="text-align:center;">
-		<div class="col-xs-4" style="padding:0; border-right: 2px #000000 solid;"><p><span class="counter"><?php echo $total_people; ?></span><br>People</p></div><!--<div class="divider1"></div>-->
-		<div class="col-xs-4" style="padding:0; border-right: 2px #000000 solid;"><p><span class="counter"><?php echo $total_nationalites; ?></span><br>Nationalities</p></div><!--<div class="divider2"></div>-->
+		<div class="col-xs-4" style="padding:0; border-right: 2px #000000 solid;"><p><span class="counter"><?php echo $total_people > 200 ? $total_people : 200; ?></span><br>People</p></div><!--<div class="divider1"></div>-->
+		<div class="col-xs-4" style="padding:0; border-right: 2px #000000 solid;"><p><span class="counter"><?php echo $total_nationalites > 15 ? $total_nationalites : 15; ?></span><br>Nationalities</p></div><!--<div class="divider2"></div>-->
 		<div class="col-xs-4" style="padding:0;"><p><span class="counter"><?php echo $total_trips;?></span><br>Trips</p></div>
 	</div>
 	</div>

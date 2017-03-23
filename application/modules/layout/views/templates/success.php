@@ -17,18 +17,6 @@
 
  */
 
-.row-eq-height {
-
-  display: -webkit-box;
-
-  display: -webkit-flex;
-
-  display: -ms-flexbox;
-
-  display:         flex;
-
-}
-
 		td{
 
 			border:none !important;
@@ -208,7 +196,7 @@
 
 				<div class="col-sm-6 book-info-left" style="height:50px;background-color:#fff;display: table;">
 
-					<span style="font-size:22px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo $clients['name']; ?></span></span>
+					<span style="font-size:22px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo $clients['name'].' '.$clients['surname']; ?></span></span>
 
 				</div>
 
@@ -242,14 +230,14 @@
 
 			<div class="col-sm-12">
 				<div class="row-eq-height">
-				<div class="col-sm-6 book-info-left go-text" style="padding-left: 0px;padding-right: 5px;">
+				<div class="col-sm-<?php echo (isset($return_bookings)) ? '6' : '12'; ?> book-info-left go-text" style="padding-left: 0px;padding-right: 5px;">
 					<div class="col-sm-12" style="background-color:#fff;padding:10px;padding-left:21px !important;">
 						<p style="font-size:22px;padding-top:20px;color:#EA5B55;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('go'); ?></p>	
 
 						<p>
 							<span style="display:table;">
 								<span  style="display:table-row;">
-									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('from'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('from'); ?>:&nbsp;</span>
 									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
 								</span>
 							</span>
@@ -258,7 +246,7 @@
 						<p>
 							<span style="display:table;">
 								<span  style="display:table-row;">
-									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('to'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('to'); ?>:&nbsp;</span>
 									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
 								</span>
 							</span>
@@ -272,18 +260,20 @@
 
 				</div>
 				
-				<div class="col-sm-6 book-info-right go-text" style="padding-right: 0px;padding-left: 5px;">
-					<div class="col-sm-12" style="background-color:#fff;padding:10px;padding-left:21px !important;height:100%;">
-						<p style="font-size:22px;padding-top:20px;color:#EA5B55;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('back'); ?></p>	
 				<?php
 
 				if(isset($return_bookings)){
 
 				?>
+
+				<div class="col-sm-6 book-info-right go-text" style="padding-right: 0px;padding-left: 5px;">
+					<div class="col-sm-12" style="background-color:#fff;padding:10px;padding-left:21px !important;height:100%;">
+						<p style="font-size:22px;padding-top:20px;color:#EA5B55;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('back'); ?></p>	
+				
 						<p>
 							<span style="display:table;">
 								<span  style="display:table-row;">
-									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('from'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('from'); ?>:&nbsp;</span>
 									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['end_at']; ?></span>
 								</span>
 							</span>
@@ -292,7 +282,7 @@
 						<p>
 							<span style="display:table;">
 								<span  style="display:table-row;">
-									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('to'); ?>:</span>
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('to'); ?>:&nbsp;</span>
 									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['start_from']; ?></span>
 								</span>
 							</span>
@@ -302,11 +292,14 @@
 							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $return_bookings['hour'])); ?>h</span>
 						</p>
 
-						<?php } ?>
+						
 					</div>
 					
 
 				</div>
+
+				<?php } ?>
+
 				</div>
 			</div>
 

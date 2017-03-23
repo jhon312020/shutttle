@@ -112,7 +112,7 @@
 
 						  <td style="width:350px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;">
 
-								<span style="padding:10px !important;padding-right:0px !important;font-size:13px !important;font-weight:bold !important;color:#25387d !important;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $clients['name']; ?></span>
+								<span style="padding:10px !important;padding-right:0px !important;font-size:13px !important;font-weight:bold !important;color:#25387d !important;padding-left:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $clients['name'].' '.$clients['surname']; ?></span>
 
 						  </td>
 
@@ -153,7 +153,7 @@
 
 					 <tr style="">
 
-						  <td style="width:342px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;background-color:#fff;">
+						  <td style="width:342px;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important;background-color:#fff;" colspan="<?php echo (isset($return_bookings)) ? '3' : ''; ?>">
 								
 
 						  <p style="font-size:22px;padding-left:10px !important;color:#EA5B55 !important;vertical-align:middle !important;font-weight:bold !important;text-transform:uppercase !important;"><?php echo lang('go'); ?></p>
@@ -181,16 +181,17 @@
 								</p>
 								
 						  </td>
+						  <?php
+
+							if(isset($return_bookings)){
+
+							?>
 						  <td style="width:6px;"></td>
 						  <td style="width:342px !important;padding-top:10px !important;padding-bottom:10px !important;vertical-align:top !important; background-color:#fff;">
 						  
 						  
 								<p style="font-size:22px !important;padding-left:10px !important;color:#EA5B55 !important;vertical-align:middle !important;font-weight:bold !important;text-transform:uppercase !important;"><?php echo lang('back'); ?></p> 
-								<?php
-
-								if(isset($return_bookings)){
-
-								?>
+								
 								<p>
 									<span style="display:table;">
 										<span  style="display:table-row;">
@@ -213,8 +214,9 @@
 									 <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('date'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $return_bookings['hour'])); ?>h</span>
 								</p>
 						  
-						  <?php } ?>
+						  
 						  </td>
+						  <?php } ?>
 
 					 </tr>
 

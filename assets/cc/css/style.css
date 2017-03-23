@@ -1788,7 +1788,7 @@ span.step{
 
 @media (max-width: 767px) {
   .row-eq-height {
-        display: block;
+        display: block !important;
     }
     .payment-div .panel-div {
         padding-right: 0px;

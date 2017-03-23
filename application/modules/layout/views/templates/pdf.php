@@ -176,7 +176,7 @@
 
 					<td style="width:50%;padding-top:10px;padding-bottom:10px;">
 
-						<span style="color:#25387d !important;font-size:14px !important;padding-left:10px;font-weight:bold !important;"><?php echo $clients['name']; ?> </span>
+						<span style="color:#25387d !important;font-size:14px !important;padding-left:10px;font-weight:bold !important;"><?php echo $clients['name'].' '.$clients['surname']; ?> </span>
 
 					</td>
 
@@ -214,7 +214,7 @@
 				<tr style="width:100%;margin:0px!important;padding:0px!important;">
 
 					<td style="width:48%;padding-right:15px;background-color:#fff;background-color:#fff;">
-						<div style="width:100%;background-color:#fff;">
+						<div style="width:100%;background-color:#fff;" colspan="<?php echo (isset($return_bookings)) ? '3' : ''; ?>">
 							<p style="font-size:22px;padding-left:10px;padding-top:20px;color:#EA5B55 !important;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('go'); ?></p>	
 
 						<p>
@@ -245,17 +245,20 @@
 						</div>
 
 					</td>
+
+					<?php
+
+				if(isset($return_bookings)){
+
+				?>
+
 					<td style="width:1%;">
 					</td>
 					<td style="width:48%;padding-left:5px;background-color:#fff;">
 						
 					<div style="width:100%;background-color:#fff;">
 						<p style="font-size:22px;padding-left:10px;padding-top:20px;color:#EA5B55 !important;vertical-align:middle;font-weight:bold;text-transform:uppercase;"><?php echo lang('back'); ?></p>	
-				<?php
-
-				if(isset($return_bookings)){
-
-				?>
+				
 						<p>
 							<span style="display:table;">
 								<span  style="display:table-row;">
@@ -280,10 +283,11 @@
 							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $return_bookings['hour'])); ?>h</span>
 						</p>
 						
-						<?php } ?>
+						
 						</div>
 						
 					</td>
+					<?php } ?>
 				</tr>
 
 			</tbody>

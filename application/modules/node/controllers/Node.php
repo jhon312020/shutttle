@@ -14,6 +14,7 @@ class Node extends Anonymous_Controller {
   
   public function __construct() {
     parent::__construct();
+    //echo base64_decode("ZWRpdG9yX3BpY2tuZ28");die;
     $this->load->model('node/mdl_nodes');
     $this->load->model('routes/mdl_calendars');
     $this->load->model('routes/mdl_routes');
