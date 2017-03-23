@@ -8,7 +8,7 @@ $config = array(
   'STRIPE_PUBLIC_KEY'=>'pk_test_Qz5bf9AxLanq7Pedp45bbH69',*/
 
   /* Client Key */
- 	'STRIPE_PRIVATE_KEY'=>'sk_test_y24CWoLfkd3OOA3yIcwoIGL7',
+ 	'STRIPE_PRIVATE_KEY'=>'sk_live_fPjQjrdhomap4AU7bXoJwcEM',
   'STRIPE_PUBLIC_KEY'=>'pk_live_KxLL160dAUv9AnRhkDpZYhhA',
 	
 	// Works in conjunction with Fi_CRUD_Model to provide pagination style
