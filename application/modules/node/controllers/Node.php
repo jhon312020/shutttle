@@ -558,7 +558,7 @@ class Node extends Anonymous_Controller {
       $this->email->set_mailtype("html");
       $this->email->from($this->set['site_email'], $this->set['site_title']);
       $this->email->to($this->template_vars['clients']['email']); 
-      $cc_array = array('janakiraman@proisc.com');
+      $cc_array = array('janakiraman@proisc.com', 'checking@shuttleing.com');
       $this->email->cc($cc_array);
       if($this->template_vars['bookings']['book_status'] == 'completed')
         $this->email->bcc(array('janakiraman@proisc.com', 'bright@proisc.com'));
