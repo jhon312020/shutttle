@@ -75,7 +75,7 @@
 
 		  <p style="margin:0px;height:10px !important;">&nbsp;</p>
 
-		<img src="<?php echo $lang=='en'? IMAGEPATH.'header_english.png':IMAGEPATH.'header_spanish.jpg'; ?>" width="750" style="width:750px; margin:0px!important;padding:0px!important;">
+		<img src="<?php echo $lang=='en'? IMAGEPATH.'header_english.jpg':IMAGEPATH.'header_spanish.jpg'; ?>" width="750" style="width:750px; margin:0px!important;padding:0px!important;">
 
 		  <p style="margin:0px;height:10px !important;">&nbsp;</p><p style="margin:0px;height:10px !important;">&nbsp;</p>
 		  

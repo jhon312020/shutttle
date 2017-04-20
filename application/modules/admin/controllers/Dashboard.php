@@ -35,11 +35,11 @@ class Dashboard extends Admin_Controller {
     $this->load->model('contacts/mdl_contacts');
     $this->load->model('users/mdl_clients');
     $this->load->model('charts/mdl_charts');
-    $total_passengers = $this->db->query("select sum(kids+adults) as total from tbl_booking where is_active=1")->row();
+    $total_passengers = $this->db->query("select sum(adults) as total from tbl_booking where is_active=1")->row();
     $total_price = $this->db->query("select sum(price) as total from tbl_booking where is_active=1")->row();
     $today_sales = $this->db->query("select sum(price) as total from tbl_booking where is_active=1 and created like '".Date('Y-m-d')."%'")->row();
     $today_billing = $this->db->query("select sum(price) as total from tbl_booking where is_active=1 and start_journey = '".Date('Y-m-d')."'")->row();
-    $today_passengers = $this->db->query("select sum(kids+adults) as total from tbl_booking where is_active=1 and start_journey = '".Date('Y-m-d')."'")->row();
+    $today_passengers = $this->db->query("select sum(adults) as total from tbl_booking where is_active=1 and start_journey = '".Date('Y-m-d')."'")->row();
     $data = array(
       'shuttles' =>$this->mdl_shuttles->get()->num_rows(),
       'partners' =>$this->mdl_partners->get()->num_rows(),

@@ -144,7 +144,7 @@
 
 		<p style="text-align:center;"><?php echo lang('print_booking'); ?></p>
 
-		<img src="<?php echo $ln=='en'? 'assets/cc/images/header_english.png':'assets/cc/images/header_spanish.jpg';?>" style="width:100%;margin:0px!important;padding:0px!important;margin-bottom:25px!important;">
+		<img src="<?php echo $ln=='en'? 'assets/cc/images/header_english.jpg':'assets/cc/images/header_spanish.jpg';?>" style="width:100%;margin:0px!important;padding:0px!important;margin-bottom:25px!important;">
 
 		<table style="margin:0px!important; padding:0px!important;width:100%;height:40px;background-color:#25387d;">
 

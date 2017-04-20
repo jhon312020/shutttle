@@ -37,7 +37,7 @@ class Mdl_charts extends Response_Model {
 	public function get_passengerByZone($start_date, $end_date) {
 		$result = array();
 		$i = 0;
-		$data['count'] = $this->db->query("SELECT sum(adults+kids) as total_passengers FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1")->row();
+		$data['count'] = $this->db->query("SELECT sum(adults) as total_passengers FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1")->row();
 		$bcn_area = $this->db->from('bcnareas')->get()->result_array();
 		$bcn_array = array();
 		array_walk($bcn_area, function($item) use (&$bcn_array) {
@@ -46,7 +46,7 @@ class Mdl_charts extends Response_Model {
 		
 		$data['bcn'] = $bcn_array;
 		while($start_date <= $end_date) {
-			$result_array = $this->db->query("SELECT sum(adults+kids) as book_bill, case end_at when 'Barcelona Airport Terminal 1' then start_from when 'Barcelona Airport Terminal 2' then start_from else end_at end as zone_no FROM tbl_booking where start_journey = '$start_date' and is_active=1 group by zone_no")->result_array();
+			$result_array = $this->db->query("SELECT sum(adults) as book_bill, case end_at when 'Barcelona Airport Terminal 1' then start_from when 'Barcelona Airport Terminal 2' then start_from else end_at end as zone_no FROM tbl_booking where start_journey = '$start_date' and is_active=1 group by zone_no")->result_array();
 			//print_r($result_array);
 			$result[$i]['start_journey'] = Date('d/m/Y', strtotime($start_date));
 			$zone_no = array();
@@ -81,7 +81,7 @@ class Mdl_charts extends Response_Model {
      * @return [type]          [description]
      */
 	public function get_passengerByCountryDate($start_date, $end_date) {
-		$data['passenger_count'] = $this->db->query("SELECT country, sum(adults+kids) as passenger_count, '#06b53c' as color FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1 group by country")->result_array();
+		$data['passenger_count'] = $this->db->query("SELECT country, sum(adults) as passenger_count, '#06b53c' as color FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1 group by country")->result_array();
 		$res = array();
 		array_walk($data['passenger_count'], function($item) use (&$res) {
 			// flatten the array
@@ -98,7 +98,7 @@ class Mdl_charts extends Response_Model {
      * @return [type]          [description]
      */
 	public function get_passengerByCountry() {
-		$data['passenger_count'] = $this->db->query("SELECT country, sum(adults+kids) as passenger_count, '#06b53c' as color FROM tbl_booking where is_active=1 group by country")->result_array();
+		$data['passenger_count'] = $this->db->query("SELECT country, sum(adults) as passenger_count, '#06b53c' as color FROM tbl_booking where is_active=1 group by country")->result_array();
 		$res = array();
 		array_walk($data['passenger_count'], function($item) use (&$res) {
 			// flatten the array
@@ -127,7 +127,7 @@ class Mdl_charts extends Response_Model {
      * @return [type]          [description]
      */
 	public function get_bookCountByCollaborator($start_date, $end_date) {
-		$data = $this->db->query("SELECT sum(adults+kids) as passenger_count, count(id) as book_count, DATE_FORMAT(start_journey,'%d/%m/%Y') as start_journey FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1 and book_role=2 group by start_journey order by start_journey asc")->result_array();
+		$data = $this->db->query("SELECT sum(adults) as passenger_count, count(id) as book_count, DATE_FORMAT(start_journey,'%d/%m/%Y') as start_journey FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1 and book_role=2 group by start_journey order by start_journey asc")->result_array();
 		//echo "<pre>";print_r($data);die;
         return $data;
     }
@@ -184,7 +184,7 @@ class Mdl_charts extends Response_Model {
 		$data['list'] = $this->db->query(
 				"select
 				  DATE_FORMAT(AllDaysYouWant.MyJoinDate,'%d/%m/%Y') as start_journey,
-				  IFNULL(sum( U.adults + U.kids ),0) as passenger_count,
+				  IFNULL(sum( U.adults ),0) as passenger_count,
 				  IFNULL(count(id), 0) as book_count
 			   from
 				  ( select
@@ -199,7 +199,7 @@ class Mdl_charts extends Response_Model {
 			   group by
 				  AllDaysYouWant.MyJoinDate"
 				)->result_array();
-		$data['count'] = $this->db->query("SELECT IFNULL(sum(adults+kids),0) as passenger_count, IFNULL(count(id),0) as book_count FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1 and book_role=2  and collaborator_id ='".$col_id."'")->row();
+		$data['count'] = $this->db->query("SELECT IFNULL(sum(adults),0) as passenger_count, IFNULL(count(id),0) as book_count FROM tbl_booking where start_journey between '$start_date' and '$end_date' and is_active=1 and book_role=2  and collaborator_id ='".$col_id."'")->row();
 		//echo "<pre>";print_r($data);die;
         return $data;
     }

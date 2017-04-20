@@ -406,4 +406,5 @@ $lang['client_form'] = 'Client Form';
 $lang['payment_methods'] = 'Payment Methods';
 $lang['payment_method'] = 'Payment Method';
 $lang['next'] = 'NEXT';
+$lang['delete_record_warning'] = 'Are you sure to delete this record?';
 ?>
