@@ -12,7 +12,10 @@ class Anonymous_Controller extends MX_Controller {
         "contacts"=>"contacts.png",
         "terms"=>"terms.png",
         "success"=>"payment.png",
-        "collaborators"=>"collaborators.png"
+        "collaborators"=>"collaborators.png",
+        "bookings"=>"collaborators.png",
+        "booking_details" => "collaborators.png",
+        "reservation-bank" => "booknow.png",
     );
 
     public function __construct() {

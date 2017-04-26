@@ -7,6 +7,7 @@ class Ajax extends Anonymous_Controller {
   public $details = array();
   public function __construct() {
     parent::__construct();
+    $this->load->model('users/mdl_users');
     $this->details = array();
     $this->details['collaborator_details'] = array();
     $this->details['collaborator_address'] = array();
@@ -316,12 +317,18 @@ class Ajax extends Anonymous_Controller {
     $time_go = Date('H:i', strtotime($post_params['hours'].':'.$post_params['minutes']));
     $time_back = Date('H:i', strtotime($post_params['return_hours'].':'.$post_params['return_minutes']));
     
+    $collaborators_id = $post_params['collaborators_id'];
+    if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
+      $users = $this->mdl_users->where('id = '.$this->session->userdata('user_id'))->get()->row();
+      $collaborators_id = $users->collaborator_id;
+    }
+
               $book_array = array('time_go'=>$time_go, 'time_back' => $time_back, 'hour'=>$hidden_data['journey_start'], 'start_from'=>$start_from, 'end_at'=>$end_at, 
                               'arrival_time'=>$hidden_data['journey_end'],
                               'price'=>$post_params['amount'], 'start_journey'=>$hidden_data['service_date']
                               ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
                               //'kids'=>$post_params['kids'],
-                              'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$book_id, 'collaborator_id'=>$post_params['collaborators_id']
+                              'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$book_id, 'collaborator_id'=>$collaborators_id
                               ,'book_status'=>'pending', 'passenger_price'=>$post_params['passenger_price'], 'book_role'=>$book_role,
                                'baby'=>$babySeats,
                                 'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id']);
@@ -356,7 +363,7 @@ class Ajax extends Anonymous_Controller {
                                   ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
                                   //'kids'=>$post_params['kids'],
                                   'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$return_book_id
-                                  , 'collaborator_id'=>$post_params['collaborators_id'],'book_status'=>'pending', 
+                                  , 'collaborator_id'=>$collaborators_id,'book_status'=>'pending', 
                                   'passenger_price'=>$post_params['passenger_price'], 'book_role'=>$book_role,
                                    'baby'=>$babySeats,
                                     'round_trip'=>1, 'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id']);
@@ -500,12 +507,15 @@ class Ajax extends Anonymous_Controller {
     
     /*Sabadell payment start*/
     //include_once(APPPATH . "modules/layout/views/templates/apiRedsys.php");
-    /* $this->load->library('apiRedsys');
+    $this->load->library('apiRedsys');
     $ln = $this->uri->segment(1);
     $miObj = new apiRedsys;
     
     //$merchantCode = "336240668";
+    /* Pick-n-Go merchant code 
     $merchantCode = "336240668";
+    */
+    $merchantCode = "336548318";
     $terminal = "001";
     $amount = str_replace('.', '', $post_params['amount']);
     $currency = "978";
@@ -528,9 +538,14 @@ class Ajax extends Anonymous_Controller {
     $miObj->setParameter("DS_MERCHANT_URLOK",$urlOK);   
     $miObj->setParameter("DS_MERCHANT_URLKO",$urlKO);
     
+    /* Pick-n-Go key
     $version="HMAC_SHA256_V1";
     //$key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
-    $key = 'MIwogh31NprCbvsoQY0fvVkHRt8Wcvia';
+
+    $key = 'MIwogh31NprCbvsoQY0fvVkHRt8Wcvia'; 
+    */
+    $version="HMAC_SHA256_V1";
+    $key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
     
     $request = "";
     $params = $miObj->createMerchantParameters();
@@ -539,7 +554,7 @@ class Ajax extends Anonymous_Controller {
     $str['version'] = $version;
     $str['params'] = $params;
     $str['signature'] = $signature;
-    $str['banaba_url'] = $realurlPago; */
+    $str['banaba_url'] = $testurlPago;
     /*Sabadell payment end*/
     
               echo json_encode($str);

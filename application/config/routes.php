@@ -157,6 +157,9 @@ $route['es/process'] = 'node/process';
 $route['en/reservation'] = 'node/reservation';
 $route['es/reservation'] = 'node/reservation';
 
+$route['en/reservation-bank'] = 'node/reservationBank';
+$route['es/reservation-bank'] = 'node/reservationBank';
+
 $route['en/getData'] = 'ajax/getData';
 $route['es/getData'] = 'ajax/getData';
 

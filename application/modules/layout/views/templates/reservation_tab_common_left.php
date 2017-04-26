@@ -14,8 +14,8 @@
 					'end_date'=>'return_journey',
 					'flightlanding_time'=>'flightlanding_time',
 					'no_of_passengers'=>'adults',
-					/*'country_origin'=>'country',
-					'flight_no'=>'flight_no',*/
+					/*'country_origin'=>'country',*/
+					'flight_no'=>'flight_no',
 				);
 				foreach ($leftSidebar as $key => $value) {
 				?>

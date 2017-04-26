@@ -21,6 +21,7 @@ class Node extends Anonymous_Controller {
     $this->load->model('users/mdl_users');
     $this->load->model('shuttles/mdl_shuttles');
     $this->load->model('routes/mdl_bcnareas');
+    $this->load->model('users/mdl_users');
     $this->load->model('booking/mdl_booking');
     $this->load->model('booking_extras/mdl_booking_extras');
     if (isset($_SESSION['screen_width'])) {
@@ -30,6 +31,7 @@ class Node extends Anonymous_Controller {
       $_SESSION['screen_height'] = $_REQUEST['height'];
       header('Location: ' . $_SERVER['PHP_SELF']);
     } 
+    
     $this->load->model('collaborators/mdl_collaborators');
     // Registration Popup
     $data = array();
@@ -638,6 +640,33 @@ class Node extends Anonymous_Controller {
     //echo '<pre>'; print_r($this->template_vars); echo '</pre>';
     $this->template_vars['content']['image'] = 'reserva.jpg';
     $this->load->view('layout/templates/reservation', $this->template_vars);
+  }
+
+  /**
+   * Function reservation
+   * Displays the Booking page
+   * 
+   * @return  void
+   */
+  public function reservationBank () {
+    $base_path = base_url().'assets/cc';
+    $this->template_vars['css'] = array(
+      '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
+      $base_path.'/datetimepicker/css/bootstrap-datetimepicker.min.css',
+    );
+    $this->template_vars['js'] = array(
+      '//code.jquery.com/ui/1.12.1/jquery-ui.js',
+      $base_path.'/datetimepicker/js/bootstrap-datetimepicker.min.js',
+      $base_path.'/js/reservation-bank.js',
+      $base_path.'/js/functions-bank.js',
+      'https://js.stripe.com/v2/',
+      $base_path.'/js/stripe/payment.js',
+    );
+    $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
+    $this->template_vars['terminal_array'] = array('' => lang('to'), 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
+    //echo '<pre>'; print_r($this->template_vars); echo '</pre>';
+    $this->template_vars['content']['image'] = 'reserva.jpg';
+    $this->load->view('layout/templates/reservation_bank', $this->template_vars);
   }
   
   /**

@@ -10,7 +10,7 @@
       <div class="col-sm-2 mycolwid2"><img src="<?php echo IMAGEPATH.'booking_extras/'.$book['image']; ?>"></div>
       <div class="col-sm-10 mycolwid10">
   <span class="blue pull-left"><?php echo $title; ?>:<br> <span style="font-size:12px;"><?php echo ($lang == 'en')?$book['subtitle']:$book['subtitle_es']; ?></span></span>
-        <h5 class="pull-right" data-extra-name="<?php echo $mat_count; ?>" data-extra-title="<?php echo $title; ?>">
+        <h5 class="pull-right" data-extra-name="<?php echo $book['id']; ?>" data-extra-title="<?php echo $title; ?>">
           <span class="my_right_price" data-extra-price="<?php echo $book['price']; ?>"> <?php echo $book['price'].'&euro; / '.(($book['type'])?lang('unit'):$title); ?></span> 
           <br><br> 
           <?php 

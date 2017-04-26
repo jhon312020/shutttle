@@ -323,13 +323,13 @@ class Shuttles extends Admin_Controller {
 		$this->db->from('booking')->where('id', $id);
 		$bookings = current($this->db->get()->result_array());
 		$this->db->set(array('is_active'=>0))->where('book_id', $id)->update('seats');
-		/* if ($bookings['return_book_id'] > 0) {
+		if ($bookings['return_book_id'] > 0) {
 			$this->db->from('booking')->where('id', $bookings['return_book_id']);
 			$res['return_bookings'] = current($this->db->get()->result_array());
 			
 			$this->db->set(array('updated_by' =>'shuttle delete', 'is_active'=>0))->where('id', $bookings['return_book_id'])->update('booking');
 			$this->db->set(array('is_active'=>0))->where('book_id', $bookings['return_book_id'])->update('seats');
-		} */
+		}
 		$this->db->set(array('updated_by' =>'shuttle delete', 'is_active'=>0))->where('id', $id)->update('booking');
 		//$this->mdl_shuttles->delete($id);
 		redirect('admin/shuttles');
@@ -359,7 +359,9 @@ class Shuttles extends Admin_Controller {
 		$results = array();
 		switch($selected){
 			case 'city':
-				$results = $this->db->query("select CONCAT(col.name,' - ',col.address) as label,CONCAT(col.name,' - ',col.address) as value,col.zone,col.id, 0 as collaborator_address_id  from tbl_collaborators col where col.id not in (select collaborator_id from tbl_collaborators_address) and CONCAT(col.name,' - ',col.address) like '%".$this->input->get('term')."%' and col.is_active=1 union select CONCAT(col.name,' - ',coladd.address) as label,CONCAT(col.name,' - ',coladd.address) as value,coladd.zone,col.id, coladd.id as collaborator_address_id from tbl_collaborators_address coladd left join tbl_collaborators col on coladd.collaborator_id = col.id where  CONCAT(col.name,' - ',coladd.address) like '%".$this->input->get('term')."%' and col.is_active=1")->result_array();
+				/* $results = $this->db->query("select CONCAT(col.name,' - ',col.address) as label,CONCAT(col.name,' - ',col.address) as value,col.zone,col.id, 0 as collaborator_address_id  from tbl_collaborators col where col.id not in (select collaborator_id from tbl_collaborators_address) and CONCAT(col.name,' - ',col.address) like '%".$this->input->get('term')."%' and col.is_active=1 union select CONCAT(col.name,' - ',coladd.address) as label,CONCAT(col.name,' - ',coladd.address) as value,coladd.zone,col.id, coladd.id as collaborator_address_id from tbl_collaborators_address coladd left join tbl_collaborators col on coladd.collaborator_id = col.id where  CONCAT(col.name,' - ',coladd.address) like '%".$this->input->get('term')."%' and col.is_active=1")->result_array(); */
+				
+				$results = $this->db->query("select CONCAT(CONCAT(UCASE(LEFT(col.name, 1)),SUBSTRING(col.name, 2)),' - ',col.address) as label,CONCAT(CONCAT(UCASE(LEFT(col.name, 1)),SUBSTRING(col.name, 2)),' - ',col.address) as value,col.zone,col.id, 0 as collaborator_address_id  from tbl_collaborators col where col.id not in (select collaborator_id from tbl_collaborators_address) and CONCAT(col.name,' - ',col.address) like '%".$this->input->get('term')."%' and col.is_active=1 union select CONCAT(CONCAT(UCASE(LEFT(col.name, 1)),SUBSTRING(col.name, 2)),' - ',coladd.address) as label,CONCAT(CONCAT(UCASE(LEFT(col.name, 1)),SUBSTRING(col.name, 2)),' - ',coladd.address) as value,coladd.zone,col.id, coladd.id as collaborator_address_id from tbl_collaborators_address coladd left join tbl_collaborators col on coladd.collaborator_id = col.id where  CONCAT(col.name,' - ',coladd.address) like '%".$this->input->get('term')."%' and col.is_active=1")->result_array();
 
 				/*$this->mdl_collaborators->select('name as label,name as value,zone,id');
 				$this->mdl_collaborators->where('is_active', 1);

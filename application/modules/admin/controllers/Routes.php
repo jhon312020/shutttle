@@ -148,8 +148,8 @@ class Routes extends Admin_Controller {
         foreach($cars_array as $key=>$value) {
             $cars[$value['id']] = $value['car_name'];
         }
-
-        if($this->input->post('car')){
+        
+        /*if($this->input->post('car')){
             $this->mdl_routes->form_values['car'] = $this->input->post('car');
         } else {
             if($routes_qry->num_rows > 0){
@@ -158,7 +158,8 @@ class Routes extends Admin_Controller {
             } else {
                 $this->mdl_routes->form_values['car'] = '';
             }
-        }
+        }*/
+        //echo $this->mdl_routes->form_value('car');die;
         $bcn = $this->db->get_where('tbl_bcnareas', array('is_active'=>1))->result_array();
         foreach ($bcn as $key => $data){
             $bcn[$data['zone']] = 'Zone '.$data['zone'].' ( '. $data['name']. ')';

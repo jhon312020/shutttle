@@ -68,5 +68,9 @@ $this->load->view('modals/duplicate_modal');
  	var flight_time = "<?php echo lang('flight_time'); ?>";
  	var flight_landing_time = "<?php echo lang('flightlanding_time'); ?>";
   var startValid = false;
+  var is_round_trip = true;
+  var extra_array = <?php echo json_encode(array_combine(array_column($booking, 'id'), $booking)); ?>;
+  console.log(extra_array)
+  
 </script>
 <?php $this->load->view('footer');?>

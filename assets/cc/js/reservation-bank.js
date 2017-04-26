@@ -582,14 +582,7 @@ $(document).ready(function(){
 		$(this).prop('disabled', true);
 
 		if(totAmount > 0) {
-			var paymentmethod = $('[name=paymentmethod]:checked').val();
-			//console.log(paymentmethod)
-			if(paymentmethod == 'online' || paymentmethod == undefined) {
-				$('.paypalsubmit').trigger('click');
-			} else {
-				$('.jslastSubmit').trigger('click');
-			}
-
+			$('.jslastSubmit').trigger('click');	
 		} else {
 			$('.jslastSubmit').trigger('click');
 		}
@@ -764,7 +757,7 @@ $(document).ready(function(){
 			payment_valid = $("#stripeform").validationEngine('validate');
 			var paymentmethod = $('[name=paymentmethod]:checked').val();
 		//}
-		//console.log(paymentmethod)
+		console.log(paymentmethod)
 		if(valid && payment_valid) {
 			
 			ele.prop('disabled', false);

@@ -38,7 +38,7 @@
                 <input type="hidden" name="return_hours" value="23">
                 <input type="hidden" name="return_minutes" value="00">
                 <input type="hidden" name="country" value="India">
-                <input type="hidden" name="flight_no" value="00">
+                <!--<input type="hidden" name="flight_no" value="00">-->
                 <div class="form-bottom ribbon-down mar-down">
                   <div class="form-group col-sm-1 clear-pad-form">
                     <label class="no-bold-step1"><?php echo lang('start_trip'); ?></label>
@@ -79,6 +79,12 @@
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form">
                     <?php echo form_dropdown('adults', $adults, null, 'class="form-control validate[required] book-select"  data-errormessage-value-missing="'.lang('require_field').'"'); ?>
+                  </div>
+                  <div class="form-group col-sm-1 clear-pad-form">
+                    <label class="no-bold-step1" style="padding-top: 10px;"><?php echo lang('flight_no'); ?></label>
+                  </div>
+                  <div class="form-group col-sm-3 clear-pad-form">
+                    <?php echo form_input(array('name'=>'flight_no', 'id'=>'flight_no', 'placeholder'=>lang('flight_no'), 'class'=>'form-control zd-23 validate[required]', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
                   </div>
                   <?php /* <div class="form-group col-sm-3 clear-pad-form">
                     <?php echo form_dropdown('kids', $kids, null, 'class="form-control book-select"'); ?>

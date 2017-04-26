@@ -271,6 +271,7 @@ $lang['avail_seats'] = 'City to Airp. Available seats.';
 $lang['return_seats'] = 'Airp. To City available seats.';
 $lang['less_seats'] = 'The booking seats is greater than the available seats';
 $lang['pay_by_online'] = 'Stripe';
+$lang['pay_by_bank'] = 'Sabadell bank';
 $lang['pay_by_cash'] = 'Pay by cash';
 $lang['pre_paid'] = 'Pre-pagado';
 $lang['baby_error'] = 'The start trip baby seat should be less than or equal to';
