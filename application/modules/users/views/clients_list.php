@@ -13,7 +13,7 @@
 	<thead>
 		<tr>
 			<th>Register</th>
-            <th><?php echo lang('name'); ?></th>
+      <th><?php echo lang('name'); ?></th>
 			<th><?php echo lang('surname'); ?></th>
 			<th><?php echo lang('email'); ?></th>
 			<th><?php echo lang('phone'); ?></th>
