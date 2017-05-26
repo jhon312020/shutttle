@@ -339,13 +339,14 @@ $cms_lang = $this->session->userdata('cms_lang');
 		<script src="<?php echo base_url(); ?>assets/cc/js/bootstrap-datepicker.js"></script>
 		<script src="<?php echo base_url(); ?>assets/default/js/bootstrap-datetimepicker.min.js"></script>
 		
-
-			
 		<script src="<?php echo base_url(); ?>assets/neon/js/datatables/dataTables.buttons.min.js"></script>
 
 		<script src="<?php echo base_url(); ?>assets/neon/js/dataTables.bootstrap.js"></script>
 		<script src="<?php echo base_url(); ?>assets/neon/js/datatables/jquery.dataTables.columnFilter.js"></script>
 		<script src="<?php echo base_url(); ?>assets/neon/js/datatables/lodash.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/neon/js/datatables/buttons.flash.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/neon/js/datatables/jszip.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/neon/js/datatables/buttons.html5.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/neon/js/datatables/responsive/js/datatables.responsive.js"></script>
 		<!-- data table -->
 		<!-- select -->
