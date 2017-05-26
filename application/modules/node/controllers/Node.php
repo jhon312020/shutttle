@@ -526,8 +526,17 @@ class Node extends Anonymous_Controller {
     $terminal = current($this->db->get()->result_array());
 
     $this->template_vars['bookings'][$str] = $terminal['name'].' - '.(count($this->template_vars['bookings']['collaborator_address']) > 0 ?$this->template_vars['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
+
     if($this->template_vars['bookings']['bcnarea_address_id'] != '' && $this->template_vars['bookings']['bcnarea_address_id'] != '0') {
       $this->template_vars['bookings'][$str] = $this->template_vars['bookings']['address'];
+
+      $postal_query = $this->db->select('postal_code')->from('bcnareas_address')->where('id', $this->template_vars['bookings']['bcnarea_address_id'])->get()->row();
+
+      if($postal_query->postal_code) {
+        $this->template_vars['bookings']['postal_code'] = $postal_query->postal_code;  
+        $this->template_vars['bookings']['source_point'] = $str;
+      }
+      
     }
 
     $this->template_vars['bookings']['collaborator_name'] = $terminal['name'];
@@ -578,11 +587,14 @@ class Node extends Anonymous_Controller {
 	 * @return	void
 	 */  
   public function error() {
-    $this->load->library('paypal/paypalRequire');
+   /* $this->load->library('paypal/paypalRequire');
     $this->load->library('paypal/paypal');
     $paypal= new paypal();
-    $transaction_details = $paypal->GetTransactionDetails();
-    $book_id = $transaction_details['CUSTOM'];
+    $transaction_details = $paypal->GetTransactionDetails();*/
+    $book_id = '';
+    if (isset($_GET['cm'])) {
+      $book_id = $_GET['cm'];
+    }
     if($book_id != '' && is_numeric($book_id)) {
       $book_data = $this->db->from('booking')->where('id', $book_id)->get()->row();
       if($book_data->book_status != 'pending') {
@@ -591,7 +603,8 @@ class Node extends Anonymous_Controller {
     } else {
       redirect($this->uri->segment(1));
     }
-    $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id',$book_id)->update('booking');
+    //$this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id',$book_id)->update('booking');
+    $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>'', 'paypal_transaction_response'=>'User Cancelled'))->where('id',$book_id)->update('booking');
     $this->db->set(array('is_active'=>0))->where('book_id',$book_id)->update('seats');
     /*return journey start*/
     $this->db->from('booking')->where('id', $book_id);
@@ -601,7 +614,7 @@ class Node extends Anonymous_Controller {
       $this->db->from('booking')->where('id', $res['bookings']['return_book_id']);
       $res['return_bookings'] = current($this->db->get()->result_array());
       
-      $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>$transaction_details['TOKEN'], 'paypal_transaction_response'=>json_encode($transaction_details)))->where('id', $res['bookings']['return_book_id'])->update('booking');
+      $this->db->set(array('updated_by' =>'error', 'is_active'=>0, 'book_status'=>'rejected', 'paypal_token_id'=>'', 'paypal_transaction_response'=>'User Cancelled'))->where('id', $res['bookings']['return_book_id'])->update('booking');
       $this->db->set(array('is_active'=>0))->where('book_id', $res['bookings']['return_book_id'])->update('seats');
   }
     $this->load->library('email');
@@ -621,7 +634,7 @@ class Node extends Anonymous_Controller {
    * 
 	 * @return	void
 	 */
-  public function reservation () {
+  /*public function reservation () {
     $base_path = base_url().'assets/cc';
     $this->template_vars['css'] = array(
       '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
@@ -640,7 +653,7 @@ class Node extends Anonymous_Controller {
     //echo '<pre>'; print_r($this->template_vars); echo '</pre>';
     $this->template_vars['content']['image'] = 'reserva.jpg';
     $this->load->view('layout/templates/reservation', $this->template_vars);
-  }
+  }*/
 
   /**
    * Function reservation

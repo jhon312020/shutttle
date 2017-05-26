@@ -63,6 +63,7 @@
 		  
       <div class="col-xs-12 col-md-6 footerLeft">
         <p><strong><b><?php echo (isset($site_title))?$site_title:'Shuttleing S.L.'; ?></b></strong>
+          | Marqués de Mulhacen, 8. 08034 Barcelona (Spain). CIF: B66939562
           <?php /* if(isset($site_email) && trim($site_email)) { ?>
 
       <div class="col-xs-12 col-md-6 footerLeft">      

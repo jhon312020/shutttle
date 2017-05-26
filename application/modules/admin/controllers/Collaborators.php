@@ -60,11 +60,11 @@ if (!defined('BASEPATH'))
 		} else {
 			if ($this->mdl_collaborators->run_validation()){
 				if($id == null){
-					$email_exists = $this->mdl_users->user_exists($this->input->post('email'));
+					$email_exists = $this->mdl_users->collaborator_user_exists($this->input->post('email'));
 				}
 				else{
 					if($collaborators->email != $this->input->post('email'))
-						$email_exists = $this->mdl_users->user_exists($this->input->post('email'));
+						$email_exists = $this->mdl_users->collaborator_user_exists($this->input->post('email'));
 					else
 						$email_exists = false;
 				}

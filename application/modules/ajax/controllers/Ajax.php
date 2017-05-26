@@ -426,21 +426,27 @@ class Ajax extends Anonymous_Controller {
 
                   if($client_lists) {
                     $client_id = $client_lists->id;
-                    $cid = $client_id;
+                    $cid = '';
+                    /*$cid = $client_id;
                     $user_data = 
                       array('first_name'=> $post_params['name'], 
                           'last_name'=>$post_params['surname']);
                     
-                    /*$client_data_array = [];
+                    $client_data_array = [];
                     foreach ($client_array as $key => $value) {
                       if($value) {
                         $client_data_array[$key] = $value;
                       }
-                    }*/
+                    }
 
                     $this->db->set($user_data)->where('client_id', $client_id)->update('users');
-                    $this->db->set($client_array)->where('id', $client_id)->update('clients');
-
+                    $this->db->set($client_array)->where('id', $client_id)->update('clients');*/
+                    $this->db->set(array('client_array'=>json_encode($client_array), 'existing_client_id' => $client_id))->where('id', $bid);
+                    $this->db->update('booking');
+                    if ($return_id != 0) {
+                        $this->db->set(array('client_array'=>json_encode($client_array), 'existing_client_id' => $client_id))->where('id', $return_id);
+                        $this->db->update('booking');
+                    } 
                   } else {
                     $this->db->set($client_array)->insert('clients');
                     $client_id = $this->db->insert_id();
@@ -544,8 +550,12 @@ class Ajax extends Anonymous_Controller {
 
     $key = 'MIwogh31NprCbvsoQY0fvVkHRt8Wcvia'; 
     */
+
     $version="HMAC_SHA256_V1";
-    $key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+    //Test key
+    //$key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+    //Real key
+    $key = 'F5HrGPVIaddWbrdlvVDPAY365W3g7X45';
     
     $request = "";
     $params = $miObj->createMerchantParameters();
@@ -554,7 +564,7 @@ class Ajax extends Anonymous_Controller {
     $str['version'] = $version;
     $str['params'] = $params;
     $str['signature'] = $signature;
-    $str['banaba_url'] = $testurlPago;
+    $str['banaba_url'] = $realurlPago;
     /*Sabadell payment end*/
     
               echo json_encode($str);

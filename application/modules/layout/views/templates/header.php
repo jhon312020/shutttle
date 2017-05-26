@@ -75,7 +75,9 @@ print_r($header_text_images);die;*/
     
   ?>
   <header class="image-bg-fluid-height" style="background: url('<?php echo IMAGEPATH.$image_name; ?>') no-repeat center center scroll;">
-	  <img src="<?php echo IMAGEPATH.'header/'.$ln.'/'.$header_text_images[$action]; ?>" class="headerTexto img-center" /> 
+	 <?php if (isset($header_text_images) && isset($header_text_images[$action])) { ?>
+	  	<img src="<?php echo IMAGEPATH.'header/'.$ln.'/'.$header_text_images[$action]; ?>" class="headerTexto img-center" /> 
+		<?php } ?>
 	  <!-- <div class="titleFont">HELLO</div>
 	  <div class="shuttleingBox"><p>SHUTTLEING.</p></div> -->
     <img class="img-responsive img-center"  alt="">

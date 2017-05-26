@@ -228,6 +228,18 @@
 							</span>
 						</p>
 
+						<?php if(isset($bookings['source_point']) && $bookings['source_point'] == 'start_from') { ?>
+						<p>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;padding-left:10px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('postal_code'); ?>:</span>
+
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['postal_code']; ?></span>
+								</span>
+							</span>
+						</p>
+						<?php } ?>
+
 						<p>
 							<span style="display:table;">
 								<span  style="display:table-row;">
@@ -237,6 +249,18 @@
 								</span>
 							</span>
 						</p>
+
+						<?php if(isset($bookings['source_point']) && $bookings['source_point'] == 'end_at') { ?>
+						<p>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;padding-left:10px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('postal_code'); ?>:</span>
+
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['postal_code']; ?></span>
+								</span>
+							</span>
+						</p>
+						<?php } ?>
 
 						<p style="padding-bottom:20px;">
 							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
@@ -269,6 +293,18 @@
 							</span>
 						</p>
 
+						<?php if(isset($bookings['source_point']) && $bookings['source_point'] == 'end_at') { ?>
+						<p>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;padding-left:10px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('postal_code'); ?>:</span>
+
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['postal_code']; ?></span>
+								</span>
+							</span>
+						</p>
+						<?php } ?>
+
 						<p>
 							<span style="display:table;">
 								<span  style="display:table-row;">
@@ -278,6 +314,18 @@
 								</span>
 							</span>
 						</p>
+
+						<?php if(isset($bookings['source_point']) && $bookings['source_point'] == 'start_from') { ?>
+						<p>
+							<span style="display:table;">
+								<span  style="display:table-row;">
+									<span style="display:table-cell;font-size:18px;padding-left:10px;color:#25387d;vertical-align:top;font-weight:bold;"><?php echo lang('postal_code'); ?>:</span>
+
+									<span style="display:table-cell;font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['postal_code']; ?></span>
+								</span>
+							</span>
+						</p>
+						<?php } ?>
 						
 						<p style="padding-bottom:20px;">
 							<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($return_bookings['start_journey'] . ' ' . $return_bookings['hour'])); ?>h</span>

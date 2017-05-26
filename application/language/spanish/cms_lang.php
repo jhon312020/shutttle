@@ -27,7 +27,7 @@ $lang['country_origin'] = "Pais de origen";
 $lang['flight_time'] = "Hora de vuelo";
 $lang['flightlanding_time'] = "Hora de aterrizaje";
 
-$lang['adults'] = "Núnero pasajeros";
+$lang['adults'] = "Número pasajeros";
 
 
 
@@ -219,7 +219,7 @@ $lang['step'] = 'Step';
 //confirmation page
 $lang['thanks_booking']='Gracias por realizar la reserva.';
 $lang['print_booking']='Por favor imprime esta confirmación y muéstrasela al conductor de vehículo.';
-$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  checking@shuttleing.com o teléfono: +34 000 000 000.';
+$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  checking@shuttleing.com o teléfono: +34 697 46 22 59.';
 
 $lang['time_go'] = 'Hora salida vuelo';
 $lang['time_back'] = 'Hora llegada vuelo';
@@ -271,7 +271,6 @@ $lang['avail_seats'] = 'City to Airp. Available seats.';
 $lang['return_seats'] = 'Airp. To City available seats.';
 $lang['less_seats'] = 'The booking seats is greater than the available seats';
 $lang['pay_by_online'] = 'Stripe';
-$lang['pay_by_bank'] = 'Sabadell bank';
 $lang['pay_by_cash'] = 'Pay by cash';
 $lang['pre_paid'] = 'Pre-pagado';
 $lang['baby_error'] = 'The start trip baby seat should be less than or equal to';

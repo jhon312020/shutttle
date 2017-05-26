@@ -4,7 +4,7 @@
 <div class="container bodypad" id="aboutus">
 	<div class="row">
 		<div class="col-sm-12 text-justify sub-head" style="text-align:center;">
-			<div class="alert alert-danger">Your PayPal transaction has been canceled.</div>
+			<div class="alert alert-danger">Your transaction has been canceled.</div>
 			<a href="<?php echo site_url($lang); ?>" >Return to home</a>
 		</div>
 	</div>

@@ -154,11 +154,11 @@ $route['es/paymentprocess'] = 'node/stripePaymentProcess';
 $route['en/process'] = 'node/process';
 $route['es/process'] = 'node/process';
 
-$route['en/reservation'] = 'node/reservation';
-$route['es/reservation'] = 'node/reservation';
+//$route['en/reservation'] = 'node/reservation';
+//$route['es/reservation'] = 'node/reservation';
 
-$route['en/reservation-bank'] = 'node/reservationBank';
-$route['es/reservation-bank'] = 'node/reservationBank';
+$route['en/reservation'] = 'node/reservationBank';
+$route['es/reservation'] = 'node/reservationBank';
 
 $route['en/getData'] = 'ajax/getData';
 $route['es/getData'] = 'ajax/getData';
