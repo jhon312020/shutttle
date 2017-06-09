@@ -6,7 +6,7 @@
 			if (! isset($url_segment[4])) {
 				$url_segment[4] = '';
 			}
-			if($this->session->userdata('user_type') == '1') {
+			if($this->session->userdata('user_type') == '1'	) {
 		?>
 		<ul id="main-menu" class="">
 			<li class="<?php echo $this->router->class == 'dashboard' ? 'opened active' : ''; ?>">
@@ -84,6 +84,36 @@
 				<a href="<?php echo site_url('admin/shuttles/index'); ?>">
 					<i class="entypo-flight"></i>
 					<span><?php echo lang('shuttles'); ?></span>
+				</a>
+			</li>
+			<li class="<?php echo $this->router->class == 'vehicles' ? 'opened active' : ''; ?>">
+				<a href="<?php echo site_url('admin/vehicles/index'); ?>">
+					<i class="entypo-ticket"></i>
+					<span><?php echo ucfirst(strtolower(lang('vehicles'))); ?></span>
+				</a>
+			</li>
+			<li class="<?php echo $this->router->class == 'cities' ? 'opened active' : ''; ?>">
+				<a href="<?php echo site_url('admin/cities/index'); ?>">
+					<i class="entypo-ticket"></i>
+					<span><?php echo 'Cities'; ?></span>
+				</a>
+			</li>
+			<li class="<?php echo $this->router->class == 'empresa_transporte' ? 'opened active' : ''; ?>">
+				<a href="<?php echo site_url('admin/empresa_transporte/index'); ?>">
+					<i class="entypo-ticket"></i>
+					<span><?php echo ucfirst(strtolower(lang('empresa_transporte'))); ?></span>
+				</a>
+			</li>
+			<li class="<?php echo $this->router->class == 'place_categories' ? 'opened active' : ''; ?>">
+				<a href="<?php echo site_url('admin/place_categories/index'); ?>">
+					<i class="entypo-ticket"></i>
+					<span><?php echo ucfirst(strtolower(lang('categories'))); ?></span>
+				</a>
+			</li>
+			<li class="<?php echo $this->router->class == 'paths' ? 'opened active' : ''; ?>">
+				<a href="<?php echo site_url('admin/paths/index'); ?>">
+					<i class="entypo-ticket"></i>
+					<span><?php echo ucfirst(strtolower(lang('routes'))); ?></span>
 				</a>
 			</li>
 			<li class="<?php echo $this->router->class == 'clients' ? 'opened active' : ''; ?>">

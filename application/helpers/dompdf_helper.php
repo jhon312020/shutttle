@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 
 function pdf_create($html, $filename, $stream = TRUE) {
-	
+	echo 'test';
 	require_once(APPPATH . 'helpers/dompdf/dompdf_config.inc.php');
     
     $dompdf = new DOMPDF();

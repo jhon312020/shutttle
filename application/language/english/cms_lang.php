@@ -408,4 +408,19 @@ $lang['payment_methods'] = 'Payment Methods';
 $lang['payment_method'] = 'Payment Method';
 $lang['next'] = 'NEXT';
 $lang['delete_record_warning'] = 'Are you sure to delete this record?';
+
+
+// Added by JR
+$lang['vehicles'] = 'Vehicles';
+$lang['vehicle'] = 'Vehicle';
+$lang['brand'] = 'Brand';
+$lang['min_passengers'] = 'Minimum passengers';
+$lang['max_passengers'] = 'Maximum passengers';
+$lang['luggage'] = 'Luggage';
+$lang['extras'] = 'Extras';
+$lang['empresa_transporte'] = 'EMPRESAS TRANSPORTE';
+$lang['no_of_seats'] = 'No Available Seats';
+$lang['comment'] = 'Comment';
+$lang['category'] = 'Category';
+$lang['categories'] = 'Categories';
 ?>
