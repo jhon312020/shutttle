@@ -7,6 +7,7 @@ class Shuttles extends Admin_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('empresa_transporte/mdl_empresa_transporte');
 		$this->load->model('users/mdl_users');
 		$this->load->model('users/mdl_clients');
 		$this->load->model('shuttles/mdl_shuttles');
@@ -28,7 +29,7 @@ class Shuttles extends Admin_Controller {
 
 	public function index() {
 		$fromDate = '';
-		$this->mdl_shuttles->select('booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+		$this->mdl_shuttles->select('booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
 											booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,booking.return_journey,booking.country,booking.flight_no,booking.created,booking.client_id,booking.client_array,
 											clients.name as first_name, clients.surname,clients.address,clients.city,clients.country,clients.cp,calendars.reference_id')
 											->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
@@ -131,13 +132,46 @@ class Shuttles extends Admin_Controller {
 			redirect('admin/shuttles');
 		}
  */
+		//print_r($this->input->post()); exit;
+
 		if ($id and !$this->input->post('btn_submit')) {
 			$this->mdl_shuttles->prep_form($id);
 		}
-		
+
+
+		$res['error'] = array();
 		$this->db->from('booking')->where('id', $id);
 		$res['bookings'] = current($this->db->get()->result_array());
-		$res['error'] = array();
+
+		if ($this->input->post('empresa_save')) {
+			if ($res['bookings']['empresa_id'] != $this->input->post('empresa_id')) {
+				$seats = ($res['bookings']['adults']+$res['bookings']['kids']+$res['bookings']['baby']);
+				
+				// new empresa
+				$new = $this->db->from('empresa_transporte')->where('id',$this->input->post('empresa_id'))->get()->result_array();
+				if ($new) {
+					$new = $new[0];
+					if ($new['no_of_seats'] >= $seats) {
+						$new['no_of_seats'] -= $seats;
+						$this->mdl_empresa_transporte->save($new['id'],array('no_of_seats'=>$new['no_of_seats']));
+						// Old empresa
+						$old = $this->db->from('empresa_transporte')->where('id',$res['bookings']['empresa_id'])->get()->result_array();
+						if ($old) {
+							$old = $old[0];
+							$old['no_of_seats'] += $seats;
+							$this->mdl_empresa_transporte->save($old['id'],array('no_of_seats'=>$old['no_of_seats']));
+						}
+
+						$this->mdl_shuttles->save($id, array('empresa_id'=>$this->input->post('empresa_id')));
+					} else {
+						$res['seat_error'] = 'Empresa transporte does not have required seats. Kindly change the Empresa Transporte';
+					}
+				}
+				
+			}
+		}
+
+		
 		$client_id = $res['bookings']['client_id']?$res['bookings']['client_id']:0;
 		$clients = $this->db->where('id', $client_id)->get('clients')->row();
 		if($this->input->post('mode') == 'client') {
@@ -194,23 +228,30 @@ class Shuttles extends Admin_Controller {
 			$this->db->from('booking')->where('id', $res['bookings']['return_book_id']);
 			$res['return_bookings'] = current($this->db->get()->result_array());
 		}
-		$arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
+		if ($res['bookings']['version'] != 1) {
+			$arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
 		
-		if (in_array($res['bookings']['start_from'], $arr)) {
-			$zone = $res['bookings']['end_at'];
-			$str = 'end_at';
-		} else {
-			$zone = $res['bookings']['start_from'];
-			$str = 'start_from';
+			if (in_array($res['bookings']['start_from'], $arr)) {
+				$zone = $res['bookings']['end_at'];
+				$str = 'end_at';
+			} else {
+				$zone = $res['bookings']['start_from'];
+				$str = 'start_from';
+			}
 		}
+
 		/*Address details*/
 		$res['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id', $res['bookings']['collaborator_address_id'])->get()->result_array();
 
+
 		$this->db->from('collaborators')->where('id',$res['bookings']['collaborator_id']);
 		$terminal = current($this->db->get()->result_array());
-		$res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
-		if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
-			$res['bookings'][$str] = $res['bookings']['address'];
+
+		if ($res['bookings']['version'] != 1) {
+			$res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
+			if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
+				$res['bookings'][$str] = $res['bookings']['address'];
+			}
 		}
 			
 		$res['bookings']['collaborator_name'] = $terminal['name'];
@@ -226,7 +267,13 @@ class Shuttles extends Admin_Controller {
 		if ($client_id and !$this->input->post('btn_submit')) {
 			$this->mdl_clients->prep_form($client_id);
 		}
-		$res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);
+		if ($res['bookings']['version'] == 1) {
+			$res['book_reference'] = 'SHT-'.date('dmY',strtotime($res['bookings']['start_journey'])).'-'.sprintf("%02d", $res['bookings']['id']);
+		} else {
+			$res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);	
+		}
+		
+		$res['lang'] = $this->session->get_userdata('cms_lang');
 		
 		$this->load->helper('dompdf');	
 		$html = $this->load->view('layout/templates/pdf', $res, true);
@@ -270,6 +317,8 @@ class Shuttles extends Admin_Controller {
 			$this->mdl_clients->form_values['password'] = '';
 		
 		//$data['res'] = $res;
+
+		$res['companies'] = $this->mdl_empresa_transporte->getList();
 		$this->layout->set($res);
 		$this->layout->buffer('content', 'shuttles/form');
 		$this->layout->render();
@@ -282,14 +331,17 @@ class Shuttles extends Admin_Controller {
 			$res['return_bookings'] = current($this->db->get()->result_array());
 		}
 		$res['error'] = array();
-		$arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
-		
-		if (in_array($res['bookings']['start_from'], $arr)) {
-			$zone = $res['bookings']['end_at'];
-			$str = 'end_at';
-		} else {
-			$zone = $res['bookings']['start_from'];
-			$str = 'start_from';
+
+		if ($res['bookings']['version'] != 1) {
+			$arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
+			
+			if (in_array($res['bookings']['start_from'], $arr)) {
+				$zone = $res['bookings']['end_at'];
+				$str = 'end_at';
+			} else {
+				$zone = $res['bookings']['start_from'];
+				$str = 'start_from';
+			}
 		}
 		/*Address details*/
 		$res['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id', $res['bookings']['collaborator_address_id'])->get()->result_array();
@@ -297,9 +349,11 @@ class Shuttles extends Admin_Controller {
 		//print_r($res['bookings']['collaborator_address']);die;
 		$this->db->from('collaborators')->where('id',$res['bookings']['collaborator_id']);
 		$terminal = current($this->db->get()->result_array());
-		$res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
-		if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
-			$res['bookings'][$str] = $res['bookings']['address'];
+		if ($res['bookings']['version'] != 1) {
+			$res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
+			if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
+				$res['bookings'][$str] = $res['bookings']['address'];
+			}
 		}
 		
 		$res['bookings']['collaborator_name'] = $terminal['name'];
@@ -307,7 +361,12 @@ class Shuttles extends Admin_Controller {
 		$res['start_journey'] = current($this->db->get()->result_array());
 		$client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$res['bookings']['client_id'])->get();
 		
-		$res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);
+		if ($res['bookings']['version'] == 1) {
+			$res['book_reference'] = 'SHT-'.date('dmY',strtotime($res['bookings']['start_journey'])).'-'.sprintf("%02d", $res['bookings']['id']);
+		} else {
+			$res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);	
+		}
+		
 		if ($client_qry->num_rows())
 			$res['clients'] = current($client_qry->result_array());
 		else
@@ -315,6 +374,7 @@ class Shuttles extends Admin_Controller {
 		
 		$res['edit'] = false;
 
+		$res['companies'] = $this->mdl_empresa_transporte->getList();
 		$this->layout->set($res);
 		$this->layout->buffer('content', 'shuttles/form');
 		$this->layout->render();

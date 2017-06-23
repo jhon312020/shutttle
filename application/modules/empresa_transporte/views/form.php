@@ -7,6 +7,37 @@ form label {
 	text-align:left!important;
 }
 </style>
+<style type="text/css">
+	.datepicker1 {
+		text-align: left !important;
+	}
+	.dataTables_filter > label {
+		float: left !important;
+	    position: relative;
+	    left: -11px;
+	}
+	.date-input {
+		height: 31px;
+	    padding: 6px 12px;
+	    font-size: 12px;
+	    line-height: 1.42857143;
+	    color: #555555;
+	    background-color: #ffffff;
+	    background-image: none;
+	    border: 1px solid #ebebeb;
+	    border-radius: 3px;
+	}
+	.pull-left {
+		text-align: left !important;
+	}
+	.dt-buttons {
+		left: 52px !important;
+	}
+	.dataTables_filter {
+		width:53%;
+	}
+</style>
+
 <div class="headerbar">
 	<h1><?=lang('empresa_transporte')?></h1>
 </div>
@@ -105,3 +136,5 @@ form label {
 		</div>
 	</div>
 </form>
+
+<?php echo $this->layout->load_view('collaborators/booking_list'); ?>

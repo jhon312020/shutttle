@@ -82,6 +82,27 @@ $disabled = ($readonly)?'disabled':'';
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-sm-3 control-label pull-left"><?php echo lang('categories'); ?>: </label>
+						<div class="col-sm-9">
+							<?php 
+							if ($this->mdl_collaborators->form_value('category_id') == '' || $this->mdl_collaborators->form_value('category_id') == 0) {
+								$categories[$this->mdl_collaborators->form_value('category_id')] = 'Select Category';
+							}
+							echo form_dropdown(array('name'=>'category_id','id'=>'category_id', 'options'=>$categories, 'class'=>'form-control', 'required'=>true, 'selected'=>$this->mdl_collaborators->form_value('category_id'), $readonly=>true)); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label pull-left"><?php echo lang('location'); ?>: </label>
+						<div class="col-sm-9">
+							<?php
+							if ($this->mdl_collaborators->form_value('location_id') == '' || $this->mdl_collaborators->form_value('location_id') == 0) {
+								$group_location[$this->mdl_collaborators->form_value('location_id')] = 'Select location';
+							}
+							?>
+							<?php echo form_dropdown(array('name'=>'location_id','id'=>'location_id', 'options'=>$group_location, 'class'=>'form-control', 'required'=>true, 'selected'=>$this->mdl_collaborators->form_value('location_id'), $readonly=>true)); ?>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-3 control-label pull-left"><?php echo lang('available_seats'); ?>: </label>
 						<div class="col-sm-9">
 							<?php
@@ -247,90 +268,7 @@ $disabled = ($readonly)?'disabled':'';
 			</div>
 		</div>
 	
-	<div class="row" id="reserva01">
-		<div class="col-md-12">
-			<div class="panel minimal minimal-gray">
-				<div class="panel-heading headerbar" style="margin-top:0px;">
-					<h1 style="margin-bottom:2px;"><?php echo lang('booking_list'); ?></h1>
-				</div>
-				<div class="panel-body">
-					<table class="table table-bordered datatable data_table">
-							<thead>
-								<tr>
-									<th><?php echo lang('reference'); ?></th>
-									<th><?php echo lang('name'); ?></th>
-									<th><?php echo lang('date'); ?></th>
-									<th><?php echo lang('hour'); ?></th>
-									<th style="width: 10%;"><?php echo lang('from'); ?></th>
-									<th style="width: 10%;"><?php echo lang('to'); ?></th>
-									<th><?php echo lang('price'); ?></th>
-									<th><?php echo lang('passengers'); ?></th>
-									<th style="width: 15%;"><?php echo lang('payment_method'); ?></th>
-									<th style="width: 25%;"><?php echo lang('options'); ?></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php
-								foreach($booking_array as $book) {
-									$clients = false;
-									$arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
-									if($book['client_id'])
-										$clients = true;
-									else
-										$json = json_decode($book['client_array'],true);
-
-									$address = $book['mainaddress'] != '' && $book['mainaddress'] != null ? $book['mainaddress'] : $book['col_address'];
-									
-									$start_from = (in_array($book['start_from'], $arr))?$book['start_from']:$book['name'].' - '.$address;
-									$end_at = (in_array($book['end_at'], $arr))?$book['end_at']:$book['name'].' - '.$address;
-									if($book['bcnarea_address_id'] != '' && $book['bcnarea_address_id'] != '0') {
-										if(!in_array($book['start_from'], $arr))
-											$book['book_address'];
-										if(!in_array($book['end_at'], $arr))
-											$end_at = $book['book_address'];
-									}
-
-								?>
-									<tr>
-										<td style="color:#F27D00;"><?php echo $book['reference_id'].'-'.sprintf("%02d", $book['round_trip'] == 1?$res[$book['id']]:$book['id']); ?></td>
-										<td><?php echo $clients?$book['first_name'].' '.$book['surname']:$json['name'].' '.$json['surname']; ?></td>
-										<td><?php echo date('d/m/Y', strtotime($book['start_journey'])); ?></td>
-										<td><?php echo date('H:i', strtotime($book['hour'])).'h'; ?></td>
-										<td><?php echo (in_array($book['start_from'], $arr))?$book['start_from']:$book['name'].' - '.$address; ?></td>
-										<td><?php echo (in_array($book['end_at'], $arr))?$book['end_at']:$book['name'].' - '.$address; ?></td>
-										<td><?php echo $book['price']; ?></td>
-										<td><?php echo $book['adults'] + $book['kids']; ?></td>
-										<td><?php 
-											if($book['book_status'] == 'completed' || $book['book_status'] == 'pending')
-												echo lang('online');
-											else if($book['book_status'] == 'cash')
-												echo lang('cash_payment');
-											else if($book['book_status'] == 'paid')
-												echo lang('pre_paid');
-
-										 ?></td>
-										<td>
-											<a class="btn btn-info btn-sm" href="<?php echo site_url('admin/shuttles/view/' . $book['id']); ?>">
-												<i class="entypo-eye"></i>
-											</a>
-											<a class="btn btn-primary edit btn-sm" href="<?php echo site_url('admin/shuttles/form/' . $book['id']); ?>">
-												<i class="entypo-pencil"></i>
-											</a>
-											<a class="btn btn-info btn-sm" href="javascript:void(0);" style="<?php echo $book['journey_completed'] == 1?'background-color: rgb(109, 224, 109) !important;border-color: rgb(109, 224, 109) !important;':'background-color: #e5900f !important;border-color: #e5900f !important;'; ?>">
-												<i class="entypo-check"></i>
-											</a>
-											<a class="btn btn-danger btn-sm" href="<?php echo site_url('admin/shuttles/delete/' .$book['id']); ?>" onclick="return confirm('<?php echo lang('delete_record_warning'); ?>');" >
-												<i class="entypo-trash"></i>
-											</a>
-										</td>
-									</tr>
-								<?php } ?>	
-							</tbody>
-						</table>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php echo $this->layout->load_view('collaborators/booking_list'); ?>
 	
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-lg-12">
@@ -436,6 +374,25 @@ $disabled = ($readonly)?'disabled':'';
 	</div>	
 </div>
 <?php } ?>
+<script type="text/javascript">
+	/*$(document).ready(function(){
+		var categories = <?php // json_encode($categories); ?>;
+		var group_location = <?php //echo json_encode($group_location); ?>;
+		$(document).on('change','#category_id',function(){
+			category_id = $(this).val();
+			if (group_location[category_id] != 'undefined') {
+				locations = group_location[category_id];
+				$('#location_id').html('');
+				$('#location_id').append('<option value="">Select location</option>')
+				$.each(locations, function(index,value) {
+					$('#location_id').append('<option value="'+index+'">'+value+'</option>');
+				});
+				$('#location_id').val('');
+			}
+		});
+		//$('#category_id').trigger('change');
+	});*/
+</script>
 <script type="text/javascript">
 	var newInputValue = '';
 	$('.showpassword').click(function(){

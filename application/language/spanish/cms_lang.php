@@ -77,7 +77,8 @@ $lang['send'] = 'Enviar';
 //Just given spaces to fix the design issues.
 $lang['choose_your_route'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELIGE TU RUTA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
-$lang['route_schedule'] = 'HORARIO DE RUTAS';
+//$lang['route_schedule'] = 'HORARIO DE RUTAS';
+$lang['route_schedule'] = 'SELECT YOUR CAR';
 $lang['info_and_payment'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INFO Y PAGO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 $lang['one_way'] = 'SÓLO IDA';
 $lang['round_trip'] = 'IDA Y VUELTA';
@@ -399,4 +400,14 @@ $lang['no_of_seats'] = 'No Available Seats';
 $lang['comment'] = 'Comment';
 $lang['category'] = 'Category';
 $lang['categories'] = 'Categories';
+$lang['starts_or_ends']  = 'Starts / Ends';
+$lang['day_trip']  = 'Day Trip';
+$lang['trip_time'] = 'Departure Time';
+$lang['return_time'] = 'Return Time';
+$lang['overview'] = 'Overview';
+$lang['shared'] = 'Shared';
+$lang['location'] = 'Location';
+$lang['locations'] = 'Locations';
+$lang['day_go'] = 'Day Go';
+$lang['day_back'] = 'Day Back';
 ?>

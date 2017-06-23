@@ -117,6 +117,11 @@
 					$end_at = $shuttle->book_address;
 			}
 
+			if ($shuttle->version == 1) {
+				$start_from = $shuttle->start_from;
+				$end_at = $shuttle->end_at;
+			}
+
 			/*if($clients) {
 				$cp = $shuttle->cp != ''?' - '.$shuttle->cp:'';
 				$shuttle->address != '' ?array_push($address, $shuttle->address):'';
@@ -131,7 +136,13 @@
 		?>
 		<tr>
 			<td><img src="<?php echo base_url().'assets/cc/images/'. (($shuttle->return_book_id > 0 || $shuttle->round_trip == 1)?'round.png':'single.png'); ?>"></td>
-			<td><?php echo $shuttle->reference_id.'-'.sprintf("%02d", $shuttle->round_trip == 1?$res[$shuttle->id]:$shuttle->id); ?></td>
+			<td><?php 
+			if ($shuttle->version == 1) {
+				echo 'SHT-'.date('dmY',strtotime($shuttle->start_journey)).'-'.sprintf("%02d", $shuttle->round_trip == 1?$res[$shuttle->id]:$shuttle->id);
+			} else {
+				echo $shuttle->reference_id.'-'.sprintf("%02d", $shuttle->round_trip == 1?$res[$shuttle->id]:$shuttle->id);	
+			}
+			 ?></td>
 			<td><?php echo $clients?$shuttle->first_name.' '.$shuttle->surname:$json['name'].' '.$json['surname']; ?></td>
 			<td><?php echo date('d/m/Y', strtotime($shuttle->start_journey)); ?></td>
 			<td><?php echo date('H:i', strtotime($shuttle->hour)).'h'; ?></td>

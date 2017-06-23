@@ -86,35 +86,40 @@
 					<span><?php echo lang('shuttles'); ?></span>
 				</a>
 			</li>
-			<li class="<?php echo $this->router->class == 'vehicles' ? 'opened active' : ''; ?>">
-				<a href="<?php echo site_url('admin/vehicles/index'); ?>">
-					<i class="entypo-ticket"></i>
-					<span><?php echo ucfirst(strtolower(lang('vehicles'))); ?></span>
-				</a>
-			</li>
-			<li class="<?php echo $this->router->class == 'cities' ? 'opened active' : ''; ?>">
-				<a href="<?php echo site_url('admin/cities/index'); ?>">
-					<i class="entypo-ticket"></i>
-					<span><?php echo 'Cities'; ?></span>
-				</a>
-			</li>
-			<li class="<?php echo $this->router->class == 'empresa_transporte' ? 'opened active' : ''; ?>">
-				<a href="<?php echo site_url('admin/empresa_transporte/index'); ?>">
-					<i class="entypo-ticket"></i>
-					<span><?php echo ucfirst(strtolower(lang('empresa_transporte'))); ?></span>
-				</a>
-			</li>
-			<li class="<?php echo $this->router->class == 'place_categories' ? 'opened active' : ''; ?>">
-				<a href="<?php echo site_url('admin/place_categories/index'); ?>">
-					<i class="entypo-ticket"></i>
-					<span><?php echo ucfirst(strtolower(lang('categories'))); ?></span>
-				</a>
-			</li>
-			<li class="<?php echo $this->router->class == 'paths' ? 'opened active' : ''; ?>">
-				<a href="<?php echo site_url('admin/paths/index'); ?>">
-					<i class="entypo-ticket"></i>
-					<span><?php echo ucfirst(strtolower(lang('routes'))); ?></span>
-				</a>
+			<li class="<?php echo ($this->router->class == 'paths' || $this->router->class == 'vehicles' || $this->router->class == 'cities' || $this->router->class == 'empresa_transporte' || $this->router->class == 'place_categories') ? 'opened active' : ''; ?>">
+				<a href="#"><i class="entypo-address"></i><span><?php echo lang('routes'); ?></span></a>
+				<ul>
+					<li class="<?php echo $this->router->class == 'vehicles' ? 'opened active' : ''; ?>">
+						<a href="<?php echo site_url('admin/vehicles/index'); ?>">
+							<i class="entypo-ticket"></i>
+							<span><?php echo ucfirst(strtolower(lang('vehicles'))); ?></span>
+						</a>
+					</li>
+					<li class="<?php echo $this->router->class == 'cities' ? 'opened active' : ''; ?>">
+						<a href="<?php echo site_url('admin/cities/index'); ?>">
+							<i class="entypo-ticket"></i>
+							<span><?php echo 'Locations'; ?></span>
+						</a>
+					</li>
+					<li class="<?php echo $this->router->class == 'empresa_transporte' ? 'opened active' : ''; ?>">
+						<a href="<?php echo site_url('admin/empresa_transporte/index'); ?>">
+							<i class="entypo-ticket"></i>
+							<span><?php echo ucfirst(strtolower(lang('empresa_transporte'))); ?></span>
+						</a>
+					</li>
+					<li class="<?php echo $this->router->class == 'place_categories' ? 'opened active' : ''; ?>">
+						<a href="<?php echo site_url('admin/place_categories/index'); ?>">
+							<i class="entypo-ticket"></i>
+							<span><?php echo ucfirst(strtolower(lang('categories'))); ?></span>
+						</a>
+					</li>
+					<li class="<?php echo $this->router->class == 'paths' ? 'opened active' : ''; ?>">
+						<a href="<?php echo site_url('admin/paths/index'); ?>">
+							<i class="entypo-ticket"></i>
+							<span><?php echo ucfirst(strtolower(lang('routes'))); ?></span>
+						</a>
+					</li>
+				</ul>
 			</li>
 			<li class="<?php echo $this->router->class == 'clients' ? 'opened active' : ''; ?>">
 				<a href="<?php echo site_url('admin/clients/index'); ?>">

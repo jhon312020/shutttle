@@ -249,7 +249,7 @@ $extra_array = json_decode($bookings['extra_array'], true);
 						<?php } ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('country'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo $countries[$bookings['country']]; ?></label>							
+							<label class="col-sm-8 control-label pull-left editLabel"><?php echo (isset($countries[$bookings['country']]))?$countries[$bookings['country']]:''; ?></label>							
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('flight_no'); ?>: </label>
@@ -389,7 +389,7 @@ $extra_array = json_decode($bookings['extra_array'], true);
 								</div>
 							</div>
 							<?php
-							$i++;
+							$i++;	
 							}
 						?>
 					</form>	
@@ -413,6 +413,42 @@ $extra_array = json_decode($bookings['extra_array'], true);
 							
 						</div>
 					</div>
+					<?php } ?>
+				</div>
+			</div>
+			<div class="panel minimal minimal-gray">
+				<div class="panel-heading headerbar" style="margin-top:0px;margin-bottom:10px !important;">
+					<h1 style=
+					"margin-bottom:2px;color:#F27D00;">Assign Empresa Transporte</h1>
+					<h1 style="color:#F27D00;font-size:12px;margin-bottom:10px;">&nbsp;</h1>
+				</div>
+				<div class="panel-body" style="padding:0px;">
+					<?php if($this->uri->segment(3) == 'form') { ?>
+						<?php if (isset($seat_error)) { ?>
+							<div style="color:red;font-size:bold;"><?php echo $seat_error; ?></div>
+						<?php } ?>
+					<form method="post">
+						<div class="form-group">
+							<?php
+								$companies[0] = 'Select Empresa Transporte';
+								echo form_dropdown(array('id'=>'empresa_id','selected'=>$bookings['empresa_id'],'name'=>'empresa_id','class'=>'form-control','options'=>$companies));
+							 ?>
+						</div>
+						<div class="form-group pull-right">
+							<button type="submit" name="empresa_save" value='1' class="btn btn-primary btn-md">Save</button>
+						</div>
+					</form>
+					<?php } else { ?>
+						<div class="form-group">
+							<label class="control-label">Empresa Transporte:</label>
+							<label class="control-label" style="color:#F27D00;">
+							<?php 
+								if (isset($companies[$bookings['empresa_id']])) {
+									echo $companies[$bookings['empresa_id']];
+								} 
+							?>
+							</label>
+						</div>
 					<?php } ?>
 				</div>
 			</div>

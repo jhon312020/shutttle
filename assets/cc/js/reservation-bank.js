@@ -2,7 +2,10 @@
    //$('#submitimage').trigger('click'); 
    $('#stripeform').submit();
 });*/
+var selectedVehicle = {};
+var displayingVehicles = [];
 var ajaxUrl = siteUrl + '/getData';
+var firstStepReservationUrl = siteUrl+'/firstStepReservation';
 var firstStepJson = '';
 var return_journey = false;
 var addExtra = {};
@@ -22,7 +25,8 @@ var formError = '<div class="nameformError parentFormundefined" style="opacity: 
 
 $('.showPassword').hide();
 function updateExtras () {
-	var total = parseFloat(totAmount);
+	//var total = parseFloat(totAmount);
+	var total = parseFloat(selectedVehicle.amount);
 	for (var key in extraJson) {
 		//console.log(extraJson, addExtra)
 		var original_extra = extra_array[key];
@@ -54,15 +58,12 @@ function updateExtras () {
 
 	}
 
-	if(total != parseFloat(totAmount)) {			
-		if(percentage != '') {
-			total += parseFloat(percentage);
-			var per = (parseFloat(percentage_value)*total)/100;
-			percentage = per;
-			total -= parseFloat(per);
-			$('.price_reduction').text(parseFloat(per).toFixed(2));
-			$('#promotional_values').val(per);
-		}
+	if(percentage != '') {
+		var per = (parseFloat(percentage_value)*total)/100;
+		percentage = per;
+		total -= parseFloat(per);
+		$('.price_reduction').text(parseFloat(per).toFixed(2));
+		$('#promotional_values').val(per);
 	}
 
 	var tot_fix = total.toFixed(2);
@@ -84,167 +85,113 @@ $(document).ready(function(){
 	});
   //Tab1 Button validation 
 	$('#firstbutton').click(function() {
-    
-		if($('#zone').val() == '') {
-			$('#postal_code').addClass('validate[required]');
-			//validate[required,funcCall[validEnd]]
-		}
-		else {
-			$('#postal_code').removeClass('validate[required]');
-			$('.postal_codeformError').remove();
-		}
-		var formData = $('#firstStepForm').serializeArray();
 		var valid = $("#firstStepForm").validationEngine('validate');
 		if(valid) {
-			if(firstStepJson != JSON.stringify(formData) || $('#firstPageError').is(':visible')) {
-				$('#firstPageError').hide();
-				$('#seats_error').hide();
-				$('#return_seats_error').hide();
-				
-				firstStepJson = JSON.stringify(formData);
-				$('#startJourneyTable tbody').html('');
-				$('#returnJourneyTable tbody').html('');
-				$.ajax({
-          url: ajaxUrl,
-					type:'post',
-					data:formData,
-					dataType:'json',
-					success:function(data, textStatus, jqXHR){
-						console.log(data)
-						if(data['error']) {
-							$('#firstPageError .formErrorContent').text(data['error']);
-							$('#firstPageError').show();
-						} else {
-							$('#returnJourneyPanel').hide();
-							$.each(data['data'], function(i,v){
-								$('#startJourneyTable tbody').append(
-								'<tr>'+
-									'<th scope="row">'+
-										'<label>'+
-											'<input class="display-checkbox" type="radio" name="book_id" id="blankRadio'+v.id+'" value="'+v.id+'" aria-label="..." data-rates="'+v.rates+'">'+
-											'<input type="hidden" name="seats_'+v.id+'"  value="'+v.seats+'">'+
-											'<input type="hidden" name="seats_price_'+v.id+'"  value="'+data['rates']+'">'+
-											'<input type="hidden" class="hidden_value" name="journey_'+v.id+'"  value=\''+JSON.stringify(v)+'\'>'+
-										'</label>'+
-									'</th>'+
-									'<td>'+v.journey_start+'</td>'+
-									'<td>'+data['from_zone']+'</td>'+
-									'<td>'+data['to_zone']+'</td>'+
-									'<td>'+v.journey_end+'</td>'+
-								'</tr>'); 
-							});
-							if(data['return'].length > 0) {
-								return_journey = true;
-								$.each(data['return'], function(i,v){
-									$('#returnJourneyTable tbody').append(
-									'<tr>'+
-										'<th scope="row">'+
-											'<label>'+
-												'<input type="radio" name="return_book_id" id="blankRadio'+v.id+'" value="'+v.id+'" aria-label="..." data-rates="'+v.rates+'">'+
-												'<input type="hidden" name="return_seats_'+v.id+'"  value="'+v.seats+'">'+
-												'<input type="hidden" class="hidden_value" name="return_journey_'+v.id+'"  value=\''+JSON.stringify(v)+'\'>'+
-											'</label>'+
-										'</th>'+
-										'<td>'+v.journey_start+'</td>'+
-										'<td>'+data['to_zone']+'</td>'+
-										'<td>'+data['from_zone']+'</td>'+
-										'<td>'+v.journey_end+'</td>'+
-									'</tr>'); 
-								});
-								$('#returnJourneyPanel').show();
-							}
-							$('.stepClick').removeClass('active');
-							$('li[data-class=secondStep]').addClass('active');
-							//$('.totStep').hide();
-              $('#firstStep').removeClass('active');
-							$('#secondStep').addClass('active');
-							var oldPrice = iniPrice;
-							var total = totAmount;
-							if(oldPrice != 0) {
-								total = parseFloat(total) - parseFloat(oldPrice);
-							}
-							if(percentage != '') {
-								total += parseFloat(percentage);
-								var per = (parseFloat(percentage_value)*total)/100;
-								percentage = per;
-								total -= parseFloat(per);
-								$('.price_reduction').text(parseFloat(per).toFixed(2));
-
-								$('#promotional_values').val(per.toFixed(2));
-							}
-							totAmount = total;
-							iniPrice = 0;
-							var fix_total = total.toFixed(2);
-							$('.amount').val(fix_total);
-							$('#price_final').text(fix_total);
-							$('.price_total').text(fix_total);
-							$('.initialPrice').text('00.00');
-							$('#passenger_price').val(0);
-							
-							
-							reservationClick();
-
-							if(Object.keys(addExtra).length) {
-					    	updateExtras();
-					    }
-
-							$('#bcnarea_address_id').val(data['bcnaddress_id']);
-							if($('#zone').val() == '')
-								$('#zone').val(data['zone']);
-							
-							if($('#firstLeftStep').is(':visible')) {
-								$('#firstLeftStep').attr("style", "display: none !important");
-								$('#secondLeftStep').show();
-							}
-							
-							$('.duplicateList').each(function() {
-								var dataId = $(this).data('id');
-								if(dataId == 'flight_time') {
-									$(this).text(data['format_starttime']);
-								} else if(dataId == 'flightlanding_time') {
-									if($('[name=return_journey]').val() != '') {
-										$(this).closest('div').show();
-										$(this).text(data['format_returntime']);
-									}
-									else {
-										$(this).closest('div').hide();
-										//$(this).prev().hide();
-									}
-									
-								} else if(dataId == 'start_journey') {
-									$(this).text(data['format_startdate']);
-								} else if(dataId == 'return_journey') {
-									if($('[name=return_journey]').val() != '') {
-										$(this).closest('div').show();
-										$(this).text(data['format_returndate']);
-									}
-									else {
-										$(this).closest('div').hide();
-										//$(this).prev().hide();
-									}
-									
-								} else if(dataId == 'country') {
-									//$(this).text(country[$('[name=country]').val()]);
-								} else {
-									$(this).text($('[name='+dataId+']').val());
-								}
-							})
-						}
-					},
-					error:function(jqXHR, textStatus, errorThrown){
-						console.log(textStatus+'----'+errorThrown);
-					},
-				});	
+			
+			if (locations[$('#from_location').val()] == undefined) {
+				$('#firstPageError .formErrorContent').text('Kindly check the starts at location');
+				$('#firstPageError').show();
+				$('#from_location_id').val('');
+				return false;
 			} else {
-        console.log('comes here');
-				$('.stepClick').removeClass('active');
-        $('.tab-pane').removeClass('active');
-				$('li[data-class=secondStep]').addClass('active');
-				$('#secondStep').addClass('active');
+				$('#from_location_id').val(locations[$('#from_location').val()]);
 			}
+
+			if (locations[$('#to_location').val()] == undefined) {
+				$('#firstPageError .formErrorContent').text('Kindly check the ends at location');
+				$('#firstPageError').show();
+				$('#to_location_id').val('');
+				return false;
+			} else {
+				$('#to_location_id').val(locations[$('#to_location').val()]);
+			}
+
+			if ($('#from_location').val().trim() == $('#to_location').val().trim()) {
+				$('#firstPageError .formErrorContent').text('Start and end location should not be the same');
+				$('#firstPageError').show();
+				return false;
+			}
+
+			$('#firstPageError').hide();
+			$('#seats_error').hide();
+			$('#return_seats_error').hide();
+
+			var formData = $('#firstStepForm').serializeArray();
+			firstStepJson = JSON.stringify(formData);
+			$('#startJourneyTable tbody').html('');
+			$('#returnJourneyTable tbody').html('');
+			$.ajax({
+      			url: firstStepReservationUrl,
+				type:'post',
+				data:formData,
+				dataType:'json',
+				success:function(data, textStatus, jqXHR){
+					console.log(data)
+					if($('#flight_no').val() == '') {
+						$('.flightNoValue').text('');
+						$('.jFlightNo').hide();
+					} else {
+						$('.flightNoValue').text($('#flight_no').val());
+						$('.jFlightNo').show();
+					}
+					if(data['error']) {
+						$('#firstPageError .formErrorContent').text(data['error']);
+						$('#firstPageError').show();
+					} else {
+						$('#returnJourneyPanel').hide();
+						$('.trip_date_text').text(data.formatted_start_date);
+						$('.departure_time_text').text(data.formatted_start_time);
+						if (data.formatted_return_date) {
+							$('.return_date_text').text(data.formatted_return_date);
+							$('.return_time_text').text(data.formatted_return_time);
+							$('.trip_detail').find('td').css("vertical-align","top");
+							$('.jReturnDate').show();
+						} else {
+							$('.return_date_text').text('');
+							$('.return_time_text').text('');
+							$('.trip_detail').find('td').css("vertical-align","middle");
+							$('.jReturnDate').hide();
+						}
+						$('.from_location_text').text(data.from_location);
+						$('.to_location_text').text(data.to_location);
+						$('.passengers_text').text(data.passengers);
+						// Hide first step and display the second step
+						$('.stepClick').removeClass('active');
+						$('#firstStep').removeClass('active');
+						$('li[data-class=secondStep]').addClass('active');
+						displayVehicles(data);
+						$('#secondStep').addClass('active');
+				    }
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					console.log(textStatus+'----'+errorThrown);
+				},
+			});	
 		} 
 	});
 	/*First step end*/
+
+	/* Second step click start */
+	$(document).on('click','.secondStepClick',function(){
+		selectedVehicle = displayingVehicles[$(this).attr('data-vehicle')];
+		$('#vehicle_id').val(selectedVehicle.id);
+		totAmount = parseFloat(selectedVehicle.amount);
+		$('.initialPrice').text(totAmount.toFixed(2));
+		$('#passenger_price').val(totAmount.toFixed(2));
+		if (selectedVehicle.shared == '1') {
+			$('#reservation_extras_div').show();
+		} else {
+			$('#reservation_extras_div').hide();
+		}
+		addExtra = {};
+		$('.extras').html('');
+		updateExtras();
+		$('.stepClick').removeClass('active');
+		$('#secondStep').removeClass('active');
+		$('li[data-class=thirdStep]').addClass('active');
+		$('#thirdStep').addClass('active');
+	});
+	/*Second step end */
 	
 	$(".more_info_click" ).click(function() {
 	   	$(this).find('.show_more_info').toggle();
@@ -779,7 +726,146 @@ $(document).ready(function(){
   $(document).on('click', '.jsbackToDetails', function(e) {
   	$('#booking_details').show();
   	$('#payment-form').hide();
-  })
+  });
+
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+	  _create: function() {
+	    this._super();
+	    this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+	  },
+	  _renderMenu: function( ul, items ) {
+	    var that = this,
+	      currentCategory = "";
+	    $.each( items, function( index, item ) {
+	      var li;
+	      if ( item.category != currentCategory ) {
+	        ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+	        currentCategory = item.category;
+	      }
+	      li = that._renderItemData( ul, item );
+	      if ( item.category ) {
+	        li.attr( "aria-label", item.category + " : " + item.label );
+	      }
+	    });
+	  }
+	});
+ 
+    $( "#from_location" ).catcomplete({
+      delay: 0,
+      source: placeLocations
+    });
+
+    $( "#to_location" ).catcomplete({
+      delay: 0,
+      source: placeLocations
+    });
 
 
 });
+
+function displayVehicles(result) {
+	return_journey = false;
+	amount = 1;
+	if (result.formatted_return_date) {
+		return_journey = true;	
+	}
+	shared_vehicles_rate = {};
+	if (result.shared_vehicles_rate[0]  != "undefined") {
+		shared_vehicles_rate = result.shared_vehicles_rate[0];
+	}
+	is_night_trip = isNightTrip(result.formatted_start_time);
+	vehicle_amounts = JSON.parse(result.paths.vehicles);
+	$('#vehicle_list').html('');
+	for(i=0;i<result['vehicles'].length;i++){
+		header = false;
+		if (i==0)
+			header = true;
+		amount = calculateVehicleAmount(result['vehicles'][i],vehicle_amounts,shared_vehicles_rate,is_night_trip,return_journey);
+		if (amount) {
+			$('#vehicle_list').append(vehicleInformation(result['vehicles'][i],header,return_journey,amount,result.passengers));
+			displayingVehicles[result['vehicles'][i].id] = result['vehicles'][i];
+			displayingVehicles[result['vehicles'][i].id]['amount'] = amount;
+		}
+	}
+}
+
+function calculateVehicleAmount(vehicle,vehicle_amounts,shared_vehicles_rate,is_night_trip,return_journey) {
+	amount = 0;
+	if (vehicle.shared == '1') {
+		if (shared_vehicles_rate) {
+			if (is_night_trip) {
+				if (return_journey){
+					amount = shared_vehicles_rate.night_rate_for_round_a_trip;
+				} else {
+					amount = shared_vehicles_rate.night_rate_for_one_way
+				}
+			} else {
+				if (return_journey){
+					amount = shared_vehicles_rate.rate_for_round_a_trip;
+				} else {
+					amount = shared_vehicles_rate.rate_for_one_way
+				}
+			}
+		}
+	} else {
+		if (typeof vehicle_amounts[vehicle.id] != "undefined") {
+				amount = vehicle_amounts[vehicle.id];
+			if (return_journey) {
+				amount = amount*2;
+			}
+		}
+	}
+	return amount;
+}
+
+function isNightTrip(time){
+	time = time.split(':');
+	time = time[0];
+	if (parseInt(time) >= 22) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function vehicleInformation(vehicle,header,return_journey,amount,passengers) {
+	var language = $('meta[name=language]').attr('content').toLowerCase();
+	var short_overview = vehicle[language+'_overview'].substring(0,140);
+	var long_overview = vehicle[language+'_overview'];
+	var extras = vehicle[language+'_extras'];
+	//var title = vehicle[language+'_title'];
+	var title = vehicle['name'];
+	var html = '<div class="panel pickbluebgtop border-2">';
+	if (header) {
+		html += '<div class="panel-heading pickbluebg">Choose your car</div>';
+	}
+	html += '<div class="panel-body">';
+	html += '<div class="col-md-3"><b class="vehicle_title">'+title+'</b><br/>';
+	html += '<img src="'+baseUrl+'/assets/cc/images/vehicles/'+vehicle.image+'" width="100%" />';
+	html += '</div>';
+	html += '<div class="col-md-3">';
+	html += '<table class="car_part2">';
+	html += '<tr><td width="20px"><i class="fa fa-user-o icon-style"></i></td><td>'+vehicle.max_passengers+' Passengers</td></tr>';
+	html += '<tr><td><i class="fa fa-briefcase icon-style"></i></td><td> 1 case and 1 holdall<br>per passenger</td></tr>';
+	html += '<tr><td><i class="fa fa-car icon-style"></i></td><td> Door to door /<br/>Direct journey</td></tr>';
+	html += '</table>';
+	html += '</div>';
+	html += '<div class="col-md-3" style="height:175px;border-right: 1px solid #ccc;border-left: 1px solid #ccc;padding-top:10px">';
+	html += '<b>Overview</b><br/><br/>';
+	html += '<div>'+short_overview+'<br/><u><a href="javascript:;" onClick="$(\'#view_more_'+vehicle.id+'\').toggle(\'slow\')">+ Info</a></u></div>';
+	html += '</div>';
+	html += '<div class="col-md-3" style="text-align:center;padding-top:10px;">';
+	if (return_journey) {
+		html += '<b>Return price for '+passengers+' passengers</b>';	
+	} else {
+		html += '<b>Price for '+passengers+' passengers</b>';
+	}
+	html += '<div style="text-align:center"><br/><div class="amount_text">'+amount+' &euro; </div>* All Included<br/><br/><button class="btn secondStepClick" style="width:100px;font-size:13px;padding:0px;height:30px;" data-vehicle="'+vehicle.id+'">BOOK NOW</button></div>';
+	html += '</div>';
+	html += '<div id="view_more_'+vehicle.id+'" class="extras_div col-xs-12" >';
+		html += '<div class="col-md-9" style="border-right: 1px solid #ccc;"><b>Important travel information</b><br/><br/><p>'+long_overview+'</p></div>';
+		html += '<div class="col-md-3" ><b>Extras</b><br/><br/><p>'+extras+'</p></div>';
+	html += '</div>';
+	html += '</div></div>';
+	return html;
+}

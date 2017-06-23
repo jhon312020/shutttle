@@ -175,12 +175,10 @@ $route['es/collaborators/changepassword'] = 'collaborators/changepassword';
 $route['en/bookings'] = 'collaborators/bookings';
 $route['es/bookings'] = 'collaborators/bookings';
 
+$route['en/firstStepReservation'] = 'ajax/firstStepReservation';
+$route['es/firstStepReservation'] = 'ajax/firstStepReservation';
 
 
 $route['en/(:any)'] = 'node/loaddata_en/$1';
 $route['es/(:any)'] = 'node/loaddata_es/$1';
 $route['ca/(:any)'] = 'node/loaddata_ca/$1';
-
-
-
-

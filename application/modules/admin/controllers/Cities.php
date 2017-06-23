@@ -59,6 +59,7 @@ if (!defined('BASEPATH'))
 	
 	public function delete($id) {
 		$this->mdl_cities->delete($id);
+		$this->mdl_locations->deleteCityLocations($id);
 		redirect('admin/cities');
 	}
 	
@@ -120,7 +121,7 @@ if (!defined('BASEPATH'))
 	}
 
 	public function deleteLocation($id, $city_id) {
-		$this->mdl_locations->delete($id);
+		$this->mdl_locations->deleteLocation($id);
 		redirect('admin/cities/editCityLocations/'.$city_id);
 	}
 

@@ -8,6 +8,8 @@ if (!defined('BASEPATH'))
 
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('place_categories/mdl_place_categories');
+		$this->load->model('locations/mdl_locations');
 		$this->load->model('routes/mdl_bcnareas');
 		$this->load->model('shuttles/mdl_shuttles');
 		$this->load->model('users/mdl_users');
@@ -41,6 +43,14 @@ if (!defined('BASEPATH'))
 			redirect('admin/collaborators');
 		}
 		$zone_exists = false;
+
+		$categories = $this->mdl_place_categories->getList();
+		$locations = $this->mdl_locations->get()->result();
+		$group_location = array();
+		foreach ($locations as $location) {
+			$group_location[$location->id] = $location->location;
+		}
+
 		$collaborators = $this->db->where('id', $id)->get('collaborators')->row();
 		
 		$start_date = date('Y-m-d', strtotime('-7 days'));
@@ -94,7 +104,8 @@ if (!defined('BASEPATH'))
 					}
 					$data['payment_methods'] = $this->input->post('payment_methods');
 					$data['price'] = $this->input->post('price');
-					
+					$data['category_id'] = $this->input->post('category_id');
+					$data['location_id'] = $this->input->post('location_id');
 					$user['role'] = 2;
 					$user['first_name'] = $this->input->post('name');
 					$user['email'] = $this->input->post('email');
@@ -189,7 +200,7 @@ if (!defined('BASEPATH'))
 			$this->mdl_collaborators->form_values['password'] = str_replace('_pickngo', '', base64_decode($user_array['secret_key']));
 
 
-		$booking_array = $this->mdl_shuttles->select('booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.address as col_address,booking.round_trip,booking.price,booking.book_status,booking.payment_method,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+		$booking_array = $this->mdl_shuttles->select('booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.address as col_address,booking.round_trip,booking.price,booking.book_status,booking.payment_method,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
 				booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,		booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array,
 				clients.name as first_name, clients.surname,calendars.reference_id')
 				->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
@@ -207,9 +218,10 @@ if (!defined('BASEPATH'))
         }
 		$this->layout->set(array('path'=>$this->path, 'bcn'=>$this->bcn, 'bcn_array' => $bcn_array, 'readonly'=>false, 'user_array'=>$user_array, 'error'=>$error, 'booking_array' => $booking_array, 'address_array'=>$address_array, 'col_id'=>$col_id,
 			'start_date' => $start_date,
-			'end_date' => $end_date, 
+			'end_date' => $end_date,
 			'collaborator_book_bill' => $this->mdl_charts->get_bookBillByCollaboratorId($start_date, $end_date, $col_id),
-			'collaborator_book_count' => $this->mdl_charts->get_bookCountByCollaboratorId($start_date, $end_date, $col_id), 
+			'collaborator_book_count' => $this->mdl_charts->get_bookCountByCollaboratorId($start_date, $end_date, $col_id),
+				'categories'=>$categories,'group_location'=>$group_location
 		));
 		$this->layout->buffer('content', 'collaborators/form');
 		$this->layout->render();
@@ -222,6 +234,12 @@ if (!defined('BASEPATH'))
 		}
 		$address_array = array();
 		
+		$categories = $this->mdl_place_categories->getList();
+		$locations = $this->mdl_locations->get()->result();
+		$group_location = array();
+		foreach ($locations as $location) {
+			$group_location[$location->id] = $location->location;
+		}
 		
 		$end_date = Date('Y-m-d');
 		$start_date = date('Y-m-d', strtotime('-7 days'));
@@ -259,7 +277,7 @@ if (!defined('BASEPATH'))
 		else
 			$this->mdl_collaborators->form_values['password'] = str_replace('_pickngo', '', base64_decode($user_array['secret_key']));
 		
-		$booking_array = $this->mdl_shuttles->select('booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.address as col_address,booking.round_trip,booking.price,booking.book_status,booking.payment_method,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+		$booking_array = $this->mdl_shuttles->select('booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.address as col_address,booking.round_trip,booking.price,booking.book_status,booking.payment_method,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
                                             booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,
                                             booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array,
                                             clients.name as first_name, clients.surname,calendars.reference_id')
@@ -275,7 +293,9 @@ if (!defined('BASEPATH'))
 			'start_date' => $start_date,
 			'end_date' => $end_date, 
 			'collaborator_book_bill' => $this->mdl_charts->get_bookBillByCollaboratorId($start_date, $end_date, $col_id),
-			'collaborator_book_count' => $this->mdl_charts->get_bookCountByCollaboratorId($start_date, $end_date, $col_id), 
+			'collaborator_book_count' => $this->mdl_charts->get_bookCountByCollaboratorId($start_date, $end_date, $col_id),
+				'categories'=>$categories,
+				'group_location'=>$group_location
 		));
 		$this->layout->buffer('content', 'collaborators/form');
 		$this->layout->render();

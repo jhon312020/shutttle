@@ -1,3 +1,4 @@
+<div id="reservation_extras_div">
 <div class="row">
   <h4 class="sub_sel_ext" style="padding-left: 13px;"><?php echo lang('select_your_extras'); ?></h4>
 </div>
@@ -35,4 +36,5 @@
   $mat_count++;
 }
 ?>
+</div>
 

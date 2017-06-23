@@ -8,6 +8,9 @@ class Ajax extends Anonymous_Controller {
   public function __construct() {
     parent::__construct();
     $this->load->model('users/mdl_users');
+    $this->load->model('paths/mdl_paths');
+    $this->load->model('vehicles/mdl_vehicles');
+    $this->load->model('locations/mdl_locations');
     $this->details = array();
     $this->details['collaborator_details'] = array();
     $this->details['collaborator_address'] = array();
@@ -18,21 +21,102 @@ class Ajax extends Anonymous_Controller {
       $this->details['collaborator_address'] = $this->db->query("select CONCAT(col.name,' - ',coladd.address) as label,CONCAT(col.name,' - ',coladd.address) as value,coladd.zone,col.id, coladd.id as collaborator_address_id from tbl_collaborators_address coladd left join tbl_collaborators col on coladd.collaborator_id = col.id where col.id = ".$this->details['collaborator_details']['id']." and coladd.is_active=1")->result_array();     
     }
   }
+
+  public function firstStepReservation() {
+    if ($this->input->post()) {
+      $post_params = $this->input->post();
+      switch ($post_params['mode'])  {
+        case "firstStep":
+            if (isset($post_params['return_journey']) && $post_params['return_journey']) {
+              $post_params['start_journey'] = str_replace('/', '-', $post_params['start_journey']);
+              $post_params['return_journey'] = str_replace('/', '-', $post_params['return_journey']);
+              if(strtotime($post_params['start_journey']) >= strtotime($post_params['return_journey'])) {
+                echo json_encode(array('error'=>'The start date should be less than return date'));
+                exit;
+              }
+            }
+            $paths = $this->mdl_paths->getRoute($post_params['from_location_id'], $post_params['to_location_id']);
+            if ($paths) {
+              $route_is_in_barcelona_city = $this->mdl_locations->isBarcelonaCity(array($post_params['from_location_id'], $post_params['to_location_id']));
+              if ($route_is_in_barcelona_city) {
+                $vehicles = $this->mdl_vehicles->getVehicles($post_params['adults'], 'all');
+              } else {
+                $vehicles = $this->mdl_vehicles->getVehicles($post_params['adults'], 'private');
+              }
+              
+              if ($vehicles) {
+                $post_params['start_journey'] = str_replace('/', '-', $post_params['start_journey']);
+                $data['formatted_start_date'] = date('l j - F',strtotime($post_params['start_journey']));
+                $data['formatted_start_time'] = date('H:i',strtotime($post_params['start_journey']));
+                if (isset($post_params['return_journey']) && $post_params['return_journey']) {
+                  $post_params['return_journey'] = str_replace('/', '-', $post_params['return_journey']);
+                  $data['formatted_return_date'] = date('l j - F',strtotime($post_params['return_journey']));  
+                  $data['formatted_return_time'] = date('H:i',strtotime($post_params['return_journey']));
+                }
+                $data['passengers'] = $post_params['adults'];
+                $data['from_location'] = $post_params['from_location'];
+                $data['to_location'] = $post_params['to_location'];
+                $data['paths'] = $paths;
+                $data['vehicles'] = $vehicles;
+                $data['shared_vehicles_rate'] = $this->db->where('no_of_seats',$post_params['adults'])->where('rate_type','rate1')->get('rates')->result_array();
+                echo json_encode($data); exit;
+              } else {
+                echo json_encode(array('error'=>'The vehicles does not exists for selected locations or people'));
+                exit;  
+              }
+            } else {
+              echo json_encode(array('error'=>'The route does not exists. Kindly select any other locations'));
+              exit;
+            }
+          break;
+      }
+    }
+  }
+
+  public function finalStepReservation() {
+    if ($this->input->post()) {
+      $post_params = $this->input->post();
+      if (isset($post_params['start_journey']) && $post_params['start_journey'] != '') {
+        list($start_journey, $time) = explode(' ', $post_params['start_journey']);
+        $post_params['start_journey'] = $start_journey;
+        list($hours, $minutes) = explode(':', $time);
+        $post_params['hours'] = $hours;
+        $post_params['minutes'] = $minutes;
+      }
+      if (isset($post_params['start_journey']) && $post_params['return_journey'] != '') {
+        list($return_journey, $return_time) = explode(' ', $post_params['return_journey']);
+        $post_params['return_journey'] = $return_journey;
+        list($return_hours, $return_minutes) = explode(':', $return_time);
+        $post_params['return_hours'] = $return_hours;
+        $post_params['return_minutes'] = $return_minutes;
+      }
+      $mode = $post_params['mode'];
+      if ($mode == 'formsubmit') {
+        
+      }
+    }
+  }
+
   public function getData() {
   if ($this->input->post()) {
     $this->load->model('routes/mdl_routes');
     $post_params = $this->input->post();
     if (isset($post_params['start_journey']) && $post_params['start_journey'] != '') {
       list($start_journey, $time) = explode(' ', $post_params['start_journey']);
-      $post_params['start_journey'] = $start_journey;
+      $start_journey = str_replace('/', '-', $start_journey);
+      $post_params['start_journey'] = date('Y-m-d',strtotime($start_journey));
       list($hours, $minutes) = explode(':', $time);
+      $post_params['time'] = $time.':00';
       $post_params['hours'] = $hours;
       $post_params['minutes'] = $minutes;
     }
+    $post_params['return_time'] = '';
     if (isset($post_params['start_journey']) && $post_params['return_journey'] != '') {
       list($return_journey, $return_time) = explode(' ', $post_params['return_journey']);
-      $post_params['return_journey'] = $return_journey;
+      $return_journey = str_replace('/', '-', $return_journey);
+      $post_params['return_journey'] = date('Y-m-d',strtotime($return_journey));
       list($return_hours, $return_minutes) = explode(':', $return_time);
+      $post_params['return_time'] = $return_time.':00';
       $post_params['return_hours'] = $return_hours;
       $post_params['return_minutes'] = $return_minutes;
     }
@@ -135,131 +219,31 @@ class Ajax extends Anonymous_Controller {
         echo json_encode($error);
     }
       else if ($mode == 'formsubmit') {
-          $book_id = $post_params['book_id'];
+          //$book_id = $post_params['book_id'];
           /*Validation for client email and seats start*/
           $error = array('error'=>false, 'seats_error'=>false, 'return_seats_error'=>false, 'available_seats_error'=>false, 'baby_seats_error'=>false, 'return_baby_seats_error'=>false, 'start_duplicate' =>  false, 'return_duplicate' => false, 'time_error' => false);
-          /* if ($post_params['client_id'] == '') {
-              if ($this->input->post('save_extra')) {
-                  $qry = $this->db->where('email', $post_params['email'])->get('users');
-                  if ($qry->num_rows()) {
-                      $error['error'] = true;
-                      $error['email_error'] = lang('exists_username');
-                  }
-              }
-          } else {
-              $clients = current($this->db->where('client_id', $post_params['client_id'])->get('users')->result_array());
-              if ($clients['email'] != $post_params['email']) {
-                  $qry = $this->db->where('email', $post_params['email'])->get('users');
-                  if ($qry->num_rows()) {
-                      $error['error'] = true;
-                      $error['email_error'] = lang('exists_username');
-                  }
-              }
-          } */
-          $hidden_data = json_decode($post_params['journey_'.$book_id], true);
-          $terminal = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
-          $step_list = array('Terminal 1', 'Terminal 2');
-          if (in_array($post_params['start_from'],$terminal)) {
-              if ($post_params['start_from'] == 'Barcelona Airport Terminal 1') {
-                  $this->db->from('seats')->where("calendar_id = ".$book_id." and is_active = 1 and (from_zone in ('".implode("','", $step_list)."') or to_zone='Terminal 2')");
-              } else {
-                  $this->db->from('seats')->where("calendar_id = ".$book_id." and is_active = 1 and from_zone in ('".implode("','", $step_list)."')");
-              }
-          }
-          else{
-              if ($post_params['end_at'] == 'Barcelona Airport Terminal 2') {
-                  $this->db->from('seats')->where("calendar_id = ".$book_id." and is_active = 1 and (to_zone in ('".implode("','", $step_list)."') or from_zone='Terminal 1')");
-              } else {
-                  $this->db->from('seats')->where("calendar_id = ".$book_id." and is_active = 1 and to_zone in ('".implode("','", $step_list)."')");
-              }
-          }
           
-          $seat_com = $this->db->get()->result_array();
-          $seat_occupy = 0;
-          foreach($seat_com as $data1) {
-              $seat_occupy += $data1['seats'];
-          }
-          $extras_array = json_decode($post_params['extras_array'], true);
-          $totBabySeats = (isset($extras_array[2]['extra_count']))?$extras_array[2]['extra_count']:0;
-          $seats = $hidden_data['seats'] - $seat_occupy;
-          $total_seats = $post_params['adults'];
-          if ($seats < $total_seats) {
-              $error['error'] = true;
-              $error['seats_error'] = true;
-          }
-          else{
-              $baby_seats = $seats - $total_seats;
-              if (isset($extras_array[2]['extra_count']) && $extras_array[2]['extra_count'] > $baby_seats) {
-                  $error['error'] = true;
-                  $error['baby_seats_error'] = true;
-                  $error['go_babay_seats'] = $baby_seats;
-              }
-          }
-
-          if ($this->input->post('return_book_id')) {
-              $step_list = array('Terminal 1', 'Terminal 2');
-              $rhidden_data = json_decode($post_params['return_journey_'.$post_params['return_book_id']], true);
-
-              if (in_array($post_params['start_from'],$terminal)) {
-                  if ($post_params['start_from'] == 'Barcelona Airport Terminal 2') {
-                      $this->db->from('seats')->where("calendar_id = ".$post_params['return_book_id']." and is_active = 1 and (to_zone in ('".implode("','", $step_list)."') or from_zone='Terminal 1')");
-                  } else {
-                      $this->db->from('seats')->where("calendar_id = ".$post_params['return_book_id']." and is_active = 1 and to_zone in ('".implode("','", $step_list)."')");
-                  }
-              } else {
-                  if ($post_params['end_at'] == 'Barcelona Airport Terminal 1') {
-                      $this->db->from('seats')->where("calendar_id = ".$post_params['return_book_id']." and is_active = 1 and (from_zone in ('".implode("','", $step_list)."') or to_zone='Terminal 2')");
-                  } else {
-                      $this->db->from('seats')->where("calendar_id = ".$post_params['return_book_id']." and is_active = 1 and from_zone in ('".implode("','", $step_list)."')");
-                  }
-              }
-              
-              
-              $seat_com = $this->db->get()->result_array();
-              $seat_occupy = 0;
-              foreach($seat_com as $data1) {
-                  $seat_occupy += $data1['seats'];
-              }
-              $seats = $rhidden_data['seats'] - $seat_occupy;
-              
-              if ($seats < $total_seats) {
-                  $error['error'] = true;
-                  $error['return_seats_error'] = true;
-              }
-              else{
-                  $baby_seats = $seats - $total_seats;
-                  if (isset($extras_array[2]['extra_count']) && $extras_array[2]['extra_count'] > $baby_seats) {
-                      $error['error'] = true;
-                      $error['return_baby_seats_error'] = true;
-                      $error['return_babay_seats'] = $baby_seats;
-                  }
-              }
-          }
           if (isset($post_params['paymentmethod']) && $post_params['paymentmethod'] == 'available_seats') {
               $cl_result = $this->db->from('collaborators')->where('id',$this->details['collaborator_details']['id'])->get()->row();
-              if ($cl_result->no_of_available_seats < ($total_seats + $totBabySeats)) {
+              if ($cl_result->no_of_available_seats < ($post_params['adults'])) {
                   $error['error'] = true;
                   $error['available_seats_error'] = true;
               }
           }
   
   /*Same booking validation start*/
-  $start_from = (in_array($post_params['start_from'], $terminal))?$post_params['start_from']:$post_params['zone'];
-  $end_at = (in_array($post_params['end_at'], $terminal))?$post_params['end_at']:$post_params['zone'];
-  $babySeats = (isset($extras_array[2]['extra_count']))?$extras_array[2]['extra_count']:0;
+  $start_from = $post_params['from_location'];
+  $end_at = $post_params['to_location'];
   if ($post_params['duplicate_bool'] == 0) {
-    $start_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.baby ='".$babySeats."' 
-      and b.start_journey ='".$hidden_data['service_date']."' and b.hour ='".$hidden_data['journey_start']."' and b.arrival_time ='".$hidden_data['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
+    $start_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.start_journey ='".$post_params['start_journey']."' and b.hour ='".$post_params['time']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
     $start_duplicate = $this->db->query($start_duplicate_qry);
     if ($start_duplicate->num_rows() > 0) {
       $error['start_duplicate'] = true;
     }
-    //and b.kids ='".$post_params['kids']."'
-    if ($this->input->post('return_book_id')) {
-      $return_book_id1 = $post_params['return_book_id'];
-      $return_hidden_data1 = json_decode($post_params['return_journey_'.$return_book_id1], true);
-      $return_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$start_from."' and b.end_at = '".$end_at."' and b.adults ='".$post_params['adults']."' and b.baby ='".$babySeats."' 
-       and b.start_journey ='".$return_hidden_data1['service_date']."' and b.hour ='".$return_hidden_data1['journey_start']."' and b.arrival_time ='".$return_hidden_data1['journey_end']."' and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
+    
+    if ($this->input->post('return_journey')) {
+      $return_duplicate_qry = "select * from tbl_booking as b left join tbl_clients c on b.client_id = c.id where b.start_from = '".$end_at."' and b.end_at = '".$start_from."' and b.adults ='".$post_params['adults']."'
+       and b.start_journey ='".$post_params['return_journey']."' and b.hour ='".$post_params['return_time']."'  and (b.client_array like '%".$post_params['email']."%' or c.email = '".$post_params['email']."')";
       $return_duplicate = $this->db->query($return_duplicate_qry);
       if ($return_duplicate->num_rows() > 0) {
         $error['return_duplicate'] = true;
@@ -294,7 +278,7 @@ class Ajax extends Anonymous_Controller {
           
           if (!$error['error'] && !$error['start_duplicate'] && !$error['return_duplicate']) {
               $book_role = 4;
-              $babySeats = (isset($extras_array[2]['extra_count']))?$extras_array[2]['extra_count']:0;
+              
               if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
                   $book_role = 2;
               }
@@ -305,68 +289,51 @@ class Ajax extends Anonymous_Controller {
                                       , 'address'=>$post_params['address'], 'cp'=>$post_params['cp'], 'country'=>$post_params['client_country']
                                       , 'city'=>$post_params['city'], 'nationality'=>$post_params['nationality'], 'dni_passport'=>$post_params['dni_passport']
                                       , 'doc_no'=>$post_params['doc_no']);
-              /*$book_array = array('booking_array' => $this->input->post('booking_details'), 'extra_array'=>$this->input->post('extras_array'), 'client_array' => json_encode($client_array));
-              $this->db->set($book_array);
-              $this->db->insert('bookings');*/
-    $address_new = (in_array($post_params['start_from'], $terminal))?$post_params['end_at']:$post_params['start_from'];
-              $start_from = (in_array($post_params['start_from'], $terminal))?$post_params['start_from']:$post_params['zone'];
-              $end_at = (in_array($post_params['end_at'], $terminal))?$post_params['end_at']:$post_params['zone'];
-    $address = $address_new;
+              
+              $address = $post_params['location_address'];
     
-    /*Flight time calculation*/
-    $time_go = Date('H:i', strtotime($post_params['hours'].':'.$post_params['minutes']));
-    $time_back = Date('H:i', strtotime($post_params['return_hours'].':'.$post_params['return_minutes']));
+              /*Flight time calculation*/
+              $time_go = Date('H:i', strtotime($post_params['hours'].':'.$post_params['minutes']));
+              $time_back = Date('H:i', strtotime($post_params['return_hours'].':'.$post_params['return_minutes']));
     
-    $collaborators_id = $post_params['collaborators_id'];
-    if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
-      $users = $this->mdl_users->where('id = '.$this->session->userdata('user_id'))->get()->row();
-      $collaborators_id = $users->collaborator_id;
-    }
+              $collaborators_id = $post_params['collaborators_id'];
+              if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
+                $users = $this->mdl_users->where('id = '.$this->session->userdata('user_id'))->get()->row();
+                $collaborators_id = $users->collaborator_id;
+              }
 
-              $book_array = array('time_go'=>$time_go, 'time_back' => $time_back, 'hour'=>$hidden_data['journey_start'], 'start_from'=>$start_from, 'end_at'=>$end_at, 
-                              'arrival_time'=>$hidden_data['journey_end'],
-                              'price'=>$post_params['amount'], 'start_journey'=>$hidden_data['service_date']
-                              ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
-                              //'kids'=>$post_params['kids'],
-                              'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$book_id, 'collaborator_id'=>$collaborators_id
-                              ,'book_status'=>'pending', 'passenger_price'=>$post_params['passenger_price'], 'book_role'=>$book_role,
-                               'baby'=>$babySeats,
-                                'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id']);
+              $book_array = array('time_go'=>$time_go, 'time_back' => $time_back, 'hour'=>$time_go, 'start_from'=>$start_from, 'end_at'=>$end_at,'price'=>$post_params['amount'], 'start_journey'=>$post_params['start_journey'],'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 'extra_array'=>$post_params['extras_array'],  'collaborator_id'=>$collaborators_id,'book_status'=>'pending', 'passenger_price'=>$post_params['passenger_price'], 'book_role'=>$book_role,
+                                'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id'],'version'=>1,'from_location_id'=>$post_params['from_location_id'],'to_location_id'=>$post_params['to_location_id'],'vehicle_id'=>$post_params['vehicle_id']);
+
               if ($this->input->post('promotional_codes_id')) {
                   $book_array['promotional_code_id'] = $post_params['promotional_codes_id'];
                   $book_array['reduction_value'] = $post_params['promotional_values'];
                   $book_array['promotional_value'] = $post_params['promotional_code_values'];
                   $book_array['promotional_type'] = $post_params['promotional_type'];
               }
+              
               $this->db->set($book_array);
               $this->db->insert('booking');
               $bid = $this->db->insert_id();
               /*Seats entry*/
-              $seats_array = array('calendar_id'=> $book_id, 'reference_id'=> $hidden_data['reference_id'], 'start_time'=> $hidden_data['journey_start'],
+              /*$seats_array = array('calendar_id'=> $book_id, 'reference_id'=> $hidden_data['reference_id'], 'start_time'=> $hidden_data['journey_start'],
                               'end_time'=> $hidden_data['journey_end'], 'journey_date' => $hidden_data['service_date'], 'steps'=> $hidden_data['steps'],
-                              'from_zone'=>$hidden_data['start_from'], 'to_zone'=> $hidden_data['end_at'], 'seats'=>$post_params['adults']
-                               + $babySeats,
+                              'from_zone'=>$hidden_data['start_from'], 'to_zone'=> $hidden_data['end_at'], 'seats'=>$post_params['adults'],
                                 'book_id'=>$bid); 
 
-              $this->db->set($seats_array)->insert('seats');
+              $this->db->set($seats_array)->insert('seats');*/
               $str = array();
               $str['book_id'] = $bid;
               $str['amt'] = $post_params['amount'];
               $return_id = 0;
-              if ($this->input->post('return_book_id')) {
-                  if ($post_params['return_book_id']) {
-                      $return_book_id = $post_params['return_book_id'];
-                      $return_hidden_data = json_decode($post_params['return_journey_'.$return_book_id], true);
-                      $return_book_array = array('time_go'=>$time_go, 'time_back' => $time_back, 'hour'=>$return_hidden_data['journey_start'], 'start_from'=>$end_at, 'end_at'=>$start_from, 
-                                  'arrival_time'=>$return_hidden_data['journey_end'],
-                                  'price'=>$post_params['amount'], 'start_journey'=>$return_hidden_data['service_date']
-                                  ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'], 
-                                  //'kids'=>$post_params['kids'],
-                                  'extra_array'=>$post_params['extras_array'], 'calendar_id'=>$return_book_id
-                                  , 'collaborator_id'=>$collaborators_id,'book_status'=>'pending', 
+              if ($this->input->post('return_journey')) {
+                  if ($post_params['return_journey']) {
+                      $return_book_array = array('time_go'=>$time_go, 'time_back' => $time_back, 'hour'=>$post_params['return_time'], 'start_from'=>$end_at, 'end_at'=>$start_from, 
+                                  'price'=>$post_params['amount'], 'start_journey'=>$post_params['return_journey']
+                                  ,'country'=>$post_params['country'], 'flight_no'=>$post_params['flight_no'], 'adults'=>$post_params['adults'],
+                                  'extra_array'=>$post_params['extras_array'], 'collaborator_id'=>$collaborators_id,'book_status'=>'pending', 
                                   'passenger_price'=>$post_params['passenger_price'], 'book_role'=>$book_role,
-                                   'baby'=>$babySeats,
-                                    'round_trip'=>1, 'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id']);
+                                    'round_trip'=>1, 'collaborator_address_id' => $post_params['collaborator_address_id'], 'address' => $address, 'bcnarea_address_id' => $post_params['bcnarea_address_id'],'version'=>1,'from_location_id'=>$post_params['to_location_id'],'to_location_id'=>$post_params['from_location_id'],'vehicle_id'=>$post_params['vehicle_id']);
                       if ($this->input->post('promotional_codes_id')) {
                           $return_book_array['promotional_code_id'] = $post_params['promotional_codes_id'];
                           $return_book_array['reduction_value'] = $post_params['promotional_values'];
@@ -377,13 +344,13 @@ class Ajax extends Anonymous_Controller {
                       $this->db->insert('booking');
                       $return_id = $this->db->insert_id();
                       
-                      $return_seats_array = array('calendar_id'=> $return_book_id, 'reference_id'=> $return_hidden_data['reference_id'], 'start_time'=> $return_hidden_data['journey_start'],
+                     /* $return_seats_array = array('calendar_id'=> $return_book_id, 'reference_id'=> $return_hidden_data['reference_id'], 'start_time'=> $return_hidden_data['journey_start'],
                                       'end_time'=> $return_hidden_data['journey_end'], 'journey_date' => $return_hidden_data['service_date'], 'steps'=> $return_hidden_data['steps'],
                                       'from_zone'=>$return_hidden_data['start_from'], 'to_zone'=> $return_hidden_data['end_at'], 'seats'=>$post_params['adults']
                                        + $babySeats,
                                         'book_id'=>$return_id); 
 
-                      $this->db->set($return_seats_array)->insert('seats');
+                      $this->db->set($return_seats_array)->insert('seats');*/
                   }
               }
               
@@ -494,7 +461,7 @@ class Ajax extends Anonymous_Controller {
               $cl_result = current($this->db->from('collaborators')->where('id',$this->details['collaborator_details']['id'])->get()->result_array());
               $str['payment_method'] = 'seats';
               $pay = 'paid';
-              $this->db->set(array('no_of_available_seats' => $cl_result['no_of_available_seats'] - $post_params['adults'] - $totBabySeats))->where('id', $this->details['collaborator_details']['id']);
+              $this->db->set(array('no_of_available_seats' => $cl_result['no_of_available_seats'] - $post_params['adults']))->where('id', $this->details['collaborator_details']['id']);
               $this->db->update('collaborators');
           }
             else if ($post_params['paymentmethod'] == 'online') {

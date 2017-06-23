@@ -52,6 +52,29 @@ class Mdl_vehicles extends Response_Model {
     	return $lists;
     }
 
+    public function getPrivateList() {
+    	$list = $this->db->select('id, name')->where('shared',0)->get('vehicles')->result_array();
+    	$lists = array();
+    	foreach ($list as $value) {
+    		$lists[$value['id']] = $value['name'];
+    	}
+    	return $lists;
+    }
+
+    public function getVehicles($seats, $type = 'all'){
+    	switch ($type) {
+    		case 'all':
+    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->order_by('shared desc')->get('vehicles')->result_array();	
+    			break;
+    		case 'private':
+    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->where('shared',0)->get('vehicles')->result_array();	
+    			break;
+    		case 'shared':
+    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->where('shared',1)->get('vehicles')->result_array();	
+    			break;
+    	}
+    }
+
 }
 
 ?>

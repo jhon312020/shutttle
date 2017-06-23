@@ -53,6 +53,15 @@ class Mdl_empresa_transporte extends Response_Model {
             return false;
     }
 
+     public function getList() {
+    	$list = $this->db->select('id, name')->get('empresa_transporte')->result_array();
+    	$resultList = array();
+    	foreach ($list as $value) {
+    		$resultList[$value['id']] = $value['name'];
+    	}
+    	return $resultList;
+    }
+
 }
 
 ?>

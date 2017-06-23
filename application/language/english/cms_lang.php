@@ -123,6 +123,7 @@ $lang['send'] = 'Send';
 
 $lang['choose_your_route'] = 'CHOOSE YOUR ROUTE';
 $lang['route_schedule'] = 'ROUTE SCHEDULE';
+$lang['route_schedule'] = 'SELECT YOUR CAR';
 $lang['info_and_payment'] = 'INFO AND PAYMENT';
 $lang['one_way'] = 'ONE WAY';
 $lang['round_trip'] = 'ROUND TRIP';
@@ -423,4 +424,14 @@ $lang['no_of_seats'] = 'No Available Seats';
 $lang['comment'] = 'Comment';
 $lang['category'] = 'Category';
 $lang['categories'] = 'Categories';
+$lang['starts_or_ends']  = 'Starts / Ends';
+$lang['day_trip']  = 'Day Trip';
+$lang['trip_time'] = 'Departure Time';
+$lang['return_time'] = 'Return Time';
+$lang['overview'] = 'Overview';
+$lang['shared'] = 'Shared';
+$lang['location'] = 'Location';
+$lang['locations'] = 'Locations';
+$lang['day_go'] = 'Day Go';
+$lang['day_back'] = 'Day Back';
 ?>

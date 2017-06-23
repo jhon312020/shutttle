@@ -201,6 +201,12 @@
 								<p style="padding-bottom:20px;">
 									 <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('date'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo date('d/m/Y - H:i', strtotime($bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
 								</p>
+
+								<?php if (isset($bookings['address']) && $bookings['address']) { ?>
+								<p style="padding-bottom:20px;">
+									 <span style="font-size:13px !important;padding-left:10px !important;color:#25387d !important;vertical-align:middle !important;font-weight:bold !important;"><?php echo lang('address'); ?>:</span>  <span style="font-size:13px !important;color:#25387d !important;vertical-align:middle !important;"><?php echo $bookings['address']; ?></span>
+								</p>
+								<?php } ?>
 								
 						  </td>
 						  <?php
@@ -294,12 +300,12 @@
 							  <table style="padding:0px !important;">
 								<tbody>
 									 <tr>
-										  <td style="width:170px;background-color:#fff;padding-top:10px !important;padding-bottom:10px !important;">
+										  <td style="width:190px;background-color:#fff;padding-top:10px !important;padding-bottom:10px !important;">
 
 												<p style="padding-right:0px !important;font-size:13px !important;font-weight:bold !important;color:#25387d !important;padding-left:0px !important;margin-top: 4px !important;margin-bottom:0px !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo 'Promotional code: '; ?><span style="font-weight:normal !important;vertical-align:middle !important;"> <?php echo $bookings['promotional_code_id']?$bookings['reduction_value'] : 0; ?>&nbsp;&euro;</span></p>
 										  </td>
 
-										  <td style="width:190px;text-transform:uppercase;background-color: #25387d;text-align:center !important;vertical-align:middle !important;">
+										  <td style="width:170px;text-transform:uppercase;background-color: #25387d;text-align:center !important;vertical-align:middle !important;">
 												<p style="font-size:13px !important;font-weight:bold !important;color:#fff !important;padding-left:0px !important;background-color: #25387d;transform:uppercase !important;">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('total') . ' '. lang('price') . ':  ' . $bookings['price']; ?>&nbsp;&euro;</p>
 										  </td>
 									 </tr>

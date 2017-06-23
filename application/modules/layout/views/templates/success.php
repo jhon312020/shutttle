@@ -277,6 +277,11 @@
 						<p style="padding-bottom:20px;">
 							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('date'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo date('d/m/Y - H:i', strtotime($bookings['start_journey'] . ' ' . $bookings['hour'])); ?>h</span>
 						</p>
+						<?php if ($bookings['address']) { ?>
+						<p style="padding-bottom:20px;">
+							<span style="font-size:18px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('address'); ?>:</span>  <span style="font-size:18px;color:#25387d;vertical-align:middle;"><?php echo $bookings['address']; ?></span>
+						</p>
+						<?php } ?>
 					</div>
 					
 

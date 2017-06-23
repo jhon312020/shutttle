@@ -2,6 +2,11 @@
 	$this->load->view('header');
 	$modalForm = site_url($lang.'/reserva01');
 ?>
+<style>
+.ui-autocomplete-category {
+	font-weight: bold;
+}
+</style>
 <div class="container">
     <div class="row">
 		<div class="col-md-12">
@@ -70,5 +75,7 @@ $this->load->view('modals/duplicate_modal');
   var startValid = false;
   var is_round_trip = true;
   var extra_array = <?php echo json_encode(array_combine(array_column($booking, 'id'), $booking)); ?>;
+  var placeLocations = <?php echo json_encode($select_location); ?>;
+  var locations = <?php echo json_encode($locations); ?>;
 </script>
 <?php $this->load->view('footer');?>

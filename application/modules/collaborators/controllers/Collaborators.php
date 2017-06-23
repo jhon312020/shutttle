@@ -87,6 +87,7 @@ class Collaborators extends Anonymous_Controller {
     $error='';
     if ($this->session->userdata('user_name'))
       redirect($this->uri->segment(1));
+    
     if ($this->mdl_users->run_validation('validation_rules_collaborators_login')) {
       $data = $this->mdl_users->check_collaborators($this->input->post());
       if ($data) {
@@ -108,11 +109,13 @@ class Collaborators extends Anonymous_Controller {
 	 */
   public function bookings() {
     if ($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2) {
-      $this->mdl_shuttles->select('booking.bcnarea_address_id,booking.address as      book_address,collaborators.address as col_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,booking.book_status,booking.id,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey, booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array, clients.name as first_name, clients.surname,calendars.reference_id')
+      $this->mdl_shuttles->select('vehicles.name as vehicle_name,return_bookings.start_journey as return_journey_date,booking.time_go, booking.time_back,booking.version,booking.bcnarea_address_id,booking.address as      book_address,collaborators.address as col_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,booking.book_status,booking.id,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey, booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array, clients.name as first_name, clients.surname,calendars.reference_id')
         ->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
         ->join('collaborators_address', 'collaborators_address.id = booking.collaborator_address_id', 'left')
         ->join('clients', 'clients.id=booking.client_id', 'left')
         ->join('calendars', 'calendars.id=booking.calendar_id', 'left')
+        ->join('booking as return_bookings', 'return_bookings.id=booking.return_book_id', 'left')
+        ->join('vehicles', 'vehicles.id=booking.vehicle_id', 'left')
         ->where('booking.is_active = 1  and tbl_booking.book_role=2 and tbl_booking.collaborator_id = '.$this->details['collaborator_details']['id']);
       if ($this->input->post('from_date')) {
         $fromUnixTime = strtotime(str_replace('/', '-', $this->input->post('from_date')));
@@ -194,17 +197,25 @@ class Collaborators extends Anonymous_Controller {
       
       $this->db->from('collaborators')->where('id',$res['bookings']['collaborator_id']);
       $terminal = current($this->db->get()->result_array());
-      $res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
-      if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
-        $res['bookings'][$str] = $res['bookings']['address'];
+
+      if ($res['bookings']['version'] != 1) {
+        $res['bookings'][$str] = $terminal['name'].' - '.(count($res['bookings']['collaborator_address']) > 0 ?$res['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
+        if($res['bookings']['bcnarea_address_id'] != '' && $res['bookings']['bcnarea_address_id'] != '0') {
+          $res['bookings'][$str] = $res['bookings']['address'];
+        }
       }
+
       
       $res['bookings']['collaborator_name'] = $terminal['name'];
       $this->db->from('calendars')->where('id', $res['bookings']['calendar_id']);
       $res['start_journey'] = current($this->db->get()->result_array());
       $client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$res['bookings']['client_id'])->get();
       
-      $res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);
+      if ($res['bookings']['version'] != 1) {
+        $res['book_reference'] = $res['start_journey']['reference_id'].'-'.sprintf("%02d", $res['bookings']['id']);
+      } else {
+        $res['book_reference'] = 'SHT-'.date('dmY',strtotime($res['bookings']['start_journey'])).'-'.sprintf("%02d", $res['bookings']['id']);
+      }
       if ($client_qry->num_rows())
         $this->template_vars['clients'] = current($client_qry->result_array());
       else

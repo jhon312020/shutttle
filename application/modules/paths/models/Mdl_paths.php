@@ -68,6 +68,26 @@ class Mdl_paths extends Response_Model {
 		}
     }
 
+    public function getRoute($pickup_location_id, $drop_location_id) {
+    	$result = $this->db->where('is_active',1)
+    					->group_start()
+    						->group_start()
+		    					->where('pickup_location_id', $pickup_location_id)
+		    					->where('drop_location_id', $drop_location_id)
+	    					->group_end()
+	    					->or_group_start()
+	    						->where('pickup_location_id', $drop_location_id)
+	    						->where('drop_location_id', $pickup_location_id)
+	    					->group_end()
+	    				->group_end()
+    					->get('paths')->result_array();
+    	
+    	if ($result)
+    		return $result[0];
+		
+		return false;
+    }
+
 }
 
 ?>

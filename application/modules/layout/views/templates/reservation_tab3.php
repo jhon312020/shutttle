@@ -19,11 +19,11 @@
     ?>
 			
 			<div class="row mybox-5 clientDetails">
-			<div class="loginform">
+			<div class="loginform paytop">
 				<form id="loginform">
 					<input style="display:none" type="text" name="fakeusernameremembered"/>
 					<input style="display:none" type="password" name="fakepassword"/>
-					<div class="col-sm-12 paytop" style="height:40px;">
+					<div class="col-sm-12" style="height:40px;">
 						<!--<div class="form-group col-sm-4 clear-pad-R Add-pad-R" style="margin-top:10px;">
 							<input type="text" class="form-control bord-rad-10 bor-col-wht validate[required,custom[email]]" id="login_email" name="login_email" placeholder="User (E-mail)" required>
 						</div>
@@ -177,7 +177,7 @@
 					</div>
 
 
-					<div class="row row-eq-height">
+					<div class="row row-eq-height" style="height:100px;">
 						<div class="col-sm-4 col-pay-div">
 							<div class="vert-outer pay-div" style="float:left;">
 								<div class="vert-inner">

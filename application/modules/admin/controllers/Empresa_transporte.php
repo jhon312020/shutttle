@@ -8,6 +8,7 @@ if (!defined('BASEPATH'))
 
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('shuttles/mdl_shuttles');
 		$this->load->model('empresa_transporte/mdl_empresa_transporte');
 		$this->path = "./assets/cc/images/empresa_transporte/";
 	}
@@ -63,9 +64,22 @@ if (!defined('BASEPATH'))
 			$this->mdl_empresa_transporte->prep_form($id);
 		}
 
-		$this->layout->set(array('id'=>$id, 'path'=>$this->path, 'readonly'=>false,'error'=>$error));
+		$booking_array = $this->mdl_shuttles->select('booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.address as col_address,booking.round_trip,booking.price,booking.book_status,booking.payment_method,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+                                            booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,
+                                            booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array,
+                                            clients.name as first_name, clients.surname,calendars.reference_id')
+                                            ->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
+                                            ->join('clients', 'clients.id=booking.client_id', 'left')
+                                            ->join('collaborators_address', 'collaborators_address.id = booking.collaborator_address_id', 'left')
+                                            ->join('calendars', 'calendars.id=booking.calendar_id', 'left')
+                                            ->where("booking.is_active = 1 and tbl_booking.empresa_id ='".$id."' and tbl_booking.round_trip = 0")
+                                            ->order_by('booking.created', 'desc')
+                                            ->get()->result_array();
+
+		$this->layout->set(array('id'=>$id, 'path'=>$this->path, 'readonly'=>false,'error'=>$error,'booking_array'=>$booking_array));
 		$this->layout->buffer('content', 'empresa_transporte/form');
 		$this->layout->render();
+
 	}
 	
 	public function view($id) {
@@ -79,7 +93,19 @@ if (!defined('BASEPATH'))
 		}
 		$this->db->select(array('name','zone'));
 		
-		$this->layout->set(array('path'=>$this->path, 'readonly'=>true));
+		$booking_array = $this->mdl_shuttles->select('booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.address as col_address,booking.round_trip,booking.price,booking.book_status,booking.payment_method,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+                                            booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,
+                                            booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array,
+                                            clients.name as first_name, clients.surname,calendars.reference_id')
+                                            ->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
+                                            ->join('clients', 'clients.id=booking.client_id', 'left')
+                                            ->join('collaborators_address', 'collaborators_address.id = booking.collaborator_address_id', 'left')
+                                            ->join('calendars', 'calendars.id=booking.calendar_id', 'left')
+                                            ->where("booking.is_active = 1 and tbl_booking.empresa_id ='".$id."' and tbl_booking.round_trip = 0")
+                                            ->order_by('booking.created', 'desc')
+                                            ->get()->result_array();
+
+		$this->layout->set(array('path'=>$this->path, 'readonly'=>true,'booking_array'=>$booking_array));
 		$this->layout->buffer('content', 'empresa_transporte/form');
 		$this->layout->render();
 	}

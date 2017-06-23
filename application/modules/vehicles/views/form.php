@@ -9,7 +9,7 @@ form label {
 }
 </style>
 <div class="headerbar">
-	<h1><?=lang('vechicles')?></h1>
+	<h1><?=lang('vehicles')?></h1>
 </div>
 <?php if (isset($error) && $error) { ?>
 	<div class="alert alert-danger">
@@ -53,6 +53,12 @@ form label {
 						<label class="col-sm-2 control-label"><?=lang('luggage');?> </label>
 						<div class="col-sm-4">
 							<?php echo form_input(array('name'=>'luggage','type'=>'number', 'required'=>true, 'class'=>'form-control', $readonly=>true, 'min'=>1, 'value'=>$this->mdl_vehicles->form_value('luggage'))); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label"><?=lang('shared');?> </label>
+						<div class="col-sm-4">
+							<?php echo form_dropdown(array('name'=>'shared', 'options'=>array('1'=>'Yes','0'=>'No'), 'class'=>'form-control', $readonly=>true, 'min'=>1, 'selected'=>$this->mdl_vehicles->form_value('shared'))); ?>
 						</div>
 					</div>
 					<div class="form-group">

@@ -37,6 +37,27 @@ class Mdl_locations extends Response_Model {
     	return $lists;
     }
 
+    public function deleteCityLocations($city_id) {
+    	$locations = $this->db->select('id')->where('city_id',$city_id)->get('locations')->result();
+    	foreach ($locations as $location) {
+    		$this->deleteLocation($location->id);
+    	}
+    }
+
+    public function deleteLocation($id) {
+    	$this->db->where('id',$id)->delete('locations');
+    	$this->db->where('pickup_location_id',$id)->delete('paths');
+    	$this->db->where('drop_location_id',$id)->delete('paths');
+    }
+
+    public function isBarcelonaCity($locations) {
+        if (in_array($this->config->item('shuttle_city_id'), $locations)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 ?>

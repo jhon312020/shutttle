@@ -6,7 +6,7 @@
 			</p>
 			<?php
 				$arrowDownClass = "";
-				$leftSidebar = array(
+				/*$leftSidebar = array(
 					'source'=>'start_from',
 					'designation'=>'end_at',
 					'start_date'=>'start_journey',
@@ -14,18 +14,33 @@
 					'end_date'=>'return_journey',
 					'flightlanding_time'=>'flightlanding_time',
 					'no_of_passengers'=>'adults',
-					/*'country_origin'=>'country',*/
+					/*'country_origin'=>'country',
 					'flight_no'=>'flight_no',
+				);*/
+				$leftSidebar = array(
+					'from'=>'from_location_text',
+					'to'=>'to_location_text',
+					'trip_date'=>'trip_date_text',
+					'trip_time'=>'departure_time_text',
+					'return_date'=>'return_date_text',
+					'return_time'=>'return_time_text',
+					'no_of_passengers'=>'passengers_text'
+					//'flight_no'=>'flight_no'
 				);
+				
 				foreach ($leftSidebar as $key => $value) {
 				?>
-					<div>
+					<div class="<?php echo ($key == 'return_date' || $key == 'return_time')? 'jReturnDate':''; ?>">
             <span class="sumhead"><?php echo lang($key);?>: </span>
-            <span class="duplicateList" data-id="<?php echo $value; ?>"></span>
+            <span class="duplicateList <?php echo $value; ?>"></span>
           </div>
 				<?php		
 				}
 			?>
+			<div class="jFlightNo">
+	            <span class="sumhead"><?php echo lang('flight_no');?>: </span>
+	            <span class="duplicateList flightNoValue"></span>
+	        </div>
       <hr class="marginTB-10 orangeborder"> 
 			<div class="resumen"><span class="sumhead"><?php echo lang('price'); ?>:</span>
 				<span class="pull-right orange resumen"><span class="initialPrice">00.00</span> &euro;</span>

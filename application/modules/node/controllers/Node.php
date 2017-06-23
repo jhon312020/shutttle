@@ -15,6 +15,9 @@ class Node extends Anonymous_Controller {
   public function __construct() {
     parent::__construct();
     //echo base64_decode("ZWRpdG9yX3BpY2tuZ28");die;
+    $this->load->model('place_categories/mdl_place_categories');
+    $this->load->model('locations/mdl_locations');
+    $this->load->model('cities/mdl_cities');
     $this->load->model('node/mdl_nodes');
     $this->load->model('routes/mdl_calendars');
     $this->load->model('routes/mdl_routes');
@@ -41,7 +44,7 @@ class Node extends Anonymous_Controller {
     $data['airport'] = array(''=>'Select', 't1'=>'Terminal 1', 't2'=>'Terminal 2');
     $prepend = array('00', '01','02','03','04','05','06','07','08','09');
     $data['hours'] = array_merge($prepend, range(10, 23));
-    $data['adults'] = array_merge($prepend, range(10, 12));
+    $data['adults'] = array_merge($prepend, range(10, 13));
     $data['adults'][0] = lang('adults');
     $data['kids'] = array_slice($prepend, 0, 7);
     $data['kids'][0] = lang('child');
@@ -510,14 +513,16 @@ class Node extends Anonymous_Controller {
         else
           $this->db->set(array('updated_by' =>'success', 'book_status'=>'completed'))->where('id', $this->template_vars['bookings']['return_book_id'])->update('booking');
     }
-    $arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
+    if ($bookings['version'] != 1) {
+      $arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');
 
-    if (in_array($this->template_vars['bookings']['start_from'], $arr)) {
-      $zone = $this->template_vars['bookings']['end_at'];
-      $str = 'end_at';
-    } else {
-        $zone = $this->template_vars['bookings']['start_from'];
-        $str = 'start_from';
+      if (in_array($this->template_vars['bookings']['start_from'], $arr)) {
+        $zone = $this->template_vars['bookings']['end_at'];
+        $str = 'end_at';
+      } else {
+          $zone = $this->template_vars['bookings']['start_from'];
+          $str = 'start_from';
+      }
     }
     /*Address details*/
     $this->template_vars['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id ', $this->template_vars['bookings']['collaborator_address_id'])->get()->result_array();      
@@ -525,18 +530,19 @@ class Node extends Anonymous_Controller {
     $this->db->from('collaborators')->where('id',$this->template_vars['bookings']['collaborator_id']);
     $terminal = current($this->db->get()->result_array());
 
-    $this->template_vars['bookings'][$str] = $terminal['name'].' - '.(count($this->template_vars['bookings']['collaborator_address']) > 0 ?$this->template_vars['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
+    if ($bookings['version'] != 1) {
+     $this->template_vars['bookings'][$str] = $terminal['name'].' - '.(count($this->template_vars['bookings']['collaborator_address']) > 0 ?$this->template_vars['bookings']['collaborator_address'][0]['address'] : $terminal['address']);
 
-    if($this->template_vars['bookings']['bcnarea_address_id'] != '' && $this->template_vars['bookings']['bcnarea_address_id'] != '0') {
-      $this->template_vars['bookings'][$str] = $this->template_vars['bookings']['address'];
+      if($this->template_vars['bookings']['bcnarea_address_id'] != '' && $this->template_vars['bookings']['bcnarea_address_id'] != '0') {
+        $this->template_vars['bookings'][$str] = $this->template_vars['bookings']['address'];
 
-      $postal_query = $this->db->select('postal_code')->from('bcnareas_address')->where('id', $this->template_vars['bookings']['bcnarea_address_id'])->get()->row();
+        $postal_query = $this->db->select('postal_code')->from('bcnareas_address')->where('id', $this->template_vars['bookings']['bcnarea_address_id'])->get()->row();
 
-      if($postal_query->postal_code) {
-        $this->template_vars['bookings']['postal_code'] = $postal_query->postal_code;  
-        $this->template_vars['bookings']['source_point'] = $str;
-      }
-      
+        if($postal_query->postal_code) {
+          $this->template_vars['bookings']['postal_code'] = $postal_query->postal_code;  
+          $this->template_vars['bookings']['source_point'] = $str;
+        }
+      } 
     }
 
     $this->template_vars['bookings']['collaborator_name'] = $terminal['name'];
@@ -549,7 +555,7 @@ class Node extends Anonymous_Controller {
         $this->template_vars['clients'] = json_decode($this->template_vars['bookings']['client_array'], true);
 
     $this->template_vars['price'] = $this->input->get('amt');
-    $this->template_vars['book_reference'] = $this->template_vars['start_journey']['reference_id'].' - '.sprintf("%02d", $this->template_vars['bookings']['id']);
+    $this->template_vars['book_reference'] = 'SHT-'.date('dmY',strtotime($bookings['start_journey'])).'-'.sprintf("%02d", $this->template_vars['bookings']['id']);
     $this->template_vars['content']['image'] = 'payment.jpg';
 
     /* $this->load->helper('dompdf');  
@@ -559,7 +565,7 @@ class Node extends Anonymous_Controller {
 
     $this->load->view('layout/templates/success', $this->template_vars);
     
-    if ($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12') {
+    if (($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12')) {
       $this->load->helper('dompdf');  
       $html = $this->load->view('layout/templates/pdf', $this->template_vars, true);
       $mail_html = $this->load->view('layout/templates/email', $this->template_vars, true);
@@ -573,10 +579,12 @@ class Node extends Anonymous_Controller {
       $this->email->cc($cc_array);
       if($this->template_vars['bookings']['book_status'] == 'completed')
         $this->email->bcc(array('janakiraman@proisc.com', 'bright@proisc.com'));
+
       $this->email->subject('Booking Confirmation: '.$this->template_vars['book_reference']);
       $this->email->message($mail_html);
       $this->email->attach($output);
       $this->email->send();
+      
     }
   }
   
@@ -665,7 +673,7 @@ class Node extends Anonymous_Controller {
     $base_path = base_url().'assets/cc';
     $this->template_vars['css'] = array(
       '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
-      $base_path.'/datetimepicker/css/bootstrap-datetimepicker.min.css',
+      $base_path.'/datetimepicker/css/bootstrap-datetimepicker.min.css'
     );
     $this->template_vars['js'] = array(
       '//code.jquery.com/ui/1.12.1/jquery-ui.js',
@@ -673,8 +681,24 @@ class Node extends Anonymous_Controller {
       $base_path.'/js/reservation-bank.js',
       $base_path.'/js/functions-bank.js',
       'https://js.stripe.com/v2/',
-      $base_path.'/js/stripe/payment.js',
+      $base_path.'/js/stripe/payment.js'
     );
+    $categories = $this->mdl_place_categories->getList();
+    $locations = $this->mdl_locations->get()->result();
+    foreach ($locations as $location) {
+      $select_location[] = array('label'=>$location->location,'category'=>$categories[$location->category_id]);
+      $locations[$location->location] = $location->id;
+    }
+
+    $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->get('collaborators')->result();
+    foreach ($collaborators as $record) {
+      $select_location[] = array('label'=>$record->name,'category'=>$categories[$record->category_id]);
+      $locations[$record->name] = $record->location_id;
+    }
+
+    $this->template_vars['select_location'] = $select_location;
+    $this->template_vars['locations'] = $locations;
+
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
     $this->template_vars['terminal_array'] = array('' => lang('to'), 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');
     //echo '<pre>'; print_r($this->template_vars); echo '</pre>';

@@ -53,7 +53,7 @@ if (!defined('BASEPATH'))
 		$cities = $this->mdl_cities->getList();
 		$categories = $this->mdl_place_categories->getList();
 		$locations = $this->mdl_locations->get()->result();
-		$vehicles = $this->mdl_vehicles->getList();
+		$vehicles = $this->mdl_vehicles->getPrivateList();
 
 		$select_location = array();
 		$country_relation = array();
