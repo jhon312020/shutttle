@@ -14,7 +14,7 @@
 		<div class="panel pickbluebgtop border-2">
 			<div class="panel-heading pickbluebg"><?php echo lang('reservation'); ?> </div>
 			<div class="panel-body" style="font-size:14px !important;">
-				<div class="col-md-4 trip_detail">
+				<div class="col-md-3 trip_detail">
 					<table>
 						<tr><td><i class="fa fa-calendar icon-style"></i></td>
 						<td>
@@ -32,7 +32,7 @@
 					</td></tr>
 					</table>
 				</div>
-				<div class="col-md-3 trip_detail">
+				<div class="col-md-4 trip_detail">
 					<table>
 					<tr><td><i class="fa fa-map-signs icon-style"></i></td>
 					<td>
@@ -58,9 +58,12 @@
 	</div>
 </div>
 <style>
+	.panel-body {
+		font-size: 13px;
+	}
 	#vehicle_list td {
 		padding: 5px;
-		font-size: 14px;
+		font-size: 13px;
 	}
 	.icon-style {
 		color: #EA5B55;
@@ -70,7 +73,7 @@
 	.trip_detail td{
 		padding-left:0px !important;
 		padding-right:0px !important;
-		font-size: 14px !important;
+		font-size: 13px !important;
 	}
 	.extras_div {
 		display: none;

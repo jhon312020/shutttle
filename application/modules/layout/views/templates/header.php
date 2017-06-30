@@ -63,7 +63,6 @@ print_r($header_text_images);die;*/
 </head>
 <body>
   <?php
-    $this->load->view('collaborators/header');
     if (isset($content['image']) && $content['image'] != '') {
       $image_name = 'captions/'.$content['image'];
     } else if ($this->session->userdata('user_type') == 2) {
@@ -82,3 +81,4 @@ print_r($header_text_images);die;*/
 	  <div class="shuttleingBox"><p>SHUTTLEING.</p></div> -->
     <img class="img-responsive img-center"  alt="">
   </header>
+  <?php $this->load->view('collaborators/header'); ?>

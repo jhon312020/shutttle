@@ -56,9 +56,10 @@
 		<tr>
 			<th><?php echo lang('trip_type'); ?></th>
 			<th><?php echo lang('reference'); ?></th>
+			<th><?php echo lang('vehicle'); ?></th>
 			<th><?php echo lang('name'); ?></th>
-      <th><?php echo lang('date'); ?></th>
-      <th><?php echo lang('hour'); ?></th>
+		      <th><?php echo lang('date'); ?></th>
+		      <th><?php echo lang('hour'); ?></th>
 			<th><?php echo lang('from'); ?></th>
 			<th><?php echo lang('to'); ?></th>
 			<th><?php echo lang('price'); ?></th>
@@ -143,6 +144,14 @@
 				echo $shuttle->reference_id.'-'.sprintf("%02d", $shuttle->round_trip == 1?$res[$shuttle->id]:$shuttle->id);	
 			}
 			 ?></td>
+			<td>
+				<?php 
+				if ($shuttle->vehicle_image) {
+					echo '<b>'.$shuttle->vehicle_name.'</b><br/>';
+					echo '<img src="'.base_url().'/assets/cc/images/vehicles/'.$shuttle->vehicle_image.'" width="100" />';
+				}
+				?>
+			</td>
 			<td><?php echo $clients?$shuttle->first_name.' '.$shuttle->surname:$json['name'].' '.$json['surname']; ?></td>
 			<td><?php echo date('d/m/Y', strtotime($shuttle->start_journey)); ?></td>
 			<td><?php echo date('H:i', strtotime($shuttle->hour)).'h'; ?></td>

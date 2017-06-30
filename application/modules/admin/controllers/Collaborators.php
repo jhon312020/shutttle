@@ -31,7 +31,9 @@ if (!defined('BASEPATH'))
 	}
 
 	public function index() {
-		$this->layout->set(array('collaborators'=>$this->db->query("select c.*, (select GROUP_CONCAT(concat('zone ', b.zone),' (', b.name, ')'  separator ', ') from tbl_collaborators_address a left join tbl_bcnareas b on a.zone = b.zone where a.collaborator_id = c.id and a.is_active=1) as bcnarea from tbl_collaborators c order by created desc")->result(), 'path'=>$this->path, 'bcn'=>$this->bcn));
+		$locations = $this->mdl_locations->getList();
+		/*$this->layout->set(array('collaborators'=>$this->db->query("select c.*, (select GROUP_CONCAT(concat('zone ', b.zone),' (', b.name, ')'  separator ', ') from tbl_collaborators_address a left join tbl_bcnareas b on a.zone = b.zone where a.collaborator_id = c.id and a.is_active=1) as bcnarea from tbl_collaborators c order by created desc")->result(), 'path'=>$this->path, 'bcn'=>$this->bcn));*/
+		$this->layout->set(array('collaborators'=>$this->db->query("select c.*, l.location as location_name from tbl_collaborators c left join tbl_locations l on l.id = c.location_id order by c.created desc")->result(), 'path'=>$this->path, 'bcn'=>$this->bcn));
 		$this->layout->buffer('content', 'collaborators/index');
 		$this->layout->render();
 	}

@@ -523,4 +523,4 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
-$config['shuttle_city_id'] = 11;
+$config['shuttle_city_id'] = 16;

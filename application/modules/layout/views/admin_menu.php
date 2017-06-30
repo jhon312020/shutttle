@@ -133,6 +133,7 @@
           <span><?php echo lang('collaborators'); ?></span>
         </a>
       </li>
+      <?php /*
 			<li class="<?php echo ($this->router->class == 'routes' && $this->router->method != 'bcn_area' && $this->router->method != 'bcn_form' && $this->router->method != 'bcnareas_address' && $this->router->method != 'bcn_address_form') ? 'opened active' : ''; ?>">
 				<a href="#"><i class="entypo-address"></i><span><?php echo lang('routes'); ?></span></a>
 				<ul>
@@ -157,6 +158,7 @@
 					
 				</ul>
 			</li>
+	*/ ?>
 			<li class="<?php echo ($this->router->class == 'settings' || $this->router->method == 'bcn_area' || $this->router->class == 'rates'  || $this->router->method == 'bcn_form' || $this->router->method == 'bcnareas_address' || $this->router->method == 'bcn_address_form') ? 'opened active' : ''; ?>" >
 				<a href="#">
 					<i class="entypo-cog"></i>

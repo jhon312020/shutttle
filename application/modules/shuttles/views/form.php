@@ -259,14 +259,27 @@ $extra_array = json_decode($bookings['extra_array'], true);
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('adults'); ?>: </label>
 							<label class="col-sm-8 control-label pull-left editLabel"><?php echo $bookings['adults']; ?></label>
 						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label pull-left"><?php echo lang('kids'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo $bookings['kids']; ?></label>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label pull-left"><?php echo lang('baby'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo $bookings['baby']; ?></label>
-						</div>
+						<?php if($bookings['version'] == 1) { ?>
+							<?php if (isset($bookings['vehicle'])) { ?>
+								<div class="form-group">
+									<label class="col-sm-3 control-label pull-left"><?php echo lang('vehicle'); ?>: </label>
+									<label class="col-sm-8 control-label pull-left editLabel">
+									<?php 
+										echo '<b>'.$bookings['vehicle']['name'].'</b><br/>';
+										echo '<img src="'.base_url().'/assets/cc/images/vehicles/'.$bookings['vehicle']['image'].'" width="150" />';
+									?></label>
+								</div>
+							<?php } ?>
+						<?php } else { ?>
+							<div class="form-group">
+								<label class="col-sm-3 control-label pull-left"><?php echo lang('kids'); ?>: </label>
+								<label class="col-sm-8 control-label pull-left editLabel"><?php echo $bookings['kids']; ?></label>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label pull-left"><?php echo lang('baby'); ?>: </label>
+								<label class="col-sm-8 control-label pull-left editLabel"><?php echo $bookings['baby']; ?></label>
+							</div>
+						<?php } ?>
 						<?php
 						if($bookings['book_role'] == 2)
 							echo "</div>";

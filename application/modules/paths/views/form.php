@@ -177,7 +177,6 @@ input[type=number] {
 		</div>
 	</div>
 </form>
-
 <script>
 	$(document).ready(function(){
 		var $city_relation = <?=json_encode($city_relation)?>;

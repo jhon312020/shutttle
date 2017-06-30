@@ -1200,11 +1200,14 @@ span.step {
     .top_col_menu {
         height: 40px;
         width: 100%;
-        background-color: #ea5b55;
-        border-color: #ea5b55;
+        /*background-color: #ea5b55;
+        border-color: #ea5b55;*/
+        background-color: #27357C;
+        border-color: #27357C;
         text-align: right;
         padding:10px 20px;
-        font-family: myriad pro;
+        /*font-family: myriad pro;*/
+        font-family: Gothamlight;
         color: #fff;
     }
     .top_col_menu a {

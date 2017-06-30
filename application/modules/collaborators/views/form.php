@@ -176,7 +176,7 @@ $disabled = ($readonly)?'disabled':'';
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6" >
 			<div class="panel minimal minimal-gray">
 				<div class="panel-heading headerbar" style="margin-top:0px;">
 					<h1 style="margin-bottom:2px;color:#F27D00;"><?php echo lang('col_address_info'); ?></h1>
@@ -191,12 +191,12 @@ $disabled = ($readonly)?'disabled':'';
 								}
 					?>
 					<div class="form-group addcontent">
-						<label class="col-sm-2 control-label pull-left"><?php echo lang('bcn_area'); ?>: </label>
-						<div class="col-sm-3">
+						<label style="display:none" class="col-sm-2 control-label pull-left"><?php echo lang('bcn_area'); ?>: </label>
+						<div style="display:none" class="col-sm-3">
 							<?php echo form_dropdown(isset($address['id'])?'zone_old_'.$address['id'] : 'zone[]', array(''=>'Select Zone')+$bcn, $address['zone'], 'class="form-control" '.$disabled.''); ?>
 						</div>
 						<label class="col-sm-2 control-label pull-left"><?php echo lang('address'); ?>: </label>
-						<div class="col-sm-4">
+						<div class="col-sm-8">
 							<?php echo form_input(array('name'=>isset($address['id'])?'address_old_'.$address['id'] : 'address[]', 'class'=>'form-control', 'value'=>$address['address'], $readonly=>true)); ?>
 						</div>
 						<div class="col-sm-1" style="width:auto;padding:0;margin:0;">
@@ -208,12 +208,12 @@ $disabled = ($readonly)?'disabled':'';
 						} else {
 					?>
 					<div class="form-group addcontent">
-						<label class="col-sm-2 control-label pull-left"><?php echo lang('bcn_area'); ?>: </label>
-						<div class="col-sm-3">
+						<label  style="display:none" class="col-sm-2 control-label pull-left"><?php echo lang('bcn_area'); ?>: </label>
+						<div  style="display:none" class="col-sm-3">
 							<?php echo form_dropdown('zone[]', array(''=>'Select Zone')+$bcn, $this->mdl_collaborators->form_value('zone'), 'class="form-control" '.$disabled.''); ?>
 						</div>
 						<label class="col-sm-2 control-label pull-left"><?php echo lang('address'); ?>: </label>
-						<div class="col-sm-4">
+						<div class="col-sm-8">
 							<?php echo form_input(array('name'=>'address[]', 'class'=>'form-control', 'value'=>$this->mdl_collaborators->form_value('address'), $readonly=>true)); ?>
 						</div>
 						<div class="col-sm-1" style="width:auto;padding:0;margin:0;">

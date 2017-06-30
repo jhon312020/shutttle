@@ -690,11 +690,18 @@ class Node extends Anonymous_Controller {
       $locations[$location->location] = $location->id;
     }
 
-    $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->get('collaborators')->result();
-    foreach ($collaborators as $record) {
-      $select_location[] = array('label'=>$record->name,'category'=>$categories[$record->category_id]);
-      $locations[$record->name] = $record->location_id;
+    if ($this->session->userdata('user_type') && $this->session->userdata('user_type') == 2) {
+      $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->where('id',$this->details['collaborator_details']['id'])->get('collaborators')->result();
+    } else {
+      $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->get('collaborators')->result();
     }
+
+    foreach ($collaborators as $record) {
+      $select_location[] = array('label'=>ucfirst($record->name),'category'=>$categories[$record->category_id]);
+      $locations[ucfirst($record->name)] = $record->location_id;
+    }
+/*echo '<pre>';
+    print_r($select_location); exit;*/
 
     $this->template_vars['select_location'] = $select_location;
     $this->template_vars['locations'] = $locations;

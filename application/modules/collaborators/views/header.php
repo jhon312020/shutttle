@@ -13,7 +13,15 @@
       <?php } ?>
       <span><?php echo $this->session->userdata('user_name'); ?></span>
       <span class="top_pipe">|</span>
-      <a href="<?php echo site_url($lang.'/collaborators/logout'); ?>" class="pad-right-zero">Logout<i class="entypo-logout pad-right-zero mar-right-zero"></i></a>
+      <a href="<?php echo site_url($lang.'/collaborators/logout'); ?>" class="pad-right-zero">Logout &nbsp;<i class="fa fa-sign-out entypo-logout pad-right-zero mar-right-zero"></i></a>
     </ul>
 </div>
+<style>
+  .image-bg-fluid-height {
+    margin-bottom:0px;
+  }
+  .top_col_menu {
+    margin-bottom:30px;
+  }
+</style>
 <?php } ?>

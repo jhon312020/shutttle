@@ -178,6 +178,18 @@
 	</div>
 </div>
 <style>
+	body {
+		font-family: Gothambook;
+	}
+	.panel-body {
+		font-size:13px;
+	}
+	.panel-body b {
+		font-size:14px;
+	}
+	.bodypad {
+		padding: 1% 4%;
+	}
 	.icon-style {
 		color: #EA5B55;
 	    padding: 5px;

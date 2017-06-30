@@ -58,7 +58,12 @@ $cms_lang = $this->session->userdata('cms_lang');
 </head>
 <body>
   <?php
-  $this->load->view('collaborators/header');  
 	$this->load->view('menu');
 	$this->load->view('slider'); 
+	$this->load->view('collaborators/header');  
   ?>
+  <style>
+  .top_col_menu {
+  	margin-bottom: 0px;
+  }
+  </style>

@@ -14,7 +14,8 @@
 	<thead>
 		<tr>
             <th width="20%"><?php echo lang('name'); ?></th>
-			<th width="25%"><?php echo lang('bcn_area'); ?></th>
+			<!-- <th width="25%"><?php //echo lang('bcn_area'); ?></th> -->
+			<th width="25%"><?php echo lang('location'); ?></th>
 			<th><?php echo lang('rate'); ?></th>
 			<th><?php echo lang('no_of_available_seats'); ?></th>
 			<th><?php echo lang('options'); ?></th>
@@ -25,7 +26,10 @@
 		<?php foreach ($collaborators as $collaborator) { ?>
 		<tr>
 			<td><?php echo ucfirst($collaborator->name); ?></td>
-			<td><?php echo $collaborator->bcnarea != ''?$collaborator->bcnarea : $bcn[$collaborator->zone]; ?></td>
+			<td>
+				<?php //echo $collaborator->bcnarea != ''?$collaborator->bcnarea : $bcn[$collaborator->zone]; ?>
+				<?php echo $collaborator->location_name; ?>	
+			</td>
 			<td><?php echo $collaborator->price; ?></td>
 			<td><?php echo $collaborator->available_seats == 'activate' ? $collaborator->no_of_available_seats : 'Not activated'; ?></td>
 			<td>

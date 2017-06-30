@@ -29,13 +29,14 @@ class Shuttles extends Admin_Controller {
 
 	public function index() {
 		$fromDate = '';
-		$this->mdl_shuttles->select('booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+		$this->mdl_shuttles->select('vehicles.name as vehicle_name, vehicles.image as vehicle_image, booking.vehicle_id,booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
 											booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,booking.return_journey,booking.country,booking.flight_no,booking.created,booking.client_id,booking.client_array,
 											clients.name as first_name, clients.surname,clients.address,clients.city,clients.country,clients.cp,calendars.reference_id')
 											->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
 											->join('collaborators_address', 'collaborators_address.id = booking.collaborator_address_id', 'left')
 											->join('clients', 'clients.id=booking.client_id', 'left')
 											->join('calendars', 'calendars.id=booking.calendar_id', 'left')
+											->join('vehicles', 'vehicles.id=booking.vehicle_id', 'left')
 											->where('booking.is_active = 1');
 											
 
@@ -143,6 +144,7 @@ class Shuttles extends Admin_Controller {
 		$this->db->from('booking')->where('id', $id);
 		$res['bookings'] = current($this->db->get()->result_array());
 
+		$empresa_saved = false;
 		if ($this->input->post('empresa_save')) {
 			if ($res['bookings']['empresa_id'] != $this->input->post('empresa_id')) {
 				$seats = ($res['bookings']['adults']+$res['bookings']['kids']+$res['bookings']['baby']);
@@ -163,6 +165,8 @@ class Shuttles extends Admin_Controller {
 						}
 
 						$this->mdl_shuttles->save($id, array('empresa_id'=>$this->input->post('empresa_id')));
+						$empresa_saved = true;
+						$new_empresa = $new;
 					} else {
 						$res['seat_error'] = 'Empresa transporte does not have required seats. Kindly change the Empresa Transporte';
 					}
@@ -224,6 +228,14 @@ class Shuttles extends Admin_Controller {
 		
 		$this->db->from('booking')->where('id', $id);
 		$res['bookings'] = current($this->db->get()->result_array());
+
+		if ($res['bookings']['version'] == 1) {
+			$vehicles = $this->db->from('vehicles')->where('id',$res['bookings']['vehicle_id'])->get()->result_array();
+			if ($vehicles) {
+				$res['bookings']['vehicle'] = $vehicles[0];
+			}
+		}
+
 		if ($res['bookings']['return_book_id']) {
 			$this->db->from('booking')->where('id', $res['bookings']['return_book_id']);
 			$res['return_bookings'] = current($this->db->get()->result_array());
@@ -298,6 +310,13 @@ class Shuttles extends Admin_Controller {
 			$this->session->set_flashdata('alert_success', lang('email_send'));
 			redirect($_SERVER['HTTP_REFERER']);
 		}
+
+		if ($empresa_saved) {
+			$this->email->to($new_empresa['email']);
+			$this->email->message($mail_html);
+			$this->email->attach($output);
+			$this->email->send();
+		}
 		
 		$res['user_array'] = current($this->db->from('users')->where('client_id',$client_id)->get()->result_array());
 		if($client_id == 0 && !$_POST) {
@@ -331,6 +350,13 @@ class Shuttles extends Admin_Controller {
 			$res['return_bookings'] = current($this->db->get()->result_array());
 		}
 		$res['error'] = array();
+
+		if ($res['bookings']['version'] == 1) {
+			$vehicles = $this->db->from('vehicles')->where('id',$res['bookings']['vehicle_id'])->get()->result_array();
+			if ($vehicles) {
+				$res['bookings']['vehicle'] = $vehicles[0];
+			}
+		}
 
 		if ($res['bookings']['version'] != 1) {
 			$arr = array('Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2');

@@ -6,6 +6,60 @@
 .ui-autocomplete-category {
 	font-weight: bold;
 }
+body{
+	font-family: 'Gothambook';
+}
+/* center content 
+.tabbable-panel {
+	padding: 0% 2.1%;
+}
+@media (max-width: 1199px) and (min-width: 992px){
+.circletwo{
+    padding-left: 4%;
+    padding-right: 4%;
+}
+.circletwo{
+    padding-left: 6%;
+    padding-right: 6%;
+}
+.circlethree{
+    padding-left: 4%;
+    padding-right: 4%;
+    float: right !important;
+}
+}
+@media (min-width: 1199px) {
+.circletwo{
+    padding-left: 8% !important;
+    padding-right: 8% !important;
+}
+.circlethree{
+    float: right !important;
+}		
+}	
+ center content */
+#adults {
+	font-size: 25px;
+}
+
+
+  .ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+
+  input[type="number"] {
+  	height: 45px;
+  }
+  
 </style>
 <div class="container">
     <div class="row">
