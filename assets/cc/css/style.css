@@ -32,7 +32,9 @@ Licensed under MIT
     font-family: kingbasil;
     src: url('./../fonts/King-Basil-Lite.otf');
 }
-
+body {
+    font-family: Gothambook;
+}
 .carousel {
 	margin-bottom: 0 !important;
 }
@@ -930,7 +932,8 @@ span.step {
 
     body{
         background:#F5F5F5;
-        font-family: myriad pro;
+        /*font-family: myriad pro;*/
+        font-family: Gothambook !important;
         /*color:#4577D8 !important;*/
         color:#25377d !important;
 
@@ -1372,7 +1375,7 @@ textarea {
 }
 
 /* This is from our end */
-#phone, #address, #cp, #client_country, #city, #nationality, #dni_passport, #doc_no {
+#address, #cp, #client_country, #city, #nationality, #dni_passport, #doc_no {
     /* background-color: #F5F5F5; */
     background-color: #808080 !important;
     border-color: #808080 !important;

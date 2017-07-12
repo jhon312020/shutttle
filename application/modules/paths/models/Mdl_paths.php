@@ -31,14 +31,14 @@ class Mdl_paths extends Response_Model {
     public function save_records($all_records,$pickup_location_id, $pickup_city_id) {
     	$rows = array();
     	foreach ($all_records as $records) {
-			if ($records['drop_location'] && $records['duration'] && $records['distance'] && $records['vehicle']) {
+			if ($records['drop_location']  && $records['vehicle']) {
 				$rows[] = array(
 								'id'=>null,
 								'pickup_location_id'=>$pickup_location_id,
 								'pickup_city_id' => $pickup_city_id,
 								'drop_location_id' => $records['drop_location'],
-								'duration' => $records['duration'],
-								'distance' => $records['distance'],
+								'duration' => (isset($records['duration']))? $records['duration']:0,
+								'distance' => (isset($records['distance']))? $records['distance']:0,
 								'vehicles' => json_encode($records['vehicle'],true),
 								'created_at'=>date('Y-m-d h:i:s'),
 								'updated_at'=>date('Y-m-d h:i:s')
@@ -53,17 +53,18 @@ class Mdl_paths extends Response_Model {
     public function update_records($all_records,$pickup_location_id, $pickup_city_id) {
     	$rows = array();
     	foreach ($all_records as $records) {
-			if ($records['drop_location'] && $records['duration'] && $records['distance'] && $records['vehicle']) {
+			if ($records['drop_location']  && $records['vehicle']) {
 				$rows = array(
 								'pickup_location_id'=>$pickup_location_id,
 								'pickup_city_id' => $pickup_city_id,
 								'drop_location_id' => $records['drop_location'],
-								'duration' => $records['duration'],
-								'distance' => $records['distance'],
+								'duration' => (isset($records['duration']))? $records['duration']:0,
+								'distance' => (isset($records['distance']))? $records['distance']:0,
 								'vehicles' => json_encode($records['vehicle'],true),
 								'updated_at'=>date('Y-m-d h:i:s')
 							);
-				$this->mdl_paths->save($records['id'],$rows);
+				$id = (isset($records['id']))?$records['id']:null;
+				$this->mdl_paths->save($id,$rows);
 			}
 		}
     }

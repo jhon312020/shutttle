@@ -78,7 +78,7 @@ $lang['send'] = 'Enviar';
 $lang['choose_your_route'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELIGE TU RUTA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 
 //$lang['route_schedule'] = 'HORARIO DE RUTAS';
-$lang['route_schedule'] = 'SELECT YOUR CAR';
+$lang['route_schedule'] = 'SELECCIONA VEHÍCULO';
 $lang['info_and_payment'] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INFO Y PAGO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 $lang['one_way'] = 'SÓLO IDA';
 $lang['round_trip'] = 'IDA Y VUELTA';
@@ -220,7 +220,7 @@ $lang['step'] = 'Step';
 //confirmation page
 $lang['thanks_booking']='Gracias por realizar la reserva.';
 $lang['print_booking']='Por favor imprime esta confirmación y muéstrasela al conductor de vehículo.';
-$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  checking@shuttleing.com o teléfono: +34 697 46 22 59.';
+$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  checking@shuttleing.com o teléfono: +34 697 462 259.';
 
 $lang['time_go'] = 'Hora salida vuelo';
 $lang['time_back'] = 'Hora llegada vuelo';
@@ -340,7 +340,7 @@ $lang['people'] = 'Viajeros:';
 $lang['id_or_passport'] = 'ID or Passport';
 $lang['recover_email_success_message'] = 'Kindly check your email to reset your password!';
 $lang['change_password_success_message'] = 'Your password has been successfully reset!';
-$lang['promotional_code'] = 'Promotional code';
+$lang['promotional_code'] = 'Código promocional';
 $lang['card_holder'] = 'Card Holder';
 $lang['add_credit_card'] = 'Introduce tus datos de pago';
 
@@ -378,7 +378,7 @@ $lang['image'] = 'Imagen';
 $lang['save'] = 'Guardar';
 $lang['cancel'] = 'Cancelar';
 $lang['description'] = 'Description';
-$lang['date'] = 'Date';
+$lang['date'] = 'Fecha';
 $lang['email_address'] = 'Email Address';
 $lang['account_information'] = 'Account Information';
 $lang['client_form'] = 'Client Form';
@@ -402,7 +402,7 @@ $lang['category'] = 'Category';
 $lang['categories'] = 'Categories';
 $lang['starts_or_ends']  = 'Starts / Ends';
 $lang['day_trip']  = 'Day Trip';
-$lang['trip_time'] = 'Departure Time';
+$lang['trip_time'] = 'Hora Salida';
 $lang['return_time'] = 'Return Time';
 $lang['overview'] = 'Overview';
 $lang['shared'] = 'Shared';
@@ -410,4 +410,42 @@ $lang['location'] = 'Location';
 $lang['locations'] = 'Locations';
 $lang['day_go'] = 'Day Go';
 $lang['day_back'] = 'Day Back';
+
+$lang['Departure Time'] = 'Hora Salida';
+$lang['Chooose your car'] = 'Elige tu vehículo';
+$lang['Passengers'] = 'Passengers';
+$lang['Overview'] = 'Info Destacada';
+$lang['Important Travel information'] = 'Información Importante sobre el viaje';
+$lang['Price for'] = 'Precio por';
+$lang['All included'] = 'Todo incluido';
+
+
+$lang['BOOKING TERMS & CONDITIONS'] = 'TÉRMINOS Y CONDICIONES DE LA RESERVA';
+$lang['AIRPORT'] = 'AEROPUERTO';
+$lang['Shared Vehicle'] = 'Vehículo Compartido';
+$lang['Pick up at T1 every 00" & 30"'] = 'Recogida en T1 cada 00" y 30"';
+$lang['Pick up at T2 every 15" & 45"'] = 'Recogida en T2 cada 15" y 45"';
+$lang['Private Vehicle'] = 'Vehículo Privado';
+$lang['Driver will meet & great you at arrivals once you walk out from baggage claim.'] = 'Su conductor le estará esperando una vez salga de recoger su equipaje.';
+$lang['HOTEL'] = 'HOTEL';
+$lang['Shared Vehicle pick-up'] ='Vehículo Compartido pick-up';
+$lang['Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance'] = 'Hasta 30 minutos de espera desde la hora de recogida. Cancelación gratis con 24h de antelación.';
+$lang['Private Vehicle pick-up'] = 'Vehículo Privado pick-up';
+$lang['Driver will meet & great you at the lobby of your hotel/hostel'] = 'Su conductor le recogerá en la recepción del hotel.';
+$lang['CANCELLATION POLICY'] = 'POLITICA DE CANCELACION';
+$lang['No fees for cancellation up to 24hours prior the start time of service.'] = 'No se cobrara el recargo de los servicios cuando se cancele con 24hrs de antelacion al servicio.';
+$lang['100% of the total price of the service, when the cancellation occurs less than 24hrs prior the service or the passenger does not appear.'] = 'Se cobrara el 100% del servicios cuando la cancelacion sea inferior a 24hrs o los pasajeros no aparezcan.';
+
+$lang['When'] = 'Cuando';
+$lang['Where'] = 'Dónde';
+
+$lang['Day Go'] = 'Ida';
+$lang['Day Back'] = 'Vuelta';
+$lang['Shared Van'] = 'Furgoneta Compartida';
+$lang['Address, Hotel, Location'] = 'Dirección, Hotel, Localización';
+$lang['return_time'] = 'Hora de vuelta';
+$lang['One case and 1 holdall<br>per passenger'] = '1 maleta y un bolso<br/>por pasajero';
+$lang['Door to door /<br/>Direct journey'] = 'Puerta a puerta /<br/>Viaje directo';
+
+$lang['country_code_plus_phone'] = 'Código País + teléfono';
 ?>

@@ -29,7 +29,7 @@ class Shuttles extends Admin_Controller {
 
 	public function index() {
 		$fromDate = '';
-		$this->mdl_shuttles->select('vehicles.name as vehicle_name, vehicles.image as vehicle_image, booking.vehicle_id,booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+		$this->mdl_shuttles->select('booking.address as booking_address,booking.is_active,vehicles.name as vehicle_name, vehicles.image as vehicle_image, booking.vehicle_id,booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
 											booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,booking.return_journey,booking.country,booking.flight_no,booking.created,booking.client_id,booking.client_array,
 											clients.name as first_name, clients.surname,clients.address,clients.city,clients.country,clients.cp,calendars.reference_id')
 											->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
@@ -73,6 +73,53 @@ class Shuttles extends Admin_Controller {
 		$this->layout->buffer('content', 'shuttles/index');
 		$this->layout->render();
 	}
+
+	public function pendings() {
+		$fromDate = '';
+		$this->mdl_shuttles->select('booking.is_active, vehicles.name as vehicle_name, vehicles.image as vehicle_image, booking.vehicle_id,booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+											booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,booking.return_journey,booking.country,booking.flight_no,booking.created,booking.client_id,booking.client_array,
+											clients.name as first_name, clients.surname,clients.address,clients.city,clients.country,clients.cp,calendars.reference_id')
+											->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
+											->join('collaborators_address', 'collaborators_address.id = booking.collaborator_address_id', 'left')
+											->join('clients', 'clients.id=booking.client_id', 'left')
+											->join('calendars', 'calendars.id=booking.calendar_id', 'left')
+											->join('vehicles', 'vehicles.id=booking.vehicle_id', 'left')
+											->where('booking.is_active = 0');
+											
+
+		if ($this->input->post('from_date')) {
+			$fromUnixTime = strtotime(str_replace('/', '-', $this->input->post('from_date')));
+			$fromDate = date('d-m-Y', $fromUnixTime);
+			$shuttles = $this->mdl_shuttles->where('DATE(tbl_booking.start_journey)', date('Y-m-d', $fromUnixTime))
+											->order_by('booking.hour', 'asc')->get()->result();
+
+			$return_id = $this->db->query("select tbl_booking.id, mm.id as return_book_id from tbl_booking inner join (select id from tbl_booking where tbl_booking.is_active = 0 and tbl_booking.start_journey = '".Date('Y-m-d', $fromUnixTime)."' and tbl_booking.round_trip = 1) mm on mm.id = tbl_booking.return_book_id")->result_array();
+
+			array_walk($return_id, function($item) use (&$res) {
+			    // flatten the array
+			    $res[$item['return_book_id']] = $item['id'];
+			});
+			//print_r(array_combine($res['id'], $res['hour']));die;
+			//echo "<pre>";
+			//print_r($res);die;
+		} else {
+			$shuttles = $this->mdl_shuttles->order_by('booking.created', 'desc')->get()->result();
+			//echo $this->db->last_query();die;
+			$return_id = $this->db->query("select tbl_booking.id, mm.id as return_book_id from tbl_booking inner join (select id from tbl_booking where tbl_booking.is_active = 0 and tbl_booking.round_trip = 1) mm on mm.id = tbl_booking.return_book_id")->result_array();
+
+			array_walk($return_id, function($item) use (&$res) {
+			    // flatten the array
+			    $res[$item['return_book_id']] = $item['id'];
+			});
+		}
+		
+		$extras = $this->db->get('booking_extras')->result_array();									
+		
+		$this->layout->set(array('shuttles'=>$shuttles, 'path'=>$this->path, 'fromDate'=>$fromDate, 'extras' => $extras, 'res' => $res, 'page_title'=>'pending_list'));
+		$this->layout->buffer('content', 'shuttles/index');
+		$this->layout->render();
+	}
+
 	public function transactionFailed() {
 		
 		$shuttles = $this->mdl_shuttles->select('booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
@@ -285,7 +332,10 @@ class Shuttles extends Admin_Controller {
 			$res['book_reference'] = $res['start_journey']['reference_id'].' - '.sprintf("%02d", $res['bookings']['id']);	
 		}
 		
-		$res['lang'] = $this->session->get_userdata('cms_lang');
+		$res['lang'] = 'en';
+		if ($this->session->userdata('cms_lang') == 'spanish') {
+			$res['lang'] = 'es';
+		}
 		
 		$this->load->helper('dompdf');	
 		$html = $this->load->view('layout/templates/pdf', $res, true);
@@ -410,6 +460,7 @@ class Shuttles extends Admin_Controller {
 		$bookings = current($this->db->get()->result_array());
 		$this->db->set(array('is_active'=>0))->where('book_id', $id)->update('seats');
 		if ($bookings['return_book_id'] > 0) {
+
 			$this->db->from('booking')->where('id', $bookings['return_book_id']);
 			$res['return_bookings'] = current($this->db->get()->result_array());
 			

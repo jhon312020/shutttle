@@ -55,8 +55,10 @@ if (!defined('BASEPATH'))
 
 		$collaborators = $this->db->where('id', $id)->get('collaborators')->row();
 		
-		$start_date = date('Y-m-d', strtotime('-7 days'));
-		$end_date = Date('Y-m-d');
+		//$start_date = date('Y-m-d', strtotime('-7 days'));
+		//$end_date = Date('Y-m-d');
+		$start_date = '';
+		$end_date = '';
 		if($this->input->post('start_date')) {
 			$chartStartDate = str_replace('/','-',$this->input->post('start_date'));
 			$startDate = date('Y-m-d', strtotime($chartStartDate));
@@ -66,8 +68,8 @@ if (!defined('BASEPATH'))
 				$end_date = $endDate;
 				$start_date = $startDate;
 			} else {
-				$start_date = date('Y-m-d', strtotime('-7 days'));
-				$end_date = Date('Y-m-d');
+				$start_date = '';
+				$end_date = '';
 			}
 		} else {
 			if ($this->mdl_collaborators->run_validation()){
@@ -201,6 +203,11 @@ if (!defined('BASEPATH'))
 		else
 			$this->mdl_collaborators->form_values['password'] = str_replace('_pickngo', '', base64_decode($user_array['secret_key']));
 
+		if ($start_date == '' && $end_date == '') {
+			$where_condition = "booking.is_active = 1 and tbl_booking.collaborator_id ='".$id."' and tbl_booking.round_trip = 0";
+		} else {
+			$where_condition = "booking.is_active = 1 and tbl_booking.collaborator_id ='".$id."' and tbl_booking.round_trip = 0 and DATE(tbl_booking.start_journey) between '".$start_date."' and '".$end_date."'";
+		}
 
 		$booking_array = $this->mdl_shuttles->select('booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.address as col_address,booking.round_trip,booking.price,booking.book_status,booking.payment_method,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
 				booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,		booking.return_book_id,booking.return_journey,booking.country,booking.flight_no,booking.created,collaborators.name,booking.client_id,booking.client_array,
@@ -209,7 +216,7 @@ if (!defined('BASEPATH'))
 				->join('clients', 'clients.id=booking.client_id', 'left')
 				->join('collaborators_address', 'collaborators_address.id = booking.collaborator_address_id', 'left')
 				->join('calendars', 'calendars.id=booking.calendar_id', 'left')
-				->where("booking.is_active = 1 and tbl_booking.collaborator_id ='".$id."' and tbl_booking.round_trip = 0 and DATE(tbl_booking.start_journey) between '".$start_date."' and '".$end_date."'")
+				->where($where_condition)
                                             ->order_by('booking.created', 'desc')
                                             ->get()->result_array();
 		

@@ -25,7 +25,14 @@
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
             <?php
-            foreach($this->config->item('menus') as $url => $menu) {
+            $menus = $this->config->item('menus');
+            if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2){} else {
+              unset($menus['contacts']);
+              $menus["collaborators/login"] = "collaborators_access";
+              $menus["contacts"] = "contact_us";
+            }
+            
+            foreach($menus as $url => $menu) {
             ?>
             <li class="<?php echo $url == METHOD_NAME ? 'active' : ''; ?>"><a style="text-transform:uppercase;" href="<?php echo site_url($lang."/".$url); ?>" class="page-scroll"><?php echo lang($menu); ?></a></li>
             <?php 
@@ -33,9 +40,13 @@
             ?>
           </ul>
         </div>
-        <div class="navbar-lang">
+        <div class="navbar-lang" style="text-align:center;">
         <a href="<?php echo $full_path_es; ?>"><img src="<?php echo IMAGEPATH; ?>spain.png"></a> 
         <a href="<?php echo $full_path_en; ?>"><img src="<?php echo IMAGEPATH; ?>english.png"></a>
+        <?php if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2){ } else { ?>
+          <br/>
+          <a style="color:white;font-size:14px;"href="<?php echo site_url($lang."/collaborators/login"); ?>"><?php echo lang('collaborators_access'); ?></a>
+        <?php } ?>
       </div>
       </div>
     </nav>

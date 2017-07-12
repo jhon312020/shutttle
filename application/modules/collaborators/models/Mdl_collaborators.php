@@ -66,6 +66,24 @@ class Mdl_collaborators extends Response_Model {
         );
     }
 
+    public function checkAvailableRoute($post_params) {
+        $record = $this->where('id',$post_params['collaborators_id'])->get()->result();
+        if ($record) {
+            $record = $record[0];
+            if (strtolower($post_params['from_location']) == strtolower($record->name) || strtolower($post_params['to_location']) == strtolower($record->name)) {
+                if ($post_params['from_location_id'] == $record->location_id || $post_params['to_location_id'] == $record->location_id){
+                    return true;
+                } else {
+                    return false;
+                }    
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }
 
 ?>

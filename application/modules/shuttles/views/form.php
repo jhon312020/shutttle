@@ -185,6 +185,11 @@ width: 3px;
 </style>
 <?php
 $extra_array = json_decode($bookings['extra_array'], true);	
+if ($this->session->userdata('cms_lang') == 'english') {
+	$lang = 'en';
+} else {
+	$lang = 'es';
+}
 ?>
 <div class="row">
 	<?php 
@@ -265,7 +270,7 @@ $extra_array = json_decode($bookings['extra_array'], true);
 									<label class="col-sm-3 control-label pull-left"><?php echo lang('vehicle'); ?>: </label>
 									<label class="col-sm-8 control-label pull-left editLabel">
 									<?php 
-										echo '<b>'.$bookings['vehicle']['name'].'</b><br/>';
+										echo '<b>'.$bookings['vehicle'][$lang.'_title'].'</b><br/>';
 										echo '<img src="'.base_url().'/assets/cc/images/vehicles/'.$bookings['vehicle']['image'].'" width="150" />';
 									?></label>
 								</div>

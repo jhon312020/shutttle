@@ -256,9 +256,9 @@ $disabled = ($readonly)?'disabled':'';
 						<form method="POST" action="" id="dateRange" style="position:absolute; right:0px;z-index:998;">
 							<label>
 								<div class="input-group input-daterange pull-left" style="width:83%;">
-									<?php echo form_input('start_date', Date('d/m/Y', strtotime($start_date)), 'class="form-control input-sm datepicker1" style="height:31px;"'); ?>
+									<?php echo form_input('start_date', ($start_date)?Date('d/m/Y', strtotime($start_date)):'', 'class="form-control input-sm datepicker1" style="height:31px;"'); ?>
 									<span class="input-group-addon">to</span>
-									<?php echo form_input('end_date', Date('d/m/Y', strtotime($end_date)), 'class="form-control datepicker1 date-input" style="margin-left:0px !important;"'); ?>
+									<?php echo form_input('end_date', ($end_date)?Date('d/m/Y', strtotime($end_date)):'', 'class="form-control datepicker1 date-input" style="margin-left:0px !important;"'); ?>
 								</div>
 								<button class='btn btn-sm btn-primary pull-right' style="font-size:13px;padding:5px 10px;margin-left: 10px;" type="submit">Go</button>
 							</label>

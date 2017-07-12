@@ -297,8 +297,10 @@ function autocompleteText() {
 		//console.log(formData);
 		//console.log(JSON.stringify(formData));
 		
-		$('#passenger_price').val(iniPrice.toFixed(2));
+		//$('#passenger_price').val(iniPrice.toFixed(2));
 		$('.amount').val(totAmount.toFixed(2));
+
+		console.log($('#passenger_price').val());
 
 		$.ajax({
 			url: ajaxUrl,
@@ -366,6 +368,7 @@ function autocompleteText() {
 						}
 					}
 				} else {
+					console.log('before',$('#passenger_price').val());
 					var duplicate_modal = $('#duplicate_modal');
 					if(data.start_duplicate && data.return_duplicate){
 						$('.duplicate_message').hide();

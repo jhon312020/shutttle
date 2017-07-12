@@ -11,7 +11,7 @@ class Anonymous_Controller extends MX_Controller {
         "faq"=>"faq.png",
         "contacts"=>"contacts.png",
         "terms"=>"terms.png",
-        "success"=>"payment.png",
+        "success"=>"thanks.png",
         "collaborators"=>"collaborators.png",
         "bookings"=>"collaborators.png",
         "booking_details" => "collaborators.png",

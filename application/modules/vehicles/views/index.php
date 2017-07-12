@@ -8,13 +8,20 @@
 </div>
 
 <?php echo $this->layout->load_view('layout/alerts'); ?>
-
+<?php 
+$cms_lang = $this->session->userdata('cms_lang');
+if ($cms_lang == 'english') {
+	$lang = 'en';
+} else {
+	$lang = 'es';
+}
+?>
 <table class="table table-bordered datatable data_table">
 
 	<thead>
 		<tr>
             <th><?=lang('vehicle')?></th>
-			<th><?=lang('brand')?></th>
+			<th><?=lang('title')?></th>
 			<th><?=lang('passengers')?></th>
 			<th><?=lang('luggage')?></th>
 			<th><?=lang('edit')?></th>
@@ -27,7 +34,11 @@
 			<td style="text-align:center">
 				<img src="<?php echo $site_url; ?>/assets/cc/images/vehicles/<?php echo $vehicle->image ;?>" width="150"/>
 			</td>
-			<td><?=$vehicle->brand?></td>
+			<?php if ($cms_lang == 'english') { ?>
+				<td><?=$vehicle->en_title?></td>
+			<?php } else { ?>
+				<td><?=$vehicle->es_title?></td>
+			<?php } ?>
 			<td><?=$vehicle->min_passengers.' - '.$vehicle->max_passengers?></td>
 			<td><?=$vehicle->luggage?></td>
 			<td>

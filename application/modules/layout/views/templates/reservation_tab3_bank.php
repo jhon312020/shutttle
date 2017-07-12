@@ -67,33 +67,7 @@
 							<input type="text" class="form-control bord-rad-10 validate[required,equals[email]]" id="confirm_email" name="confirm_email" placeholder="<?php echo lang('confirm_email'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-pattern-mismatch="<?php echo lang('field_match')?>">
 						</div>
 						<div class="form-group col-sm-3 validText clear-pad-RL">
-							<input type="text" class="form-control bord-rad-10" id="phone" name="phone" placeholder="<?php echo lang('phone'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_integer'); ?>">
-						</div>
-						<div class="form-group col-sm-9 validText Mob-pad-R clear-pad-L">
-							<input type="text" class="form-control bord-rad-10" id="address" name="address" placeholder="Direction" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" >
-						</div>
-						<div class="form-group col-sm-3 validText clear-pad-RL">
-							<input type="text" class="form-control bord-rad-10" id="cp" name="cp" placeholder="<?php echo lang('postcode'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_zip'); ?>">
-						</div>
-						<div class="form-group col-sm-4 validText clear-pad-RL">
-							<input type="text" class="form-control bord-rad-10" id="client_country" name="client_country" placeholder="<?php echo lang('country'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-						</div>
-						<div class="form-group col-sm-4 validText mob-pad-RL">
-							<input type="text" class="form-control bord-rad-10" id="city" name="city" placeholder="<?php echo lang('city'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-						</div>
-						<div class="form-group col-sm-4 validText clear-pad-RL">
-							<input type="text" class="form-control bord-rad-10" id="nationality" name="nationality" placeholder="<?php echo lang('nationality'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-						</div>
-						<div class="form-group col-sm-4 validText clear-pad-RL">
-							<!--<input type="text" class="form-control bord-rad-10 validate[required]" id="dni_passport" name="dni_passport" placeholder="pasaporte" required>-->
-							<select class="form-control" id="dni_passport" name="dni_passport" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
-								<option value=""><?php echo lang('id_or_passport'); ?></option>
-								<option value="id"><?php echo lang('dni_id'); ?></option>
-								<option value="passport"><?php echo lang('dni_passport'); ?></option>
-							</select>
-						</div>
-						<div class="form-group col-sm-4 validText mob-pad-RL">
-							<input type="text" class="form-control bord-rad-10" id="doc_no" name="doc_no" placeholder="<?php echo lang('number_of_document'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>">
+							<input type="text" class="form-control bord-rad-10 validate[required]" id="phone" name="phone" placeholder="<?php echo lang('country_code_plus_phone'); ?>" required  data-errormessage-value-missing="<?php echo lang('require_field')?>" data-errormessage-custom-error="<?php echo lang('invalid_integer'); ?>">
 						</div>
 						<!--<div class="form-group col-sm-4 showExtras clear-pad-RL">
 							<input type="checkbox" name="save_extra" id="save_extra" value="1"> <label style="position: relative; top: -1px;" for="save_extra"><?php echo lang('save_my_details_for_future_bookings'); ?></label>
@@ -124,7 +98,7 @@
 			<div class="row mybox-3">
 				<div class="col-xs-12 myapplicar no-pad-left">
 				<!--<div class="col-xs-4" style="padding-left:0px;"><h4 style="font-weight:bold;"><?php //echo lang('promotional_code'); ?></h4></div>-->
-					<div class="col-xs-4" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php //echo lang('promotional_code'); ?>Promotional Code" id="promo_code" name="promo_code"></div>
+					<div class="col-xs-4" style="margin-top:3px;padding-left:0px;"> <input type="text" class="form-control promoinput" placeholder="<?php echo lang('promotional_code'); ?>" id="promo_code" name="promo_code"></div>
 					<div class="col-xs-2" style="margin-top:3px"> 
 						<button class="btn btn-default pull-right applicarbtn promo-btn"><?php echo lang('apply'); ?></button>
 					</div>

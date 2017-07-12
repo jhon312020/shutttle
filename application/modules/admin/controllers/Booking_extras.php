@@ -59,12 +59,11 @@ if (!defined('BASEPATH'))
 		$this->layout->render();
 	}
 	
-	/*public function delete($id) {
-		$this->db->where('collaborator_id',$id);
-		$this->db->delete('tbl_users');
-		$this->mdl_booking_extras->delete($id);
+	public function delete($id) {
+		$this->db->where('id',$id);
+		$this->db->delete('tbl_booking_extras');
 		redirect('admin/booking_extras');
-	}*/
+	}
 	
 	public function toggle($id, $bool){
 		if ($id){

@@ -201,6 +201,14 @@
 						<span style="color:#25387d !important;font-size:12px !important;padding-left:10px;font-weight:bold !important;"><?php echo '<span style="color:#25387d !important;font-size:12px !important;padding-left:10px;font-weight:bold !important;">'. lang('passengers') .'</span>'. ': <span style="font-weight:normal !important;">'. $bookings['adults'] . '</span>'; ?> </span>
 
 					</td>
+					<?php 
+						  	if ($clients['phone']) {
+					?>
+					<td style="width:50%;padding-right:10px;padding-top:10px;padding-bottom:10px;text-align:right;">
+						<span style="color:#25387d !important;font-size:12px !important;padding-left:10px;font-weight:bold !important;"><?php echo '<span style="color:#25387d !important;font-size:12px !important;padding-left:10px;font-weight:bold !important;">'. lang('phone') .'</span>'. ': <span style="font-weight:normal !important;">'. $clients['phone'] . '</span>'; ?> </span>
+					</td>
+					<?php } ?>
+
 				</tr>
 
 			</tbody>
@@ -378,7 +386,7 @@
 							<tbody>
 								<tr>
 									<td>
-										<span class="right-span" style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;">Promotional code:  <span style="font-weight:normal;"><?php echo $bookings['promotional_code_id']?$bookings['reduction_value'] : 0; ?>&nbsp;&euro;</span></span>
+										<span class="right-span" style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;font-weight:bold;"><?php echo lang('promotional_code'); ?>:  -<span style="font-weight:normal;"><?php echo $bookings['promotional_code_id']?$bookings['reduction_value'] : 0; ?>&nbsp;&euro;</span></span>
 									</td>
 									
 								</tr>
@@ -488,17 +496,15 @@
 		
 
 		
-
-		<?php if($ln == 'en') { ?>
 		<div class="row" style="padding-left:10px !important;width:100%;">
 			<table style="width:100%;">
 				<tbody>
 					<tr>
 						<td style="width:50% !important;">
-							<span style="font-size:12px !important;">Pick up at T1 every 00" & 30"</span>
+							<span style="font-size:12px !important;"><?php echo lang('Pick up at T1 every 00" & 30"'); ?></span>
 						</td>
 						<td style="width:50%;">
-							<span style="font-size:12px !important;">Pick up at T2 every 15" & 45"</span>
+							<span style="font-size:12px !important;"><?php echo lang('Pick up at T2 every 15" & 45"'); ?></span>
 						</td>
 					</tr>
 				</tbody>
@@ -507,97 +513,50 @@
 		</div>
 		<div class="row" style="margin-left:10px !important;">
 
-			<p style="font-weight:bold;color:#25387d;font-size:15px !important;">BOOKING TERMS & CONDITIONS</p>
+			<p style="font-weight:bold;color:#25387d;font-size:15px !important;"><?php echo lang('BOOKING TERMS & CONDITIONS'); ?></p>
 
 		</div>
 
 		<div style="margin-left:10px !important;">
 
 			<div class="row" style="">
+				<p style="font-weight:bold;"><?php echo lang('AIRPORT'); ?></p>
+				<p style="font-weight:bold;"><?php echo lang('Shared Vehicle'); ?></p>
 
-				<p style="font-weight:bold;">Airport pick-up</p>
+				<p><?php echo lang('Pick up at T1 every 00" & 30"'); ?></p>
 
-				<p>Pick up at T1 every 00" & 30"</p>
+				<p><?php echo lang('Pick up at T2 every 15" & 45"'); ?></p>
 
-				<p>Pick up at T2 every 15" & 45"</p>
+				<p style="font-weight:bold;"><?php echo lang('Private Vehicle'); ?></p>
+
+				<p><?php echo lang('Driver will meet & great you at arrivals once you walk out from baggage claim.'); ?></p>				
 			</div>
 
 			<div class="row" style="">
 
-				<p style="font-weight:bold;">Hotel / other pick-up</p>
+				<p style="font-weight:bold;"><?php echo lang('HOTEL'); ?></p>
+				<p style="font-weight:bold;"><?php echo lang('Shared Vehicle pick-up'); ?></p>
 
-				<p>Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance</p>
+				<p><?php echo lang('Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance'); ?></p>
+
+				<p style="font-weight:bold;"><?php echo lang('Private Vehicle pick-up'); ?></p>
+
+				<p><?php echo lang('Driver will meet & great you at the lobby of your hotel/hostel'); ?></p>
 
 			</div>
 
 			<div class="row" style="">
 
-				<p style="font-weight:bold;">CANCELLATION POLICY</p>
+				<p style="font-weight:bold;font-size:16px;"><?php echo lang('CANCELLATION POLICY'); ?></p>
 
-				<p>No fees for cancellation up to 24hours prior the start time of service.</p>
+				<p><?php echo lang('No fees for cancellation up to 24hours prior the start time of service.'); ?></p>
 
-				<p>100% of the total price of the service, when the cancellation occurs less than 24hrs prior the service or the passenger does not appear.</p>
+				<p><?php echo lang('100% of the total price of the service, when the cancellation occurs less than 24hrs prior the service or the passenger does not appear.'); ?></p>
 
 			</div>
 
 		</div>	
-
-		<?php } else { ?>
-		<div class="row" style="padding-left:10px !important;width:100%;">
-			<table style="width:100%;">
-				<tbody>
-					<tr>
-						<td style="width:50% !important;">
-							<span style="font-size:12px !important;">Recogida en T1 cada 00" y 30"</span>
-						</td>
-						<td style="width:50%;">
-							<span style="font-size:12px !important;">Recogida en T2 cada 15" y 45"</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			
-		</div>
-		<div class="row" style="margin-left:10px !important;">
-
-			<p style="font-weight:bold;color:#25387d;font-size:15px !important;">TÉRMINOS Y CONDICIONES DE LA RESERVA</p>
-
-		</div>
-		<div style="padding-left:10px !important;">
-
-			<div class="row" style="">
-
-				<p style="font-weight:bold;">Recogida en el aeropuerto</p>
-
-				<p>Recogida en T1 cada 00" y 30"</p>
-
-				<p>Recogida en T2 cada 15" y 45"</p>
-
-			</div>
-
-			<div class="row" style="">
-
-				<p style="font-weight:bold;">Hotel / otros Pick-up</p>
-
-				<p>Hasta 30 minutos de espera desde la hora de recogida. Cancelación gratis con 24h de antelación.</p>
-
-			</div>
-
-			<div class="row" style="">
-
-				<p style="font-weight:bold;">POLÍTICA DE CANCELACIÓN</p>
-
-				<p>No se cobrará el recargo de los servicios cuando se cancele con 24hrs de antelación al servicio.</p>
-
-				<p>Se cobrará el 100% del servicio cuando la cancelación sea inferior a 24hrs o los pasajeros no aparezcan.</p>
-
-			</div>
-
-		</div>	
-
-		<?php } ?>
 
 	</body>
 
 </html>
-

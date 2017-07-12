@@ -51,7 +51,9 @@ class Mdl_locations extends Response_Model {
     }
 
     public function isBarcelonaCity($locations) {
-        if (in_array($this->config->item('shuttle_city_id'), $locations)) {
+        $from = $locations[0];
+        $to = $locations[1];
+        if (($from == $this->config->item('shuttle_city_id') && in_array($to,$this->config->item('shuttle_airport_ids')))  || ($to == $this->config->item('shuttle_city_id') && in_array($from,$this->config->item('shuttle_airport_ids')))) {
             return true;
         } else {
             return false;

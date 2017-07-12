@@ -11,6 +11,7 @@ class Ajax extends Anonymous_Controller {
     $this->load->model('paths/mdl_paths');
     $this->load->model('vehicles/mdl_vehicles');
     $this->load->model('locations/mdl_locations');
+    $this->load->model('collaborators/mdl_collaborators');
     $this->details = array();
     $this->details['collaborator_details'] = array();
     $this->details['collaborator_address'] = array();
@@ -35,6 +36,13 @@ class Ajax extends Anonymous_Controller {
                 exit;
               }
             }
+            // Check for collaborators 
+            if ($post_params['collaborators_id']) {
+            	if ($this->mdl_collaborators->checkAvailableRoute($post_params) == false) {
+            		echo json_encode(array('error'=>'Kindly select your location at Start/End.'));
+                	exit;
+            	}
+            }
             $paths = $this->mdl_paths->getRoute($post_params['from_location_id'], $post_params['to_location_id']);
             if ($paths) {
               $route_is_in_barcelona_city = $this->mdl_locations->isBarcelonaCity(array($post_params['from_location_id'], $post_params['to_location_id']));
@@ -42,6 +50,11 @@ class Ajax extends Anonymous_Controller {
                 $vehicles = $this->mdl_vehicles->getVehicles($post_params['adults'], 'all');
               } else {
                 $vehicles = $this->mdl_vehicles->getVehicles($post_params['adults'], 'private');
+                $vehicle_list = json_decode($paths['vehicles'],true);
+                $vehicle_list = array_filter($vehicle_list);
+                if (count($vehicle_list) == 0) {
+                  $vehicles = false;
+                }
               }
               
               if ($vehicles) {
@@ -58,7 +71,16 @@ class Ajax extends Anonymous_Controller {
                 $data['to_location'] = $post_params['to_location'];
                 $data['paths'] = $paths;
                 $data['vehicles'] = $vehicles;
-                $data['shared_vehicles_rate'] = $this->db->where('no_of_seats',$post_params['adults'])->where('rate_type','rate1')->get('rates')->result_array();
+                $rate_type = 'rate1';
+                if ($post_params['collaborators_id']) {
+                  $collaborator = $this->mdl_collaborators->where('id',$post_params['collaborators_id'])->get()->result();
+                  if ($collaborator) {
+                    if ($collaborator[0]->price) {
+                      $rate_type = $collaborator[0]->price;
+                    }
+                  }
+                }
+                $data['shared_vehicles_rate'] = $this->mdl_vehicles->getVehicleRates($post_params['adults'],$rate_type);
                 echo json_encode($data); exit;
               } else {
                 echo json_encode(array('error'=>'The vehicles does not exists for selected locations or people'));
@@ -251,6 +273,9 @@ class Ajax extends Anonymous_Controller {
     }
   }
 
+/*  $post_params['error'] ='The start date should be less than return date1'; 
+    echo json_encode($post_params); exit;*/
+
   /* Stripe payment validation start */
   /*if (isset($post_params['paymentmethod']) && $post_params['paymentmethod'] == 'online') {
 
@@ -286,9 +311,7 @@ class Ajax extends Anonymous_Controller {
               
               $client_array = array('name'=> $post_params['name'], 'surname'=>$post_params['surname'],
                                       'email'=>$post_params['email'], 'phone'=>$post_params['phone']
-                                      , 'address'=>$post_params['address'], 'cp'=>$post_params['cp'], 'country'=>$post_params['client_country']
-                                      , 'city'=>$post_params['city'], 'nationality'=>$post_params['nationality'], 'dni_passport'=>$post_params['dni_passport']
-                                      , 'doc_no'=>$post_params['doc_no']);
+                                      );
               
               $address = $post_params['location_address'];
     

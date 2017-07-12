@@ -42,8 +42,8 @@
 				<a class="btn btn-warning btn-sm <?php echo $booking_extra->is_active ? '' : 'inactive'; ?>" href="<?php echo site_url('admin/booking_extras/toggle/' . $booking_extra->id . '/' . $booking_extra->is_active); ?>">
 					<i class="entypo-check" title="<?php echo $booking_extra->is_active ? 'Active' : 'In Active'; ?>"></i>
 				</a>
-				<!-- <a class="btn btn-danger btn-sm" href="<?php //echo site_url('admin/booking_extras/delete/' . $booking_extra->id); ?>" onclick="return confirm('<?php //echo lang('delete_record_warning'); ?>');" > -->
-					<!-- <i class="entypo-trash"></i> -->
+				<a class="btn btn-danger btn-sm" href="<?php echo site_url('admin/booking_extras/delete/' . $booking_extra->id); ?>" onclick="return confirm('<?php echo lang('delete_record_warning'); ?>');" > 
+					<i class="entypo-trash"></i>
 				</a>
 			</td>
 		</tr>

@@ -214,11 +214,19 @@
 
 			<div class="col-sm-12">
 
-				<div class="col-sm-12 book-info-left" style="height:50px;background-color:#fff;display: table;">
+				<div class="col-sm-6 book-info-left" style="height:50px;background-color:#fff;display: table;">
 
 					<span style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo '<span>'. lang('passengers') .'</span>'. ': <span style="font-weight:normal;">'. $bookings['adults'] . '</span>'; ?></span></span>
 
 				</div>
+
+				<?php if ($clients['phone']) { ?>
+					<div class="col-sm-6 book-info-right" style="height:50px;background-color:#fff;color:#fff;display: table;">
+
+						<span class="right-span" style="font-size:18px;padding-right:10px;color:#25387d;vertical-align:middle;display: table-cell;text-align:right;"><?php echo '<span>'. lang('phone') .'</span>'. ': <span style="font-weight:normal;">'. $clients['phone'] . '</span>'; ?></span></span>
+
+					</div>
+				<?php } ?>
 
 			</div>
 
@@ -375,7 +383,7 @@
 
 				<div class="col-sm-6 book-info-right promo-text" style="padding-right: 0px;padding-left: 5px;">
 					<div class="col-sm-6 book-info-right" style="height:50px;background-color:#fff;color:#fff;display: table;">
-						<span class="right-span" style="font-size:18px;padding-left:10px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;">Promotional code:  <span style="font-weight:normal;"><?php echo $bookings['promotional_code_id']?$bookings['reduction_value'] : 0; ?>&nbsp;&euro;</span></span>
+						<span class="right-span" style="font-size:18px;padding-left:5px;color:#25387d;vertical-align:middle;display: table-cell;font-weight:bold;"><?php echo lang('promotional_code'); ?>:  -<span style="font-weight:normal;"><?php echo $bookings['promotional_code_id']?$bookings['reduction_value'] : 0; ?>&nbsp;&euro;</span></span>
 						
 					</div>
 					<div class="col-sm-6 book-info-right" style="height:50px;background-color:#25387d;color:#fff;display: table;">
@@ -470,36 +478,23 @@
 			<div class="col-sm-6">
 
 				<img src="<?php echo IMAGEPATH.'/Terminal-1.jpg'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">
-				<?php if($lang == 'en') { ?>
-				<p style="font-size:14px !important;">Pick up at T1 every 00" & 30"</p>
-				<?php } else { ?>
-				<p style="font-size:14px !important;">Recogida en T1 cada 00" y 30"</p>
-				<?php } ?>
-
+				<p style="font-size:14px !important;"><?php echo lang('Pick up at T1 every 00" & 30"'); ?></p>
 			</div>	
 			<div class="col-sm-6">
 
 				<img src="<?php echo IMAGEPATH.'/Terminal-2.jpg'; ?>" style="margin:0px!important;padding:0px!important;margin-bottom:15px!important;width:100%;">
-				<?php if($lang == 'en') { ?>
-				<p style="font-size:14px !important;">Pick up at T2 every 15" & 45"</p>
-				<?php } else { ?>
-				<p style="font-size:14px !important;">Recogida en T2 cada 15" y 45"</p>
-				<?php } ?>
-
+				<p style="font-size:14px !important;"><?php echo lang('Pick up at T2 every 15" & 45"'); ?></p>
 			</div>	
 
 		</div>
 
 		
-		
-
-		<?php if($lang == 'en') { ?>
 
 		<div class="row" style="margin-top:0px;">
 
 			<div class="col-sm-12">
 
-				<h4 style="font-weight:normal;color:#25387d;">BOOKING TERMS & CONDITIONS<h4>
+				<h4 style="font-weight:normal;color:#25387d;"><?php echo lang('BOOKING TERMS & CONDITIONS'); ?><h4>
 
 			</div>	
 
@@ -512,23 +507,16 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;font-size:16px;">Airport pick-up</p>
+						<p style="font-weight:bold;font-size:16px;"><?php echo lang('AIRPORT'); ?></p>
+						<p style="font-weight:bold;font-size:16px;"><?php echo lang('Shared Vehicle'); ?></p>
 
-						<p>Pick up at T1 every 00" & 30"</p>
+						<p><?php echo lang('Pick up at T1 every 00" & 30"'); ?></p>
 
-						<p>Pick up at T2 every 15" & 45"</p>
+						<p><?php echo lang('Pick up at T2 every 15" & 45"'); ?></p>
 
-					</div>	
+						<p style="font-weight:bold;font-size:16px;"><?php echo lang('Private Vehicle'); ?></p>
 
-				</div>
-
-				<div class="row" style="">
-
-					<div class="col-sm-12">
-
-						<p style="font-weight:bold;font-size:16px;">Hotel / other pick-up</p>
-
-						<p>Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance</p>
+						<p><?php echo lang('Driver will meet & great you at arrivals once you walk out from baggage claim.'); ?></p>
 
 					</div>	
 
@@ -538,11 +526,28 @@
 
 					<div class="col-sm-12">
 
-						<p style="font-weight:bold;font-size:16px;">CANCELLATION POLICY</p>
+						<p style="font-weight:bold;font-size:16px;"><?php echo lang('HOTEL'); ?></p>
+						<p style="font-weight:bold;font-size:16px;"><?php echo lang('Shared Vehicle pick-up'); ?></p>
 
-						<p>No fees for cancellation up to 24hours prior the start time of service.</p>
+						<p><?php echo lang('Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance'); ?></p>
 
-						<p>100% of the total price of the service, when the cancellation occurs less than 24hrs prior the service or the passenger does not appear.</p>
+						<p style="font-weight:bold;font-size:16px;"><?php echo lang('Private Vehicle pick-up'); ?></p>
+
+						<p><?php echo lang('Driver will meet & great you at the lobby of your hotel/hostel'); ?></p>
+
+					</div>	
+
+				</div>
+
+				<div class="row" style="">
+
+					<div class="col-sm-12">
+
+						<p style="font-weight:bold;font-size:16px;"><?php echo lang('CANCELLATION POLICY'); ?></p>
+
+						<p><?php echo lang('No fees for cancellation up to 24hours prior the start time of service.'); ?></p>
+
+						<p><?php echo lang('100% of the total price of the service, when the cancellation occurs less than 24hrs prior the service or the passenger does not appear.'); ?></p>
 
 					</div>	
 
@@ -551,67 +556,6 @@
 			</div>
 
 		</div>	
-
-		<?php } else { ?>
-		<div class="row" style="margin-top:0px;">
-
-			<div class="col-sm-12">
-
-				<h4 style="font-weight:normal;color:#25387d;">TÉRMINOS Y CONDICIONES DE LA RESERVA<h4>
-
-			</div>	
-
-		</div>
-		<div class="row" style="font-size:14px;">
-
-			<div class="col-sm-12">
-
-				<div class="row" style="">
-
-					<div class="col-sm-12">
-
-						<p style="font-weight:bold;font-size:16px;">Recogida en el aeropuerto</p>
-
-						<p>Recogida en T1 cada 00" y 30"</p>
-
-						<p>Recogida en T2 cada 15" y 45"</p>
-
-					</div>	
-
-				</div>
-
-				<div class="row" style="">
-
-					<div class="col-sm-12">
-
-						<p style="font-weight:bold;font-size:16px;">Hotel / otros Pick-up</p>
-
-						<p>Hasta 30 minutos de espera desde la hora de recogida. Cancelación gratis con 24h de antelación.</p>
-
-
-					</div>	
-
-				</div>
-
-				<div class="row" style="">
-
-					<div class="col-sm-12">
-
-						<p style="font-weight:bold;font-size:16px;">POLITICA DE CANCELACION</p>
-
-						<p>No se cobrara el recargo de los servicios cuando se cancele con 24hrs de antelacion al servicio.</p>
-
-						<p>Se cobrara el 100% del servicios cuando la cancelacion sea inferior a 24hrs o los pasajeros no aparezcan</p>
-
-					</div>	
-
-				</div>
-
-			</div>
-
-		</div>		
-
-		<?php } ?>
 
 	</div>
 

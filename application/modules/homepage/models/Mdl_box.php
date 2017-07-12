@@ -33,7 +33,7 @@ class Mdl_box extends Response_Model {
             'link' => array(
                 'field' => 'link',
                 'label' => 'URL',
-                'rules' => 'required'
+                'rules' => 'valid_url'
             ),
             /*'image' => array(
                 'field' => 'image',

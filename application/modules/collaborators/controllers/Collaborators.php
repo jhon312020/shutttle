@@ -91,7 +91,7 @@ class Collaborators extends Anonymous_Controller {
     if ($this->mdl_users->run_validation('validation_rules_collaborators_login')) {
       $data = $this->mdl_users->check_collaborators($this->input->post());
       if ($data) {
-        redirect($this->uri->segment(1).'/bookings');
+        redirect($this->uri->segment(1).'/reservation');
       } else {
         //$this->session->set_flashdata('alert_error', lang('invalid_credentials'));
         redirect($this->uri->uri_string());

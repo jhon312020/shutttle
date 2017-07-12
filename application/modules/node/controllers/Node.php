@@ -466,11 +466,13 @@ class Node extends Anonymous_Controller {
         $this->session->set_flashdata('alert_error', lang('transaction_failed'));
         redirect($this->uri->segment(1));
     }
+
     if ($book_id != '' && is_numeric($book_id)) {
       $book_data = $this->db->from('booking')->where('id', $book_id)->get()->row();
       if ($book_data->book_status != 'pending') {
         //redirect($this->uri->segment(1));
       }
+      //echo $book_data->passenger_price; exit;
       if((float)$book_data->passenger_price == 0) {
         $this->session->set_flashdata('alert_error', 'Something went wrong');
         redirect($this->uri->segment(1).'/reservation');
@@ -556,7 +558,7 @@ class Node extends Anonymous_Controller {
 
     $this->template_vars['price'] = $this->input->get('amt');
     $this->template_vars['book_reference'] = 'SHT-'.date('dmY',strtotime($bookings['start_journey'])).'-'.sprintf("%02d", $this->template_vars['bookings']['id']);
-    $this->template_vars['content']['image'] = 'payment.jpg';
+    $this->template_vars['content']['image'] = 'confirmation.jpg';
 
     /* $this->load->helper('dompdf');  
     $html = $this->load->view('layout/templates/pdf', $this->template_vars, true);
@@ -575,7 +577,7 @@ class Node extends Anonymous_Controller {
       $this->email->set_mailtype("html");
       $this->email->from($this->set['site_email'], $this->set['site_title']);
       $this->email->to($this->template_vars['clients']['email']); 
-      $cc_array = array('janakiraman@proisc.com', 'checking@shuttleing.com');
+      $cc_array = array('checking@shuttleing.com');
       $this->email->cc($cc_array);
       if($this->template_vars['bookings']['book_status'] == 'completed')
         $this->email->bcc(array('janakiraman@proisc.com', 'bright@proisc.com'));
@@ -684,27 +686,40 @@ class Node extends Anonymous_Controller {
       $base_path.'/js/stripe/payment.js'
     );
     $categories = $this->mdl_place_categories->getList();
-    $locations = $this->mdl_locations->get()->result();
-    foreach ($locations as $location) {
-      $select_location[] = array('label'=>$location->location,'category'=>$categories[$location->category_id]);
+    $result_locations = $this->mdl_locations->get()->result();
+    $categories_location = array();
+    foreach ($result_locations as $location) {
+      $categories_location[$categories[$location->category_id]][] = $location->location;
+      //$select_location[] = array('label'=>$location->location,'category'=>$categories[$location->category_id]);
       $locations[$location->location] = $location->id;
     }
 
+    $collaborator = array();
     if ($this->session->userdata('user_type') && $this->session->userdata('user_type') == 2) {
       $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->where('id',$this->details['collaborator_details']['id'])->get('collaborators')->result();
+      if ($collaborators) {
+        $collaborator['location_id'] =  $collaborators[0]->location_id;
+        $collaborator['name'] =  ucfirst($collaborators[0]->name);
+      }
     } else {
       $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->get('collaborators')->result();
     }
 
     foreach ($collaborators as $record) {
-      $select_location[] = array('label'=>ucfirst($record->name),'category'=>$categories[$record->category_id]);
+      $categories_location[$categories[$record->category_id]][] = ucfirst($record->name);
+      //$select_location[] = array('label'=>ucfirst($record->name),'category'=>$categories[$record->category_id]);
       $locations[ucfirst($record->name)] = $record->location_id;
     }
-/*echo '<pre>';
-    print_r($select_location); exit;*/
+
+    foreach ($categories_location as $category_name=>$locations_label) {
+      foreach ($locations_label as $location) {
+        $select_location[] = array('label'=>$location,'category'=>$category_name);
+      }
+    }
 
     $this->template_vars['select_location'] = $select_location;
     $this->template_vars['locations'] = $locations;
+    $this->template_vars['collaborator'] = $collaborator;
 
     $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
     $this->template_vars['terminal_array'] = array('' => lang('to'), 'Barcelona Airport Terminal 1' => 'Barcelona Airport Terminal 1', 'Barcelona Airport Terminal 2'=>'Barcelona Airport Terminal 2');

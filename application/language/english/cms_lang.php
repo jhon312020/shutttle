@@ -1,6 +1,6 @@
 <?php
 // Added for Shuttles
-$lang['collaborators_access'] = 'Partners Access';
+$lang['collaborators_access'] = 'Member Login';
 $lang['customer'] = 'Customer';
 $lang['fleet'] = 'Fleet';
 $lang['shuttles'] = 'Bookings';
@@ -138,7 +138,7 @@ $lang['minutes'] = 'Minutes';
 
 $lang['child'] = 'Child (under 5)';
 $lang['baby'] = 'Baby';
-$lang['return_time'] = 'Re. time';
+$lang['return_time'] = 'Return Time';
 $lang['back_minutes'] = 'Re. mins';
 $lang['select_terminal'] = 'Select Terminal';
 
@@ -239,7 +239,7 @@ $lang['seat_availability_error'] = 'There is no available seats for this route';
 //confirmation page
 $lang['thanks_booking']='Thanks for your Booking.';
 $lang['print_booking']='Please print this confirmation email and show it to the driver.';
-$lang['query_booking']='For any queries or doubts please contact to shuttleing by Email:  checking@shuttleing.com or phone: +34 000 000 000';
+$lang['query_booking']='For any queries or doubts please contact to shuttleing by Email:  checking@shuttleing.com or phone: +34 697 462 259.';
 
 $lang['time_go'] = 'Your flight time';
 $lang['time_back'] = 'Your landing time';
@@ -434,4 +434,40 @@ $lang['location'] = 'Location';
 $lang['locations'] = 'Locations';
 $lang['day_go'] = 'Day Go';
 $lang['day_back'] = 'Day Back';
+
+$lang['Departure Time'] = 'Departure Time';
+$lang['Chooose your car'] = 'Chooose your car';
+$lang['Passengers'] = 'Passengers';
+$lang['Overview'] = 'Overview';
+$lang['Important Travel information'] = 'Important Travel information';
+$lang['Price for'] = 'Price for';
+$lang['All included'] = 'All included';
+
+$lang['BOOKING TERMS & CONDITIONS'] = 'BOOKING TERMS & CONDITIONS';
+$lang['AIRPORT'] = 'AIRPORT';
+$lang['Shared Vehicle'] = 'Shared Vehicle';
+$lang['Pick up at T1 every 00" & 30"'] = 'Pick up at T1 every 00" & 30"';
+$lang['Pick up at T2 every 15" & 45"'] = 'Pick up at T2 every 15" & 45"';
+$lang['Private Vehicle'] = 'Private Vehicle';
+$lang['Driver will meet & great you at arrivals once you walk out from baggage claim.'] = 'Driver will meet & great you at arrivals once you walk out from baggage claim.';
+$lang['HOTEL'] = 'HOTEL';
+$lang['Shared Vehicle pick-up'] ='Shared Vehicle pick-up';
+$lang['Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance'] = 'Up to 30 minutes waiting from the pick up time. Free cancellation with 24h in advance';
+$lang['Private Vehicle pick-up'] = 'Private Vehicle pick-up';
+$lang['Driver will meet & great you at the lobby of your hotel/hostel'] = 'Driver will meet & great you at the lobby of your hotel/hostel';
+$lang['CANCELLATION POLICY'] = 'CANCELLATION POLICY';
+$lang['No fees for cancellation up to 24hours prior the start time of service.'] = 'No fees for cancellation up to 24hours prior the start time of service.';
+$lang['100% of the total price of the service, when the cancellation occurs less than 24hrs prior the service or the passenger does not appear.'] = '100% of the total price of the service, when the cancellation occurs less than 24hrs prior the service or the passenger does not appear.';
+
+$lang['When'] = 'When';
+$lang['Where'] = 'Where';
+
+$lang['Day Go'] = 'Day Go';
+$lang['Day Back'] = 'Day Back';
+$lang['Address, Hotel, Location'] = 'Address, Hotel, Location';
+$lang['One case and 1 holdall<br>per passenger'] = 'One case and 1 holdall<br>per passenger';
+$lang['Door to door /<br/>Direct journey'] = 'Door to door /<br/>Direct journey';
+
+$lang['country_code_plus_phone'] = 'Country Code+Phone';
+
 ?>

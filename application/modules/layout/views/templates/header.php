@@ -1,3 +1,4 @@
+
 <?php
 $user_name = $this->session->userdata('user_name');
 $title = $this->mdl_settings->setting('site_title');
@@ -17,7 +18,7 @@ print_r($header_text_images);die;*/
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 	<?php
-	if($cms_lang == 'english'){
+	if($ln != 'es'){
 	?>
 	<meta name="description" content="Best low cost transport from Barcelona Airport to the City and vice versa. Free Wifi Internet.">
 	<meta name="keywords" content="Shuttle, shuttleing, barcelona, driver, transport, taxi, airport, city, transfer, bus">

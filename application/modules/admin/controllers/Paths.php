@@ -17,6 +17,18 @@ if (!defined('BASEPATH'))
 	}
 
 	public function index() {
+		$categories = $this->mdl_place_categories->getList();
+		$locations = $this->mdl_locations->get()->result();
+		$vehicles = $this->mdl_vehicles->getPrivateList();
+
+		$select_location = array();
+		$country_relation = array();
+
+		foreach ($locations as $location) {
+			$select_location[$categories[$location->category_id]][$location->id] = $location->location;
+		}
+
+		$data_array['select_location'] = $select_location;
 		$data_array['pickup_locations'] = $this->mdl_paths->group_by('pickup_location_id')->get()->result();
 		$data_array['cities'] = $this->mdl_cities->getList();
 		$data_array['locations'] = $this->mdl_locations->getList();
@@ -27,6 +39,7 @@ if (!defined('BASEPATH'))
 	}
 
 	public function form($id = null) {
+		ini_set('max_input_vars', 3000);
 		$error_flg = false;
 		$error = '';
 
@@ -93,22 +106,22 @@ if (!defined('BASEPATH'))
 		redirect('admin/paths');
 	}
 
-	public function duplicate($old_id) {
+	public function duplicate($old_id, $new_id) {
+		if ($old_id == $new_id) {
+			redirect('admin/paths');
+		}
 		$paths = $this->mdl_paths->where('pickup_location_id',$old_id)->get()->result_array();
 		$location = $this->mdl_locations->findById($old_id);
-		if ($location) {
-			unset($location['id']);
-			$current_time = date('Y-m-d h:i:s');
-			$location['location'] = $location['location'].'-copy';
-			$location['created_at'] = $current_time;
-			$location['updated_at'] = $current_time;
-			$id = $this->mdl_locations->save(null,$location);
-			if ($id) {
+		$new_location = $this->mdl_locations->findById($new_id);
+		if ($location && $new_location) {
+			if (isset($new_location['id']) && $new_location['id']) {
+				$current_time = date('Y-m-d H:i:s');
 				foreach ($paths as $key=>$path) {
 					unset($paths[$key]['id']);
 					$paths[$key]['created_at'] = $current_time;
 					$paths[$key]['updated_at'] = $current_time;
-					$paths[$key]['pickup_location_id'] = $id;
+					$paths[$key]['pickup_location_id'] = $new_location['id'];
+					$paths[$key]['pickup_city_id'] = $new_location['city_id'];
 				}
 			}
 			$this->db->insert_batch('tbl_paths',$paths);

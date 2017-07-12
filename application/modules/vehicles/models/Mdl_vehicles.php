@@ -75,6 +75,20 @@ class Mdl_vehicles extends Response_Model {
     	}
     }
 
+    public function getVehicleRates($no_of_seats, $rate_type = 'rate1') {
+        if ($rate_type == 'rate3') {
+            $rates = $this->db->where('no_of_seats',1)->where('rate_type','rate3')->get('rates')->result_array();
+            $rates[0]['no_of_seats'] *= $no_of_seats;
+            $rates[0]['rate_for_one_way'] *= $no_of_seats;
+            $rates[0]['rate_for_round_a_trip'] *= $no_of_seats;
+            $rates[0]['night_rate_for_one_way'] *= $no_of_seats;
+            $rates[0]['night_rate_for_round_a_trip'] *= $no_of_seats;
+            return $rates;
+        } else {
+            return $this->db->where('no_of_seats',$no_of_seats)->where('rate_type',$rate_type)->get('rates')->result_array();
+        }
+    }
+
 }
 
 ?>

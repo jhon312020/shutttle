@@ -38,7 +38,7 @@
 				<a class="btn btn-primary edit btn-sm edit_row"  href="<?php echo site_url('admin/paths/form/'.$location->pickup_location_id); ?>" >
 					<i class="entypo-pencil"></i>
 				</a>
-				<a class="btn btn-primary edit btn-sm edit_row"  href="<?php echo site_url('admin/paths/duplicate/'.$location->pickup_location_id); ?>" >
+				<a class="btn btn-primary edit btn-sm edit_row duplicate_button"  href="javascript:;" current-id="<?php echo $location->pickup_location_id; ?>" target="<?php echo site_url('admin/paths/duplicate/'.$location->pickup_location_id); ?>" >
 					<i class="entypo-docs"></i>
 				</a>
 				<a class="btn btn-warning btn-sm <?php echo $location->is_active ? '' : 'inactive'; ?>" href="<?php echo site_url('admin/paths/toggle/' . $location->pickup_location_id . '/' . $location->is_active); ?>">
@@ -52,3 +52,61 @@
 		<?php } ?>
 	</tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="duplicate_modal" role="dialog" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);" >
+<div class="modal-dialog modal-sm">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Select location</h4>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+				<div class="col-sm-10">
+					<select name="drop_location" class="select2" id="dupliate_location"  data-allow-clear="true" data-placeholder="Select a location">
+						<option></option>
+						<?php foreach ($select_location as $category_id=>$location) { ?>
+							<optgroup label="<?=$category_id?>" >
+							<?php foreach ($location as $id=>$value) { ?>
+								<option value="<?=$id?>"><?=$value?></option>
+							<?php } ?>
+							</optgroup>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-10 error-message" style="color:red"></div>
+			<br/>
+    </div>
+    <div class="modal-footer">
+    	<button type="button" class="btn btn-primary" id="submit_duplicate">Duplicate</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+  
+</div>
+</div>
+<script>
+selected_route_url = '';
+current_id = 0;
+$('.duplicate_button').click(function(){
+	selected_route_url = $(this).attr('target');
+	current_id = $(this).attr('current-id');
+	$('.error-message').html('');
+	$('#duplicate_modal').modal('show');
+});
+$('#submit_duplicate').click(function(){
+	if ($('#dupliate_location').val() == '') {
+		$('.error-message').html('Kindly select any one location');
+		return false;
+	}
+	if (current_id == $('#dupliate_location').val()) {
+		$('.error-message').html('You have selected the same pick up location');
+		return false;
+	}
+	location.href= selected_route_url+'/'+$('#dupliate_location').val();
+});
+</script>

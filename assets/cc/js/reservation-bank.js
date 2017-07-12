@@ -19,6 +19,7 @@ var percentage_value = '';
 var price_value = '';
 var totAmount = 0;
 var iniPrice = 0;
+var reduction = '';
 var formError = '<div class="nameformError parentFormundefined" style="opacity: 0.87; position: relative; top: 5px; font-size: 12px; width: 70%; right: initial; float: right;">'+
 					'<div class="formErrorContent" style="font-size:10px;!important">* There is no seats</div>'+
 				'</div>';
@@ -64,7 +65,14 @@ function updateExtras () {
 		total -= parseFloat(per);
 		$('.price_reduction').text(parseFloat(per).toFixed(2));
 		$('#promotional_values').val(per);
-	}
+	} else if (reduction != '') {
+		total -= parseFloat(reduction);
+		$('.price_reduction').text(parseFloat(reduction).toFixed(2));
+		$('#promotional_values').val(reduction);
+		if(total < 0) {
+			total = 0;
+		}
+	}	
 
 	var tot_fix = total.toFixed(2);
 	$('.price_total').text(tot_fix);
@@ -83,13 +91,15 @@ $(document).ready(function(){
 		promptPosition : 'bottomLeft',
 		maxErrorsPerField:1
 	});
+
+
   //Tab1 Button validation 
 	$('#firstbutton').click(function() {
 		var valid = $("#firstStepForm").validationEngine('validate');
 		if(valid) {
 			
 			if (locations[$('#from_location').val()] == undefined) {
-				$('#firstPageError .formErrorContent').text('Kindly check the starts at location');
+				$('#firstPageError .formErrorContent').text('Kindly check the starts location');
 				$('#firstPageError').show();
 				$('#from_location_id').val('');
 				return false;
@@ -98,7 +108,7 @@ $(document).ready(function(){
 			}
 
 			if (locations[$('#to_location').val()] == undefined) {
-				$('#firstPageError .formErrorContent').text('Kindly check the ends at location');
+				$('#firstPageError .formErrorContent').text('Kindly check the ends location');
 				$('#firstPageError').show();
 				$('#to_location_id').val('');
 				return false;
@@ -110,6 +120,14 @@ $(document).ready(function(){
 				$('#firstPageError .formErrorContent').text('Start and end location should not be the same');
 				$('#firstPageError').show();
 				return false;
+			}
+
+			if (collaborator.name) {
+				if ($('#from_location').val() == collaborator.name || $('#to_location').val() == collaborator.name) {} else {
+					$('#firstPageError .formErrorContent').text('Kindly select your location on Starts/Ends');
+					$('#firstPageError').show();
+					return false;
+				}
 			}
 
 			$('#firstPageError').hide();
@@ -447,7 +465,6 @@ $(document).ready(function(){
 					}
 					else{
 						var total = parseFloat(totAmount);
-						var reduction = '';
 						code = data['code'];
 						if(code != ''){
 							if(price != ''){
@@ -749,15 +766,44 @@ $(document).ready(function(){
 	    });
 	  }
 	});
+
  
     $( "#from_location" ).catcomplete({
       delay: 0,
-      source: placeLocations
+      source: placeLocations,
+      select : function( event, ui ) {
+      	if (collaborator.name) {
+      		if (ui.item.value != collaborator.name) {
+				$('#to_location').val(collaborator.name);
+			}	
+      	}
+      },
+      change : function( event, ui ) {
+      	if (collaborator.name) {
+      		if (ui.item.value != collaborator.name) {
+				$('#to_location').val(collaborator.name);
+			}	
+      	}
+      }
     });
 
     $( "#to_location" ).catcomplete({
       delay: 0,
-      source: placeLocations
+      source: placeLocations,
+      select : function( event, ui ) {
+      	if (collaborator.name) {
+      		if (ui.item.value != collaborator.name) {
+				$('#from_location').val(collaborator.name);
+			}	
+      	}
+      },
+      change : function( event, ui ) {
+      	if (collaborator.name) {
+      		if (ui.item.value != collaborator.name) {
+				$('#from_location').val(collaborator.name);
+			}	
+      	}
+      }
     });
 
 
@@ -821,7 +867,7 @@ function calculateVehicleAmount(vehicle,vehicle_amounts,shared_vehicles_rate,is_
 function isNightTrip(time){
 	time = time.split(':');
 	time = time[0];
-	if (parseInt(time) >= 22) {
+	if (parseInt(time) >= 22 || parseInt(time) < 6) {
 		return true;
 	} else {
 		return false;
@@ -830,14 +876,13 @@ function isNightTrip(time){
 
 function vehicleInformation(vehicle,header,return_journey,amount,passengers) {
 	var language = $('meta[name=language]').attr('content').toLowerCase();
-	var short_overview = vehicle[language+'_overview'].substring(0,140);
+	var short_overview = vehicle[language+'_overview'].substring(0,100);
 	var long_overview = vehicle[language+'_overview'];
 	var extras = vehicle[language+'_extras'];
-	//var title = vehicle[language+'_title'];
-	var title = vehicle['name'];
+	var title = vehicle[language+'_title'];
 	var html = '<div class="panel pickbluebgtop border-2">';
 	if (header) {
-		html += '<div class="panel-heading pickbluebg">Choose your car</div>';
+		html += '<div class="panel-heading pickbluebg">'+choose_your_car+'</div>';
 	}
 	html += '<div class="panel-body">';
 	html += '<div class="col-md-3"><b class="vehicle_title">'+title+'</b><br/>';
@@ -845,25 +890,25 @@ function vehicleInformation(vehicle,header,return_journey,amount,passengers) {
 	html += '</div>';
 	html += '<div class="col-md-3">';
 	html += '<table class="car_part2">';
-	html += '<tr><td width="20px"><i class="fa fa-user-o icon-style"></i></td><td>'+vehicle.max_passengers+' Passengers</td></tr>';
-	html += '<tr><td><i class="fa fa-briefcase icon-style"></i></td><td> 1 case and 1 holdall<br>per passenger</td></tr>';
-	html += '<tr><td><i class="fa fa-car icon-style"></i></td><td> Door to door /<br/>Direct journey</td></tr>';
+	html += '<tr><td width="20px"><i class="fa fa-user-o icon-style"></i></td><td>'+vehicle.max_passengers+' '+passengers_text+'</td></tr>';
+	html += '<tr><td><i class="fa fa-briefcase icon-style"></i></td><td>'+hold_passenger_text+'</td></tr>';
+	html += '<tr><td><i class="fa fa-car icon-style"></i></td><td>'+door_to_door_text+'</td></tr>';
 	html += '</table>';
 	html += '</div>';
 	html += '<div class="col-md-3" style="height:175px;border-right: 1px solid #ccc;border-left: 1px solid #ccc;padding-top:10px">';
-	html += '<b>Overview</b><br/><br/>';
+	html += '<b>'+overview_text+'</b><br/><br/>';
 	html += '<div>'+short_overview+'<br/><u><a href="javascript:;" onClick="$(\'#view_more_'+vehicle.id+'\').toggle(\'slow\')">+ Info</a></u></div>';
 	html += '</div>';
 	html += '<div class="col-md-3" style="text-align:center;padding-top:10px;">';
-	if (return_journey) {
+	/*if (return_journey) {
 		html += '<b>Return price for '+passengers+' passengers</b>';	
-	} else {
-		html += '<b>Price for '+passengers+' passengers</b>';
-	}
-	html += '<div style="text-align:center"><br/><div class="amount_text">'+amount+' &euro; </div>* All Included<br/><br/><button class="btn secondStepClick" style="width:100px;font-size:13px;padding:0px;height:30px;" data-vehicle="'+vehicle.id+'">BOOK NOW</button></div>';
+	} else {*/
+	html += '<b>'+price_for_text+' '+passengers+' '+passengers_text+'</b>';
+	//}
+	html += '<div style="text-align:center"><br/><div class="amount_text">'+amount+' &euro; </div>* '+all_include_text+'<br/><br/><button class="btn secondStepClick" style="width:100px;font-size:13px;padding:0px;height:30px;" data-vehicle="'+vehicle.id+'">'+book_now_text+'</button></div>';
 	html += '</div>';
 	html += '<div id="view_more_'+vehicle.id+'" class="extras_div col-xs-12" >';
-		html += '<div class="col-md-9" style="border-right: 1px solid #ccc;"><b>Important travel information</b><br/><br/><p>'+long_overview+'</p></div>';
+		html += '<div class="col-md-9" style="border-right: 1px solid #ccc;"><b>'+important_travel_info_text+'</b><br/><br/><p>'+long_overview+'</p></div>';
 		html += '<div class="col-md-3" ><b>Extras</b><br/><br/><p>'+extras+'</p></div>';
 	html += '</div>';
 	html += '</div></div>';
