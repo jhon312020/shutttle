@@ -448,4 +448,8 @@ $lang['One case and 1 holdall<br>per passenger'] = '1 maleta y un bolso<br/>por 
 $lang['Door to door /<br/>Direct journey'] = 'Puerta a puerta /<br/>Viaje directo';
 
 $lang['country_code_plus_phone'] = 'Código País + teléfono';
+
+$lang['We need at least 6 hours to prepare your car and trip'] = 'Necesitamos al menos 6 horas para preparar tu coche y viaje';
+
+$lang['pendings'] = 'Pendientes';
 ?>

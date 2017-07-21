@@ -26,7 +26,8 @@
                     <div class="sliderSection">
                         <img src="<?php echo IMAGEPATH.'header/sliders/'.$count.".png" ?>" />
                         <p class="sliderSubtitle"><?php echo $slogan; ?></p>
-                        <p><a class="btn btn-lg" href="<?php echo site_url($ln."/reservation"); ?>" role="button"><?php echo lang('book_now'); ?></a></p>
+                        <?php /*
+                        <p><a class="btn btn-lg" href="<?php echo site_url($ln."/reservation"); ?>" role="button"><?php echo lang('book_now'); ?></a></p> */ ?>
                     </div>
                 </div>
             </div>

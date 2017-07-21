@@ -116,6 +116,57 @@ class Node extends Anonymous_Controller {
     $this->load->model('booking/mdl_booking');
     $this->load->model('calendars/mdl_calendars');
     $this->load->model('clients/mdl_clients');
+
+    // Added for reservation 
+
+    $base_path = base_url().'assets/cc';
+    $this->template_vars['css'] = array(
+      '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
+      $base_path.'/datetimepicker/css/bootstrap-datetimepicker.min.css'
+    );
+    $this->template_vars['js'] = array(
+      '//code.jquery.com/ui/1.12.1/jquery-ui.js',
+      $base_path.'/datetimepicker/js/bootstrap-datetimepicker.min.js'
+    );
+    $categories = $this->mdl_place_categories->getList();
+    $result_locations = $this->mdl_locations->get()->result();
+    $categories_location = array();
+    foreach ($result_locations as $location) {
+      $categories_location[$categories[$location->category_id]][] = $location->location;
+      $locations[$location->location] = $location->id;
+    }
+
+    $collaborator = array();
+    if ($this->session->userdata('user_type') && $this->session->userdata('user_type') == 2) {
+      $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->where('id',$this->details['collaborator_details']['id'])->get('collaborators')->result();
+      if ($collaborators) {
+        $collaborator['location_id'] =  $collaborators[0]->location_id;
+        $collaborator['name'] =  ucfirst($collaborators[0]->name);
+      }
+    } else {
+      $collaborators = $this->db->select('category_id,location_id,name')->where('category_id !=', 0)->where('location_id !=',0)->get('collaborators')->result();
+    }
+
+    foreach ($collaborators as $record) {
+      $categories_location[$categories[$record->category_id]][] = ucfirst($record->name);
+      //$select_location[] = array('label'=>ucfirst($record->name),'category'=>$categories[$record->category_id]);
+      $locations[ucfirst($record->name)] = $record->location_id;
+    }
+
+    foreach ($categories_location as $category_name=>$locations_label) {
+      foreach ($locations_label as $location) {
+        $select_location[] = array('label'=>$location,'category'=>$category_name);
+      }
+    }
+
+    $this->template_vars['select_location'] = $select_location;
+    $this->template_vars['locations'] = $locations;
+    $this->template_vars['collaborator'] = $collaborator;
+
+    $this->template_vars['booking'] = $this->mdl_booking_extras->where('is_active', 1)->get()->result_array();
+    // end reservation part
+
+    $this->template_vars['lang'] = $lang;
     $this->template_vars['total_people'] = $this->mdl_booking->get_total_people_tavelled();
     $this->template_vars['total_nationalites'] = $this->mdl_clients->get_total_nationalities();
     $this->template_vars['total_trips'] = $this->mdl_calendars->get_total_trips();
@@ -566,8 +617,8 @@ class Node extends Anonymous_Controller {
     pdf_create($html, $this->template_vars['book_reference'], true); */
 
     $this->load->view('layout/templates/success', $this->template_vars);
-    
-    if (($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12')) {
+
+    if ($bookings['email_sent'] == 0 && ($_SERVER['SERVER_NAME'] != 'localhost' && $_SERVER['SERVER_NAME'] != '192.168.1.12')) {
       $this->load->helper('dompdf');  
       $html = $this->load->view('layout/templates/pdf', $this->template_vars, true);
       $mail_html = $this->load->view('layout/templates/email', $this->template_vars, true);
@@ -586,7 +637,7 @@ class Node extends Anonymous_Controller {
       $this->email->message($mail_html);
       $this->email->attach($output);
       $this->email->send();
-      
+      $this->mdl_booking->save($book_id, array('email_sent'=>1));
     }
   }
   
@@ -672,6 +723,11 @@ class Node extends Anonymous_Controller {
    * @return  void
    */
   public function reservationBank () {
+    $this->template_vars['post_params'] = $this->input->post();
+    $this->template_vars['submit_from_home'] = false;
+    if ($this->template_vars['post_params']) {
+      $this->template_vars['submit_from_home'] = true;
+    }
     $base_path = base_url().'assets/cc';
     $this->template_vars['css'] = array(
       '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',

@@ -469,5 +469,6 @@ $lang['One case and 1 holdall<br>per passenger'] = 'One case and 1 holdall<br>pe
 $lang['Door to door /<br/>Direct journey'] = 'Door to door /<br/>Direct journey';
 
 $lang['country_code_plus_phone'] = 'Country Code+Phone';
-
+$lang['We need at least 6 hours to prepare your car and trip'] = 'We need at least 6 hours to prepare your car and trip';
+$lang['pendings'] = 'Pendings';
 ?>

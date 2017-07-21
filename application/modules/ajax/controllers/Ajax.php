@@ -28,8 +28,12 @@ class Ajax extends Anonymous_Controller {
       $post_params = $this->input->post();
       switch ($post_params['mode'])  {
         case "firstStep":
+            $post_params['start_journey'] = str_replace('/', '-', $post_params['start_journey']);
+            if(strtotime($post_params['start_journey']) < strtotime(' +6 hours')) {
+                echo json_encode(array('error'=>lang('We need at least 6 hours to prepare your car and trip')));
+                exit;
+            }
             if (isset($post_params['return_journey']) && $post_params['return_journey']) {
-              $post_params['start_journey'] = str_replace('/', '-', $post_params['start_journey']);
               $post_params['return_journey'] = str_replace('/', '-', $post_params['return_journey']);
               if(strtotime($post_params['start_journey']) >= strtotime($post_params['return_journey'])) {
                 echo json_encode(array('error'=>'The start date should be less than return date'));
@@ -54,6 +58,16 @@ class Ajax extends Anonymous_Controller {
                 $vehicle_list = array_filter($vehicle_list);
                 if (count($vehicle_list) == 0) {
                   $vehicles = false;
+                } else {
+                  foreach ($vehicles as $key=>$vehicle) {
+                    if (!array_key_exists($vehicle['id'], $vehicle_list)) {
+                      unset($vehicles[$key]);
+                    }
+                  }
+                  $vehicles = array_values($vehicles);
+                  if (count($vehicles) == 0) {
+                    $vehicles = false; 
+                  }
                 }
               }
               

@@ -50,7 +50,7 @@ class Shuttles extends Admin_Controller {
 
 			array_walk($return_id, function($item) use (&$res) {
 			    // flatten the array
-			    $res[$item['return_book_id']] = $item['id'];
+			    $res[$item['return_book_id']] = $item['id']; 
 			});
 			//print_r(array_combine($res['id'], $res['hour']));die;
 			//echo "<pre>";
@@ -69,14 +69,14 @@ class Shuttles extends Admin_Controller {
 		
 		$extras = $this->db->get('booking_extras')->result_array();									
 		
-		$this->layout->set(array('shuttles'=>$shuttles, 'path'=>$this->path, 'fromDate'=>$fromDate, 'extras' => $extras, 'res' => $res));
+		$this->layout->set(array('shuttles'=>$shuttles, 'path'=>$this->path, 'fromDate'=>$fromDate, 'extras' => $extras, 'res' => $res, 'show_pending_button'=>true));
 		$this->layout->buffer('content', 'shuttles/index');
 		$this->layout->render();
 	}
 
 	public function pendings() {
 		$fromDate = '';
-		$this->mdl_shuttles->select('booking.is_active, vehicles.name as vehicle_name, vehicles.image as vehicle_image, booking.vehicle_id,booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
+		$this->mdl_shuttles->select('booking.address as booking_address,booking.is_active,vehicles.name as vehicle_name, vehicles.image as vehicle_image, booking.vehicle_id,booking.version,booking.bcnarea_address_id,booking.address as book_address,collaborators_address.address as mainaddress,collaborators_address.zone as col_zone,collaborators.phone,booking.book_status,collaborators.name,collaborators.address as col_address,booking.return_book_id,booking.round_trip,booking.created,booking.journey_completed,booking.id,booking.extra_array,booking.collaborator_id,booking.kids,booking.adults,booking.baby,booking.start_from,
 											booking.end_at,booking.zone,booking.hour,booking.arrival_time,booking.price,booking.start_journey,booking.return_journey,booking.country,booking.flight_no,booking.created,booking.client_id,booking.client_array,
 											clients.name as first_name, clients.surname,clients.address,clients.city,clients.country,clients.cp,calendars.reference_id')
 											->join('collaborators', 'collaborators.id=booking.collaborator_id', 'left')
@@ -106,7 +106,8 @@ class Shuttles extends Admin_Controller {
 			$shuttles = $this->mdl_shuttles->order_by('booking.created', 'desc')->get()->result();
 			//echo $this->db->last_query();die;
 			$return_id = $this->db->query("select tbl_booking.id, mm.id as return_book_id from tbl_booking inner join (select id from tbl_booking where tbl_booking.is_active = 0 and tbl_booking.round_trip = 1) mm on mm.id = tbl_booking.return_book_id")->result_array();
-
+/*echo '<pre>';
+print_r($shuttles); exit;*/
 			array_walk($return_id, function($item) use (&$res) {
 			    // flatten the array
 			    $res[$item['return_book_id']] = $item['id'];
@@ -115,7 +116,7 @@ class Shuttles extends Admin_Controller {
 		
 		$extras = $this->db->get('booking_extras')->result_array();									
 		
-		$this->layout->set(array('shuttles'=>$shuttles, 'path'=>$this->path, 'fromDate'=>$fromDate, 'extras' => $extras, 'res' => $res, 'page_title'=>'pending_list'));
+		$this->layout->set(array('shuttles'=>$shuttles, 'path'=>$this->path, 'fromDate'=>$fromDate, 'extras' => $extras, 'res' => $res, 'page_title'=>'pendings'));
 		$this->layout->buffer('content', 'shuttles/index');
 		$this->layout->render();
 	}

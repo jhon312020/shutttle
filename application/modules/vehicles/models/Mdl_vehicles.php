@@ -64,13 +64,13 @@ class Mdl_vehicles extends Response_Model {
     public function getVehicles($seats, $type = 'all'){
     	switch ($type) {
     		case 'all':
-    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->order_by('shared desc')->get('vehicles')->result_array();	
+    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->order_by('order_number')->get('vehicles')->result_array();	
     			break;
     		case 'private':
-    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->where('shared',0)->get('vehicles')->result_array();	
+    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->where('shared',0)->order_by('order_number')->get('vehicles')->result_array();	
     			break;
     		case 'shared':
-    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->where('shared',1)->get('vehicles')->result_array();	
+    			return $this->db->where('is_active',1)->where('min_passengers <= ',$seats)->where('max_passengers >= ',$seats)->where('shared',1)->order_by('order_number')->get('vehicles')->result_array();	
     			break;
     	}
     }
@@ -86,6 +86,15 @@ class Mdl_vehicles extends Response_Model {
             return $rates;
         } else {
             return $this->db->where('no_of_seats',$no_of_seats)->where('rate_type',$rate_type)->get('rates')->result_array();
+        }
+    }
+
+    public function getNewOrderNumber() {
+        $list = $this->db->select('max(order_number) as order_number_new')->get('vehicles')->result_array();
+        if ($list && isset($list[0])) {
+            return $list[0]['order_number_new']+1;
+        }else{
+            return 1;
         }
     }
 

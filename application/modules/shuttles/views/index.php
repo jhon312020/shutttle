@@ -30,9 +30,15 @@
 <div class="headerbar">
 	<div class="clearfix">
 		<h1 class="pull-left"><?php echo (isset($page_title))? lang($page_title):lang('booking_list'); ?></h1>
-		<!--<a class="btn btn-primary pull-right" href="<?php echo site_url('admin/shuttles/form'); ?>">
-			<i class="icon-plus icon-white"></i> <?php echo lang('new'); ?>
-		</a>-->
+		<?php if (isset($show_pending_button) && $show_pending_button) { ?>
+			<a class="btn btn-primary pull-right" href="<?php echo site_url('admin/shuttles/pendings'); ?>">
+				<i class="icon-plus icon-white"></i> <?php echo lang('pendings'); ?>
+			</a>
+		<?php } else { ?>
+			<a class="btn btn-primary pull-right" href="<?php echo site_url('admin/shuttles/index'); ?>">
+				<i class="icon-plus icon-white"></i> <?php echo lang('booking_list'); ?>
+			</a>
+		<?php } ?>
 		<div id="dateSearch">			
 			<form method="POST" id="dateRange" style="float: right;">
 			<!--<label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_0"></label>-->

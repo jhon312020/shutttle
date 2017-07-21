@@ -182,5 +182,62 @@ $(document).ready(function ($) {
         btn.prev("disabled", true);
       }
     });
+
+    $( "#from_location" ).catcomplete({
+      delay: 0,
+      source: placeLocations,
+      select : function( event, ui ) {
+        if (collaborator.name) {
+          if (ui.item.value != collaborator.name) {
+        $('#to_location').val(collaborator.name);
+      } 
+        }
+      },
+      change : function( event, ui ) {
+        if (collaborator.name) {
+          if (ui.item.value != collaborator.name) {
+        $('#to_location').val(collaborator.name);
+      }
+        }
+      }
+    });
+
+    $( "#to_location" ).catcomplete({
+      delay: 0,
+      source: placeLocations,
+      select : function( event, ui ) {
+        if (collaborator.name) {
+          if (ui.item.value != collaborator.name) {
+        $('#from_location').val(collaborator.name);
+      } 
+        }
+      },
+      change : function( event, ui ) {
+        if (collaborator.name) {
+          if (ui.item.value != collaborator.name) {
+        $('#from_location').val(collaborator.name);
+      } 
+        }
+      }
+    });
 });
 </script>
+<?php if ($submit_from_home) { ?>
+<script>
+  $(document).ready(function(){
+    var post_params = <?php echo json_encode($post_params); ?>;
+    console.log(post_params);
+    post_params['firstbutton'] = true;
+    $.each(post_params, function(index,value){
+      if (index == 'firstbutton') {
+        $('#firstbutton').trigger('click');  
+      } else {
+        if (index == 'return_journey' || value == '') {
+          $('#jsSingleTrip').trigger('click');
+        }
+        $('input[name='+index+']').val(value);  
+      }
+    });
+  });
+</script>  
+<?php } ?>

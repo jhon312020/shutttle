@@ -13,7 +13,7 @@ if (!defined('BASEPATH'))
 	}
 
 	public function index() {
-		$this->layout->set(array('vehicles'=>$this->mdl_vehicles->get()->result()));
+		$this->layout->set(array('vehicles'=>$this->mdl_vehicles->order_by('order_number')->get()->result()));
 		$this->layout->set(array('site_url'=>$this->mdl_settings->setting('site_url')));
 		$this->layout->buffer('content', 'vehicles/index');
 		$this->layout->render();
@@ -43,6 +43,11 @@ if (!defined('BASEPATH'))
 				} else {
 					$error = $this->upload->display_errors();
 				}
+			}
+
+			if ($id == NULL) {
+				$data['order_number'] = $this->mdl_vehicles->getNewOrderNumber();
+				$data['is_active'] = 1;
 			}
 
 			if ($error == '') {
@@ -95,6 +100,20 @@ if (!defined('BASEPATH'))
 			$this->mdl_vehicles->save($id, array('is_active'=>$bool));
 			redirect('admin/vehicles/index');
 		}
+	}
+
+	public function save_order() {
+		//print_r($this->input->post()); exit;
+		$post_params = $this->input->post();
+		if ($post_params) {
+			$orders = $post_params['save_order'];
+			if ($orders) {
+				foreach ($orders as $order_number=>$vehicle_id) {
+					$this->mdl_vehicles->save($vehicle_id,array('order_number'=>$order_number+1));
+				}
+			}
+		}
+		redirect('admin/vehicles/index');
 	}
 	
 	

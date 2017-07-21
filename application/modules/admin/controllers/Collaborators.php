@@ -132,23 +132,26 @@ if (!defined('BASEPATH'))
 						}
 						$this->mdl_collaborators->save($id,$data);
 					}
+
+					/*echo '<pre>';
+			print_r($this->input->post()); exit;*/
 					//$this->db->where('collaborator_id', $col_id)->delete('collaborators_address');
 					$address_id = json_decode($this->input->post('address_id'), true);
 					//print_r($address_id);die;
 					foreach($address_id as $add_id) {
 						//echo $id;die;
-						if($this->input->post('zone_old_'.$add_id)) {
-							if($this->input->post('zone_old_'.$add_id) != '' && $this->input->post('address_old_'.$add_id) != '') {
-								$data = array('zone'=>$this->input->post('zone_old_'.$add_id),'address'=>$this->input->post('address_old_'.$add_id));
+						if($this->input->post('address_old_'.$add_id)) {
+							if($this->input->post('address_old_'.$add_id) != '') {
+								$data = array('address'=>$this->input->post('address_old_'.$add_id));
 								$this->db->set($data)->where('id', $add_id)->update('collaborators_address');
 							}
 						} else {
 							$this->db->set(array('is_active'=>'0'))->where('id', $add_id)->update('collaborators_address');
 						}
 					}
-					foreach($zone as $key => $value) {
-						if($value != '' && $address[$key] != '') {
-							$data = array('zone'=>$value,'address'=>$address[$key],'collaborator_id'=>$col_id);
+					foreach($address as $key => $value) {
+						if($address[$key] != '') {
+							$data = array('zone'=>'','address'=>$address[$key],'collaborator_id'=>$col_id);
 							$this->db->insert('collaborators_address', $data);
 						}
 					}
@@ -166,6 +169,7 @@ if (!defined('BASEPATH'))
 		}
 		$col_id = $id;
 		$address_array = array();
+
 		if($this->input->post('start_date')) {
 			$col_data = $this->mdl_collaborators->where('id', $id)->get()->row();
 			foreach($col_data as $key=>$value) {
@@ -179,14 +183,14 @@ if (!defined('BASEPATH'))
 		} else if($this->input->post('btn_submit')) {
 			$post_address = $this->input->post('address');
 			$step = 0;
-			if($this->input->post('zone')) {
-				$step = count($this->input->post('zone'));
-				foreach($this->input->post('zone') as $key=>$value) {
-					$address_array[$key]['zone'] = $value;
-					$address_array[$key]['address'] = $post_address[$key];
+			if($this->input->post('address')) {
+				$step = count($this->input->post('address'));
+				foreach($this->input->post('address') as $key=>$value) {
+					$address_array[$key]['zone'] = '';
+					$address_array[$key]['address'] = $value;
 				}
 			}
-			$address_id = json_decode($this->input->post('address_id'), true);
+			/*$address_id = json_decode($this->input->post('address_id'), true);
 			//print_r($address_id);die;
 			foreach ($address_id as $id) {
 				if($this->input->post('zone_old_'.$id)) {
@@ -195,7 +199,7 @@ if (!defined('BASEPATH'))
 					$address_array[$step]['id'] = $id;
 					$step++;
 				}
-			}
+			}*/
 		}
 		$user_array = current($this->db->from('users')->where('collaborator_id',$id)->get()->result_array());
 		if($this->input->post('password'))

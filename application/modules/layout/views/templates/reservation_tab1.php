@@ -105,14 +105,14 @@
                       echo  form_input(array('name'=>'bcnarea_address_id', 'id'=>'bcnarea_address_id', 'type'=>'hidden'));
                     ?>
                     <input type="hidden" id="from_location_id" name="from_location_id" />
-                    <input type="text" id="from_location" name="from_location" class="form-control validate[required]" placeholder="<?php echo lang('from'); ?>" />
+                    <input type="text" id="from_location" name="from_location" class="form-control validate[required]" placeholder="<?php echo lang('from'); ?>" data-errormessage-value-missing="<?php echo lang('require_field'); ?>" />
                   </div>
                   <div class="form-group col-sm-3 clear-pad-form" id="return_journey_div">
                     <input type="hidden" id="to_location_id" name="to_location_id" />
-                    <input type="text" id="to_location" name="to_location" class="form-control validate[required]" placeholder="<?php echo lang('to'); ?>" />
+                    <input type="text" id="to_location" name="to_location" class="form-control validate[required]" placeholder="<?php echo lang('to'); ?>" data-errormessage-value-missing="<?php echo lang('require_field'); ?>" />
                   </div>
                   <div class="form-group col-sm-5 clear-pad-form" id="return_journey_div">
-                    <input type="text" id="location_address" name="location_address" class="form-control" placeholder="<?php echo lang('Address, Hotel, Location'); ?>…" />
+                    <input type="text" id="location_address" name="location_address" class="form-control" placeholder="<?php echo lang('Address, Hotel, Location'); ?>…"  />
                   </div>
                 </div>
                 <div class="form-bottom ribbon-down mar-down">

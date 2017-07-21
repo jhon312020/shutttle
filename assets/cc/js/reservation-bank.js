@@ -782,7 +782,7 @@ $(document).ready(function(){
       	if (collaborator.name) {
       		if (ui.item.value != collaborator.name) {
 				$('#to_location').val(collaborator.name);
-			}	
+			}
       	}
       }
     });
