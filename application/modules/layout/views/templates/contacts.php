@@ -9,13 +9,7 @@
 ?>
 <div class="container" id="contactus">
 	<div class="col-sm-12 contactSection">
-		<div class="col-md-3 col-sm-12 contactDetailsDiv">
-			<span class="contact-details" id="fobo"><?php echo lang('contact_details'); ?></span>
-			<p class="contactp">Mail. <?php echo (isset($address))?$address:''; ?>
-			<br>Tel. <?php echo (isset($telephone))?$telephone:''; ?></p>
-			<p>&nbsp;</p>
-		</div>
-		<div class="col-md-9">
+		<div class="col-md-8 col-md-offset-2">
 			<div class="col-sm-12">
 				<div class="row contacto">
 					<form method="post" name="contact_form">

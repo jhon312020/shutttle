@@ -9,10 +9,13 @@
 
 <?php echo $this->layout->load_view('layout/alerts'); ?>
 
+<?php echo $this->layout->load_view('layout/all_actions',array('action'=>site_url('admin/collaborators/actions'))); ?>
+
 <table class="table table-bordered datatable data_table">
 
 	<thead>
 		<tr>
+			<th class='no-sort'><input type="checkbox" id="select_all" /></th>
             <th width="20%"><?php echo lang('name'); ?></th>
 			<!-- <th width="25%"><?php //echo lang('bcn_area'); ?></th> -->
 			<th width="25%"><?php echo lang('location'); ?></th>
@@ -25,6 +28,7 @@
 	<tbody>
 		<?php foreach ($collaborators as $collaborator) { ?>
 		<tr>
+			<td align='center'><input type='checkbox' class='single_checkbox' name='ids_<?php echo $collaborator->id; ?>' /></td>
 			<td><?php echo ucfirst($collaborator->name); ?></td>
 			<td>
 				<?php //echo $collaborator->bcnarea != ''?$collaborator->bcnarea : $bcn[$collaborator->zone]; ?>

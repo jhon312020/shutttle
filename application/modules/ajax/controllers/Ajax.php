@@ -352,6 +352,7 @@ class Ajax extends Anonymous_Controller {
               $this->db->set($book_array);
               $this->db->insert('booking');
               $bid = $this->db->insert_id();
+              $ids[] = $bid;
               /*Seats entry*/
               /*$seats_array = array('calendar_id'=> $book_id, 'reference_id'=> $hidden_data['reference_id'], 'start_time'=> $hidden_data['journey_start'],
                               'end_time'=> $hidden_data['journey_end'], 'journey_date' => $hidden_data['service_date'], 'steps'=> $hidden_data['steps'],
@@ -380,49 +381,10 @@ class Ajax extends Anonymous_Controller {
                       $this->db->set($return_book_array);
                       $this->db->insert('booking');
                       $return_id = $this->db->insert_id();
-                      
-                     /* $return_seats_array = array('calendar_id'=> $return_book_id, 'reference_id'=> $return_hidden_data['reference_id'], 'start_time'=> $return_hidden_data['journey_start'],
-                                      'end_time'=> $return_hidden_data['journey_end'], 'journey_date' => $return_hidden_data['service_date'], 'steps'=> $return_hidden_data['steps'],
-                                      'from_zone'=>$return_hidden_data['start_from'], 'to_zone'=> $return_hidden_data['end_at'], 'seats'=>$post_params['adults']
-                                       + $babySeats,
-                                        'book_id'=>$return_id); 
-
-                      $this->db->set($return_seats_array)->insert('seats');*/
+                      $ids[] = $return_id;
                   }
               }
               
-              /*$this->db->select('users.id as user_id, clients.id');
-              $this->db->from('clients');
-              $this->db->where('clients.id', $post_params['client_id']);
-              $this->db->join('users', 'clients.id=users.client_id', 'left');
-              $query = $this->db->get();
-              $cid='';
-              if ($post_params['client_id'] != '') {
-                      $data = current($query->result_array());
-                      $cid = $data['id'];
-                      //$str['url'] .= '^'.$data['id'].'^'.$data['user_id'];
-                      $this->db->set($client_array)->where('id', $post_params['client_id']);
-                      $this->db->update('clients');
-                      $user_data = array('first_name'=> $post_params['name'], 'last_name'=>$post_params['surname'],
-                                      'email'=>$post_params['email']);
-                      $this->db->set($user_data)->where('id',$data['user_id']);
-                      $this->db->update('users');
-              }
-              else if ($this->input->post('save_extra')) {
-                      $this->db->set($client_array);
-                      $this->db->insert('clients');
-                      $client_id = $this->db->insert_id();
-                      //$str['url'] .= '^'.$client_id;
-                      $cid = $client_id;
-                      $user_data = array('role'=>4, 'first_name'=> $post_params['name'], 'last_name'=>$post_params['surname'],
-                                      'email'=>$post_params['email'], 'password'=>md5($post_params['password']), 'secret_key'=>base64_encode($post_params['password'].'_pickngo'),
-                                      'client_id'=>$client_id);
-                      $this->db->set($user_data);
-                      $this->db->insert('users');
-                      $user_id = $this->db->insert_id();
-                      //$str['url'] .= '^'.$user_id;
-              }
-              else {*/
                 $client_lists = 
                   $this->db
                         ->where('email', $post_params['email'])->from('clients')
@@ -431,20 +393,6 @@ class Ajax extends Anonymous_Controller {
                   if($client_lists) {
                     $client_id = $client_lists->id;
                     $cid = '';
-                    /*$cid = $client_id;
-                    $user_data = 
-                      array('first_name'=> $post_params['name'], 
-                          'last_name'=>$post_params['surname']);
-                    
-                    $client_data_array = [];
-                    foreach ($client_array as $key => $value) {
-                      if($value) {
-                        $client_data_array[$key] = $value;
-                      }
-                    }
-
-                    $this->db->set($user_data)->where('client_id', $client_id)->update('users');
-                    $this->db->set($client_array)->where('id', $client_id)->update('clients');*/
                     $this->db->set(array('client_array'=>json_encode($client_array), 'existing_client_id' => $client_id))->where('id', $bid);
                     $this->db->update('booking');
                     if ($return_id != 0) {
@@ -514,6 +462,13 @@ class Ajax extends Anonymous_Controller {
     
     $this->db->set(array('payment_method'=>$pay, 'return_book_id'=>$return_id))->where('id', $bid)->update('booking');
     //$this->db->set(array('payment_method'=>$pay))->where('id', $return_id)->update('booking');
+
+    if ($post_params['paymentmethod'] == 'cash') {
+      $records = $this->db->where_in('id',$ids)->get('booking')->result_array();
+      $this->db->insert_batch('temp_booking',$records);
+      $this->db->where_in('id',$ids)->delete('booking');
+      $this->send_payment_request($records[0]['id'], $client_array);
+    }
     
     /*Sabadell payment start*/
     //include_once(APPPATH . "modules/layout/views/templates/apiRedsys.php");
@@ -578,5 +533,102 @@ class Ajax extends Anonymous_Controller {
       }
   }
 }
+
+  public function send_payment_request($book_id, $client) {
+    $settings_data = $this->db->select('*')->from('settings')->get()->result();
+    $settings = array();
+    foreach ($settings_data as $data) {
+      $settings[$data->setting_key] = $data->setting_value;
+    }
+    $this->load->library('email');
+    $subject = 'Make Payemnt';
+    $message  = 'Hello ' . $client['name'] .' <br/><br/>';
+    $message .= site_url($this->uri->segment(1).'/doPayment/'.$book_id).'<br/><br/> ';
+    $this->email->set_mailtype("html");
+    $this->email->from($settings['site_email']);
+    $this->email->to($client['email']);
+    $this->email->subject($subject);
+    $this->email->message($message);
+    $this->email->send();
+  }
+
+  public function pay_now() {
+    if ($this->input->post('id')) {
+      $bid = $this->input->post('id');
+      $booking = $this->db->where('id',$bid)->get('temp_booking')->result_array();
+      $ids[] = $bid;
+      unset($booking[0]['created']);
+      $records[] = $booking[0];
+      if (empty($booking)) {
+        echo json_encode(array('error'=>'Your order has been expired'));
+        exit;
+      }
+      if ($booking[0]['return_book_id']) {
+        $ids[] = $booking[0]['return_book_id'];
+        $return_booking = $this->db->where('id',$booking[0]['return_book_id'])->get('temp_booking')->result_array();
+        if ($return_booking) {
+          unset($return_booking[0]['created']);
+          $records[] = $return_booking[0];
+        }
+      }
+      $this->db->insert_batch('booking',$records);
+      $this->db->where_in('id',$ids)->delete('temp_booking');
+
+      /*Sabadell payment start*/
+      //include_once(APPPATH . "modules/layout/views/templates/apiRedsys.php");
+      $this->load->library('apiRedsys');
+      $ln = $this->uri->segment(1);
+      $miObj = new apiRedsys;
+      
+      //$merchantCode = "336240668";
+      /* Pick-n-Go merchant code 
+      $merchantCode = "336240668";
+      */
+      $merchantCode = "336548318";
+      $terminal = "001";
+      $amount = str_replace('.', '', $booking[0]['price']);
+      $currency = "978";
+      $transactionType = "0";
+      $merchantURL = "";
+      $urlOK = site_url($ln.'/success/?cm='.$bid);
+      $urlKO = site_url($ln.'/error/?cm='.$bid);
+      $order = time();
+      $testurlPago = 'https://sis-t.redsys.es:25443/sis/realizarPago';
+      //$realurlPago = 'https://sis.redsys.es/sis/realizarPago';
+      $realurlPago = 'https://sis.sermepa.es/sis/realizarPago';
+      
+      $miObj->setParameter("DS_MERCHANT_AMOUNT",$amount);
+      $miObj->setParameter("DS_MERCHANT_ORDER",strval($order));
+      $miObj->setParameter("DS_MERCHANT_MERCHANTCODE",$merchantCode);
+      $miObj->setParameter("DS_MERCHANT_CURRENCY",$currency);
+      $miObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE",$transactionType);
+      $miObj->setParameter("DS_MERCHANT_TERMINAL",$terminal);
+      $miObj->setParameter("DS_MERCHANT_MERCHANTURL",$merchantURL);
+      $miObj->setParameter("DS_MERCHANT_URLOK",$urlOK);   
+      $miObj->setParameter("DS_MERCHANT_URLKO",$urlKO);
+      
+
+      $version="HMAC_SHA256_V1";
+      //Test key
+      //$key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7';
+      //Real key
+      $key = 'F5HrGPVIaddWbrdlvVDPAY365W3g7X45';
+      
+      $request = "";
+      $params = $miObj->createMerchantParameters();
+      $signature = $miObj->createMerchantSignature($key);
+      $str = array();
+      $str['book_id'] = $bid;
+      $str['amt'] = $booking[0]['price'];
+      $str['version'] = $version;
+      $str['params'] = $params;
+      $str['signature'] = $signature;
+      $str['banaba_url'] = $realurlPago;
+      /*Sabadell payment end*/
+
+      echo json_encode($str);
+    }
+  }
+
 }
 ?>

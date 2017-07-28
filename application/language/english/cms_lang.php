@@ -239,7 +239,7 @@ $lang['seat_availability_error'] = 'There is no available seats for this route';
 //confirmation page
 $lang['thanks_booking']='Thanks for your Booking.';
 $lang['print_booking']='Please print this confirmation email and show it to the driver.';
-$lang['query_booking']='For any queries or doubts please contact to shuttleing by Email:  checking@shuttleing.com or phone: +34 697 462 259.';
+$lang['query_booking']='Help Line (English): +34 868 480 017. Atención al cliente (Español): +34 697 462 259. Email:  info@shuttleing.com';
 
 $lang['time_go'] = 'Your flight time';
 $lang['time_back'] = 'Your landing time';
@@ -471,4 +471,7 @@ $lang['Door to door /<br/>Direct journey'] = 'Door to door /<br/>Direct journey'
 $lang['country_code_plus_phone'] = 'Country Code+Phone';
 $lang['We need at least 6 hours to prepare your car and trip'] = 'We need at least 6 hours to prepare your car and trip';
 $lang['pendings'] = 'Pendings';
+
+$lang['user_phone'] = 'User Phone';
+
 ?>

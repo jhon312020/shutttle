@@ -1554,11 +1554,11 @@ input:focus#promo_code:-ms-input-placeholder {
     }
 	
 	.contacto input {
-		width: 360px;
+		width: 320px;
 	}
 	
 	.contacto textarea {
-		width: 580px;
+		width: 500px;
 	}
 	.newspad a img {
 		margin: auto;

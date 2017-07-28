@@ -13,11 +13,13 @@
 </div>
 
 <?php echo $this->layout->load_view('layout/alerts'); ?>
+<?php echo $this->layout->load_view('layout/all_actions',array('action'=>site_url('admin/paths/actions'))); ?>
 
 <table class="table table-bordered datatable data_table">
 
 	<thead>
 		<tr>
+			<th align='center' width="50px" class='no-sort'><input type="checkbox" id="select_all" /></th>
 			<th>Pick-up</th>
 			<th>City</th>
 			<th><?=lang('edit')?></th>
@@ -28,6 +30,7 @@
 		<?php $count = 1; ?>
 		<?php foreach ($pickup_locations as $location) { ?>
 		<tr>
+			<td align='center'><input type='checkbox' class='single_checkbox' name='ids_<?php echo $location->pickup_location_id; ?>' /></td>
 			<td width="30%">
 				<?=$locations[$location->pickup_location_id]?>
 			</td>

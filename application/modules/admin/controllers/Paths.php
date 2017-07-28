@@ -129,4 +129,28 @@ if (!defined('BASEPATH'))
 		redirect('admin/paths');
 	}
 
+	public function actions() {
+		$ids = explode(',',$this->input->post('ids'));
+		foreach ($ids as $key=>$id) {
+			$ids[$key] = (int)str_replace('ids_', '', $id);
+		}
+		switch($this->input->post('method')){
+			case 'all_activate':
+					$this->db->set('is_active',1);
+					$this->db->where_in('pickup_location_id',$ids);
+					$this->db->update('paths');
+				break;
+			case 'all_deactivate':
+					$this->db->set('is_active',0);
+					$this->db->where_in('pickup_location_id',$ids);
+					$this->db->update('paths');
+				break;
+			case 'all_delete':
+					$this->db->where_in('pickup_location_id',$ids);
+					$this->db->delete('paths');
+				break;
+		}
+		redirect('admin/paths');
+	}
+
 }

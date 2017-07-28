@@ -112,7 +112,6 @@ a.active {
       <center><button type="button" class="btn" style="font-size: 20px;" id="firstbutton"><?php echo lang('book_now'); ?></button></center>
     </div>
   </div>
-  <br/><br/>
 </form>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <style>

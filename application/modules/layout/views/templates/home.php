@@ -6,6 +6,7 @@
 <div class="bgColor" style="background-color:#ececec; padding: 60px 0;">
 <div class="container">
   <?php $this->load->view('reservation_form'); ?>
+  <?php /*
 	<div class="row">
 	<p class="homepara"><?php echo lang('home_intro'); ?> </p>
 	<div class="col-sm-12 col-xs-12 home-label" style="text-align:center;">
@@ -13,7 +14,7 @@
 		<div class="col-xs-4" style="padding:0; border-right: 2px #000000 solid;"><p><span class="counter"><?php echo $total_nationalites > 15 ? $total_nationalites : 15; ?></span><br>Nationalities</p></div><!--<div class="divider2"></div>-->
 		<div class="col-xs-4" style="padding:0;"><p><span class="counter"><?php echo $total_trips;?></span><br>Trips</p></div>
 	</div>
-	</div>
+	</div> */ ?>
 </div>
 </div>
 <div class="container">

@@ -520,6 +520,14 @@ class Node extends Anonymous_Controller {
 
     if ($book_id != '' && is_numeric($book_id)) {
       $book_data = $this->db->from('booking')->where('id', $book_id)->get()->row();
+      if (empty($book_data)) {
+        $book_data = $this->db->from('temp_booking')->where('id', $book_id)->get()->row();
+        if (empty($book_data)) {
+          redirect($this->uri->segment(1).'/reservation');
+        } else {
+          redirect($this->uri->segment(1).'/paymentRequestSuccess');
+        }
+      }
       if ($book_data->book_status != 'pending') {
         //redirect($this->uri->segment(1));
       }
@@ -1006,5 +1014,46 @@ class Node extends Anonymous_Controller {
       }
     }
   }
+
+
+  public function payment_request_success() {
+    $this->load->view('layout/templates/payment_request_success', array('lang'=>$this->uri->segment(1)));
+  }
+
+  public function doPayment($book_id) {
+    $this->db->from('temp_booking')->where('id', $book_id)->where('DATE_ADD(created, INTERVAL 1 DAY) > now()')->where('DATE_SUB(concat(start_journey," ",time_go),INTERVAL 6 HOUR) > now()');
+    $this->template_vars['bookings'] = current($this->db->get()->result_array());
+
+    if ($this->template_vars['bookings']) {
+      if ($this->template_vars['bookings']['return_book_id']) {
+        $this->db->from('temp_booking')->where('id', $this->template_vars['bookings']['return_book_id']);
+        $this->template_vars['return_bookings'] = current($this->db->get()->result_array());
+      }
+      
+      /*Address details*/
+      $this->template_vars['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id ', $this->template_vars['bookings']['collaborator_address_id'])->get()->result_array();      
+
+      $this->db->from('collaborators')->where('id',$this->template_vars['bookings']['collaborator_id']);
+      $terminal = current($this->db->get()->result_array());
+
+      $this->template_vars['bookings']['collaborator_name'] = $terminal['name'];
+      $this->db->from('calendars')->where('id', $this->template_vars['bookings']['calendar_id']);
+      $this->template_vars['start_journey'] = current($this->db->get()->result_array());
+      $client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$this->template_vars['bookings']['client_id'])->get();
+      if ($client_qry->num_rows())
+          $this->template_vars['clients'] = current($client_qry->result_array());
+      else
+          $this->template_vars['clients'] = json_decode($this->template_vars['bookings']['client_array'], true);
+
+      $this->template_vars['price'] = $this->input->get('amt');
+      $this->template_vars['book_reference'] = 'SHT-'.date('dmY',strtotime($this->template_vars['bookings']['start_journey'])).'-'.sprintf("%02d", $this->template_vars['bookings']['id']);
+      $this->template_vars['content']['image'] = 'confirmation.jpg';
+      $this->load->view('layout/templates/do_payment', $this->template_vars);
+    } else {
+      $this->template_vars['error'] = 'Your order has been expired';
+      $this->load->view('layout/templates/error', $this->template_vars);
+    }
+  }
+
 }
 ?>

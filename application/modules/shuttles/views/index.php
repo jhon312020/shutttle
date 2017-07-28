@@ -56,4 +56,6 @@
 </div>
 <?php echo $this->layout->load_view('layout/alerts'); ?>
 
+<?php echo $this->layout->load_view('layout/all_actions',array('action'=>site_url('admin/shuttles/actions'),'delete_only'=>true)); ?>
+
 <?php echo $this->layout->load_view('shuttles/booking_list_table'); ?>

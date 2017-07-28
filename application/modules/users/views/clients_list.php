@@ -9,11 +9,14 @@
 
 <?php echo $this->layout->load_view('layout/alerts'); ?>
 
+<?php echo $this->layout->load_view('layout/all_actions',array('action'=>site_url('admin/clients/actions'))); ?>
+
 <table class="table table-bordered datatable data_table">
 	<thead>
 		<tr>
+			<th class='no-sort'><input type="checkbox" id="select_all" /></th>
 			<th>Register</th>
-      <th><?php echo lang('name'); ?></th>
+      		<th><?php echo lang('name'); ?></th>
 			<th><?php echo lang('surname'); ?></th>
 			<th><?php echo lang('email'); ?></th>
 			<th><?php echo lang('phone'); ?></th>
@@ -25,7 +28,8 @@
 		<?php
 			foreach ($clients as $client) {
 				$color = 'color:gold;';
-				printf("<tr><td align='center' width=80><i class='entypo-star' style='font-size:24px;%s'></i></td>",$color);
+				printf("<tr><td align='center'><input type='checkbox' class='single_checkbox' name='ids_%s' /></td>",$client->id);
+				printf("<td align='center' width=80><i class='entypo-star' style='font-size:24px;%s'></i></td>",$color);
 				printf("<td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>", $client->name, $client->surname, $client->email, $client->phone, $client->country);
 				printf("<td>");
 				printf("<a class='btn btn-info btn-sm' href='".site_url('admin/clients/view/'.$client->id)."'><i class='entypo-eye'></i></a>", '#');
@@ -37,3 +41,13 @@
 		?>
 	</tbody>
 </table>
+<script>
+$(document).ready(function(){
+	oTable.dataTable( {
+        "columnDefs": [ {
+          "targets": 'no-sort',
+          "orderable": false,
+    } ]
+} );
+});
+</script>

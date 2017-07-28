@@ -22,10 +22,12 @@ if ($cms_lang == 'english') {
 	$lang = 'es';
 }
 ?>
+<?php echo $this->layout->load_view('layout/all_actions',array('action'=>site_url('admin/vehicles/actions'))); ?>
 <table class="table table-bordered datatable data_table">
 
 	<thead>
 		<tr>
+			<th class='no-sort'><input type="checkbox" id="select_all" /></th>
             <th><?=lang('vehicle')?></th>
 			<th><?=lang('title')?></th>
 			<th><?=lang('passengers')?></th>
@@ -37,6 +39,7 @@ if ($cms_lang == 'english') {
 	<tbody>
 		<?php foreach ($vehicles as $vehicle) { ?>
 		<tr>
+			<td align='center'><input type='checkbox' class='single_checkbox' name='ids_<?php echo $vehicle->id; ?>' /></td>
 			<td style="text-align:center">
 				<img src="<?php echo $site_url; ?>/assets/cc/images/vehicles/<?php echo $vehicle->image ;?>" width="150"/>
 			</td>

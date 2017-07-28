@@ -1,4 +1,7 @@
 <style>
+.edit_field {
+	display: none;
+}
 @page { margin: 10mm; } /* All margins set to 2cm */
 @media print {
 	 body, .page-container, .sidebar-menu {margin:0 !important; padding-left: 0px !important;}
@@ -218,6 +221,8 @@ if ($this->session->userdata('cms_lang') == 'english') {
 				</div>
 				<div class="panel-body" style="padding:0px;">
 					<form method="post" class="form-horizontal" enctype="multipart/form-data">
+						<button class="pull-right btn" type="button" id="edit_form">Edit</button>
+						<button class="pull-right btn btn-primary edit_field" type="submit" value="1" name="booking_submit">Save</button>
 						<?php if($bookings['book_role'] == 2){ ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label" style="color:#F27D00;"><?php echo lang('collaborator_name'); ?>:
@@ -236,33 +241,69 @@ if ($this->session->userdata('cms_lang') == 'english') {
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('date_go'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo Date('d/m/Y', strtotime($bookings['start_journey'])); ?></label>
+							<label class="col-sm-8 control-label pull-left editLabel">
+								<span class="edit_field_label">
+									<?php echo Date('d/m/Y', strtotime($bookings['start_journey'])); ?>
+								</span>
+								<span class="edit_field">
+									<input type="text" name="start_journey" value="<?php echo Date('d/m/Y', strtotime($bookings['start_journey'])); ?>" class="date_picker form-control" />
+								</span>
+							</label>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('hour_go'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo Date('H:i', strtotime($bookings['hour'])).'h'; ?></label>
+							<label class="col-sm-8 control-label pull-left editLabel">
+								<span class="edit_field_label">
+								<?php echo Date('H:i', strtotime($bookings['hour'])).'h'; ?>
+								</span>
+								<span class="edit_field">
+									<input type="text" name="hour" value="<?php echo Date('H:i', strtotime($bookings['hour'])); ?>" class="form-control" />
+								</span>
+							</label>
 						</div>
 						<?php if(isset($return_bookings)) { ?>
 						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('date_back'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo Date('d/m/Y', strtotime($return_bookings['start_journey'])); ?></label>							
+							<label class="col-sm-8 control-label pull-left editLabel">
+								<span class="edit_field_label">
+									<?php echo Date('d/m/Y', strtotime($return_bookings['start_journey'])); ?>
+								</span>
+								<span class="edit_field">
+									<input type="text" name="return_journey" value="<?php echo Date('d/m/Y', strtotime($return_bookings['start_journey'])); ?>" class="date_picker form-control" />
+								</span>
+							</label>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('hour_back'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo Date('H:i', strtotime($return_bookings['hour'])).'h'; ?></label>							
+							<label class="col-sm-8 control-label pull-left editLabel">
+								<span class="edit_field_label">
+								<?php echo Date('H:i', strtotime($return_bookings['hour'])).'h'; ?>
+								</span>
+								<span class="edit_field">
+									<input type="text" name="return_hour" value="<?php echo Date('H:i', strtotime($return_bookings['hour'])); ?>" class="form-control"  />
+								</span>
+							</label>
 						</div>
 						<?php } ?>
+						<div class="form-group">
+							<label class="col-sm-3 control-label pull-left"><?php echo lang('flight_no'); ?>: </label>
+							<label class="col-sm-8 control-label pull-left editLabel">
+								<span class="edit_field_label">
+									<?php echo $bookings['flight_no']; ?>
+								</span>
+								<span class="edit_field">
+									<input type="text" name="flight_no" value="<?php echo $bookings['flight_no']; ?>" class="form-control" />
+								</span>
+							</label>
+						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('country'); ?>: </label>
 							<label class="col-sm-8 control-label pull-left editLabel"><?php echo (isset($countries[$bookings['country']]))?$countries[$bookings['country']]:''; ?></label>							
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label pull-left"><?php echo lang('flight_no'); ?>: </label>
-							<label class="col-sm-8 control-label pull-left editLabel"><?php echo $bookings['flight_no']; ?></label>
-						</div>
-						<div class="form-group">
 							<label class="col-sm-3 control-label pull-left"><?php echo lang('adults'); ?>: </label>
 							<label class="col-sm-8 control-label pull-left editLabel"><?php echo $bookings['adults']; ?></label>
+
 						</div>
 						<?php if($bookings['version'] == 1) { ?>
 							<?php if (isset($bookings['vehicle'])) { ?>
@@ -637,4 +678,17 @@ function printPage(){
 		printWindow.document.close();
 		printWindow.print();
 }
+$(document).ready(function(){
+	$('.date_picker').datetimepicker({
+		minView:2,
+		format: 'dd/mm/yyyy',
+		autoclose:true,
+		weekStart: 1
+	});
+	$('#edit_form').click(function(){
+		$('.edit_field_label').hide();
+		$('.edit_field').show();
+		$(this).hide();
+	});
+});
 </script>

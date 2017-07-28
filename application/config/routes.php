@@ -160,6 +160,15 @@ $route['es/process'] = 'node/process';
 $route['en/reservation'] = 'node/reservationBank';
 $route['es/reservation'] = 'node/reservationBank';
 
+$route['en/paymentRequestSuccess'] = 'node/payment_request_success';
+$route['es/paymentRequestSuccess'] = 'node/payment_request_success';
+
+$route['en/doPayment/(:num)'] = 'node/doPayment/$1';
+$route['es/doPayment/(:num)'] = 'node/doPayment/$1';
+
+$route['en/payNow'] = 'ajax/pay_now';
+$route['es/payNow'] = 'ajax/pay_now';
+
 $route['en/getData'] = 'ajax/getData';
 $route['es/getData'] = 'ajax/getData';
 

@@ -220,7 +220,7 @@ $lang['step'] = 'Step';
 //confirmation page
 $lang['thanks_booking']='Gracias por realizar la reserva.';
 $lang['print_booking']='Por favor imprime esta confirmación y muéstrasela al conductor de vehículo.';
-$lang['query_booking']='Para cualquier consulta o duda por favor contacte con shuttleing vía Email:  checking@shuttleing.com o teléfono: +34 697 462 259.';
+$lang['query_booking']='Atención al cliente (Español): +34 697 462 259. Help Line (English): +34 868 480 017. Email: info@Shuttleing.com';
 
 $lang['time_go'] = 'Hora salida vuelo';
 $lang['time_back'] = 'Hora llegada vuelo';
@@ -452,4 +452,5 @@ $lang['country_code_plus_phone'] = 'Código País + teléfono';
 $lang['We need at least 6 hours to prepare your car and trip'] = 'Necesitamos al menos 6 horas para preparar tu coche y viaje';
 
 $lang['pendings'] = 'Pendientes';
+$lang['user_phone'] = 'Usuario Teléfono';
 ?>

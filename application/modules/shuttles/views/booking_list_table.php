@@ -2,6 +2,9 @@
 
 	<thead>
 		<tr>
+			<?php if (isset($all_actions) && $all_actions) { ?>
+				<th class='no-sort'><input type="checkbox" id="select_all" /></th>
+			<?php } ?>
 			<th><?php echo lang('trip_type'); ?></th>
 			<th><?php echo lang('reference'); ?></th>
 			<th><?php echo lang('vehicle'); ?></th>
@@ -16,7 +19,7 @@
 			<th style="display: none;"><?php echo lang('flight_no'); ?></th>
 			<th style="display: none;"><?php echo lang('col_address_info'); ?></th>
 			<th style="display: none;"><?php echo lang('address'); ?></th>
-			<th style="display: none;"><?php echo lang('phone'); ?></th>
+			<th style="display: none;"><?php echo lang('user_phone'); ?></th>
 			<th style="display: none;"><?php echo lang('reservation_date'); ?></th>
 			<?php
 			foreach($extras as $extra){
@@ -30,6 +33,8 @@
 	<tbody>
 		<?php 
 		$return_array = array();
+		/*echo '<pre>';
+		print_r($shuttles); exit;*/
 		foreach ($shuttles as $shuttle) {
 			if(in_array($shuttle->id, $return_array)) {
 				continue;
@@ -85,6 +90,9 @@
 			}*/	
 		?>
 		<tr>
+			<?php if (isset($all_actions) && $all_actions) { ?>
+				<td align='center'><input type='checkbox' class='single_checkbox' name='ids_<?php echo $shuttle->round_trip == 1?$res[$shuttle->id]:$shuttle->id; ?>' /></td>
+			<?php } ?>
 			<td><img src="<?php echo base_url().'assets/cc/images/'. (($shuttle->return_book_id > 0 || $shuttle->round_trip == 1)?'round.png':'single.png'); ?>"></td>
 			<td><?php 
 			if ($shuttle->version == 1) {
@@ -117,6 +125,8 @@
 				$phone_number = '';
 				if (isset($client_array['phone'])) {
 					$phone_number = $client_array['phone'];
+				} else {
+					$phone_number = $shuttle->phone_number;
 				}
 			?>
 			<td style="display: none;"><?php echo $phone_number; ?></td>

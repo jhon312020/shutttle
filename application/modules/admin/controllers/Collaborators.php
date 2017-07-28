@@ -326,4 +326,28 @@ if (!defined('BASEPATH'))
 		$this->mdl_collaborators->delete($id);
 		redirect('admin/collaborators');
 	}
+
+	public function actions() {
+		$ids = explode(',',$this->input->post('ids'));
+		foreach ($ids as $key=>$id) {
+			$ids[$key] = (int)str_replace('ids_', '', $id);
+		}
+		switch($this->input->post('method')){
+			case 'all_activate':
+					$this->db->set('is_active',1);
+					$this->db->where_in('id',$ids);
+					$this->db->update('collaborators');
+				break;
+			case 'all_deactivate':
+					$this->db->set('is_active',0);
+					$this->db->where_in('id',$ids);
+					$this->db->update('collaborators');
+				break;
+			case 'all_delete':
+					$this->db->where_in('id',$ids);
+					$this->db->delete('collaborators');
+				break;
+		}
+		redirect('admin/collaborators');
+	}
 }
