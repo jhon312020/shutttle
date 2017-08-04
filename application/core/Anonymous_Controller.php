@@ -38,9 +38,23 @@ class Anonymous_Controller extends MX_Controller {
       // some define to use globally
       define('IMAGEPATH',base_url()."assets/cc/images/");
       $ln = $this->uri->segment(1);
-      if($ln == "en") {
+      switch($ln) {
+        case 'en':
+            $lang = "english";    
+          break;
+        case 'es':
+            $lang = "spanish";
+          break;
+        case 'de':
+            $lang = "germany";
+          break;
+        case 'fr':
+            $lang = "french";
+          break;
+      }
+      /*if($ln == "en") {
         $lang = "english";
-      } else $lang = "spanish";
+      } else $lang = "spanish";*/
       $this->load->helper('language');
       $this->lang->load('cms', $lang);
       $this->load->model('menu/mdl_menu');

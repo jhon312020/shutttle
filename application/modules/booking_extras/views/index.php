@@ -24,13 +24,13 @@
 	<tbody>
 		<?php foreach ($booking_extras as $booking_extra) { ?>
 		<tr>
-			<td><?php echo $booking_extra->title; ?></td>
+			<td><?php echo $booking_extra->title_en; ?></td>
 			<td>
 				<?php 
 					echo "<img src ='$path$booking_extra->image'>";
 				?>
 			</td>
-			<td><?php echo $booking_extra->subtitle; ?></td>
+			<td><?php echo $booking_extra->subtitle_en; ?></td>
 			<td><?php echo $booking_extra->price; ?></td>
 			<td>
 				<a class="btn btn-info btn-sm" href="<?php echo site_url('admin/booking_extras/view/' . $booking_extra->id); ?>">

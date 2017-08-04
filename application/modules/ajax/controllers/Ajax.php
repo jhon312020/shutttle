@@ -541,14 +541,17 @@ class Ajax extends Anonymous_Controller {
       $settings[$data->setting_key] = $data->setting_value;
     }
     $this->load->library('email');
-    $subject = 'Make Payemnt';
-    $message  = 'Hello ' . $client['name'] .' <br/><br/>';
-    $message .= site_url($this->uri->segment(1).'/doPayment/'.$book_id).'<br/><br/> ';
+    $subject = 'Confirm your order';
+    $vars = $this->getTempBookingContent($book_id);
+    $vars['client'] = $client;
+    $vars['lang'] = $this->uri->segment(1);
+    $vars['confirm_url'] = site_url($this->uri->segment(1).'/doPayment/'.$book_id);
+    $mail_html = $this->load->view('layout/templates/request_email', $vars, true);
     $this->email->set_mailtype("html");
     $this->email->from($settings['site_email']);
     $this->email->to($client['email']);
     $this->email->subject($subject);
-    $this->email->message($message);
+    $this->email->message($mail_html);
     $this->email->send();
   }
 
@@ -557,12 +560,12 @@ class Ajax extends Anonymous_Controller {
       $bid = $this->input->post('id');
       $booking = $this->db->where('id',$bid)->get('temp_booking')->result_array();
       $ids[] = $bid;
-      unset($booking[0]['created']);
-      $records[] = $booking[0];
-      if (empty($booking)) {
+      if (!$booking) {
         echo json_encode(array('error'=>'Your order has been expired'));
         exit;
       }
+      unset($booking[0]['created']);
+      $records[] = $booking[0];
       if ($booking[0]['return_book_id']) {
         $ids[] = $booking[0]['return_book_id'];
         $return_booking = $this->db->where('id',$booking[0]['return_book_id'])->get('temp_booking')->result_array();
@@ -628,6 +631,42 @@ class Ajax extends Anonymous_Controller {
 
       echo json_encode($str);
     }
+  }
+
+  function getTempBookingContent($id) {
+    $this->db->from('temp_booking')->where('id', $id);
+    $res['bookings'] = current($this->db->get()->result_array());
+
+    if ($res['bookings']['version'] == 1) {
+      $vehicles = $this->db->from('vehicles')->where('id',$res['bookings']['vehicle_id'])->get()->result_array();
+      if ($vehicles) {
+        $res['bookings']['vehicle'] = $vehicles[0];
+      }
+    }
+
+    if ($res['bookings']['return_book_id']) {
+      $this->db->from('temp_booking')->where('id', $res['bookings']['return_book_id']);
+      $res['return_bookings'] = current($this->db->get()->result_array());
+    }
+
+    /*Address details*/
+    $res['bookings']['collaborator_address'] = $this->db->from('collaborators_address')->where('id', $res['bookings']['collaborator_address_id'])->get()->result_array();
+
+    $this->db->from('collaborators')->where('id',$res['bookings']['collaborator_id']);
+    $terminal = current($this->db->get()->result_array());
+      
+    $res['bookings']['collaborator_name'] = $terminal['name'];
+    $this->db->from('calendars')->where('id', $res['bookings']['calendar_id']);
+    $res['start_journey'] = current($this->db->get()->result_array());
+    $client_qry = $this->db->from('clients')->select('name,surname,email,phone,address,cp,country, city,nationality,dni_passport,doc_no')->where('id',$res['bookings']['client_id'])->get();
+    if ($client_qry->num_rows())
+      $res['clients'] = current($client_qry->result_array());
+    else
+      $res['clients'] = json_decode($res['bookings']['client_array'], true);
+
+    $res['book_reference'] = 'SHT-'.date('dmY',strtotime($res['bookings']['start_journey'])).'-'.sprintf("%02d", $res['bookings']['id']);
+
+    return $res;
   }
 
 }

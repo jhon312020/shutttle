@@ -37,6 +37,7 @@ class Faq extends Admin_Controller {
         if ($this->mdl_faq->run_validation())
         {
 			unset($_POST['btn_submit']);
+            
 			$id = $this->mdl_faq->save($id, $this->input->post());
 			
 			if(!$error_flg)			

@@ -45,15 +45,23 @@ if (!defined('BASEPATH'))
 				$captions = array(
 					'title_en'	=> $this->input->post('title_en'),
 					'title_es'	=> $this->input->post('title_es'),
+					'title_de'	=> $this->input->post('title_de'),
+					'title_fr'	=> $this->input->post('title_fr'),
 					'subtitle_en'	=> $this->input->post('subtitle_en'),
 					'subtitle_es'	=> $this->input->post('subtitle_es'),
+					'subtitle_de'	=> $this->input->post('subtitle_de'),
+					'subtitle_fr'	=> $this->input->post('subtitle_fr'),
 				);
 				if ($name !== 'contacts') {
 					$captions['content_en']	= $this->input->post('content_en');
 					$captions['content_es']	= $this->input->post('content_es');
+					$captions['content_de']	= $this->input->post('content_de');
+					$captions['content_fr']	= $this->input->post('content_fr');
 					if($name !== 'partners') {
 						$captions['subcontent_en'] = $this->input->post('subcontent_en');
 						$captions['subcontent_es'] = $this->input->post('subcontent_es');
+						$captions['subcontent_de']	= $this->input->post('subcontent_de');
+						$captions['subcontent_fr']	= $this->input->post('subcontent_fr');
 					}
 				}
 				if(!is_numeric($id)) {

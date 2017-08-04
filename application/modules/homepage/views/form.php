@@ -49,6 +49,18 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php echo lang('slogan'); ?> (De): </label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text" id="slogan_de" name="slogan_de" value="<?php echo $this->mdl_slider->form_value('slogan_de'); ?>">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php echo lang('slogan'); ?> (Fr): </label>
+						<div class="col-sm-5">
+							<input class="form-control" type="text" id="slogan_fr" name="slogan_fr" value="<?php echo $this->mdl_slider->form_value('slogan_fr'); ?>">
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo lang('image'); ?>: </label>
 						<div class="col-sm-5">
 							<input name="image" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" />
@@ -59,12 +71,6 @@
 					</div>
 				<?php } else if($type == 'box') { ?>
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('title'); ?> (En): </label>
-						<div class="col-sm-5">
-							<input class="form-control" type="text" id="title" name="title" value="<?php echo $this->mdl_box->form_value('title'); ?>">
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo lang('view_home'); ?></label>
 						<div class="col-sm-5">
 							<label>
@@ -74,63 +80,12 @@
 							</label>
 						</div>
 					</div>
-					<div class="form-group homeDiv imageDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'image' || $this->mdl_box->form_value('show_home') == null ? '':'display:none;'; ?>">
-						<label class="col-sm-3 control-label"><?php echo lang('image'); ?> (EN): </label>
-						<div class="col-sm-5">
-							<input name="image" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" value="<?php echo $this->mdl_box->form_value('image'); ?>"/>
-							<?php if($this->mdl_box->form_value('image')){?>
-								<img src="<?php echo $path . 'boxes/' . $this->mdl_box->form_value('image'); ?>" width="150">
-							<?php } ?>
-						</div>
-					</div>
-					<div class="form-group homeDiv videoDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'video' ? '':'display:none;'; ?>">
-						<label class="col-sm-3 control-label"><?php echo lang('video'); ?> (EN): </label>
-						<div class="col-sm-5">
-							<input class="form-control" type="text" id="video" name="video" value="<?php echo htmlspecialchars($this->mdl_box->form_value('video')); ?>">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('title'); ?> (Es): </label>
-						<div class="col-sm-5">
-							<input class="form-control" type="text" id="title_es" name="title_es" value="<?php echo $this->mdl_box->form_value('title_es'); ?>">
-						</div>
-					</div>
-					<div class="form-group homeDiv imageDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'image' || $this->mdl_box->form_value('show_home') == null ? '':'display:none;'; ?>">
-						<label class="col-sm-3 control-label"><?php echo lang('image'); ?> (ES): </label>
-						<div class="col-sm-5">
-							<input name="image_es" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" value="<?php echo $this->mdl_box->form_value('image_es'); ?>"/>
-							<?php if($this->mdl_box->form_value('image_es')){?>
-								<img src="<?php echo $path . 'boxes/' . $this->mdl_box->form_value('image_es'); ?>" width="150">
-							<?php } ?>
-						</div>
-					</div>
-					<div class="form-group homeDiv videoDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'video' ? '':'display:none;'; ?>">
-						<label class="col-sm-3 control-label"><?php echo lang('video'); ?> (Es): </label>
-						<div class="col-sm-5">
-							<input class="form-control" type="text" id="video_es" name="video_es" value="<?php echo htmlspecialchars($this->mdl_box->form_value('video_es')); ?>">
-						</div>
-					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo lang('url'); ?>: </label>
 						<div class="col-sm-5">
 							<input class="form-control" type="text" id="link" name="link" value="<?php echo $this->mdl_box->form_value('link'); ?>">
 						</div>
 					</div>
-					<?php /*
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('title_bgcolor'); ?>: </label>
-						<div class="col-sm-5">
-							<select name="title_bgcolor" class="form-control">
-								<?php 
-								foreach($colors as $color_code=>$color_name) {
-									echo $selected = $color_code==$this->mdl_box->form_value('title_bgcolor')?'selected':'';
-									echo "<option value='$color_code' style='background-color:$color_code' $selected>$color_name</option>";
-								}
-								?>
-							</select>
-						</div>
-					</div>
-					*/ ?>
 					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo lang('sort_news'); ?>: </label>
 						<div class="col-sm-5">
@@ -142,6 +97,117 @@
 								}
 								?>
 							</select>
+						</div>
+					</div>
+
+					<div class="panel minimal minimal-gray">
+						<div class="panel-heading">
+							<div class="panel-title"></div>
+							<div class="panel-options">
+								
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#tab-1" data-toggle="tab">EN</a></li>
+									<li><a href="#tab-2" data-toggle="tab">ES</a></li>
+									<li><a href="#tab-3" data-toggle="tab">DE</a></li>
+									<li><a href="#tab-4" data-toggle="tab">FR</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab-1">
+									<div class="form-group">
+										<label class="col-sm-3 control-label"><?php echo lang('title'); ?> (En): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="title" name="title_en" value="<?php echo $this->mdl_box->form_value('title_en'); ?>">
+										</div>
+									</div>
+									<div class="form-group homeDiv imageDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'image' || $this->mdl_box->form_value('show_home') == null ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('image_en'); ?> (EN): </label>
+										<div class="col-sm-5">
+											<input name="image_en" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" value="<?php echo $this->mdl_box->form_value('image_en'); ?>"/>
+											<?php if($this->mdl_box->form_value('image_en')){?>
+												<img src="<?php echo $path . 'boxes/' . $this->mdl_box->form_value('image_en'); ?>" width="150">
+											<?php } ?>
+										</div>
+									</div>
+									<div class="form-group homeDiv videoDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'video' ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('video_en'); ?> (EN): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="video_en" name="video_en" value="<?php echo htmlspecialchars($this->mdl_box->form_value('video_en')); ?>">
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tab-2">
+									<div class="form-group">
+										<label class="col-sm-3 control-label"><?php echo lang('title'); ?> (Es): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="title_es" name="title_es" value="<?php echo $this->mdl_box->form_value('title_es'); ?>">
+										</div>
+									</div>
+									<div class="form-group homeDiv imageDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'image' || $this->mdl_box->form_value('show_home') == null ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('image'); ?> (ES): </label>
+										<div class="col-sm-5">
+											<input name="image_es" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" value="<?php echo $this->mdl_box->form_value('image_es'); ?>"/>
+											<?php if($this->mdl_box->form_value('image_es')){?>
+												<img src="<?php echo $path . 'boxes/' . $this->mdl_box->form_value('image_es'); ?>" width="150">
+											<?php } ?>
+										</div>
+									</div>
+									<div class="form-group homeDiv videoDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'video' ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('video'); ?> (Es): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="video_es" name="video_es" value="<?php echo htmlspecialchars($this->mdl_box->form_value('video_es')); ?>">
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane" id="tab-3">
+									<div class="form-group">
+										<label class="col-sm-3 control-label"><?php echo lang('title'); ?> (DE): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="title_de" name="title_de" value="<?php echo $this->mdl_box->form_value('title_de'); ?>">
+										</div>
+									</div>
+									<div class="form-group homeDiv imageDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'image' || $this->mdl_box->form_value('show_home') == null ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('image'); ?> (DE): </label>
+										<div class="col-sm-5">
+											<input name="image_de" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" value="<?php echo $this->mdl_box->form_value('image_de'); ?>"/>
+											<?php if($this->mdl_box->form_value('image_de')){?>
+												<img src="<?php echo $path . 'boxes/' . $this->mdl_box->form_value('image_de'); ?>" width="150">
+											<?php } ?>
+										</div>
+									</div>
+									<div class="form-group homeDiv videoDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'video' ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('video'); ?> (DE): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="video_de" name="video_de" value="<?php echo htmlspecialchars($this->mdl_box->form_value('video_de')); ?>">
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane " id="tab-4">
+									<div class="form-group">
+										<label class="col-sm-3 control-label"><?php echo lang('title'); ?> (FR): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="title_fr" name="title_fr" value="<?php echo $this->mdl_box->form_value('title_fr'); ?>">
+										</div>
+									</div>
+									<div class="form-group homeDiv imageDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'image' || $this->mdl_box->form_value('show_home') == null ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('image'); ?> (FR): </label>
+										<div class="col-sm-5">
+											<input name="image_fr" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" value="<?php echo $this->mdl_box->form_value('image_fr'); ?>"/>
+											<?php if($this->mdl_box->form_value('image_fr')){?>
+												<img src="<?php echo $path . 'boxes/' . $this->mdl_box->form_value('image_fr'); ?>" width="150">
+											<?php } ?>
+										</div>
+									</div>
+									<div class="form-group homeDiv videoDiv" style="<?php echo $this->mdl_box->form_value('show_home') == 'video' ? '':'display:none;'; ?>">
+										<label class="col-sm-3 control-label"><?php echo lang('video'); ?> (FR): </label>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" id="video_fr" name="video_fr" value="<?php echo htmlspecialchars($this->mdl_box->form_value('video_fr')); ?>">
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				<?php } else if($type == 'banner') { ?>

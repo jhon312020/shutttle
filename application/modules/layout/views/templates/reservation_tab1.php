@@ -46,7 +46,11 @@
   left: 4px;
 }
 </style>
+<?php if ($submit_from_home) { ?>
+<div class="tab-pane jsTabPane" id="firstStep">
+<?php } else { ?>
 <div class="tab-pane jsTabPane active" id="firstStep">
+<?php } ?>
   <div class="tabbable-panel circle-show">
 		<div class="tabbable-line">
 			<ul class="nav nav-tabs ">

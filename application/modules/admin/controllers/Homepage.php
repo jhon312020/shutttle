@@ -70,8 +70,10 @@ class Homepage extends Admin_Controller {
 		$model  = 'mdl_';
 		$model .= ($type == 'banner') ? 'box' : $type;
 		if ($type == 'banner' && $this->input->post('btn_submit')) {
-			$_POST['title'] = 'banner';
+			$_POST['title_en'] = 'banner';
 			$_POST['title_es'] = 'banner';
+			$_POST['title_de'] = 'banner';
+			$_POST['title_fr'] = 'banner';
 			$_POST['location'] = 'banner';
 		}
 
@@ -83,12 +85,21 @@ class Homepage extends Admin_Controller {
 				'image'  => $this->input->post('image')
 			);*/
 			$id = $this->{$model}->save($id, $this->input->post());
-			$data = $this->do_upload($type, $id, 'image');
+			//$data = $this->do_upload($type, $id, 'image');
 			
 			if($type == 'banner' || $type == 'box') {
-				if (isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name']) || isset($_FILES['image_es']) && is_uploaded_file($_FILES['image_es']['tmp_name'])) {
-					$data = $this->do_upload($type, $id, 'image_es');
+				if (isset($_FILES['image_en']) && is_uploaded_file($_FILES['image_en']['tmp_name'])) {
+					$data = $this->do_upload($type, $id, 'image_en');
 				} 
+				if (isset($_FILES['image_es']) && is_uploaded_file($_FILES['image_es']['tmp_name'])) {
+					$data = $this->do_upload($type, $id, 'image_es');
+				}
+				if (isset($_FILES['image_de']) && is_uploaded_file($_FILES['image_de']['tmp_name'])) {
+					$data = $this->do_upload($type, $id, 'image_de');
+				}
+				if (isset($_FILES['image_fr']) && is_uploaded_file($_FILES['image_fr']['tmp_name'])) {
+					$data = $this->do_upload($type, $id, 'image_fr');
+				}
 			}
 			if(isset($data['error'])) {
 				if(strip_tags($data['error']) == "You did not select a file to upload."){

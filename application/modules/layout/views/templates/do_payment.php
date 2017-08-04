@@ -407,7 +407,7 @@
 
 	</div>
 
-	<?php $this->load->view('footer'); ?>	
+	<?php $this->load->view('footer'); ?>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var id = <?php echo $bookings['id']; ?>;

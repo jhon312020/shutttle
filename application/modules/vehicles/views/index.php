@@ -132,8 +132,8 @@ body.modal-open {
 			</div>
 		</div>
       <div class="modal-footer">
-      	<input style="float:right;margin-left:10px;" class="btn btn-primary" type="submit"/>
-      	<button type="button" class="btn btn-danger"  style="float:right;" data-dismiss="modal">Cancel</button>
+      	<input style="float:right;margin-left:10px;" class="btn btn-primary" type="submit" value="<?php echo lang('save'); ?>"/>
+      	<button type="button" class="btn btn-danger"  style="float:right;" data-dismiss="modal"><?php echo lang('cancel'); ?></button>
       </div>
       </form>
     </div>

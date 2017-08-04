@@ -90,16 +90,17 @@ class Node extends Anonymous_Controller {
     $this->template_vars['years'] = $years;
     //print_r($years);die;
 
-    $lang = $this->uri->segment(1);
-    if ($lang == '' || $lang == 'es' || $lang == 'en' ) {
+    $this->template_vars['lang'] = $this->uri->segment(1);
+
+    /*if ($lang == '' || $lang == 'es' || $lang == 'en' ) {
       $this->template_vars['lang'] = $lang;
     } else {
       $this->template_vars['lang'] = 'es';
-    }
+    }*/
   }
 
-  public function index($lang = 'es') {
-    $this->display_home($lang);
+  public function index() {
+    $this->display_home($this->template_vars['lang']);
   }
 
   /**

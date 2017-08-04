@@ -3,7 +3,36 @@
 	if(!$ln || $ln == ""){	$ln = "es"; }
 	$this->load->view('home_header');
 ?>
-<div class="bgColor" style="background-color:#ececec; padding: 60px 0;">
+<style>
+.ui-autocomplete-category {
+  font-weight: bold;
+}
+body{
+  font-family: 'Gothambook';
+}
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 200px;
+  }
+
+.bgColor{
+  height:25%;
+}
+@media only screen and (max-width: 768px) {
+ .bgColor{
+    height:auto;
+  } 
+}
+</style>
+<div class="bgColor" style="background-color:#ececec; padding: 20px 0;">
 <div class="container">
   <?php $this->load->view('reservation_form'); ?>
   <?php /*
@@ -26,7 +55,12 @@
           <?php $img_url = IMAGEPATH.'homepage/boxes/'; ?>
           <?php foreach($boxes as $box) {   
               $link = $box->link;
-              if ($ln =='es') { 
+              $ln = $this->uri->segment(1);
+              $image_name = $box->{'image_'.$ln};
+              $title = $box->{'title_'.$ln};
+              //$content = $box->{'text_above_banner_'.$ln};
+              $content = '';
+              /*if ($ln =='es') { 
                 $image_name = $box->image_es;
                 $title = $box->title_es;
                 $content = $box->text_above_banner_es;
@@ -34,7 +68,7 @@
                 $image_name = $box->image;
                 $title = $box->title;
                 $content = $box->text_above_banner; 
-              }
+              }*/
             ?>
           <?php if ($link) { ?>
           <a href="<?php echo $link; ?>" target="_blank">

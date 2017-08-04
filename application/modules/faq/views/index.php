@@ -76,9 +76,9 @@
 		<?php foreach ($faq as $q) { ?>
 		<tr>
 			<td><?php echo $q->id; ?></td>
-			<td><?php echo $q->question; ?></td>
+			<td><?php echo $q->question_en; ?></td>
 			<td><?php echo $q->question_es; ?></td>
-			<td><?php echo word_limiter($q->answer, 10); ?></td>
+			<td><?php echo word_limiter($q->answer_en, 10); ?></td>
 			<td><?php echo word_limiter($q->answer_es, 10); ?></td>
 			<td>
 				<a class="btn btn-primary edit btn-sm" href="<?php echo site_url('admin/faq/form/' . $q->id); ?>">

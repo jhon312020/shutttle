@@ -151,6 +151,7 @@ $lang['return_date'] = 'Return date';
 $lang['no_passengers'] = 'Nº Passengers';
 $lang['your_country'] = 'Your country';
 $lang['flight_no'] = 'Flight nº';
+$lang['flight_no_home'] = 'Flight nº';
 $lang['arrival_time'] = 'Arrival';
 $lang['price'] = 'Price';
 
@@ -292,7 +293,7 @@ $lang['avail_seats'] = 'City to Airp. Available seats.';
 $lang['return_seats'] = 'Airp. To City available seats.';
 $lang['pay_by_online'] = 'Stripe';
 $lang['pay_by_bank'] = 'Sabadell bank';
-$lang['pay_by_cash'] = 'Pay by cash';
+$lang['pay_by_cash'] = 'Pay by user';
 $lang['less_seats'] = 'The booking seats is greater than the available seats';
 $lang['pre_paid'] = 'Pre-Paid';
 $lang['baby_error'] = 'The start trip baby seat should be less than or equal to';
@@ -474,4 +475,12 @@ $lang['pendings'] = 'Pendings';
 
 $lang['user_phone'] = 'User Phone';
 
+$lang['reservation_done_payment_content'] = 'Reservation is done and pending of payment. A confirmation email with the payment link has been sent to the user. Thanks!';
+
+$lang['reservation_done_payment_email_content'] = 'Please check the above information and continue with the payment. You can confirm this reservation until 6 hours before the time.';
+
+$lang['confirm_reservation'] = 'CONFIRM RESERVATION';
+
+$lang['back_home'] = 'Back Home!';
+$lang['hi'] = 'Hi';
 ?>

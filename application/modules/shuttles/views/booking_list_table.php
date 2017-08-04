@@ -8,14 +8,14 @@
 			<th><?php echo lang('trip_type'); ?></th>
 			<th><?php echo lang('reference'); ?></th>
 			<th><?php echo lang('vehicle'); ?></th>
-			<th><?php echo lang('name'); ?></th>
+			<th style="width:75px;"><?php echo lang('name'); ?></th>
 		      <th><?php echo lang('date'); ?></th>
 		      <th><?php echo lang('hour'); ?></th>
 			<th><?php echo lang('from'); ?></th>
 			<th><?php echo lang('to'); ?></th>
 			<th><?php echo lang('price'); ?></th>
 			<th style="display: none;"><?php echo lang('payment_method'); ?></th>
-			<th><?php echo lang('passengers'); ?></th>
+			<th style="width:50px;"><?php echo lang('passengers'); ?></th>
 			<th style="display: none;"><?php echo lang('flight_no'); ?></th>
 			<th style="display: none;"><?php echo lang('col_address_info'); ?></th>
 			<th style="display: none;"><?php echo lang('address'); ?></th>
@@ -105,11 +105,11 @@
 				<?php 
 				if ($shuttle->vehicle_image) {
 					echo '<b>'.$shuttle->vehicle_name.'</b><br/>';
-					echo '<img src="'.base_url().'/assets/cc/images/vehicles/'.$shuttle->vehicle_image.'" width="100" />';
+					echo '<img src="'.base_url().'/assets/cc/images/vehicles/'.$shuttle->vehicle_image.'" width="50" />';
 				}
 				?>
 			</td>
-			<td><?php echo $clients?$shuttle->first_name.' '.$shuttle->surname:$json['name'].' '.$json['surname']; ?></td>
+			<td style="width:75px;"><?php echo $clients?$shuttle->first_name.' '.$shuttle->surname:$json['name'].' '.$json['surname']; ?></td>
 			<td><?php echo date('d/m/Y', strtotime($shuttle->start_journey)); ?></td>
 			<td><?php echo date('H:i', strtotime($shuttle->hour)).'h'; ?></td>
 			<td><?php echo $start_from; ?></td>

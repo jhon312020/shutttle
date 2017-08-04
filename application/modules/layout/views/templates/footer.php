@@ -1,14 +1,10 @@
 <?php
 	$path = $this->uri->segment(2);
-	if($lang=='en'){
-		$full_path_en = current_url();
-		$full_path_es = str_replace('/en', '/es', current_url());
-	}
-	else{
-		$full_path_es = current_url();
-		$full_path_en = str_replace('/es', '/en', current_url());
-	}
-
+  $lang = $this->uri->segment(1);
+	$full_path_en = str_replace('/'.$lang, '/en', current_url());
+  $full_path_es = str_replace('/'.$lang, '/es', current_url());
+  $full_path_de = str_replace('/'.$lang, '/de', current_url());
+  $full_path_fr = str_replace('/'.$lang, '/fr', current_url());
 	$modalForm = site_url($lang . '/reserva01');
 ?>
   <!-- FOOTER -->
@@ -85,7 +81,9 @@
         <a href="<?php echo site_url('/').$lang; ?>/terms"><?php echo lang('terms_and_conditions'); ?></a> <span class="separator">|</span> 
         <a href="<?php echo (isset($social_facebook))?$social_facebook:'#'; ?>" style="display:none;"><img src="<?php echo IMAGEPATH;?>facebook.png" style="width:20px;"></a> <span class="separator" style="display:none;">|</span> 
         <a href="<?php echo $full_path_es; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>spain.png" style="width:20px;"></a> <span class="separator">|</span> 
-        <a href="<?php echo $full_path_en; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>english.png" style="width:20px;"></a>
+        <a href="<?php echo $full_path_en; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>english.png" style="width:20px;"></a> <span class="separator">|</span> 
+        <a href="<?php echo $full_path_de; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>german_flag.png" style="width:20px;height:11.172px;"></a> <span class="separator">|</span> 
+        <a href="<?php echo $full_path_fr; ?>" onClick="return checkPage();"><img src="<?php echo IMAGEPATH;?>france_flag.gif" style="width:20px;height:11.172px;"></a>
       </div>
     </div>
     <div class="row">

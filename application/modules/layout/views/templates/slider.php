@@ -5,7 +5,7 @@
 ?>
 <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2500">
+    <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="2500" style="height:75%;">
         <div class="carousel-inner" role="listbox">
         <?php
             $count = 0;
@@ -21,7 +21,7 @@
 
             ?>     
             <div class="item <?php echo $active_class; ?>">
-                <div style="background:url(<?php echo IMAGEPATH.'homepage/slider/'.$slider->image;?>);background-repeat: no-repeat;background-position: center top;background-size: cover;" class="carousel-image cs-item">&nbsp;</div>
+                <div class="img" style="background:url(<?php echo IMAGEPATH.'homepage/slider/'.$slider->image;?>);background-repeat: no-repeat;background-position: center center;background-size: cover;" class="carousel-image cs-item">&nbsp;</div>
                 <div class="container" style="height:100vh;">
                     <div class="sliderSection">
                         <img src="<?php echo IMAGEPATH.'header/sliders/'.$count.".png" ?>" />
@@ -34,3 +34,10 @@
             <?php $active_class = ''; } ?>
         </div>
     </div>
+<style>
+.item .img {
+    top: 0;
+    left: 0;
+    min-height: 100%;
+}
+</style>

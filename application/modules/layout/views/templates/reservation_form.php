@@ -58,11 +58,19 @@ a.active {
 </style>
 <form action="<?php echo site_url($lang).'/reservation'; ?>" method="post" id="firstStepForm" class="validateForm">
   <div class="row">
-    <div id="firstPageError"><div class="formErrorContent" style="padding-left:10px;"></div></div>
+    <div id="firstPageError" class="col-md-12"><div class="formErrorContent" style="padding-left:5px;"></div></div>
     <div class="col-md-12">
       <div class="col-md-6 col-pad-0">
         <div class="col-md-4">
+          <?php
+            if ($this->details['collaborator_details']) {
+              echo  form_input(array('name'=>'collaborators_id', 'id'=>'collaborators_id', 'type'=>'hidden', 'value'=>$this->details['collaborator_details']['id']));
+            } else {
+              echo  form_input(array('name'=>'collaborators_id', 'id'=>'collaborators_id', 'type'=>'hidden'));  
+            }
+          ?>
           <input type="hidden" id="from_location_id" name="from_location_id" />
+          <input type="hidden"  name="mode" value="firstStep" />
           <input type="text" id="from_location" name="from_location" class="form-control validate[required]" placeholder="<?php echo lang('from'); ?>" data-errormessage-value-missing="<?php echo lang('require_field'); ?>" />
         </div>
         <div class="col-md-4">
@@ -92,7 +100,7 @@ a.active {
           </div>
         </div>
         <div class="col-md-2">
-          <?php echo form_input(array('name'=>'flight_no', 'id'=>'flight_no', 'placeholder'=>lang('flight_no'), 'class'=>'form-control zd-23', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
+          <?php echo form_input(array('name'=>'flight_no', 'id'=>'flight_no', 'placeholder'=>lang('flight_no_home'), 'class'=>'form-control zd-23', 'data-errormessage-value-missing'=>lang('require_field'))); ?>
         </div>
       </div>
     </div>
@@ -108,8 +116,8 @@ a.active {
         </a>
       </div>
     </div>
-    <div class="col-md-12">
-      <center><button type="button" class="btn" style="font-size: 20px;" id="firstbutton"><?php echo lang('book_now'); ?></button></center>
+    <div class="col-md-6 col-md-offset-1">
+      <button type="button" class="btn" style="font-size: 20px;" id="firstbutton"><?php echo lang('book_now'); ?></button>
     </div>
   </div>
 </form>
@@ -131,9 +139,23 @@ input.form-control{
   background-color: white;
   color:#27357C;
 }
+
 input[type="text"]::-webkit-input-placeholder {
   color: #27357C !important;
 }
+
+input[type="text"]:-moz-placeholder { /* Firefox 18- */
+  color: #27357C !important;
+}
+
+input[type="text"]::-moz-placeholder {  /* Firefox 19+ */
+  color: #27357C !important;
+}
+
+input[type="text"]:-ms-input-placeholder {  
+  color: #27357C !important;
+}
+
 button.btn {
   background-color: #27357C;
 }

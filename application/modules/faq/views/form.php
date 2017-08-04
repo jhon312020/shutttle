@@ -18,30 +18,6 @@
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('question') . ' (EN)'; ?>: </label>
-					<div class="col-sm-5">
-						<input class="form-control" type="text" id="question" name="question" value="<?php echo $this->mdl_faq->form_value('question'); ?>">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('answer'). ' (EN)'; ?>: </label>
-					<div class="col-sm-5">
-						<?php echo $this->ckeditor->editor("answer", $this->mdl_faq->form_value('answer'));?>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('question') . ' (ES)'; ?>: </label>
-					<div class="col-sm-5">
-						<input class="form-control" type="text" id="question_es" name="question_es" value="<?php echo $this->mdl_faq->form_value('question_es'); ?>">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('answer'). ' (ES)'; ?>: </label>
-					<div class="col-sm-5">
-						<?php echo $this->ckeditor->editor("answer_es", $this->mdl_faq->form_value('answer_es'));?>
-					</div>
-				</div>
-				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo lang('category'); ?>: </label>
 					<div class="col-sm-5">
 						<?php
@@ -56,6 +32,36 @@
 						?>
 					</div>
 				</div>
+
+				<div class="panel minimal minimal-gray">
+					<div class="panel-heading">
+						<div class="panel-title"></div>
+						<div class="panel-options">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#tab-1" data-toggle="tab">EN</a></li>
+								<li><a href="#tab-2" data-toggle="tab">ES</a></li>
+								<li><a href="#tab-3" data-toggle="tab">DE</a></li>
+								<li><a href="#tab-4" data-toggle="tab">FR</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab-1">
+								<?php $this->layout->load_view('faq/language_fields',array('language'=>'en')); ?>
+							</div>
+							<div class="tab-pane" id="tab-2">
+								<?php $this->layout->load_view('faq/language_fields',array('language'=>'es')); ?>
+							</div>
+							<div class="tab-pane" id="tab-3">
+								<?php $this->layout->load_view('faq/language_fields',array('language'=>'de')); ?>
+							</div>
+							<div class="tab-pane" id="tab-4">
+								<?php $this->layout->load_view('faq/language_fields',array('language'=>'fr')); ?>
+							</div>
+						</div>
+					</div>
+				</div>				
 			</div>
 		</div>
     </div>

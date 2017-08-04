@@ -13,13 +13,13 @@ class Mdl_booking_extras extends Response_Model {
 
     public function validation_rules() {
         return array(
-            'title' => array(
-                'field' => 'title',
+            'title_en' => array(
+                'field' => 'title_en',
                 'label' => 'Title',
                 'rules' => 'required'
             ),
-            'subtitle' => array(
-                'field' => 'subtitle',
+            'subtitle_en' => array(
+                'field' => 'subtitle_en',
                 'label' => 'Subtitle',
                 'rules' => 'required'
             ),
@@ -40,6 +40,36 @@ class Mdl_booking_extras extends Response_Model {
             ),
             'description_es' => array(
                 'field' => 'description_es',
+                'label' => 'description',
+                'rules' => 'required'
+            ),
+            'title_de' => array(
+                'field' => 'title_de',
+                'label' => 'Title',
+                'rules' => 'required'
+            ),
+            'subtitle_de' => array(
+                'field' => 'subtitle_de',
+                'label' => 'Subtitle',
+                'rules' => 'required'
+            ),
+            'description_de' => array(
+                'field' => 'description_de',
+                'label' => 'description',
+                'rules' => 'required'
+            ),
+            'title_fr' => array(
+                'field' => 'title_fr',
+                'label' => 'Title',
+                'rules' => 'required'
+            ),
+            'subtitle_fr' => array(
+                'field' => 'subtitle_fr',
+                'label' => 'Subtitle',
+                'rules' => 'required'
+            ),
+            'description_fr' => array(
+                'field' => 'description_fr',
                 'label' => 'description',
                 'rules' => 'required'
             ),

@@ -27,13 +27,6 @@
 									<span><?php echo lang('slider_texts'); ?></span>
 								</a>
 							</li>
-							<?php /*<li class="<?php echo ($this->router->method == 'banner' or $url_segment[4]== 'banner') ? 'opened active' : ''; ?>">
-								<a href="<?php echo site_url('admin/homepage/banner'); ?>">
-									<i class="entypo-pencil"></i>
-									<span><?php echo lang('banner'); ?></span>
-								</a>
-							</li>
-							*/ ?>
 							<li class="<?php echo ($this->router->method == 'box' or  $url_segment[4]== 'box') ? 'opened active' : ''; ?>">
 								<a href="<?php echo site_url('admin/homepage/box'); ?>">
 									<i class="entypo-pencil"></i>
@@ -81,10 +74,21 @@
 				</ul>
 			</li>
 			<li class="<?php echo $this->router->class == 'shuttles' ? 'opened active' : ''; ?>">
-				<a href="<?php echo site_url('admin/shuttles/index'); ?>">
-					<i class="entypo-flight"></i>
-					<span><?php echo lang('shuttles'); ?></span>
-				</a>
+				<a href="#"><i class="entypo-flight"></i><span><?php echo lang('shuttles'); ?></span></a>
+				<ul>
+					<li class="<?php echo ($this->router->class == 'shuttles' && $url_segment[3]  == 'index') ? 'active' : ''; ?>">
+						<a href="<?php echo site_url('admin/shuttles/index'); ?>">
+							<i class="entypo-list"></i>
+							<span><?php echo lang('shuttles'); ?></span>
+						</a>
+					</li>
+					<li class="<?php echo ($this->router->class == 'shuttles' && $url_segment[3]  == 'pendings') ? 'active' : ''; ?>">
+						<a href="<?php echo site_url('admin/shuttles/pendings'); ?>">
+							<i class="entypo-list"></i>
+							<span><?php echo lang('pendings'); ?></span>
+						</a>
+					</li>
+				</ul>
 			</li>
 			<li class="<?php echo ($this->router->class == 'paths' || $this->router->class == 'vehicles' || $this->router->class == 'cities' || $this->router->class == 'empresa_transporte' || $this->router->class == 'place_categories') ? 'opened active' : ''; ?>">
 				<a href="#"><i class="entypo-address"></i><span><?php echo lang('routes'); ?></span></a>

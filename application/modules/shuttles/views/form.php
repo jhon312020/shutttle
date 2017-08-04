@@ -221,7 +221,9 @@ if ($this->session->userdata('cms_lang') == 'english') {
 				</div>
 				<div class="panel-body" style="padding:0px;">
 					<form method="post" class="form-horizontal" enctype="multipart/form-data">
-						<button class="pull-right btn" type="button" id="edit_form">Edit</button>
+						<?php if (isset($edit) && $edit==false){} else { ?>
+							<button class="pull-right btn" type="button" id="edit_form">Edit</button>
+						<?php } ?>
 						<button class="pull-right btn btn-primary edit_field" type="submit" value="1" name="booking_submit">Save</button>
 						<?php if($bookings['book_role'] == 2){ ?>
 						<div class="form-group">

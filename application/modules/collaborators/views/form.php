@@ -162,7 +162,7 @@ $disabled = ($readonly)?'disabled':'';
 								if($readonly){ $inputOption['readonly']=1; }
 								echo '<label>';
 								echo form_radio($inputOption);
-								echo 'Online (OR) Pay by Cash</label>';
+								echo 'Online (OR) Pay by User</label>';
 							?>
 						</div>
 					</div>

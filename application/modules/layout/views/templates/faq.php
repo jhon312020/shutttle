@@ -37,9 +37,9 @@
 		<?php
 		foreach($cat1 as $data){
 		?>
-			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></p>
+			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo $data->{'question_'.$lang}; ?></p>
 				<ul id="collapse<?php echo $data->id; ?>" class="ans panel-collapse collapse">
-					<li><?php echo ($lang == 'es')?$data->answer_es:$data->answer; ?></li>
+					<li><?php echo $data->{'answer_'.$lang}; ?></li>
 				</ul>
 			</li>
 		<?php
@@ -63,9 +63,9 @@
 		<?php
 		foreach($cat2 as $data){
 		?>
-			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></p>
+			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo $data->{'question_'.$lang}; ?></p>
 				<ul id="collapse<?php echo $data->id; ?>" class="ans panel-collapse collapse">
-					<li><?php echo ($lang == 'es')?$data->answer_es:$data->answer; ?></li>
+					<li><?php echo $data->{'answer_'.$lang}; ?></li>
 				</ul>
 			</li>
 		<?php
@@ -89,9 +89,9 @@
 		<?php
 		foreach($cat3 as $data){
 		?>
-			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo ($lang == 'es')?$data->question_es:$data->question; ?></p>
+			<li data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $data->id; ?>"><p class="first-node"><?php echo $data->{'question_'.$lang}; ?></p>
 				<ul id="collapse<?php echo $data->id; ?>" class="ans panel-collapse collapse">
-					<li><?php echo ($lang == 'es')?$data->answer_es:$data->answer; ?></li>
+					<li><?php echo $data->{'answer_'.$lang}; ?></li>
 				</ul>
 			</li>
 		<?php

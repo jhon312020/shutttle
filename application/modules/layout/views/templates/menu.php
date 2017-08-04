@@ -1,13 +1,23 @@
 <?php
   $actual_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   $pname = '';
-  if($lang == 'en') {
+
+  $lang = $this->uri->segment(1);
+  if($lang == '') {
+    $lang = 'es';
+  }
+  //echo $lang;
+  $full_path_en = str_replace('/'.$lang, '/en', $actual_link);
+  $full_path_es = str_replace('/'.$lang, '/es', $actual_link);
+  $full_path_de = str_replace('/'.$lang, '/de', $actual_link);
+  $full_path_fr = str_replace('/'.$lang, '/fr', $actual_link);
+  /*if($lang == 'en') {
 		$full_path_es = str_replace('/en', '/es', $actual_link);
 		$full_path_en = $actual_link;
 	} else {
 		$full_path_en = str_replace('/es', '/en', $actual_link);
 		$full_path_es = $actual_link;
-	}
+	}*/
 ?>
 <div class="navbar-wrapper">
   <div style="margin-left:20px;">
@@ -43,6 +53,8 @@
         <div class="navbar-lang" style="text-align:center;">
         <a href="<?php echo $full_path_es; ?>"><img src="<?php echo IMAGEPATH; ?>spain.png"></a> 
         <a href="<?php echo $full_path_en; ?>"><img src="<?php echo IMAGEPATH; ?>english.png"></a>
+        <a href="<?php echo $full_path_de; ?>"><img src="<?php echo IMAGEPATH; ?>german_flag.png" width="34" height="19"></a>
+        <a href="<?php echo $full_path_fr; ?>"><img src="<?php echo IMAGEPATH; ?>france_flag.gif" width="34" height="19"></a>
         <?php if($this->session->userdata('user_name') && $this->session->userdata('user_type') == 2){ } else { ?>
           <br/>
           <a style="color:white;font-size:14px;"href="<?php echo site_url($lang."/collaborators/login"); ?>"><?php echo lang('collaborators_access'); ?></a>

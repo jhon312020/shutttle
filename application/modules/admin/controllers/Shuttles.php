@@ -86,7 +86,7 @@ class Shuttles extends Admin_Controller {
 											->join('clients', 'clients.id=booking.client_id', 'left')
 											->join('calendars', 'calendars.id=booking.calendar_id', 'left')
 											->join('vehicles', 'vehicles.id=booking.vehicle_id', 'left')
-											->where('booking.is_active = 0 and booking.updated_by != "shuttle delete"');
+											->where('booking.is_active = 0 and booking.updated_by != "shuttle delete" and booking.round_trip != 1');
 											
 
 		if ($this->input->post('from_date')) {

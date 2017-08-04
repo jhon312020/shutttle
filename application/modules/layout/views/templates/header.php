@@ -28,7 +28,6 @@ print_r($header_text_images);die;*/
 	<meta name="email" content="info@shuttleing.com">
 	<meta name="robots" content="index, follow">
 	<meta name="googlebot" content="index, follow">
-	<meta name="language" content="EN">
 	<?php
 	}
 	else{
@@ -41,10 +40,10 @@ print_r($header_text_images);die;*/
 	<meta name="email" content="info@shuttleing.com">
 	<meta name="robots" content="index, follow">
 	<meta name="googlebot" content="index, follow">
-	<meta name="language" content="ES">
 	<?php	
 	}
 	?>
+	<meta name="language" content="<?php echo strtoupper($this->uri->segment(1)); ?>">
 	<link href="<?php echo base_url(); ?>assets/cc/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/cc/css/style.css" type="text/css" rel="stylesheet">
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

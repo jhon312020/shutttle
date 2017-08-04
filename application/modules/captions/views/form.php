@@ -27,33 +27,7 @@ $name = (is_numeric($this->uri->segment(4)))?$this->uri->segment(5):$this->uri->
 					<div class="panel-title">Add <?php echo lang($name);?></div>
 				</div>-->
 			<div class="panel-body">
-				<?php
-				if($name != 'faq'){
-				?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('title') . ' (EN)'; ?>: </label>
-					<div class="col-sm-5">
-						<input class="form-control" type="text" id="title_en" name="title_en" value="<?php echo $this->mdl_captions->form_value('title_en'); ?>"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('subtitle'). ' (EN)'; ?>: </label>
-					<div class="col-sm-5">
-						<input class="form-control" type="text" id="subtitle_en" name="subtitle_en" value="<?php echo $this->mdl_captions->form_value('subtitle_en'); ?>"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('title') . ' (ES)'; ?>: </label>
-					<div class="col-sm-5">
-						<input class="form-control" type="text" id="title_es" name="title_es" value="<?php echo $this->mdl_captions->form_value('title_es'); ?>">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('subtitle'). ' (ES)'; ?>: </label>
-					<div class="col-sm-5">
-						<input class="form-control" type="text" id="subtitle_es" name="subtitle_es" value="<?php echo $this->mdl_captions->form_value('subtitle_es'); ?>">
-					</div>
-				</div>
+				<?php if($name != 'faq'){ ?>
 				<div class="form-group">
 					<label class="col-sm-3 control-label"><?php echo lang('image'); ?>: </label>
 					<div class="col-sm-5">
@@ -63,55 +37,36 @@ $name = (is_numeric($this->uri->segment(4)))?$this->uri->segment(5):$this->uri->
 						<?php } ?>
 					</div>
 				</div>
-				<?php
-				}
-				if($name != 'contacts') {
-				?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('content') . ' (EN)'; ?>: </label>
-					<div class="col-sm-5">
-						<textarea class="form-control" type="text" id="content_en" name="content_en"><?php echo $this->mdl_captions->form_value('content_en'); ?></textarea>
-					</div>
-				</div>
-				<?php if($name != 'partners'){ ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('subcontent'). ' (EN)'; ?>: </label>
-					<div class="col-sm-5">
-						<?php echo $this->ckeditor->editor("subcontent_en", $this->mdl_captions->form_value('subcontent_en'));?>
-					</div>
-				</div>
 				<?php } ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('content') . ' (ES)'; ?>: </label>
-					<div class="col-sm-5">
-						<textarea class="form-control" type="text" id="content_es" name="content_es"><?php echo $this->mdl_captions->form_value('content_es'); ?></textarea>
-					</div>
+				<div class="panel minimal minimal-gray">
+						<div class="panel-heading">
+							<div class="panel-title"></div>
+							<div class="panel-options">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#tab-1" data-toggle="tab">EN</a></li>
+									<li><a href="#tab-2" data-toggle="tab">ES</a></li>
+									<li><a href="#tab-3" data-toggle="tab">DE</a></li>
+									<li><a href="#tab-4" data-toggle="tab">FR</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab-1">
+									<?php $this->layout->load_view('captions/language_fields',array('language'=>'en','name'=>$name)); ?>
+								</div>
+								<div class="tab-pane" id="tab-2">
+									<?php $this->layout->load_view('captions/language_fields',array('language'=>'es','name'=>$name)); ?>
+								</div>
+								<div class="tab-pane" id="tab-3">
+									<?php $this->layout->load_view('captions/language_fields',array('language'=>'de','name'=>$name)); ?>
+								</div>
+								<div class="tab-pane" id="tab-4">
+									<?php $this->layout->load_view('captions/language_fields',array('language'=>'fr','name'=>$name)); ?>
+								</div>
+							</div>
+						</div>
 				</div>
-				<?php if($name != 'partners'){ ?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('subcontent'). ' (ES)'; ?>: </label>
-					<div class="col-sm-5">
-						<?php echo $this->ckeditor->editor("subcontent_es", $this->mdl_captions->form_value('subcontent_es'));?>
-					</div>
-				</div>
-				<?php } ?>
-				<?php
-				}
-				if($name == 'contacts') {
-				?>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('address'); ?>: </label>
-					<div class="col-sm-5">
-						<textarea  class="form-control" name="settings[address]" ><?php echo $this->mdl_settings->setting('address'); ?></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('telephone_no'); ?> : </label>
-					<div class="col-sm-5">
-						<input class="form-control" type="text" name="settings[telephone]" class="input-small" value="<?php echo $this->mdl_settings->setting('telephone'); ?>">
-					</div>
-				</div>
-				<?php } ?>
 			</div>
 		</div>
     </div>

@@ -1,4 +1,14 @@
 <style type="text/css">
+.page-container {
+	padding-left: 210px;
+}
+.page-container .sidebar-menu {
+	width: 210px;
+}
+.page-container .sidebar-menu .logo-env {
+	padding-left:17px;
+	padding-right:17px;
+}
 	.datepicker1 {
 		text-align: left !important;
 	}

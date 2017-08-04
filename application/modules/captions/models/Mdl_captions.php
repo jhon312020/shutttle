@@ -65,19 +65,21 @@ class Mdl_captions extends Response_Model {
   
   public function getRow($type, $lang)
 	{
-    $this->db->select('subcontent_en, subcontent_es, content_en, content_es, image');
+    $this->db->select('subcontent_en, subcontent_es,subcontent_de,subcontent_fr, content_en, content_es,content_de,content_fr, image');
 		$this->db->where('type', $type);
 		$query = $this->db->get('captions');
     $data = array(); 
     if ($query->row()) {
       $content = $query->row();
-      if ($lang == '' || $lang == 'es'){
+      $data['content'] = $content->{'content_'.$lang};
+      $data['subcontent'] = $content->{'subcontent_'.$lang};
+      /*if ($lang == '' || $lang == 'es'){
         $data['content'] = $content->content_es;
         $data['subcontent'] = $content->subcontent_es;
       } else {
         $data['content'] = $content->content_en;
         $data['subcontent'] = $content->subcontent_en;
-      }
+      }*/
       $data['image'] = $content->image;
     }
     return $data; 

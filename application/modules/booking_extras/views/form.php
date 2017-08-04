@@ -13,42 +13,6 @@ $disabled = ($readonly)?'disabled':'';
 				<div class="panel-heading"></div>
 				<div class="panel-body">
 					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('title') . ' (EN)';?>: </label>
-						<div class="col-sm-5">
-							<?php echo form_input(array('name'=>'title', 'class'=>'form-control', $readonly=>true, 'value'=>$this->mdl_booking_extras->form_value('title'))); ?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('subtitle') . ' (EN)'; ?>: </label>
-						<div class="col-sm-5">
-							<?php echo form_input(array('name'=>'subtitle', 'class'=>'form-control', $readonly=>true, 'value'=>$this->mdl_booking_extras->form_value('subtitle'))); ?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('description') . ' (EN)'; ?>: </label>
-						<div class="col-sm-5">
-							<?php echo $this->ckeditor->editor("description_en", $this->mdl_booking_extras->form_value('description_en'));?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('title') . ' (ES)';?>: </label>
-						<div class="col-sm-5">
-							<?php echo form_input(array('name'=>'title_es', 'class'=>'form-control', $readonly=>true, 'value'=>$this->mdl_booking_extras->form_value('title_es'))); ?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('subtitle') . ' (ES)'; ?>: </label>
-						<div class="col-sm-5">
-							<?php echo form_input(array('name'=>'subtitle_es', 'class'=>'form-control', $readonly=>true, 'value'=>$this->mdl_booking_extras->form_value('subtitle_es'))); ?>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label"><?php echo lang('description')  . ' (ES)'; ?>: </label>
-						<div class="col-sm-5">
-							<?php echo $this->ckeditor->editor("description_es", $this->mdl_booking_extras->form_value('description_es'));?>
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-sm-3 control-label"><?php echo lang('price'); ?>: </label>
 						<div class="col-sm-5">
 							<?php echo form_input(array('name'=>'price', 'class'=>'form-control', 'value'=>$this->mdl_booking_extras->form_value('price'), $readonly=>true)); ?>
@@ -61,12 +25,42 @@ $disabled = ($readonly)?'disabled':'';
 						</div>
 					</div>
 					<div class="form-group">
-					<label class="col-sm-3 control-label"><?php echo lang('image'); ?>: </label>
-					<div class="col-sm-5">
-						<input name="image" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" />
-						<?php if($this->mdl_booking_extras->form_value('image')){?>
-						<img src="<?php echo $path . $this->mdl_booking_extras->form_value('image'); ?>">
-						<?php } ?>
+						<label class="col-sm-3 control-label"><?php echo lang('image'); ?>: </label>
+						<div class="col-sm-5">
+							<input name="image" type="file" class="form-control file2 inline btn btn-primary" data-label="<i class='glyphicon glyphicon-circle-arrow-up'></i> &nbsp;Browse Files" />
+							<?php if($this->mdl_booking_extras->form_value('image')){?>
+							<img src="<?php echo $path . $this->mdl_booking_extras->form_value('image'); ?>">
+							<?php } ?>
+						</div>
+					</div>
+					<div class="panel minimal minimal-gray">
+						<div class="panel-heading">
+							<div class="panel-title"></div>
+							<div class="panel-options">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#tab-1" data-toggle="tab">EN</a></li>
+									<li><a href="#tab-2" data-toggle="tab">ES</a></li>
+									<li><a href="#tab-3" data-toggle="tab">DE</a></li>
+									<li><a href="#tab-4" data-toggle="tab">FR</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab-1">
+									<?php $this->layout->load_view('booking_extras/language_fields',array('language'=>'en')); ?>
+								</div>
+								<div class="tab-pane " id="tab-2">
+									<?php $this->layout->load_view('booking_extras/language_fields',array('language'=>'es')); ?>
+								</div>
+								<div class="tab-pane " id="tab-3">
+									<?php $this->layout->load_view('booking_extras/language_fields',array('language'=>'de')); ?>
+								</div>
+								<div class="tab-pane " id="tab-4">
+									<?php $this->layout->load_view('booking_extras/language_fields',array('language'=>'fr')); ?>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -55,10 +55,8 @@ if (!defined('BASEPATH'))
 
 		$collaborators = $this->db->where('id', $id)->get('collaborators')->row();
 		
-		//$start_date = date('Y-m-d', strtotime('-7 days'));
-		//$end_date = Date('Y-m-d');
-		$start_date = '';
-		$end_date = '';
+		$start_date = date('Y-m-d', strtotime('-7 days'));
+		$end_date = Date('Y-m-d');
 		if($this->input->post('start_date')) {
 			$chartStartDate = str_replace('/','-',$this->input->post('start_date'));
 			$startDate = date('Y-m-d', strtotime($chartStartDate));
@@ -68,8 +66,9 @@ if (!defined('BASEPATH'))
 				$end_date = $endDate;
 				$start_date = $startDate;
 			} else {
-				$start_date = '';
-				$end_date = '';
+				$error['error'] = 'Start date should be less than the end date';
+				$start_date = date('Y-m-d', strtotime('-7 days'));
+				$end_date = Date('Y-m-d');
 			}
 		} else {
 			if ($this->mdl_collaborators->run_validation()){

@@ -44,6 +44,14 @@ body{
     padding-left: 4%;
     padding-right: 2%;
   }
+  .de_circletwo{
+    padding-left: 4%;
+    padding-right: 2%;
+  }
+  .fr_circletwo{
+    padding-left: 4%;
+    padding-right: 2%;
+  }
   .en_circletwo{
     padding-left: 5%;
     padding-right: 4%;
@@ -84,15 +92,27 @@ body{
 			<div class="tabbable-panel" id="booking_details">
 				<div class="tabbable-line">
 					<ul class="nav nav-tabs book-desk">
-						<li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
-							<a href="#firstStep">
-							<?php echo lang('choose_your_route'); ?>
-							</a>
-						</li>
-						<li class="stepClick disabled circletwo <?php echo $lang.'_circletwo'; ?>" data-class="secondStep"><span class="step">2</span>
-							<a href="#secondStep">
-							<?php echo lang('route_schedule'); ?></a>
-						</li>
+            <?php if ($submit_from_home) { ?>
+  						<li class="stepClick circleone" data-class="firstStep"><span class="step">1</span>
+  							<a href="#firstStep">
+  							<?php echo lang('choose_your_route'); ?>
+  							</a>
+  						</li>
+  						<li class="active disabled circletwo <?php echo $lang.'_circletwo'; ?>" data-class="secondStep"><span class="step">2</span>
+  							<a href="#secondStep">
+  							<?php echo lang('route_schedule'); ?></a>
+  						</li>
+            <?php } else { ?>
+              <li class="active stepClick circleone" data-class="firstStep"><span class="step">1</span>
+                <a href="#firstStep">
+                <?php echo lang('choose_your_route'); ?>
+                </a>
+              </li>
+              <li class="stepClick disabled circletwo <?php echo $lang.'_circletwo'; ?>" data-class="secondStep"><span class="step">2</span>
+                <a href="#secondStep">
+                <?php echo lang('route_schedule'); ?></a>
+              </li>
+            <?php } ?>
 						<li class="stepClick disabled circlethree" data-class="thirdStep"><span class="step">3</span>
 							<a href="#thirdStep">
 							<?php echo lang('info_and_payment'); ?></a>
@@ -230,12 +250,12 @@ $(document).ready(function ($) {
     post_params['firstbutton'] = true;
     $.each(post_params, function(index,value){
       if (index == 'firstbutton') {
-        $('#firstbutton').trigger('click');  
+        $('#firstbutton').trigger('click');
       } else {
-        if (index == 'return_journey' || value == '') {
+        if (index == 'return_journey' && value == '') {
           $('#jsSingleTrip').trigger('click');
         }
-        $('input[name='+index+']').val(value);  
+        $('input[name='+index+']').val(value);
       }
     });
   });

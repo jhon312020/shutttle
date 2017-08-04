@@ -37,11 +37,11 @@
 		<?php foreach ($boxes as $box) { ?>
 		<tr>
 			<td><?php echo $box->id; ?></td>
-			<?php if ($type !== 'banner'){ ?>
-			<td><?php echo $box->title; ?></td>
+			<?php if ($type != 'banner'){ ?>
+			<td><?php echo $box->title_en; ?></td>
 			<td><?php echo $box->title_es; ?></td>
 			<?php } ?>
-			<td><img src ="<?php echo $path . ($type == 'banner' ? 'banner/' : 'boxes/') .$box->image; ?>" width='150'/></td>
+			<td><img src ="<?php echo $path . ($type == 'banner' ? 'banner/' : 'boxes/') .$box->image_en; ?>" width='150'/></td>
 			<td>
 				<?php if($box->image_es != ''){ ?>
 					<img src ="<?php echo $path . ($type == 'banner' ? 'banner/' : 'boxes/') .$box->image_es; ?>" width='150'/>
